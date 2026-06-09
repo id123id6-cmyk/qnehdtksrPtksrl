@@ -1,5 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://myaptcalc.com/sitemap.xml
-
+Sitemap: https://seungbak.com/sitemap.xml

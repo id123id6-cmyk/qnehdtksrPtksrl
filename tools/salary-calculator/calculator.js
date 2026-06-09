@@ -1,7 +1,7 @@
 // 계산 관련 핵심 로직 및 UI 제어 스크립트
 
 // 사이트 공유 URL (배포 도메인)
-const SITE_URL = "https://myaptcalc.com";
+const SITE_URL = "https://seungbak.com/tools/salary-calculator";
 const OG_IMAGE_URL = `${SITE_URL}/images/og-image.png`;
 
 // 4대보험 요율 (근로자 부담분 합산 근사치)
@@ -374,6 +374,7 @@ function fillReverseForm({
   regionValue,
   homeStatus,
   cashMan,
+  debtMan,
   loanYears,
   baseRate,
 }) {
@@ -398,6 +399,13 @@ function fillReverseForm({
     setAmountValue("reverseCash", cashMan, "reverseCashHint", {
       placeholder: "보유 현금 (선택)",
       max: 500000,
+    });
+  }
+
+  if (debtMan !== undefined && debtMan !== "") {
+    setAmountValue("existingDebt", debtMan, "existingDebtHint", {
+      placeholder: "없으면 0 또는 비워두세요",
+      max: 10000,
     });
   }
 
@@ -505,19 +513,30 @@ function goBackToForward() {
 
 function handleReverseDeepLink() {
   const params = new URLSearchParams(window.location.search);
-  if (params.get("mode") !== "reverse") return;
-
   const priceMan = parseInt(params.get("price"), 10);
   if (!priceMan || priceMan < 1000) return;
 
-  jumpToReverseTab(priceMan, {
+  fillReverseForm({
+    priceMan,
     regionValue: parseRegionParam(params.get("region")),
     homeStatus: params.get("house") || "none",
     cashMan: params.get("cash") || "",
+    debtMan: params.get("debt") || "",
     loanYears: params.get("years") || undefined,
     baseRate: params.get("rate") || undefined,
-    fromForward: params.get("from") === "forward",
   });
+
+  if (params.get("from") === "forward") {
+    showAutoJumpNotice(priceMan);
+  }
+
+  window.setTimeout(() => {
+    runReverseCalculation(collectReverseInput());
+    document.getElementById("reverse-result-section")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }, 150);
 }
 
 function setupQuickReverseBox() {
@@ -2104,6 +2123,12 @@ function setupGuide() {
           target.click();
         }
       }
+      if (selector === "#reverse-toggle-advanced") {
+        const advancedOptions = document.getElementById("reverse-advanced-options");
+        if (advancedOptions && advancedOptions.hasAttribute("hidden")) {
+          target.click();
+        }
+      }
 
       target.scrollIntoView({ behavior: "smooth", block: "center" });
 
@@ -2411,6 +2436,7 @@ function collectReverseInput() {
 
   const targetPriceMan = getAmountValue("targetPrice");
   const cashMan = getAmountValue("reverseCash");
+  const existingDebtMan = getAmountValue("existingDebt");
   const loanYears = Number(
     document.getElementById("reverseLoanYears")?.value || 30
   );
@@ -2444,6 +2470,7 @@ function collectReverseInput() {
   return {
     targetPriceMan,
     cashMan,
+    existingDebtMan,
     loanYears,
     baseRate,
     homeStatus,
@@ -2451,10 +2478,17 @@ function collectReverseInput() {
   };
 }
 
+function getDsrTrafficLight(dsrPercent) {
+  if (dsrPercent <= 35) return { text: "🟢 안정", className: "safe" };
+  if (dsrPercent <= 40) return { text: "🟡 주의", className: "normal" };
+  return { text: "🔴 위험", className: "danger" };
+}
+
 function runReverseCalculation(input) {
   const {
     targetPriceMan,
     cashMan,
+    existingDebtMan,
     loanYears,
     baseRate,
     homeStatus,
@@ -2509,7 +2543,38 @@ function runReverseCalculation(input) {
     0,
     monthlyApplicable * loanYears * 12 - applicableLoanWon
   );
-  const minIncomeMan = minRequiredIncome(monthlyStress);
+  const existingDebtWon = (existingDebtMan || 0) * 10000;
+  const minIncomeMan =
+    ((monthlyStress + existingDebtWon) * 12) / 0.4 / 10000;
+  const dsrAtMinIncome =
+    minIncomeMan > 0
+      ? (((monthlyStress + existingDebtWon) * 12) / (minIncomeMan * 10000)) * 100
+      : 0;
+  const trafficLight = getDsrTrafficLight(dsrAtMinIncome);
+
+  const summaryCard = document.getElementById("reverse-summary-card");
+  const summaryMinIncome = document.getElementById("summary-min-income");
+  const summaryMonthly = document.getElementById("summary-monthly");
+  const summaryDsr = document.getElementById("summary-dsr");
+  const summaryBadge = document.getElementById("summary-badge");
+  if (summaryCard && applicableLtv > 0) {
+    summaryCard.hidden = false;
+    if (summaryMinIncome) {
+      summaryMinIncome.textContent = `약 ${Math.round(minIncomeMan).toLocaleString("ko-KR")}만원`;
+    }
+    if (summaryMonthly) {
+      summaryMonthly.textContent = formatMonthly(monthlyApplicable);
+    }
+    if (summaryDsr) {
+      summaryDsr.textContent = `${dsrAtMinIncome.toFixed(1)}% (스트레스 ${stressRate.toFixed(1)}%)`;
+    }
+    if (summaryBadge) {
+      summaryBadge.textContent = trafficLight.text;
+      summaryBadge.className = `reverse-summary-value burden-${trafficLight.className}`;
+    }
+  } else if (summaryCard) {
+    summaryCard.hidden = true;
+  }
 
   const headerTitle = document.getElementById("reverse-header-title");
   if (headerTitle) {
@@ -2566,7 +2631,11 @@ function runReverseCalculation(input) {
   const dsrOneline = document.getElementById("reverse-dsr-oneline");
   if (dsrOneline) {
     if (applicableLtv > 0) {
-      dsrOneline.textContent = `이 대출액(${formatKoreanPrice(applicableLoanWon)})을 DSR 40% 이내로 받으려면 최소 연봉 ${Math.round(minIncomeMan).toLocaleString("ko-KR")}만원이 필요해요. (스트레스 금리 ${stressRate.toFixed(1)}% 기준)`;
+      const debtNote =
+        existingDebtMan > 0
+          ? ` (기존 대출 월 ${existingDebtMan.toLocaleString("ko-KR")}만원 포함)`
+          : "";
+      dsrOneline.textContent = `이 대출액(${formatKoreanPrice(applicableLoanWon)})을 DSR 40% 이내로 받으려면 최소 연봉 ${Math.round(minIncomeMan).toLocaleString("ko-KR")}만원이 필요해요. (스트레스 금리 ${stressRate.toFixed(1)}% 기준)${debtNote}`;
     } else {
       dsrOneline.textContent =
         "내 조건에서는 주담대가 불가하여 DSR 역산 대상 대출이 없습니다. 전액 자기자금으로 매수해야 합니다.";
@@ -2735,22 +2804,12 @@ function setupWhyBlockedAccordion() {
 
 document.addEventListener("DOMContentLoaded", () => {
   setupAllAmountInputs();
-  setupCalculatorTabs();
-  setupCalculatorForm();
+  setupGuide();
   setupReverseCalculatorForm();
   setupReverseAdvancedToggle();
   setupShareTextCopyButtons();
   setupShareButtons();
-  setupGuide();
-  setupWhyBlockedAccordion();
-  setupFirstTimeBuyerModal();
-  setupQuickReverseBox();
-  setupBackToForwardLink();
   setCurrentYear();
   handleReverseDeepLink();
-
-  if (DEBUG_LTV) {
-    runLtvIntegrationTests();
-  }
 });
 

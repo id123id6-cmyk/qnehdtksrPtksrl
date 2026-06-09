@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<!--
+============================================
+📌 새 글 추가 시 주의사항:
+1. blog-card에 반드시 data-category 속성 부여
+2. 카테고리 값:
+   - side-project (🛠️ 사이드 프로젝트)
+   - ai-tools (🤖 AI 도구)
+   - side-income (💰 직장인 부업)
+   - real-estate (🏢 부동산/재테크)
+3. 위치는 .blog-grid 안에 추가
+============================================
+-->
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>블로그 | 승박</title>
+  <meta name="description" content="사이드 프로젝트 일지, AI 도구 활용법, 직장인 부업 이야기를 정리하는 승박의 블로그입니다.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://seungbak.com/blog/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://seungbak.com/blog/">
+  <meta property="og:title" content="블로그 | 승박">
+  <meta property="og:description" content="사이드 프로젝트 일지부터 직장인 부업 이야기까지">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:site_name" content="승박">
+
+  <link rel="icon" href="/favicon.ico">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo"><a href="/">승박</a></div>
+      <nav class="main-nav">
+        <a href="/">홈</a>
+        <a href="/tools/">도구</a>
+        <a href="/blog/" class="active" aria-current="page">블로그</a>
+        <a href="/about.html">소개</a>
+        <a href="/contact.html">문의</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-badges" aria-label="서비스 특징">
+          <span class="trust-badge">📰 블로그</span>
+          <span class="trust-badge">🛠️ 사이드 프로젝트</span>
+          <span class="trust-badge trust-badge-accent">💰 직장인 부업</span>
+        </div>
+        <h1>
+          블로그<br>
+          <span class="hero-highlight">두 번째 월급의 기록</span>
+        </h1>
+        <p class="hero-subtitle">사이드 프로젝트 일지부터 직장인 부업 이야기까지</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="blog-categories" aria-label="블로그 카테고리">
+          <button type="button" class="filter-btn active" data-filter="all">전체</button>
+          <button type="button" class="filter-btn" data-filter="side-project">🛠️ 사이드 프로젝트</button>
+          <button type="button" class="filter-btn" data-filter="ai-tools">🤖 AI 도구</button>
+          <button type="button" class="filter-btn" data-filter="side-income">💰 직장인 부업</button>
+          <button type="button" class="filter-btn" data-filter="real-estate">🏢 부동산/재테크</button>
+        </div>
+
+        <div class="blog-grid" id="blog-grid">
+          <a href="post-3.html" class="blog-card fade-in" data-category="ai-tools">
+            <span class="blog-category-badge blog-category-badge--ai">🤖 AI 도구</span>
+            <h3 class="blog-card-title">Cursor 2개월 써본 솔직 후기 (+ 비전공자용 사용법)</h3>
+            <p class="blog-card-summary">
+              코딩 한 줄 모르는 직장인이 Cursor를 2달간 직접 써본 진짜 후기. 장단점과 사용법까지.
+            </p>
+            <time class="blog-date" datetime="2026-06-09">2026-06-09</time>
+            <span class="blog-card-more">자세히 보기 →</span>
+          </a>
+
+          <a href="post-2.html" class="blog-card fade-in" data-category="side-project">
+            <span class="blog-category-badge blog-category-badge--project">🛠️ 사이드 프로젝트</span>
+            <h3 class="blog-card-title">평범한 생산관리 직장인이 사이트를 만들기로 한 이유</h3>
+            <p class="blog-card-summary">
+              월급 말고도 내 이름으로 된 무언가를 만들고 싶었습니다. 두 번째 월급 만들기 프로젝트의 시작.
+            </p>
+            <time class="blog-date" datetime="2026-06-09">2026-06-09</time>
+            <span class="blog-card-more">자세히 보기 →</span>
+          </a>
+
+          <a href="post-1.html" class="blog-card fade-in" data-category="side-project">
+            <span class="blog-category-badge blog-category-badge--project">🛠️ 사이드 프로젝트</span>
+            <h3 class="blog-card-title">비전공자 직장인이 코딩 0줄로 사이트 만든 후기</h3>
+            <p class="blog-card-summary">
+              도메인 구매부터 Vercel 배포까지, 진짜 3일 만에 가능할까?
+            </p>
+            <time class="blog-date" datetime="2026-06-09">2026-06-09</time>
+            <span class="blog-card-more">자세히 보기 →</span>
+          </a>
+        </div>
+
+        <div class="no-results" aria-live="polite">
+          <p>😅 아직 이 카테고리에는 글이 없어요.</p>
+          <p>곧 새로운 글로 찾아올게요!</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col footer-brand">
+        <p class="footer-logo">승박</p>
+        <p class="footer-tagline">평범한 직장인의 두 번째 월급 만들기</p>
+        <p class="footer-owner">운영자: <strong>승박</strong></p>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">바로가기</p>
+        <ul class="footer-nav">
+          <li><a href="/">홈</a></li>
+          <li><a href="/tools/">도구</a></li>
+          <li><a href="/blog/">블로그</a></li>
+          <li><a href="/about.html">소개</a></li>
+          <li><a href="/contact.html">문의</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">정책</p>
+        <ul class="footer-nav">
+          <li><a href="/privacy.html">개인정보처리방침</a></li>
+          <li><a href="/disclaimer.html">면책조항</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">함께해요</p>
+        <ul class="footer-nav">
+          <li><a href="mailto:id123id6@gmail.com">이메일</a></li>
+          <li class="footer-coming-soon">유튜브 (준비 중)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p class="footer-copy">&copy; <span id="current-year"></span> 승박. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var el = document.getElementById("current-year");
+      if (el) el.textContent = new Date().getFullYear();
+    })();
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var filterBtns = document.querySelectorAll(".filter-btn");
+      var blogCards = document.querySelectorAll("#blog-grid .blog-card");
+      var noResults = document.querySelector(".no-results");
+      var fadeDuration = 300;
+
+      function showCard(card) {
+        card.classList.remove("hidden", "fade-out");
+        requestAnimationFrame(function () {
+          card.classList.add("fade-in");
+        });
+      }
+
+      function hideCard(card) {
+        card.classList.remove("fade-in");
+        card.classList.add("fade-out");
+        window.setTimeout(function () {
+          if (!card.classList.contains("fade-in")) {
+            card.classList.add("hidden");
+          }
+        }, fadeDuration);
+      }
+
+      filterBtns.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var filter = this.getAttribute("data-filter");
+
+          filterBtns.forEach(function (b) {
+            b.classList.remove("active");
+          });
+          this.classList.add("active");
+
+          var visibleCount = 0;
+          blogCards.forEach(function (card) {
+            var category = card.getAttribute("data-category");
+
+            if (filter === "all" || category === filter) {
+              showCard(card);
+              visibleCount++;
+            } else {
+              hideCard(card);
+            }
+          });
+
+          if (visibleCount === 0) {
+            noResults.classList.add("show");
+          } else {
+            noResults.classList.remove("show");
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

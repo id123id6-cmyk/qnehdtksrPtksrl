@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>문의 | 내 연봉 아파트 계산기</title>
-  <meta name="description" content="내 연봉 아파트 계산기와 관련한 제안, 오류 신고, 문의를 남겨주세요.">
+  <title>문의 | 승박</title>
+  <meta name="description" content="내 연봉 아파트 계산기 운영자 승박에게 문의하세요. 오류 신고, 기능 제안, 광고·제휴 문의를 환영합니다.">
+  <meta name="robots" content="index, follow">
 
   <link rel="icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
@@ -13,19 +14,22 @@
 <body>
   <header class="site-header">
     <div class="container header-inner">
-      <div class="logo">내 연봉 아파트 계산기</div>
+      <div class="logo"><a href="/">승박</a></div>
       <nav class="main-nav">
-        <a href="index.html">계산기</a>
-        <a href="about.html">소개</a>
+        <a href="/">홈</a>
+        <a href="/tools/">도구</a>
+        <a href="/blog/">블로그</a>
+        <a href="/about.html">소개</a>
+        <a href="/contact.html" class="active" aria-current="page">문의</a>
       </nav>
     </div>
   </header>
 
   <main>
-    <section class="page-hero">
-      <div class="container">
+    <section class="page-header">
+      <div class="container page-header-inner">
         <h1>문의하기</h1>
-        <p>서비스 개선 아이디어, 오류 제보, 기능 제안 등을 자유롭게 남겨 주세요.</p>
+        <p class="page-header-subtitle">궁금한 점이 있다면 언제든 보내주세요</p>
       </div>
     </section>
 
@@ -34,55 +38,93 @@
         <div class="card page-card">
           <h2 class="section-title">문의 안내</h2>
           <p>
-            내 연봉 아파트 계산기는 1인 개발자가 운영하는 프로젝트로, 모든 문의에 실시간으로 답변드리기는 어렵지만
-            가능한 범위 내에서 성실하게 의견을 검토하고 반영하려고 노력하고 있습니다.
-            계산 결과가 실제 은행 상담 내용과 많이 다르거나, 규제 적용 방식에 오류가 의심되는 경우,
-            혹은 추가로 있었으면 하는 기능이 있다면 편하게 알려 주세요.
+            「내 연봉 아파트 계산기」는 운영자 <strong>승박</strong>이 1인으로 운영하는 서비스입니다.
+            모든 문의에 실시간으로 답변드리기는 어렵지만, 가능한 범위 내에서 성실하게 검토하고 반영하려고 노력하고 있습니다.
+            계산 결과가 실제 은행 상담과 다르거나, 규제 적용에 오류가 의심되는 경우, 추가 기능이 필요하다면 편하게 연락해 주세요.
           </p>
         </div>
 
         <div class="card page-card">
           <h2 class="section-title">연락처</h2>
-          <p>
-            · 이메일: <strong>example@example.com</strong><br>
-            · GitHub 이슈: <strong>배포 후 저장소 URL 기입</strong>
-          </p>
-          <p class="helper-text">
-            위 연락처는 예시이며, 실제 운영에 사용하는 이메일 또는 GitHub 저장소 주소로 교체해 주세요.
+          <ul class="contact-info-list">
+            <li><strong>운영자:</strong> 승박</li>
+            <li>
+              <strong>이메일:</strong>
+              <a href="mailto:id123id6@gmail.com">id123id6@gmail.com</a>
+            </li>
+            <li><strong>사이트:</strong> <a href="https://seungbak.com" target="_blank" rel="noopener noreferrer">seungbak.com</a></li>
+          </ul>
+          <p class="contact-response-note">
+            📬 이메일 문의는 <strong>영업일 기준 1~3일</strong> 내 답변드리려고 합니다. 주말·공휴일에는 다소 지연될 수 있습니다.
           </p>
         </div>
 
         <div class="card page-card">
-          <h2 class="section-title">문의 양식 (예시)</h2>
+          <h2 class="section-title">이런 내용을 보내주세요</h2>
+          <p>아래 항목을 포함해 주시면 더 빠르고 정확하게 답변드릴 수 있습니다.</p>
+          <ul>
+            <li><strong>문의 유형:</strong> 오류 신고 / 기능 제안 / 계산 결과 문의 / 광고·제휴 / 기타</li>
+            <li><strong>사용 환경:</strong> OS, 브라우저, 모바일·PC 여부</li>
+            <li><strong>입력 조건:</strong> 연소득, 보유 현금, 지역·주택 보유 상태 등 (해당 시)</li>
+            <li><strong>기대한 결과 vs 실제 결과:</strong> 어떤 점이 다른지 구체적으로</li>
+            <li><strong>회신 희망 이메일:</strong> (선택)</li>
+          </ul>
+        </div>
+
+        <div class="card page-card contact-faq-card">
+          <h2 class="section-title">💡 먼저 FAQ를 확인해 보세요</h2>
           <p>
-            실제로 서버에 저장되거나 메일이 전송되지는 않고, 사용자가 어떤 내용을 남기면 좋을지 참고용으로 작성된 양식입니다.<br><br>
-            1) 문의 유형: 오류 신고 / 기능 제안 / 기타<br>
-            2) 사용 환경: OS, 브라우저, 모바일/PC 여부 등<br>
-            3) 자세한 내용: 재현 경로, 기대한 결과, 실제 결과 등<br>
-            4) 연락 가능 메일 주소(선택)
+            DSR, LTV, 스트레스 DSR, 생애최초 등 자주 묻는 질문은 부동산 계산기 FAQ에서 자세히 안내하고 있습니다.
+            문의 전 한번 확인하시면 원하는 답을 더 빨리 찾으실 수 있어요.
           </p>
+          <a href="/tools/apt-calculator/#guide" class="btn-outline contact-faq-btn">아파트 계산기 FAQ·가이드 보기 →</a>
         </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container footer-inner">
-      <div class="footer-links">
-        <a href="about.html">사이트 소개</a>
-        <a href="privacy.html">개인정보처리방침</a>
-        <a href="contact.html">문의</a>
+    <div class="container footer-grid">
+      <div class="footer-col footer-brand">
+        <p class="footer-logo">승박</p>
+        <p class="footer-tagline">평범한 직장인의 두 번째 월급 만들기</p>
+        <p class="footer-owner">운영자: <strong>승박</strong></p>
       </div>
-      <p class="footer-disclaimer">
-        본 계산기는 참고용이며 실제 대출 한도는 금융기관 심사 결과와 다를 수 있습니다.
-      </p>
-      <p class="footer-copy">
-        &copy; <span id="current-year"></span> 내 연봉 아파트 계산기
-      </p>
+      <div class="footer-col">
+        <p class="footer-col-title">바로가기</p>
+        <ul class="footer-nav">
+          <li><a href="/">홈</a></li>
+          <li><a href="/tools/">도구</a></li>
+          <li><a href="/blog/">블로그</a></li>
+          <li><a href="/about.html">소개</a></li>
+          <li><a href="/contact.html">문의</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">정책</p>
+        <ul class="footer-nav">
+          <li><a href="/privacy.html">개인정보처리방침</a></li>
+          <li><a href="/disclaimer.html">면책조항</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">함께해요</p>
+        <ul class="footer-nav">
+          <li><a href="mailto:id123id6@gmail.com">이메일</a></li>
+          <li class="footer-coming-soon">유튜브 (준비 중)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p class="footer-copy">&copy; <span id="current-year"></span> 승박. All rights reserved.</p>
     </div>
   </footer>
 
-  <script src="calculator.js"></script>
+  <script>
+    (function () {
+      var el = document.getElementById("current-year");
+      if (el) el.textContent = new Date().getFullYear();
+    })();
+  </script>
 </body>
 </html>
-

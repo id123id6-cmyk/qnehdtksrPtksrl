@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>아파트 가격 필요 연봉 계산기 | DSR 기반 산출 | 승박</title>
+  <meta name="description" content="원하는 아파트를 매수하려면 연봉이 얼마나 필요한지 2026년 DSR 규제 기준으로 계산. 5억, 7억, 10억 아파트별 필요 연봉 확인.">
+  <meta name="keywords" content="아파트 필요 연봉, DSR 연봉 계산, 5억 아파트 연봉">
+  <link rel="canonical" href="https://seungbak.com/tools/salary-calculator/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://seungbak.com/tools/salary-calculator/">
+  <meta property="og:title" content="아파트 가격 필요 연봉 계산기 | DSR 기반 산출 | 승박">
+  <meta property="og:description" content="원하는 아파트를 매수하려면 연봉이 얼마나 필요한지 2026년 DSR 규제 기준으로 계산합니다.">
+  <meta property="og:image" content="https://seungbak.com/images/og-image.png">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:site_name" content="승박">
+
+  <link rel="icon" href="/favicon.ico">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+  <link rel="stylesheet" href="../../styles.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "아파트 가격 필요 연봉 계산기",
+    "description": "원하는 아파트를 매수하려면 연봉이 얼마나 필요한지 2026년 DSR 규제 기준으로 계산합니다.",
+    "url": "https://seungbak.com/tools/salary-calculator/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" },
+    "author": { "@type": "Person", "name": "승박" }
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo"><a href="/">승박</a></div>
+      <nav class="main-nav">
+        <a href="/">홈</a>
+        <a href="/tools/" class="active" aria-current="page">도구</a>
+        <a href="/blog/">블로그</a>
+        <a href="/about.html">소개</a>
+        <a href="/contact.html">문의</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-badges" aria-label="서비스 특징">
+          <span class="trust-badge">✅ 2026 최신 규제 반영</span>
+          <span class="trust-badge">📱 모바일 최적화</span>
+          <span class="trust-badge trust-badge-accent">🆓 완전 무료</span>
+        </div>
+        <h1>
+          아파트 가격 필요 연봉 계산기<br>
+          <span class="hero-highlight">DSR 기준 역산</span>
+        </h1>
+        <p class="hero-subtitle">원하는 아파트를 사려면 연봉이 얼마나 필요할까? · 2026년 LTV·DSR 규제 반영</p>
+        <div class="hero-cta">
+          <a href="#reverse-calculator-form" class="btn-primary hero-cta-btn">바로 계산하기</a>
+          <a href="#guide" class="btn-outline hero-cta-btn">사용법 보기</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 사용법 가이드 섹션 (아코디언, 기본 펼침) -->
+    <section class="section guide-section" id="guide">
+      <div class="container">
+        <button
+          type="button"
+          class="guide-toggle-btn"
+          id="guide-toggle"
+          aria-expanded="true"
+          aria-controls="guide-content"
+        >
+          처음이신가요? 30초 가이드 보기
+          <span class="toggle-icon" aria-hidden="true">▲</span>
+        </button>
+
+        <div class="card guide-card" id="guide-content">
+          <h2 class="section-title">사용법 가이드</h2>
+          <p class="guide-intro">
+            아래 6단계만 따라가면 원하는 아파트 가격으로 필요한 최소 연봉을 약 30초 안에 확인할 수 있습니다.
+            각 단계 끝의 <strong>다음 →</strong> 버튼을 누르면 해당 입력 칸으로 바로 이동합니다.
+          </p>
+
+          <article class="guide-step" id="guide-step-1">
+            <div class="guide-step-header">
+              <span class="step-badge" aria-hidden="true">1</span>
+              <h3>매수 희망 아파트 가격(만원) 입력하기</h3>
+            </div>
+            <p class="guide-desc">
+              사고 싶은 아파트의 매매가를 <strong>만원 단위</strong>로 입력하세요. 예를 들어 5억 원 아파트라면 <code>50000</code>을 입력합니다.
+              이 값을 기준으로 LTV(주택담보대출비율)와 DSR(총부채원리금상환비율) 한도가 역산되어 필요한 최소 연봉이 계산됩니다.
+            </p>
+            <div class="guide-callout tip">
+              <span class="callout-icon" aria-hidden="true">💡</span>
+              <div>
+                <strong>TIP</strong>
+                <p>관심 있는 단지의 KB시세나 국토부 실거래가를 기준으로 입력하면 현실에 가까운 결과를 얻을 수 있습니다.</p>
+              </div>
+            </div>
+            <button type="button" class="guide-next-btn" data-scroll-to="#targetPrice">다음 →</button>
+          </article>
+
+          <article class="guide-step" id="guide-step-2">
+            <div class="guide-step-header">
+              <span class="step-badge" aria-hidden="true">2</span>
+              <h3>보유 자기자본(만원) 입력하기</h3>
+            </div>
+            <p class="guide-desc">
+              매수 시 사용할 수 있는 현금성 자산을 만원 단위로 입력합니다. 예를 들어 8,000만 원이 있다면 <code>8000</code>을 입력하세요.
+              자기자본이 많을수록 대출 부담이 줄어 필요 연봉도 낮아집니다. 부모님 지원금이나 청약 당첨 시 받을 중도금도 포함 가능합니다.
+            </p>
+            <div class="guide-callout tip">
+              <span class="callout-icon" aria-hidden="true">💡</span>
+              <div>
+                <strong>TIP</strong>
+                <p>자기자본은 매매가의 최소 30% 이상 준비하는 것을 권장합니다.</p>
+              </div>
+            </div>
+            <button type="button" class="guide-next-btn" data-scroll-to="#reverseCash">다음 →</button>
+          </article>
+
+          <article class="guide-step" id="guide-step-3">
+            <div class="guide-step-header">
+              <span class="step-badge" aria-hidden="true">3</span>
+              <h3>기존 대출 원리금 합계 입력하기</h3>
+            </div>
+            <p class="guide-desc">
+              현재 갚고 있는 <strong>모든 대출의 월 원리금 상환액</strong>을 만원 단위로 입력하세요.
+              신용대출, 자동차할부, 카드론, 학자금대출 등 모든 대출이 포함됩니다.
+              기존 대출이 많을수록 DSR 한도가 차감되어 필요 연봉이 증가합니다. 없으면 0으로 두세요.
+            </p>
+            <div class="guide-callout tip">
+              <span class="callout-icon" aria-hidden="true">💡</span>
+              <div>
+                <strong>TIP</strong>
+                <p>마이너스통장도 한도가 아닌 실제 사용 금액 기준으로 산정됩니다.</p>
+              </div>
+            </div>
+            <button type="button" class="guide-next-btn" data-scroll-to="#existingDebt">다음 →</button>
+          </article>
+
+          <article class="guide-step" id="guide-step-4">
+            <div class="guide-step-header">
+              <span class="step-badge" aria-hidden="true">4</span>
+              <h3>매수 희망 지역 선택</h3>
+            </div>
+            <p class="guide-desc">
+              <strong>규제지역</strong>과 <strong>비규제지역</strong> 중 선택합니다.
+              규제지역(투기과열지구·조정대상지역)은 LTV 50%까지만 허용되어 필요 연봉이 더 높아지고,
+              비규제지역은 LTV 70%까지 가능해 상대적으로 부담이 적습니다.
+              잘 모르겠다면 보수적으로 '규제지역'을 선택하는 것이 안전합니다.
+            </p>
+            <div class="guide-callout tip">
+              <span class="callout-icon" aria-hidden="true">💡</span>
+              <div>
+                <strong>TIP</strong>
+                <p>수도권 대부분과 광역시 주요 지역은 규제지역으로 보면 됩니다.</p>
+              </div>
+            </div>
+            <button type="button" class="guide-next-btn" data-scroll-to="#field-reverse-region">다음 →</button>
+          </article>
+
+          <article class="guide-step" id="guide-step-5">
+            <div class="guide-step-header">
+              <span class="step-badge" aria-hidden="true">5</span>
+              <h3>주택 보유 형태 선택</h3>
+            </div>
+            <p class="guide-desc">
+              현재 주택 보유 상황에 따라 대출 한도가 크게 달라집니다.
+            </p>
+            <ul class="guide-desc">
+              <li><strong>무주택자:</strong> 가장 유리한 조건 (규제지역 LTV 50%, 비규제 70%)</li>
+              <li><strong>1주택 처분조건:</strong> 기존 주택 처분 약정 시 무주택자와 동일</li>
+              <li><strong>다주택자:</strong> 규제지역 대출 불가, 비규제지역 LTV 60%까지만</li>
+            </ul>
+            <div class="guide-callout tip">
+              <span class="callout-icon" aria-hidden="true">💡</span>
+              <div>
+                <strong>TIP</strong>
+                <p>다주택자는 규제지역에서 대출이 불가능하므로 필요 연봉이 매우 높게 산출됩니다.</p>
+              </div>
+            </div>
+            <button type="button" class="guide-next-btn" data-scroll-to="#field-reverse-homeStatus">다음 →</button>
+          </article>
+
+          <article class="guide-step" id="guide-step-6">
+            <div class="guide-step-header">
+              <span class="step-badge" aria-hidden="true">6</span>
+              <h3>결과 확인하기</h3>
+            </div>
+            <p class="guide-desc">
+              모든 항목 입력 후 <strong>계산하기</strong> 버튼을 누르면 필요한 최소 연봉, 월 상환액, DSR 비율,
+              안정성 신호등(🟢🟡🔴)이 표시됩니다. 결과는 스트레스 DSR(금리 +1.5%p)을 적용한 보수적 기준으로 산출되어
+              실제 대출 심사에 가깝습니다.
+            </p>
+            <div class="guide-callout tip">
+              <span class="callout-icon" aria-hidden="true">💡</span>
+              <div>
+                <strong>TIP</strong>
+                <p>결과로 나온 연봉의 약 1.1~1.3배 정도를 실제 목표 연봉으로 잡으면 여유 있는 상환이 가능합니다.</p>
+              </div>
+            </div>
+            <button type="button" class="guide-next-btn" data-scroll-to="#reverseCalculateBtn">계산하기 →</button>
+          </article>
+
+          <div class="guide-callout warn">
+            <span class="callout-icon" aria-hidden="true">⚠️</span>
+            <div>
+              <strong>안내</strong>
+              <p>본 계산기는 참고용이며, 실제 대출 한도와 승인 여부는 금융기관의 신용평가, 담보 평가액, 개인 신용점수 등에 따라 달라질 수 있습니다.</p>
+            </div>
+          </div>
+
+          <div class="guide-crosslink related-tool-card">
+            <p class="related-tool-text">👉 반대로 내 연봉으로 살 수 있는 아파트가 궁금하다면?</p>
+            <a href="/tools/apt-calculator/" class="btn-outline">내 연봉 아파트 계산기 →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="calculator">
+      <div class="container">
+        <div class="card form-card">
+          <h2 class="section-title">아파트 가격 입력</h2>
+          <form id="reverse-calculator-form">
+            <div class="form-grid">
+              <div class="form-group form-group-full">
+                <div class="amount-input-group">
+                  <label for="targetPrice">매수 희망 아파트 가격</label>
+                  <div class="amount-input-wrapper">
+                    <input type="text" id="targetPrice" class="amount-input" inputmode="numeric" placeholder="예: 50,000" autocomplete="off" required>
+                    <span class="unit-suffix">만원</span>
+                  </div>
+                  <div class="amount-hint empty" id="targetPriceHint">금액을 입력해주세요</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-group">
+                <div class="amount-input-group">
+                  <label for="reverseCash">보유 자기자본</label>
+                  <div class="amount-input-wrapper">
+                    <input type="text" id="reverseCash" class="amount-input" inputmode="numeric" placeholder="예: 8,000" autocomplete="off">
+                    <span class="unit-suffix">만원</span>
+                  </div>
+                  <div class="amount-hint empty" id="reverseCashHint">보유 현금 (선택)</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="amount-input-group">
+                  <label for="existingDebt">기존 대출 원리금 합계</label>
+                  <div class="amount-input-wrapper">
+                    <input type="text" id="existingDebt" class="amount-input" inputmode="numeric" placeholder="없으면 0" autocomplete="off">
+                    <span class="unit-suffix">만원/월</span>
+                  </div>
+                  <div class="amount-hint empty" id="existingDebtHint">없으면 0 또는 비워두세요</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-group" id="field-reverse-region" tabindex="-1">
+                <p class="label">매수 희망 지역</p>
+                <div class="radio-group">
+                  <label><input type="radio" name="reverseRegion" value="regulated" checked> 규제지역</label>
+                  <label><input type="radio" name="reverseRegion" value="non_regulated"> 비규제지역</label>
+                </div>
+              </div>
+              <div class="form-group" id="field-reverse-homeStatus" tabindex="-1">
+                <p class="label">주택 보유 형태</p>
+                <div class="radio-group">
+                  <label><input type="radio" name="reverseHomeStatus" value="none" checked> 무주택</label>
+                  <label><input type="radio" name="reverseHomeStatus" value="one_dispose"> 1주택 처분</label>
+                  <label><input type="radio" name="reverseHomeStatus" value="multi"> 다주택자</label>
+                </div>
+              </div>
+            </div>
+
+            <button type="button" class="toggle-advanced" id="reverse-toggle-advanced">
+              고급 옵션 펼치기
+              <span class="toggle-icon" aria-hidden="true">▼</span>
+            </button>
+
+            <div class="advanced-options" id="reverse-advanced-options" hidden>
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="reverseLoanYears">대출 만기</label>
+                  <select id="reverseLoanYears">
+                    <option value="20">20년</option>
+                    <option value="30" selected>30년</option>
+                    <option value="40">40년</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="reverseInterestRate">예상 금리 (%)</label>
+                  <input type="number" id="reverseInterestRate" step="0.1" value="4.5" min="0" max="20">
+                </div>
+              </div>
+              <p class="helper-text">스트레스 DSR: 기준 금리 + 1.5%p 자동 적용</p>
+            </div>
+
+            <button type="submit" class="btn-primary btn-large" id="reverseCalculateBtn" disabled>
+              계산하기
+            </button>
+            <p class="helper-text">아파트 가격 기준 LTV별 자기자금·필요 연봉을 비교합니다. 참고용입니다.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reverse-result" id="reverse-result-section" aria-live="polite">
+      <div class="container">
+        <div class="result-wrapper" id="reverse-result-wrapper">
+          <div id="autoJumpNotice" class="auto-jump-notice" hidden>
+            💡 「내 연봉 아파트 계산기」에서 넘어온 <strong id="autoJumpPrice">-</strong>만원 기준 계산입니다.
+            <a href="/tools/apt-calculator/">← 내 연봉 계산기로 돌아가기</a>
+          </div>
+
+          <div class="card reverse-header-card">
+            <h2 class="section-title" id="reverse-header-title">🎯 - 아파트 매수 시뮬레이션</h2>
+          </div>
+
+          <div class="card reverse-summary-card" id="reverse-summary-card" hidden>
+            <h3 class="card-title">💰 필요 연봉 요약</h3>
+            <div class="reverse-summary-grid">
+              <div class="reverse-summary-item">
+                <p class="reverse-summary-label">필요 최소 연봉</p>
+                <p class="reverse-summary-value" id="summary-min-income">-</p>
+              </div>
+              <div class="reverse-summary-item">
+                <p class="reverse-summary-label">월 상환액</p>
+                <p class="reverse-summary-value" id="summary-monthly">-</p>
+              </div>
+              <div class="reverse-summary-item">
+                <p class="reverse-summary-label">DSR (스트레스)</p>
+                <p class="reverse-summary-value" id="summary-dsr">-</p>
+              </div>
+              <div class="reverse-summary-item">
+                <p class="reverse-summary-label">부담 수준</p>
+                <p class="reverse-summary-value" id="summary-badge">-</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card ltv-compare-card">
+            <h3 class="card-title">LTV 비율별 한눈에 보기</h3>
+            <p class="afford-summary-desc">
+              같은 매수가라도 LTV에 따라 필요한 자기자금·월 상환액이 달라집니다.
+              (<span id="reverse-loan-condition-label">30년 · 4.5%</span> 기준)
+            </p>
+            <div class="ltv-table-desktop">
+              <table class="ltv-compare-table" id="reverse-ltv-table">
+                <thead>
+                  <tr>
+                    <th>LTV</th>
+                    <th>자기자금</th>
+                    <th>대출액</th>
+                    <th>월 상환액</th>
+                    <th>총 이자</th>
+                    <th>부담수준</th>
+                  </tr>
+                </thead>
+                <tbody id="reverse-ltv-tbody"></tbody>
+              </table>
+            </div>
+            <div class="ltv-cards-mobile" id="reverse-ltv-cards"></div>
+          </div>
+
+          <div class="card reverse-match-card" id="reverse-match-card">
+            <h3 class="card-title">내 조건 자동 매칭</h3>
+            <div id="reverse-match-content"></div>
+          </div>
+
+          <div class="card reverse-fees-card">
+            <h3 class="card-title">부대비용 안내</h3>
+            <ul class="reverse-fees-list">
+              <li><span>취득세 (간이 1.1%)</span><strong id="reverse-fee-tax">-</strong></li>
+              <li><span>중개수수료 (0.4%)</span><strong id="reverse-fee-broker">-</strong></li>
+              <li><span>이사+기본 인테리어</span><strong>약 500만원</strong></li>
+            </ul>
+            <p class="reverse-fees-total">총 부대비용 합계: <strong id="reverse-fee-total">-</strong></p>
+          </div>
+
+          <div class="card reverse-cash-card" id="reverse-cash-analysis" hidden>
+            <h3 class="card-title">보유 현금 분석</h3>
+            <p id="reverse-cash-analysis-text">-</p>
+          </div>
+
+          <div class="card reverse-dsr-simple">
+            <p id="reverse-dsr-oneline">계산 후 DSR 안내가 표시됩니다.</p>
+            <p class="applied-criteria-text" id="reverse-applied-criteria-text">-</p>
+          </div>
+
+          <div class="share-text-box" id="share-text-box-reverse" hidden>
+            <div class="share-text-header">💬 친구에게 공유할 때 이렇게 보내세요!</div>
+            <div class="share-text-content" id="shareTextContent-reverse"></div>
+            <button type="button" class="copy-text-btn" id="copyShareTextBtn-reverse">📋 복사하기</button>
+          </div>
+
+          <div class="share-buttons reverse-share-buttons" id="reverse-share-buttons" hidden>
+            <button type="button" class="btn-outline" id="reverse-kakao-share-btn">카카오톡 공유</button>
+            <button type="button" class="btn-outline" id="reverse-copy-link-btn">링크 복사</button>
+            <button type="button" class="btn-outline" id="reverse-save-image-btn">이미지로 저장</button>
+          </div>
+
+          <button type="button" class="why-blocked-toggle reverse-advanced-toggle" id="reverse-advanced-toggle" aria-expanded="false" aria-controls="reverse-advanced-content">
+            📊 고급 분석 보기
+            <span class="toggle-icon" aria-hidden="true">▼</span>
+          </button>
+          <div class="why-blocked-content reverse-advanced-content" id="reverse-advanced-content" hidden>
+            <div id="reverse-advanced-body"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="card related-tool-card">
+          <p class="related-tool-text">👉 반대로 내 연봉으로 살 수 있는 아파트가 궁금하다면?</p>
+          <a href="/tools/apt-calculator/" class="btn-outline">내 연봉 아파트 계산기 →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col footer-brand">
+        <p class="footer-logo">승박</p>
+        <p class="footer-tagline">평범한 직장인의 두 번째 월급 만들기</p>
+        <p class="footer-owner">운영자: <strong>승박</strong></p>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">바로가기</p>
+        <ul class="footer-nav">
+          <li><a href="/">홈</a></li>
+          <li><a href="/tools/">도구</a></li>
+          <li><a href="/blog/">블로그</a></li>
+          <li><a href="/about.html">소개</a></li>
+          <li><a href="/contact.html">문의</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">정책</p>
+        <ul class="footer-nav">
+          <li><a href="/privacy.html">개인정보처리방침</a></li>
+          <li><a href="/disclaimer.html">면책조항</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">함께해요</p>
+        <ul class="footer-nav">
+          <li><a href="mailto:id123id6@gmail.com">이메일</a></li>
+          <li class="footer-coming-soon">유튜브 (준비 중)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p class="footer-disclaimer">
+        본 계산기는 참고용이며, 실제 대출 한도·금리·승인 여부는 금융기관 심사 및 정책에 따라 달라질 수 있습니다.
+      </p>
+      <p class="footer-copy">&copy; <span id="current-year"></span> 승박. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="calculator.js"></script>
+</body>
+</html>
