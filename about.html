@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>사이트 소개 | 내 연봉 아파트 계산기</title>
+  <meta name="description" content="내 연봉 아파트 계산기는 2026년 한국 LTV·DSR 규제를 반영해 최대 매수 가능 아파트 가격을 계산해 주는 무료 도구입니다.">
+
+  <link rel="icon" href="/favicon.ico">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo">내 연봉 아파트 계산기</div>
+      <nav class="main-nav">
+        <a href="index.html">계산기</a>
+        <a href="contact.html">문의</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <h1>사이트 소개</h1>
+        <p>복잡한 부동산 규제를 최대한 쉽게 풀어내고자 만든, 실전형 계산 도구입니다.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="card page-card">
+          <h2 class="section-title">왜 이 계산기를 만들었나요?</h2>
+          <p>
+            내 연봉 아파트 계산기는 “내가 지금 당장 감당할 수 있는 주택 가격이 어느 정도인지”를 빠르게 가늠해 보기 위해 만들어진 개인 프로젝트입니다.
+            부동산 대출은 LTV, DTI, DSR, 스트레스 DSR 등 다양한 규제가 얽혀 있어, 실제 현장에서 은행 창구를 방문하기 전까지는 체감하기 어렵다는 문제가 있습니다.
+            이 사이트는 이러한 규제 요소를 간단한 입력값으로 계산해, 대략적인 범위를 미리 체크해 볼 수 있도록 돕는 것을 목표로 합니다.
+          </p>
+        </div>
+
+        <div class="card page-card">
+          <h2 class="section-title">어떤 기준으로 계산하나요?</h2>
+          <p>
+            계산기는 2026년 기준 한국의 일반적인 LTV 및 스트레스 DSR 규제 수준을 단순화해 반영하고 있습니다.
+            연소득과 보유 현금, 기존 부채의 월 상환액을 입력하면, 스트레스 금리를 적용한 DSR 한도 내에서 최대 대출 가능 금액을 역산하고,
+            여기에 LTV 한도를 함께 고려해 더 보수적인 값(더 작은 값)을 기준으로 “최대 매수 가능 아파트 가격”을 추정합니다.
+            규제지역/비규제지역, 주택 보유 수에 따른 LTV 차이도 간단한 라디오 버튼 선택만으로 반영되도록 구현되어 있습니다.
+          </p>
+        </div>
+
+        <div class="card page-card">
+          <h2 class="section-title">주의사항 및 한계</h2>
+          <p>
+            이 계산기는 실제 금융기관의 심사 시스템이 아니며, 각종 규제를 이해하기 쉽게 보여 주기 위한 참고용 도구입니다.
+            세부적인 우대 금리, 생애최초·신혼부부·청년 등 정책 모기지 조건, 은행별 가산금리, 개인 신용점수 등은 반영되어 있지 않기 때문에
+            이 사이트에서 제시하는 결과는 어디까지나 “대략적인 가이드라인” 수준으로만 활용해 주셔야 합니다.
+            실제 대출 가능 여부와 한도, 최종 금리는 반드시 금융기관 상담과 심사를 통해 확인하시기 바랍니다.
+          </p>
+        </div>
+
+        <div class="card page-card">
+          <h2 class="section-title">운영 및 수익 구조</h2>
+          <p>
+            내 연봉 아파트 계산기는 기본적으로 무료로 제공되며, 사이트 유지와 개발을 위해 Google AdSense와 같은 온라인 광고가 일부 노출될 수 있습니다.
+            광고는 가능한 한 계산 경험을 해치지 않는 범위에서 배치하려고 노력하고 있으며, 광고 수익은 서비스 유지 및 기능 개선에 사용됩니다.
+            사용자의 입력값은 브라우저 내에서만 계산에 활용되며, 별도로 서버에 저장하거나 제3자에게 제공하지 않습니다.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-links">
+        <a href="about.html">사이트 소개</a>
+        <a href="privacy.html">개인정보처리방침</a>
+        <a href="contact.html">문의</a>
+      </div>
+      <p class="footer-disclaimer">
+        본 계산기는 참고용이며 실제 대출 한도는 금융기관 심사 결과와 다를 수 있습니다.
+      </p>
+      <p class="footer-copy">
+        &copy; <span id="current-year"></span> 내 연봉 아파트 계산기
+      </p>
+    </div>
+  </footer>
+
+  <script src="calculator.js"></script>
+</body>
+</html>
+
