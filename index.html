@@ -24,6 +24,12 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <!--
+    📊 통계 뱃지 업데이트 가이드:
+    - 도구 추가 시: id="stat-tools" 값 변경
+    - 블로그 글 추가 시: id="stat-posts" 값 변경
+    - 현재: 도구 3개, 글 5편
+  -->
   <header class="site-header">
     <div class="container header-inner">
       <div class="logo"><a href="/">승박</a></div>
@@ -41,15 +47,23 @@
     <section class="hero">
       <div class="container hero-inner">
         <div class="hero-badges" aria-label="서비스 특징">
-          <span class="trust-badge">✅ 1인 운영</span>
-          <span class="trust-badge">🤖 AI로 만든 사이트</span>
-          <span class="trust-badge trust-badge-accent">🆓 완전 무료</span>
+          <span class="badge-success">✅ 1인 운영</span>
+          <span class="badge-feature">🤖 AI로 만든 사이트</span>
+          <span class="badge-free">🆓 완전 무료</span>
         </div>
+
+        <div class="hero-stats-badges" aria-label="사이트 통계">
+          <span class="stat-badge">🛠️ 도구 <strong id="stat-tools">3</strong>개</span>
+          <span class="stat-badge">📝 글 <strong id="stat-posts">5</strong>편</span>
+          <span class="stat-badge">⚡ 매일 업데이트</span>
+        </div>
+
         <h1>
           👋 안녕하세요, 승박입니다<br>
           <span class="hero-highlight">평범한 직장인의 두 번째 월급 만들기</span>
         </h1>
         <p class="hero-subtitle">비전공자 월급쟁이의 사이드 프로젝트 실험실</p>
+
         <div class="hero-cta">
           <a href="/tools/" class="btn-primary hero-cta-btn">도구 둘러보기</a>
           <a href="/blog/" class="btn-outline hero-cta-btn">블로그 보기</a>
@@ -75,7 +89,7 @@
           </a>
 
           <a href="/tools/salary-calculator/" class="tool-card">
-            <span class="tool-card-icon" aria-hidden="true">💰</span>
+            <span class="tool-card-icon" aria-hidden="true">💵</span>
             <h3 class="tool-card-title">아파트 가격 필요 연봉 계산기</h3>
             <p class="tool-card-desc">
               원하는 아파트를 매수하려면 연봉이 얼마나 필요할까? DSR 기준 필요 연봉 즉시 계산
@@ -83,14 +97,15 @@
             <span class="tool-card-link">바로 사용하기 →</span>
           </a>
 
-          <div class="tool-card disabled">
-            <span class="tool-card-icon" aria-hidden="true">🔜</span>
-            <h3 class="tool-card-title">다음 도구 준비 중</h3>
+          <a href="/tools/income-calculator/" class="tool-card">
+            <span class="tool-card-new badge-new">⭐ NEW</span>
+            <span class="tool-card-icon" aria-hidden="true">💰</span>
+            <h3 class="tool-card-title">연봉 실수령액 계산기</h3>
             <p class="tool-card-desc">
-              직장인에게 정말 필요한 다음 도구를 만들고 있어요
+              2026년 최신 4대보험·소득세 반영. 연봉만 입력하면 월 실수령액 즉시 계산
             </p>
-            <span class="tool-card-status">준비 중</span>
-          </div>
+            <span class="tool-card-link">바로 사용하기 →</span>
+          </a>
         </div>
       </div>
     </section>
@@ -103,6 +118,26 @@
         </div>
 
         <div class="blog-grid">
+          <a href="/blog/post-5.html" class="blog-card">
+            <span class="blog-category-badge blog-category-badge--ai">🤖 AI 도구</span>
+            <h3 class="blog-card-title">ChatGPT vs Claude, 직장인 부업엔 뭐가 더 좋을까? (2개월 사용 비교)</h3>
+            <p class="blog-card-summary">
+              ChatGPT와 Claude를 2개월간 둘 다 써본 솔직 비교. 글쓰기, 코딩, 아이디어 등 용도별 추천과 가성비까지.
+            </p>
+            <time class="blog-date" datetime="2026-06-10">2026-06-10</time>
+            <span class="blog-card-more">자세히 보기 →</span>
+          </a>
+
+          <a href="/blog/post-4.html" class="blog-card">
+            <span class="blog-category-badge blog-category-badge--project">🛠️ 사이드 프로젝트</span>
+            <h3 class="blog-card-title">사이트 만들고 첫 주, 솔직히 이런 기분이었습니다</h3>
+            <p class="blog-card-summary">
+              비전공자 직장인이 AI로 사이트 만든 첫 주의 진짜 후기. 신기했던 순간, 막막했던 순간, 그리고 깨달은 것들.
+            </p>
+            <time class="blog-date" datetime="2026-06-10">2026-06-10</time>
+            <span class="blog-card-more">자세히 보기 →</span>
+          </a>
+
           <a href="/blog/post-3.html" class="blog-card">
             <span class="blog-category-badge blog-category-badge--ai">🤖 AI 도구</span>
             <h3 class="blog-card-title">Cursor 2개월 써본 솔직 후기 (+ 비전공자용 사용법)</h3>
@@ -113,25 +148,6 @@
             <span class="blog-card-more">자세히 보기 →</span>
           </a>
 
-          <a href="/blog/post-2.html" class="blog-card">
-            <span class="blog-category-badge blog-category-badge--project">🛠️ 사이드 프로젝트</span>
-            <h3 class="blog-card-title">평범한 생산관리 직장인이 사이트를 만들기로 한 이유</h3>
-            <p class="blog-card-summary">
-              월급 말고도 내 이름으로 된 무언가를 만들고 싶었습니다. 두 번째 월급 만들기 프로젝트의 시작.
-            </p>
-            <time class="blog-date" datetime="2026-06-09">2026-06-09</time>
-            <span class="blog-card-more">자세히 보기 →</span>
-          </a>
-
-          <a href="/blog/post-1.html" class="blog-card">
-            <span class="blog-category-badge blog-category-badge--project">🛠️ 사이드 프로젝트</span>
-            <h3 class="blog-card-title">비전공자 직장인이 코딩 0줄로 사이트 만든 후기</h3>
-            <p class="blog-card-summary">
-              도메인 구매부터 Vercel 배포까지, 진짜 3일 만에 가능할까?
-            </p>
-            <time class="blog-date" datetime="2026-06-09">2026-06-09</time>
-            <span class="blog-card-more">자세히 보기 →</span>
-          </a>
         </div>
 
         <div class="blog-section-footer">

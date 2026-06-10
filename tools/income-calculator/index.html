@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>연봉 실수령액 계산기 2026 | 월급 실수령액 즉시 계산 | 승박</title>
+  <meta name="description" content="2026년 최신 4대보험 요율과 소득세를 반영한 연봉 실수령액 계산기. 연봉만 입력하면 월 실수령액을 30초 만에 확인하세요.">
+  <meta name="keywords" content="연봉 실수령액, 월급 계산기, 연봉 계산기, 실수령액 계산, 2026 연봉 실수령액, 4대보험 계산, 월급 실수령">
+  <link rel="canonical" href="https://seungbak.com/tools/income-calculator/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://seungbak.com/tools/income-calculator/">
+  <meta property="og:title" content="연봉 실수령액 계산기 2026 | 월급 실수령액 즉시 계산 | 승박">
+  <meta property="og:description" content="2026년 최신 4대보험 요율과 소득세를 반영한 연봉 실수령액 계산기. 연봉만 입력하면 월 실수령액을 30초 만에 확인하세요.">
+  <meta property="og:image" content="https://seungbak.com/images/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:site_name" content="승박">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="연봉 실수령액 계산기 2026 | 승박">
+  <meta name="twitter:description" content="2026년 최신 4대보험·소득세 반영. 연봉만 입력하면 월 실수령액 즉시 계산.">
+  <meta name="twitter:image" content="https://seungbak.com/images/og-image.png">
+
+  <meta name="format-detection" content="telephone=no">
+
+  <link rel="icon" href="/favicon.ico">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+  <link rel="stylesheet" href="../../styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "연봉 실수령액 계산기",
+    "description": "2026년 최신 4대보험 요율과 소득세를 반영한 연봉 실수령액 계산기. 연봉만 입력하면 월 실수령액을 30초 만에 확인하세요.",
+    "url": "https://seungbak.com/tools/income-calculator/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" },
+    "author": { "@type": "Person", "name": "승박" }
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo"><a href="/">승박</a></div>
+      <nav class="main-nav">
+        <a href="/">홈</a>
+        <a href="/tools/" class="active" aria-current="page">도구</a>
+        <a href="/blog/">블로그</a>
+        <a href="/about.html">소개</a>
+        <a href="/contact.html">문의</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- 히어로 섹션 -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-badges" aria-label="서비스 특징">
+          <span class="trust-badge">💰 2026년 최신 반영</span>
+          <span class="trust-badge">⚡ 실시간 계산</span>
+          <span class="trust-badge trust-badge-accent">🆓 완전 무료</span>
+        </div>
+        <h1>
+          연봉 실수령액 계산기<br>
+          <span class="hero-highlight">연봉만 입력하면 월 실수령액이 30초 만에!</span>
+        </h1>
+        <p class="hero-subtitle">2026년 최신 4대보험 요율과 소득세를 반영한 정확한 계산</p>
+        <div class="hero-cta">
+          <a href="#calculator" class="btn-primary hero-cta-btn">지금 계산하기 ↓</a>
+          <button type="button" class="btn-outline hero-cta-btn" onclick="toggleGuide()">사용법 보기</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 사용법 가이드 섹션 -->
+    <section class="section guide-section" id="guide">
+      <div class="container">
+        <button
+          type="button"
+          class="guide-toggle-btn"
+          id="guide-toggle"
+          aria-expanded="false"
+          aria-controls="guide-section"
+        >
+          처음이신가요? 30초 가이드 보기
+          <span class="toggle-icon" aria-hidden="true">▼</span>
+        </button>
+
+        <div class="card guide-card" id="guide-section" style="display: none;" hidden>
+          <h2 class="section-title">사용법 가이드</h2>
+          <p class="guide-intro">
+            아래 3단계만 따라가면 연·월 실수령액과 공제 상세 내역을 약 30초 안에 확인할 수 있습니다.
+          </p>
+
+          <article class="guide-step">
+            <div class="guide-step-header">
+              <span class="step-badge" aria-hidden="true">1</span>
+              <h3>연봉 입력</h3>
+            </div>
+            <p class="guide-desc">
+              세전 연봉을 <strong>만원 단위</strong>로 입력하세요. 예: 4,950만 원 → <code>4950</code>
+            </p>
+            <div class="guide-callout tip">
+              <span class="callout-icon" aria-hidden="true">💡</span>
+              <div>
+                <strong>TIP</strong>
+                <p>계약서상 연봉(기본급+상여+식대 포함) 기준으로 입력하세요.</p>
+              </div>
+            </div>
+            <button type="button" class="guide-next-btn" data-scroll-to="#salary">다음 →</button>
+          </article>
+
+          <article class="guide-step">
+            <div class="guide-step-header">
+              <span class="step-badge" aria-hidden="true">2</span>
+              <h3>비과세액 / 부양가족 / 자녀 입력</h3>
+            </div>
+            <p class="guide-desc">
+              <strong>비과세액</strong>은 식대·자가운전보조금 등 월 합계(없으면 0),
+              <strong>부양가족 수</strong>는 본인 포함 인원,
+              <strong>20세 이하 자녀 수</strong>는 추가 공제용으로 입력합니다.
+            </p>
+            <div class="guide-callout tip">
+              <span class="callout-icon" aria-hidden="true">💡</span>
+              <div>
+                <strong>TIP</strong>
+                <p>비과세 항목은 4대보험과 소득세 계산에서 제외됩니다.</p>
+              </div>
+            </div>
+            <button type="button" class="guide-next-btn" data-scroll-to="#nontax">다음 →</button>
+          </article>
+
+          <article class="guide-step">
+            <div class="guide-step-header">
+              <span class="step-badge" aria-hidden="true">3</span>
+              <h3>결과 확인</h3>
+            </div>
+            <p class="guide-desc">
+              <strong>계산하기</strong>를 클릭하면 연·월 실수령액과 공제 상세 내역이 표시됩니다.
+            </p>
+            <div class="guide-callout warn">
+              <span class="callout-icon" aria-hidden="true">⚠️</span>
+              <div>
+                <strong>안내</strong>
+                <p>실제 수령액은 회사 정책(상여금, 야근수당, 연말정산 등)에 따라 달라질 수 있습니다.</p>
+              </div>
+            </div>
+            <button type="button" class="guide-next-btn" data-scroll-to="#calculate-btn">계산하러 가기 →</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 계산기 입력 폼 -->
+    <section class="section" id="calculator">
+      <div class="container">
+        <div class="card form-card income-form-card">
+          <h2 class="section-title">💰 연봉 정보 입력</h2>
+
+          <div class="input-group">
+            <label for="salary">연봉 (만원) *</label>
+            <input type="number" id="salary" placeholder="예: 5000" class="input-field" min="0" step="1" required>
+            <p class="input-hint">세전 연봉을 만원 단위로 입력하세요</p>
+          </div>
+
+          <div class="input-row">
+            <div class="input-group">
+              <label for="nontax">
+                비과세액 (월, 원)
+                <span class="info-tooltip" title="식대, 자가운전보조금 등 비과세 항목의 월 합계">ℹ️</span>
+              </label>
+              <input type="number" id="nontax" value="0" placeholder="0" class="input-field" min="0" step="1000">
+              <p class="input-hint">식대 등 월 합계 (없으면 0)</p>
+            </div>
+
+            <div class="input-group">
+              <label for="family">부양가족 수 (본인 포함)</label>
+              <select id="family" class="input-field" required>
+                <option value="1" selected>1명</option>
+                <option value="2">2명</option>
+                <option value="3">3명</option>
+                <option value="4">4명</option>
+                <option value="5">5명</option>
+                <option value="6">6명 이상</option>
+              </select>
+            </div>
+
+            <div class="input-group">
+              <label for="children">20세 이하 자녀 수</label>
+              <select id="children" class="input-field">
+                <option value="0" selected>0명</option>
+                <option value="1">1명</option>
+                <option value="2">2명</option>
+                <option value="3">3명 이상</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn-primary btn-large" id="calculate-btn" onclick="calculate()">계산하기</button>
+            <button type="button" class="btn-secondary btn-large" onclick="resetForm()">초기화</button>
+          </div>
+          <p class="helper-text">
+            본 계산 결과는 참고용이며, 실제 수령액은 회사 정책·연말정산 등에 따라 달라질 수 있습니다.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 결과 박스 -->
+    <section class="section forward-result income-result-section" id="result-box" style="display: none;" aria-live="polite">
+      <div class="container">
+        <div class="card result-box-card">
+          <div class="result-main">
+            <div class="result-item-main">
+              <p class="result-label">💰 연 실수령액</p>
+              <p class="result-amount-big"><span id="yearly-net">0</span>원</p>
+            </div>
+            <div class="result-item-main">
+              <p class="result-label">📅 월 환산금액</p>
+              <p class="result-amount-big highlight"><span id="monthly-net">0</span>원</p>
+            </div>
+          </div>
+
+          <p id="result-summary" class="result-summary">연봉 0만원 기준</p>
+
+          <h3 class="card-title">📋 공제 상세 내역</h3>
+          <table class="result-table">
+            <tbody>
+              <tr>
+                <td>세전 월급</td>
+                <td id="monthly-gross" class="text-right">-</td>
+              </tr>
+              <tr>
+                <td>국민연금 (4.75%)</td>
+                <td id="pension" class="text-right">-</td>
+              </tr>
+              <tr>
+                <td>건강보험 (3.595%)</td>
+                <td id="health" class="text-right">-</td>
+              </tr>
+              <tr>
+                <td>&nbsp;&nbsp;└ 장기요양보험 (12.95%)</td>
+                <td id="long-term" class="text-right">-</td>
+              </tr>
+              <tr>
+                <td>고용보험 (0.9%)</td>
+                <td id="employment" class="text-right">-</td>
+              </tr>
+              <tr>
+                <td>근로소득세 (간이세액)</td>
+                <td id="income-tax" class="text-right">-</td>
+              </tr>
+              <tr>
+                <td>&nbsp;&nbsp;└ 지방소득세 (10%)</td>
+                <td id="local-tax" class="text-right">-</td>
+              </tr>
+              <tr class="result-total">
+                <td><strong>월 공제 합계</strong></td>
+                <td id="total-deduction" class="text-right"><strong>-</strong></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="result-info-box">
+            <p>📊 실수령률: <strong id="net-rate">-</strong></p>
+            <p id="signal-light"></p>
+          </div>
+
+          <p class="result-notice">
+            💡 산재보험은 전액 회사 부담이며, 국민연금의 근로자 최대 부담액은 302,575원입니다.
+          </p>
+
+          <p class="disclaimer">
+            ⚠️ 본 계산기는 2026년 국세청 간이세액표 기반 근사 계산입니다.
+            실제 수령액은 회사 정책(상여금, 야근수당, 연말정산 등)에 따라 달라질 수 있습니다.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 관련 도구 추천 -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">🔗 함께 보면 좋은 도구</h2>
+        <div class="tools-grid tools-grid--three">
+          <a href="../apt-calculator/" class="tool-card">
+            <span class="tool-card-icon" aria-hidden="true">🏢</span>
+            <h3 class="tool-card-title">내 연봉 아파트 계산기</h3>
+            <p class="tool-card-desc">연봉으로 어떤 아파트를 살 수 있는지 확인</p>
+            <span class="tool-card-link">바로 사용하기 →</span>
+          </a>
+          <a href="../salary-calculator/" class="tool-card">
+            <span class="tool-card-icon" aria-hidden="true">💵</span>
+            <h3 class="tool-card-title">아파트 가격 필요 연봉 계산기</h3>
+            <p class="tool-card-desc">원하는 아파트의 필요 연봉 확인</p>
+            <span class="tool-card-link">바로 사용하기 →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ 섹션 -->
+    <section class="section faq-section">
+      <div class="container">
+        <h2 class="section-title">❓ 자주 묻는 질문</h2>
+        <p class="faq-intro">궁금한 점을 눌러 자세한 설명을 확인하세요.</p>
+
+        <div class="faq-accordion">
+          <details class="faq-accordion-item">
+            <summary>2026년 4대보험 요율이 어떻게 바뀌었나요?</summary>
+            <div class="faq-accordion-body"><p>
+              2026년부터 국민연금이 28년 만에 인상되어 9.5%(근로자 4.75%)가 되었고, 건강보험은 7.19%(근로자 3.595%)로 인상되었습니다.
+            </p></div>
+          </details>
+
+          <details class="faq-accordion-item">
+            <summary>연봉 실수령액은 어떻게 계산하나요?</summary>
+            <div class="faq-accordion-body"><p>
+              세전 월급에서 4대보험과 소득세, 지방소득세를 차감하여 계산합니다. 보통 연봉의 80~85% 수준입니다.
+            </p></div>
+          </details>
+
+          <details class="faq-accordion-item">
+            <summary>비과세액은 무엇을 입력하나요?</summary>
+            <div class="faq-accordion-body"><p>
+              식대, 자가운전보조금, 출산·보육수당 등 비과세 항목의 월 합계를 입력하세요.
+              비과세액은 4대보험과 소득세 계산에서 제외됩니다. 없으면 0으로 두시면 됩니다.
+            </p></div>
+          </details>
+
+          <details class="faq-accordion-item">
+            <summary>부양가족이 많을수록 실수령액이 늘어나나요?</summary>
+            <div class="faq-accordion-body"><p>
+              네, 부양가족이 많을수록 소득세 공제가 늘어나 실수령액이 증가합니다. 20세 이하 자녀의 경우 추가 공제가 적용됩니다.
+            </p></div>
+          </details>
+
+          <details class="faq-accordion-item">
+            <summary>이 계산기는 얼마나 정확한가요?</summary>
+            <div class="faq-accordion-body"><p>
+              2026년 최신 요율을 반영한 계산기지만, 회사의 추가 수당(야근수당, 연차수당, 상여금 등)이나 연말정산 환급은 반영되지 않으므로 참고용으로 활용해주세요.
+            </p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col footer-brand">
+        <p class="footer-logo">승박</p>
+        <p class="footer-tagline">평범한 직장인의 두 번째 월급 만들기</p>
+        <p class="footer-owner">운영자: <strong>승박</strong></p>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">바로가기</p>
+        <ul class="footer-nav">
+          <li><a href="/">홈</a></li>
+          <li><a href="/tools/">도구</a></li>
+          <li><a href="/blog/">블로그</a></li>
+          <li><a href="/about.html">소개</a></li>
+          <li><a href="/contact.html">문의</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">정책</p>
+        <ul class="footer-nav">
+          <li><a href="/privacy.html">개인정보처리방침</a></li>
+          <li><a href="/disclaimer.html">면책조항</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">함께해요</p>
+        <ul class="footer-nav">
+          <li><a href="mailto:id123id6@gmail.com">이메일</a></li>
+          <li class="footer-coming-soon">유튜브 (준비 중)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p class="footer-disclaimer">
+        본 계산기는 참고용이며, 실제 대출 한도·금리·승인 여부는 금융기관 심사 및 정책에 따라 달라질 수 있습니다.
+        생애최초·정책모기지 우대, 개인 신용등급 등은 반영되지 않을 수 있습니다.
+      </p>
+      <p class="footer-copy">
+        &copy; <span id="current-year"></span> 승박. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <script src="calculator.js"></script>
+</body>
+</html>
