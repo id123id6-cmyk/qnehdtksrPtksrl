@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>퇴직금 계산기 2026 | 평균임금·퇴직소득세 자동 계산 | 승박</title>
+  <meta name="description" content="입사일과 퇴사일, 최근 3개월 급여만 입력하면 퇴직금과 퇴직소득세, 실수령액까지 30초 안에 계산해드립니다. 2026년 최신 공식 반영.">
+  <meta name="keywords" content="퇴직금 계산기, 퇴직소득세 계산기, 평균임금, 퇴직금 계산법, 2026 퇴직금">
+  <link rel="canonical" href="https://seungbak.com/tools/severance-calculator/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://seungbak.com/tools/severance-calculator/">
+  <meta property="og:title" content="퇴직금 계산기 2026 | 평균임금·퇴직소득세 자동 계산 | 승박">
+  <meta property="og:description" content="입사일과 퇴사일, 최근 3개월 급여만 입력하면 퇴직금과 퇴직소득세, 실수령액까지 30초 안에 계산해드립니다. 2026년 최신 공식 반영.">
+  <meta property="og:image" content="https://seungbak.com/images/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:site_name" content="승박">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="퇴직금 계산기 2026 | 승박">
+  <meta name="twitter:description" content="입사일·퇴사일·최근 3개월 급여만 입력하면 퇴직금과 실수령액을 30초 안에 계산.">
+  <meta name="twitter:image" content="https://seungbak.com/images/og-image.png">
+
+  <meta name="format-detection" content="telephone=no">
+
+  <link rel="icon" href="/favicon.ico">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+  <link rel="stylesheet" href="../../styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "퇴직금 계산기",
+    "description": "입사일과 퇴사일, 최근 3개월 급여만 입력하면 퇴직금과 퇴직소득세, 실수령액까지 30초 안에 계산해드립니다. 2026년 최신 공식 반영.",
+    "url": "https://seungbak.com/tools/severance-calculator/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" },
+    "author": { "@type": "Person", "name": "승박" }
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo"><a href="/">승박</a></div>
+      <nav class="main-nav">
+        <a href="/">홈</a>
+        <a href="/tools/" class="active" aria-current="page">도구</a>
+        <a href="/blog/">블로그</a>
+        <a href="/about.html">소개</a>
+        <a href="/contact.html">문의</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-badges" aria-label="서비스 특징">
+          <span class="trust-badge trust-badge-accent">🆓 완전 무료</span>
+          <span class="trust-badge">⚡ 30초 계산</span>
+          <span class="trust-badge">📊 2026년 최신</span>
+        </div>
+        <h1>
+          퇴직금 계산기<br>
+          <span class="hero-highlight">입사일·퇴사일·최근 3개월 급여만 입력하면 퇴직금과 실수령액이 30초 만에!</span>
+        </h1>
+        <p class="hero-subtitle">2026년 고용노동부 퇴직금 공식과 국세청 퇴직소득세 계산 방식 반영</p>
+        <div class="hero-cta">
+          <a href="#calculator" class="btn-primary hero-cta-btn">지금 계산하기 ↓</a>
+          <button type="button" class="btn-outline hero-cta-btn" onclick="toggleGuide()">사용법 보기</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section guide-section" id="guide">
+      <div class="container">
+        <button
+          type="button"
+          class="guide-toggle-btn"
+          id="guide-toggle"
+          aria-expanded="false"
+          aria-controls="guide-section"
+        >
+          처음이신가요? 30초 가이드 보기
+          <span class="toggle-icon" aria-hidden="true">▼</span>
+        </button>
+
+        <div class="card guide-card" id="guide-section" style="display: none;" hidden>
+          <h2 class="section-title">사용법 가이드</h2>
+          <p class="guide-intro">
+            아래 3단계만 따라가면 퇴직금, 퇴직소득세, 실수령액을 약 30초 안에 확인할 수 있습니다.
+          </p>
+
+          <article class="guide-step">
+            <div class="guide-step-header">
+              <span class="step-badge" aria-hidden="true">1</span>
+              <h3>입사일과 퇴사일 입력</h3>
+            </div>
+            <p class="guide-desc">
+              입사일과 퇴사일을 선택하면 <strong>재직일수</strong>가 자동으로 계산됩니다. 퇴사일은 기본값이 오늘 날짜입니다.
+            </p>
+            <button type="button" class="guide-next-btn" data-scroll-to="#join-date">다음 →</button>
+          </article>
+
+          <article class="guide-step">
+            <div class="guide-step-header">
+              <span class="step-badge" aria-hidden="true">2</span>
+              <h3>최근 3개월 급여(세전) 입력</h3>
+            </div>
+            <p class="guide-desc">
+              퇴사 전 3개월간 받은 <strong>세전 급여</strong>를 만원 단위로 입력하세요. 연간 상여금·연차수당은 선택 입력입니다.
+            </p>
+            <div class="guide-callout tip">
+              <span class="callout-icon" aria-hidden="true">💡</span>
+              <div>
+                <strong>TIP</strong>
+                <p>3개월 평균이 비슷하다면 한 곳에만 입력하고 같은 값으로 복사해도 됩니다.</p>
+              </div>
+            </div>
+            <button type="button" class="guide-next-btn" data-scroll-to="#salary-1">다음 →</button>
+          </article>
+
+          <article class="guide-step">
+            <div class="guide-step-header">
+              <span class="step-badge" aria-hidden="true">3</span>
+              <h3>결과 확인</h3>
+            </div>
+            <p class="guide-desc">
+              <strong>퇴직금 계산하기</strong>를 클릭하면 퇴직금, 퇴직소득세, 실수령액과 상세 내역이 표시됩니다.
+            </p>
+            <button type="button" class="guide-next-btn" data-scroll-to="#calculate-btn">계산하러 가기 →</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="calculator">
+      <div class="container">
+        <div class="card form-card income-form-card">
+          <h2 class="section-title">📋 퇴직금 정보 입력</h2>
+
+          <div class="input-row">
+            <div class="input-group">
+              <label for="join-date">입사일 *</label>
+              <input type="date" id="join-date" class="input-field" required>
+            </div>
+            <div class="input-group">
+              <label for="leave-date">퇴사일 *</label>
+              <input type="date" id="leave-date" class="input-field" required>
+            </div>
+          </div>
+
+          <p class="input-hint" style="margin-bottom: 1rem;">퇴사 전 3개월간 받은 세전 급여를 입력해주세요</p>
+
+          <div class="input-row">
+            <div class="input-group">
+              <label for="salary-1">최근 1개월 급여 (만원) *</label>
+              <input type="number" id="salary-1" placeholder="예: 400" class="input-field" min="0" step="1">
+            </div>
+            <div class="input-group">
+              <label for="salary-2">최근 2개월 급여 (만원)</label>
+              <input type="number" id="salary-2" placeholder="예: 400" class="input-field" min="0" step="1">
+            </div>
+            <div class="input-group">
+              <label for="salary-3">최근 3개월 급여 (만원)</label>
+              <input type="number" id="salary-3" placeholder="예: 400" class="input-field" min="0" step="1">
+            </div>
+          </div>
+
+          <div class="guide-callout tip" style="margin: 1rem 0;">
+            <span class="callout-icon" aria-hidden="true">💡</span>
+            <div>
+              <strong>TIP</strong>
+              <p>3개월 평균이 비슷하다면 한 곳에만 입력하고 같은 값으로 복사해도 됩니다.</p>
+            </div>
+          </div>
+
+          <div class="input-row">
+            <div class="input-group">
+              <label for="bonus">연간 상여금 (만원, 선택)</label>
+              <input type="number" id="bonus" placeholder="0" class="input-field" min="0" step="1" value="">
+            </div>
+            <div class="input-group">
+              <label for="annual-leave">연차수당 (만원, 선택)</label>
+              <input type="number" id="annual-leave" placeholder="0" class="input-field" min="0" step="1" value="">
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn-primary btn-large" id="calculate-btn">퇴직금 계산하기</button>
+            <button type="button" class="btn-secondary btn-large" onclick="resetForm()">초기화</button>
+          </div>
+          <p class="helper-text">
+            본 계산 결과는 참고용이며, 실제 금액은 회사 규정·비과세 항목 등에 따라 달라질 수 있습니다.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section forward-result income-result-section" id="result-box" style="display: none;" aria-live="polite">
+      <div class="container">
+        <div class="card result-box-card">
+          <div class="result-main">
+            <div class="result-item-main">
+              <p class="result-label">📅 재직기간</p>
+              <p class="result-amount-big"><span id="result-period">0년 0개월 0일</span></p>
+            </div>
+            <div class="result-item-main">
+              <p class="result-label">💵 1일 평균임금</p>
+              <p class="result-amount-big"><span id="result-avg-daily">0원</span></p>
+            </div>
+          </div>
+
+          <div class="result-main">
+            <div class="result-item-main">
+              <p class="result-label">💰 퇴직금 (세전)</p>
+              <p class="result-amount-big highlight"><span id="result-severance">0원</span></p>
+            </div>
+            <div class="result-item-main">
+              <p class="result-label">📉 퇴직소득세</p>
+              <p class="result-amount-big"><span id="result-income-tax">-0원</span></p>
+            </div>
+            <div class="result-item-main">
+              <p class="result-label">📉 지방소득세</p>
+              <p class="result-amount-big"><span id="result-local-tax">-0원</span></p>
+            </div>
+          </div>
+
+          <div class="result-main">
+            <div class="result-item-main" style="flex: 1 1 100%;">
+              <p class="result-label">⭐ 실수령액 (세후)</p>
+              <p class="result-amount-big highlight" style="font-size: 2rem;"><span id="result-net">0원</span></p>
+            </div>
+          </div>
+
+          <h3 class="card-title">📋 상세 내역</h3>
+          <table class="result-table">
+            <tbody>
+              <tr>
+                <td>3개월 임금 총액</td>
+                <td id="detail-total-3m" class="text-right">0원</td>
+              </tr>
+              <tr>
+                <td>3개월 일수</td>
+                <td id="detail-3m-days" class="text-right">0일</td>
+              </tr>
+              <tr>
+                <td>1일 평균임금</td>
+                <td id="detail-avg-daily" class="text-right">0원</td>
+              </tr>
+              <tr>
+                <td>30일 평균임금</td>
+                <td id="detail-avg-30" class="text-right">0원</td>
+              </tr>
+              <tr>
+                <td>재직일수</td>
+                <td id="detail-total-days" class="text-right">0일</td>
+              </tr>
+              <tr>
+                <td>재직년수</td>
+                <td id="detail-years" class="text-right">0.00년</td>
+              </tr>
+              <tr>
+                <td>퇴직금 (세전)</td>
+                <td id="detail-severance" class="text-right">0원</td>
+              </tr>
+              <tr>
+                <td>근속연수공제</td>
+                <td id="detail-service-deduction" class="text-right">0원</td>
+              </tr>
+              <tr>
+                <td>환산급여</td>
+                <td id="detail-converted" class="text-right">0원</td>
+              </tr>
+              <tr>
+                <td>환산급여공제</td>
+                <td id="detail-converted-deduction" class="text-right">0원</td>
+              </tr>
+              <tr>
+                <td>과세표준</td>
+                <td id="detail-tax-base" class="text-right">0원</td>
+              </tr>
+              <tr>
+                <td>환산산출세액</td>
+                <td id="detail-converted-tax" class="text-right">0원</td>
+              </tr>
+              <tr>
+                <td>퇴직소득세</td>
+                <td id="detail-income-tax" class="text-right">0원</td>
+              </tr>
+              <tr>
+                <td>지방소득세</td>
+                <td id="detail-local-tax" class="text-right">0원</td>
+              </tr>
+              <tr class="result-total">
+                <td><strong>실수령액</strong></td>
+                <td id="detail-net" class="text-right"><strong>0원</strong></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <blockquote class="result-notice" style="margin-top: 1.5rem; padding: 1rem 1.25rem; border-left: 4px solid var(--color-primary, #2563eb); background: var(--color-bg-subtle, #f8fafc); font-size: 0.9rem; color: var(--color-text-muted, #64748b);">
+            ※ 본 계산기는 고용노동부 공식 공식과 국세청 퇴직소득세 계산 방식을 기반으로 합니다. 실제 금액은 회사 규정, 비과세 항목 등에 따라 달라질 수 있으니 참고용으로만 활용해주세요.
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">🔗 함께 보면 좋은 도구</h2>
+        <div class="tools-grid tools-grid--three">
+          <a href="../income-calculator/" class="tool-card">
+            <span class="tool-card-icon" aria-hidden="true">💵</span>
+            <h3 class="tool-card-title">연봉 실수령액 계산기</h3>
+            <p class="tool-card-desc">세전 연봉으로 월 실수령액 즉시 확인</p>
+            <span class="tool-card-link">바로 사용하기 →</span>
+          </a>
+          <a href="../salary-calculator/" class="tool-card">
+            <span class="tool-card-icon" aria-hidden="true">💰</span>
+            <h3 class="tool-card-title">아파트 가격 필요 연봉 계산기</h3>
+            <p class="tool-card-desc">원하는 아파트의 필요 연봉 확인</p>
+            <span class="tool-card-link">바로 사용하기 →</span>
+          </a>
+          <a href="../apt-calculator/" class="tool-card">
+            <span class="tool-card-icon" aria-hidden="true">🏢</span>
+            <h3 class="tool-card-title">내 연봉 아파트 계산기</h3>
+            <p class="tool-card-desc">연봉으로 어떤 아파트를 살 수 있는지 확인</p>
+            <span class="tool-card-link">바로 사용하기 →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section faq-section">
+      <div class="container">
+        <h2 class="section-title">❓ 자주 묻는 질문</h2>
+        <p class="faq-intro">궁금한 점을 눌러 자세한 설명을 확인하세요.</p>
+
+        <div class="faq-accordion">
+          <details class="faq-accordion-item">
+            <summary>퇴직금은 언제부터 받을 수 있나요?</summary>
+            <div class="faq-accordion-body"><p>
+              1년 이상 계속 근로한 근로자에게 지급됩니다.
+            </p></div>
+          </details>
+
+          <details class="faq-accordion-item">
+            <summary>평균임금에는 어떤 게 포함되나요?</summary>
+            <div class="faq-accordion-body"><p>
+              기본급, 상여금, 연차수당 등 정기적·일률적으로 지급된 모든 임금이 포함됩니다.
+            </p></div>
+          </details>
+
+          <details class="faq-accordion-item">
+            <summary>퇴직소득세는 어떻게 계산되나요?</summary>
+            <div class="faq-accordion-body"><p>
+              근속연수공제 → 환산급여 → 환산급여공제 → 과세표준 → 세액 순으로 계산됩니다. 근속연수가 길수록 세금이 줄어듭니다.
+            </p></div>
+          </details>
+
+          <details class="faq-accordion-item">
+            <summary>1년 미만 근무했는데 퇴직금 받을 수 있나요?</summary>
+            <div class="faq-accordion-body"><p>
+              안타깝게도 법정 퇴직금은 1년 이상 근무한 경우에만 지급됩니다.
+            </p></div>
+          </details>
+
+          <details class="faq-accordion-item">
+            <summary>회사가 퇴직금을 안 주면 어떻게 하나요?</summary>
+            <div class="faq-accordion-body"><p>
+              고용노동부에 임금체불 진정을 넣을 수 있습니다.
+            </p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col footer-brand">
+        <p class="footer-logo">승박</p>
+        <p class="footer-tagline">평범한 직장인의 두 번째 월급 만들기</p>
+        <p class="footer-owner">운영자: <strong>승박</strong></p>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">바로가기</p>
+        <ul class="footer-nav">
+          <li><a href="/">홈</a></li>
+          <li><a href="/tools/">도구</a></li>
+          <li><a href="/blog/">블로그</a></li>
+          <li><a href="/about.html">소개</a></li>
+          <li><a href="/contact.html">문의</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">정책</p>
+        <ul class="footer-nav">
+          <li><a href="/privacy.html">개인정보처리방침</a></li>
+          <li><a href="/disclaimer.html">면책조항</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">함께해요</p>
+        <ul class="footer-nav">
+          <li><a href="mailto:id123id6@gmail.com">이메일</a></li>
+          <li class="footer-coming-soon">유튜브 (준비 중)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p class="footer-disclaimer">
+        본 계산기는 참고용이며, 실제 대출 한도·금리·승인 여부는 금융기관 심사 및 정책에 따라 달라질 수 있습니다.
+        생애최초·정책모기지 우대, 개인 신용등급 등은 반영되지 않을 수 있습니다.
+      </p>
+      <p class="footer-copy">
+        &copy; <span id="current-year"></span> 승박. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <script src="calculator.js"></script>
+</body>
+</html>
