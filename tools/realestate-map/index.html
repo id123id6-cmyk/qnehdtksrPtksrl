@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>강남구 부동산 지도 | 실거래가 마커 | 승박</title>
+  <meta name="description" content="강남구 390개 아파트 단지를 카카오맵에서 확인하고, 마커 클릭 시 최근 실거래가를 바로 볼 수 있습니다.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://seungbak.com/tools/realestate-map/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://seungbak.com/tools/realestate-map/">
+  <meta property="og:title" content="강남구 부동산 지도 | 승박">
+  <meta property="og:description" content="강남구 아파트 단지 지도 + 최근 실거래가 확인">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:site_name" content="승박">
+
+  <link rel="icon" href="/favicon.ico">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="map.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo"><a href="/">승박</a></div>
+      <nav class="main-nav">
+        <a href="/">홈</a>
+        <a href="/tools/" class="active" aria-current="page">도구</a>
+        <a href="/blog/">블로그</a>
+        <a href="/about.html">소개</a>
+        <a href="/contact.html">문의</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="map-page-header">
+    <div class="container">
+      <h1 class="map-page-title">강남구 부동산 지도</h1>
+      <p class="map-page-meta" id="marker-count">단지 로딩 중...</p>
+    </div>
+  </div>
+
+  <p class="map-error-banner" id="map-error" hidden></p>
+
+  <div class="map-layout">
+    <section class="map-panel" aria-label="강남구 아파트 지도">
+      <div id="map-loading" class="map-loading">지도와 단지 데이터를 불러오는 중...</div>
+      <div id="map" role="application" aria-label="카카오맵"></div>
+    </section>
+
+    <aside class="sidebar-panel" aria-label="단지 정보">
+      <div class="sidebar-search">
+        <label for="search-input">단지명 검색</label>
+        <input
+          type="search"
+          id="search-input"
+          placeholder="예: 래미안, 아크로, 현대..."
+          autocomplete="off"
+        >
+        <div id="search-results" class="search-results"></div>
+      </div>
+
+      <div class="sidebar-content" id="sidebar-content">
+        <div class="sidebar-empty">
+          <p>지도에서 마커를 클릭하거나<br>단지명을 검색해 보세요.</p>
+        </div>
+      </div>
+
+      <div class="sidebar-actions">
+        <button type="button" class="btn-primary" id="dday-btn" disabled>
+          D-day 계산하기
+        </button>
+      </div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col footer-brand">
+        <p class="footer-logo">승박</p>
+        <p class="footer-tagline">평범한 직장인의 두 번째 월급 만들기</p>
+        <p class="footer-owner">운영자: <strong>승박</strong></p>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">바로가기</p>
+        <ul class="footer-nav">
+          <li><a href="/">홈</a></li>
+          <li><a href="/tools/">도구</a></li>
+          <li><a href="/blog/">블로그</a></li>
+          <li><a href="/about.html">소개</a></li>
+          <li><a href="/contact.html">문의</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">정책</p>
+        <ul class="footer-nav">
+          <li><a href="/privacy.html">개인정보처리방침</a></li>
+          <li><a href="/disclaimer.html">면책조항</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">함께해요</p>
+        <ul class="footer-nav">
+          <li><a href="mailto:id123id6@gmail.com">이메일</a></li>
+          <li class="footer-coming-soon">유튜브 (준비 중)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p class="footer-copy">&copy; <span id="current-year"></span> 승박. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="config.js"></script>
+  <script>
+    (function () {
+      var key = window.REALESTATE_MAP_CONFIG && window.REALESTATE_MAP_CONFIG.kakaoJsKey;
+      if (!key) return;
+      var s = document.createElement("script");
+      s.src =
+        "https://dapi.kakao.com/v2/maps/sdk.js?appkey=" +
+        encodeURIComponent(key) +
+        "&libraries=clusterer&autoload=false";
+      document.head.appendChild(s);
+    })();
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="map.js"></script>
+  <script>
+    (function () {
+      var el = document.getElementById("current-year");
+      if (el) el.textContent = new Date().getFullYear();
+    })();
+  </script>
+</body>
+</html>

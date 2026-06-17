@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>아파트 D-day 계산기 | 언제 살 수 있을까? | 승박</title>
+  <meta name="description" content="강남구 아파트 평균 거래가 기준, 현재 자산·월 저축·대출(LTV)로 매수 가능 시점을 계산합니다.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://seungbak.com/tools/dday-calculator/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://seungbak.com/tools/dday-calculator/">
+  <meta property="og:title" content="아파트 D-day 계산기 | 승박">
+  <meta property="og:description" content="자산·저축·대출을 반영해 아파트 매수 가능 시점을 계산하세요.">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:site_name" content="승박">
+
+  <link rel="icon" href="/favicon.ico">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo"><a href="/">승박</a></div>
+      <nav class="main-nav">
+        <a href="/">홈</a>
+        <a href="/tools/" class="active" aria-current="page">도구</a>
+        <a href="/blog/">블로그</a>
+        <a href="/about.html">소개</a>
+        <a href="/contact.html">문의</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="dday-page">
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h1 class="section-title">📅 아파트 D-day 계산기</h1>
+          <p class="section-subtitle">자산·저축·대출을 반영해 언제 살 수 있는지 계산합니다</p>
+        </div>
+
+        <div id="dday-empty" class="dday-empty-state card page-card" hidden>
+          <p>단지 정보가 없습니다. 부동산 지도에서 아파트를 선택한 뒤 D-day 계산하기를 눌러 주세요.</p>
+          <a href="../realestate-map/" class="btn-primary" style="margin-top:1rem;display:inline-block;">부동산 지도로 이동</a>
+        </div>
+
+        <div id="dday-apt-header" class="dday-apt-header" hidden>
+          <h2 id="apt-title">🏠 단지명</h2>
+          <p class="apt-meta" id="apt-location">강남구</p>
+          <p class="price-line">최근 1년 평균 거래가: <strong id="apt-price-display">-</strong> <span class="dday-hint">(수정 가능)</span></p>
+          <a href="../realestate-map/" id="back-map" class="dday-back-link">← 다른 아파트 보기</a>
+        </div>
+
+        <div class="dday-layout" id="dday-layout">
+          <div class="dday-form-card">
+            <h3>내 정보 입력</h3>
+
+            <div class="dday-field">
+              <label for="target-price">목표 금액 (만원)</label>
+              <input type="number" id="target-price" min="0" step="100" placeholder="예: 690000">
+              <p class="dday-hint">아파트 매수 목표 금액. 지도에서 자동 입력됩니다.</p>
+            </div>
+
+            <div class="dday-field">
+              <label for="current-assets">현재 자산 (만원) <span style="color:#ef4444">*</span></label>
+              <input type="number" id="current-assets" min="0" step="100" placeholder="예: 5000">
+              <p class="dday-hint">현금, 예적금, 주식 등 모든 자산 합계</p>
+            </div>
+
+            <div class="dday-field">
+              <label for="monthly-save">월 저축액 (만원) <span style="color:#ef4444">*</span></label>
+              <input type="number" id="monthly-save" min="0" step="10" placeholder="예: 200">
+              <p class="dday-hint">월급에서 매달 저축 가능한 금액</p>
+            </div>
+
+            <div class="dday-field">
+              <label>연 평균 수익률</label>
+              <div class="dday-radio-group">
+                <label><input type="radio" name="rate-type" value="3"> 보수형 (예적금): 3%</label>
+                <label><input type="radio" name="rate-type" value="5" checked> 균형형 (혼합): 5%</label>
+                <label><input type="radio" name="rate-type" value="7"> 공격형 (주식): 7%</label>
+                <label><input type="radio" name="rate-type" value="custom"> 직접 입력</label>
+              </div>
+              <div class="dday-custom-rate">
+                <input type="number" id="custom-rate" min="0" max="30" step="0.1" disabled placeholder="%">
+                <span>%</span>
+              </div>
+            </div>
+
+            <div class="dday-field">
+              <label for="ltv-slider">대출 활용 비율 (LTV)</label>
+              <div class="dday-slider-row">
+                <input type="range" id="ltv-slider" min="0" max="70" value="50" step="5">
+                <span class="dday-slider-value" id="ltv-value">50% (LTV)</span>
+              </div>
+              <p class="dday-hint">대출 활용 시 더 빨리 매수 가능, 단 이자 부담 발생</p>
+            </div>
+
+            <button type="button" class="btn-primary" id="calc-btn" style="width:100%;">계산하기</button>
+          </div>
+
+          <div class="dday-result-card" id="result-card" hidden>
+            <h3>📊 계산 결과</h3>
+
+            <div class="dday-result-hero">
+              <p class="label">🎯 매수 가능 시점</p>
+              <p class="duration" id="result-duration">-</p>
+              <p class="target-date" id="result-date">-</p>
+            </div>
+
+            <div class="dday-result-grid">
+              <div class="dday-result-block">
+                <h4>그때 형의 자산</h4>
+                <ul id="result-assets"></ul>
+              </div>
+              <div class="dday-result-block">
+                <h4>💰 대출 부담 (참고)</h4>
+                <ul id="result-loan"></ul>
+              </div>
+            </div>
+
+            <div class="dday-chart-wrap">
+              <canvas id="growth-chart" aria-label="자산 증식 그래프"></canvas>
+            </div>
+
+            <div class="dday-sim-section">
+              <label for="sim-slider">월 저축액을 바꾸면?</label>
+              <div class="dday-slider-row">
+                <input type="range" id="sim-slider" min="50" max="500" value="200" step="10">
+                <span class="dday-slider-value" id="sim-value">200만원</span>
+              </div>
+              <p class="dday-sim-result" id="sim-result"></p>
+            </div>
+
+            <div class="dday-compare-box" id="compare-box"></div>
+
+            <div class="dday-share-row">
+              <button type="button" class="btn-outline" id="copy-url-btn">URL 복사 (입력값 보존)</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col footer-brand">
+        <p class="footer-logo">승박</p>
+        <p class="footer-tagline">평범한 직장인의 두 번째 월급 만들기</p>
+        <p class="footer-owner">운영자: <strong>승박</strong></p>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">바로가기</p>
+        <ul class="footer-nav">
+          <li><a href="/">홈</a></li>
+          <li><a href="/tools/">도구</a></li>
+          <li><a href="/blog/">블로그</a></li>
+          <li><a href="/about.html">소개</a></li>
+          <li><a href="/contact.html">문의</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">정책</p>
+        <ul class="footer-nav">
+          <li><a href="/privacy.html">개인정보처리방침</a></li>
+          <li><a href="/disclaimer.html">면책조항</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">함께해요</p>
+        <ul class="footer-nav">
+          <li><a href="mailto:id123id6@gmail.com">이메일</a></li>
+          <li class="footer-coming-soon">유튜브 (준비 중)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p class="footer-copy">&copy; <span id="current-year"></span> 승박. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="script.js"></script>
+  <script>
+    (function () {
+      var el = document.getElementById("current-year");
+      if (el) el.textContent = new Date().getFullYear();
+    })();
+  </script>
+</body>
+</html>

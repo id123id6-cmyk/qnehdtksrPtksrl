@@ -51,8 +51,40 @@
 
     <section class="section tools-section">
       <div class="container">
-        <div class="tools-grid tools-grid--three">
-          <a href="apt-calculator/" class="tool-card">
+        <div class="tools-carousel">
+          <p class="tools-carousel-hint" aria-hidden="true">마우스로 잡고 옆으로 넘겨보세요</p>
+          <div class="tools-scroll" role="list">
+          <a href="dday-calculator/" class="tool-card" role="listitem">
+            <span class="tool-card-new">⭐ NEW</span>
+            <span class="tool-card-icon" aria-hidden="true">📅</span>
+            <h3 class="tool-card-title">아파트 D-day 계산기</h3>
+            <p class="tool-card-desc">
+              언제 살 수 있을까? 자산·저축·대출을 반영해 매수 가능 시점을 계산
+            </p>
+            <span class="tool-card-link">바로 사용하기 →</span>
+          </a>
+
+          <a href="realestate-map/" class="tool-card" role="listitem">
+            <span class="tool-card-new">⭐ NEW</span>
+            <span class="tool-card-icon" aria-hidden="true">🗺️</span>
+            <h3 class="tool-card-title">강남구 부동산 지도</h3>
+            <p class="tool-card-desc">
+              390개 아파트 단지를 지도에서 보고 최근 실거래가를 확인하세요
+            </p>
+            <span class="tool-card-link">바로 사용하기 →</span>
+          </a>
+
+          <a href="severance-calculator/" class="tool-card" role="listitem">
+            <span class="tool-card-new">⭐ NEW</span>
+            <span class="tool-card-icon" aria-hidden="true">👋</span>
+            <h3 class="tool-card-title">퇴직금 계산기</h3>
+            <p class="tool-card-desc">
+              입사일·퇴사일·급여만 입력하면 퇴직금과 실수령액을 30초 만에!
+            </p>
+            <span class="tool-card-link">바로 사용하기 →</span>
+          </a>
+
+          <a href="apt-calculator/" class="tool-card" role="listitem">
             <span class="tool-card-icon" aria-hidden="true">🏢</span>
             <h3 class="tool-card-title">내 연봉 아파트 계산기</h3>
             <p class="tool-card-desc">
@@ -61,7 +93,7 @@
             <span class="tool-card-link">바로 사용하기 →</span>
           </a>
 
-          <a href="salary-calculator/" class="tool-card">
+          <a href="salary-calculator/" class="tool-card" role="listitem">
             <span class="tool-card-icon" aria-hidden="true">💰</span>
             <h3 class="tool-card-title">아파트 가격 필요 연봉 계산기</h3>
             <p class="tool-card-desc">
@@ -70,8 +102,7 @@
             <span class="tool-card-link">바로 사용하기 →</span>
           </a>
 
-          <a href="income-calculator/" class="tool-card">
-            <span class="tool-card-new">⭐ NEW</span>
+          <a href="income-calculator/" class="tool-card" role="listitem">
             <span class="tool-card-icon" aria-hidden="true">💰</span>
             <h3 class="tool-card-title">연봉 실수령액 계산기</h3>
             <p class="tool-card-desc">
@@ -79,6 +110,7 @@
             </p>
             <span class="tool-card-link">바로 사용하기 →</span>
           </a>
+          </div>
         </div>
       </div>
     </section>
@@ -121,6 +153,7 @@
     </div>
   </footer>
 
+  <script src="../scripts/tools-carousel.js"></script>
   <script>
     (function () {
       var el = document.getElementById("current-year");

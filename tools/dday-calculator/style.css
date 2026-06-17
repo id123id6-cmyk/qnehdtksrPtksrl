@@ -1,0 +1,272 @@
+/* D-day 계산기 — 부동산 지도 톤앤매너 */
+
+.dday-page {
+  padding-bottom: 48px;
+}
+
+.dday-apt-header {
+  background: linear-gradient(135deg, var(--color-primary-muted) 0%, #fff 100%);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.dday-apt-header h2 {
+  margin: 0 0 0.35rem;
+  font-size: 1.35rem;
+}
+
+.dday-apt-header .apt-meta {
+  margin: 0 0 0.75rem;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.dday-apt-header .price-line {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.dday-apt-header .price-line strong {
+  color: var(--color-primary);
+  font-size: 1.15rem;
+}
+
+.dday-back-link {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.dday-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.dday-form-card,
+.dday-result-card {
+  background: var(--color-card);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow-card);
+}
+
+.dday-form-card h3,
+.dday-result-card h3 {
+  margin: 0 0 1.25rem;
+  font-size: 1.1rem;
+}
+
+.dday-field {
+  margin-bottom: 1.25rem;
+}
+
+.dday-field label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.dday-field input[type="number"],
+.dday-field input[type="text"] {
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.dday-field input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-soft);
+}
+
+.dday-hint {
+  margin: 0.35rem 0 0;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.dday-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.dday-radio-group label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.dday-radio-group input[type="radio"] {
+  accent-color: var(--color-primary);
+}
+
+.dday-custom-rate {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.dday-custom-rate input {
+  width: 80px;
+}
+
+.dday-slider-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.dday-slider-row input[type="range"] {
+  flex: 1;
+  accent-color: var(--color-primary);
+}
+
+.dday-slider-value {
+  min-width: 88px;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-align: right;
+}
+
+.dday-result-card[hidden] {
+  display: none !important;
+}
+
+.dday-result-hero {
+  text-align: center;
+  padding: 1.25rem;
+  background: var(--color-primary-muted);
+  border-radius: 12px;
+  margin-bottom: 1.25rem;
+}
+
+.dday-result-hero .label {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0.25rem;
+}
+
+.dday-result-hero .duration {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-primary-dark);
+  line-height: 1.2;
+}
+
+.dday-result-hero .target-date {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: var(--color-text);
+}
+
+.dday-result-grid {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.dday-result-block {
+  padding: 1rem;
+  background: var(--color-bg);
+  border-radius: 10px;
+  border: 1px solid var(--color-border-subtle);
+}
+
+.dday-result-block h4 {
+  margin: 0 0 0.65rem;
+  font-size: 0.95rem;
+}
+
+.dday-result-block ul {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.dday-result-block .highlight {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.dday-chart-wrap {
+  margin: 1.25rem 0;
+  height: 260px;
+}
+
+.dday-sim-section {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.dday-sim-result {
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-primary-dark);
+}
+
+.dday-compare-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.dday-compare-btn {
+  padding: 0.65rem 0.85rem;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 8px;
+  background: var(--color-bg);
+  text-align: left;
+  font-family: inherit;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.dday-compare-btn:hover {
+  border-color: var(--color-primary);
+  background: var(--color-primary-muted);
+}
+
+.dday-share-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+}
+
+.dday-empty-state {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: var(--color-text-muted);
+}
+
+@media (min-width: 960px) {
+  .dday-layout.has-result {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
+@media (max-width: 639px) {
+  .dday-result-hero .duration {
+    font-size: 1.6rem;
+  }
+}

@@ -1,0 +1,291 @@
+/* 강남구 부동산 지도 — 페이지 전용 스타일 */
+
+.map-page-header {
+  background: var(--color-card);
+  border-bottom: 1px solid var(--color-border-subtle);
+  padding: 1rem 0;
+}
+
+.map-page-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.map-page-title {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.map-page-meta {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.map-layout {
+  display: flex;
+  min-height: calc(100vh - 140px);
+  background: var(--color-bg);
+}
+
+.map-panel {
+  flex: 0 0 70%;
+  position: relative;
+  min-height: 520px;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+  min-height: 520px;
+}
+
+.map-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(248, 250, 252, 0.92);
+  z-index: 10;
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+}
+
+.map-loading[hidden] {
+  display: none;
+}
+
+.sidebar-panel {
+  flex: 0 0 30%;
+  min-width: 280px;
+  max-width: 420px;
+  background: var(--color-card);
+  border-left: 1px solid var(--color-border-subtle);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.sidebar-search {
+  padding: 1rem;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.sidebar-search label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.sidebar-search input {
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  background: var(--color-bg);
+}
+
+.sidebar-search input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-soft);
+}
+
+.search-results {
+  margin-top: 0.5rem;
+  max-height: 160px;
+  overflow-y: auto;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 8px;
+  background: var(--color-card);
+  display: none;
+}
+
+.search-results.is-open {
+  display: block;
+}
+
+.search-result-item {
+  display: block;
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  border: none;
+  border-bottom: 1px solid var(--color-border-subtle);
+  background: transparent;
+  text-align: left;
+  font-family: inherit;
+  font-size: 0.875rem;
+  cursor: pointer;
+  color: var(--color-text);
+}
+
+.search-result-item:last-child {
+  border-bottom: none;
+}
+
+.search-result-item:hover,
+.search-result-item:focus {
+  background: var(--color-primary-muted);
+  outline: none;
+}
+
+.search-result-item small {
+  display: block;
+  color: var(--color-text-muted);
+  margin-top: 0.15rem;
+}
+
+.sidebar-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+.sidebar-empty {
+  text-align: center;
+  color: var(--color-text-muted);
+  padding: 2rem 1rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.apt-info-card {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.apt-info-card h2 {
+  margin: 0 0 0.35rem;
+  font-size: 1.1rem;
+  color: var(--color-text);
+}
+
+.apt-info-card .apt-address {
+  margin: 0 0 0.75rem;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.apt-meta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.apt-meta-item {
+  background: var(--color-card);
+  border-radius: 8px;
+  padding: 0.55rem 0.65rem;
+  font-size: 0.8rem;
+}
+
+.apt-meta-item span {
+  display: block;
+  color: var(--color-text-muted);
+  margin-bottom: 0.15rem;
+}
+
+.apt-meta-item strong {
+  color: var(--color-text);
+  font-size: 0.9rem;
+}
+
+.transactions-section h3 {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+  color: var(--color-text);
+}
+
+.transactions-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+}
+
+.transactions-table th,
+.transactions-table td {
+  padding: 0.5rem 0.4rem;
+  border-bottom: 1px solid var(--color-border-subtle);
+  text-align: left;
+}
+
+.transactions-table th {
+  color: var(--color-text-muted);
+  font-weight: 600;
+  background: var(--color-bg);
+}
+
+.transactions-table td.amount {
+  font-weight: 700;
+  color: var(--color-primary);
+  white-space: nowrap;
+}
+
+.transactions-empty {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  padding: 0.75rem 0;
+}
+
+.sidebar-actions {
+  padding: 1rem;
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.sidebar-actions .btn-primary {
+  width: 100%;
+}
+
+.sidebar-actions .btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.map-error-banner {
+  margin: 0;
+  padding: 0.75rem 1rem;
+  background: #fef2f2;
+  color: #b91c1c;
+  font-size: 0.875rem;
+  border-bottom: 1px solid #fecaca;
+}
+
+@media (max-width: 900px) {
+  .map-layout {
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .map-panel {
+    flex: none;
+    width: 100%;
+    height: 55vh;
+    min-height: 320px;
+  }
+
+  #map {
+    min-height: 320px;
+  }
+
+  .sidebar-panel {
+    flex: none;
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    border-left: none;
+    border-top: 1px solid var(--color-border-subtle);
+  }
+}

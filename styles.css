@@ -2639,6 +2639,7 @@ tbody tr:nth-child(even) {
   transition: all 0.2s ease;
   color: inherit;
   cursor: pointer;
+  position: relative;
 }
 
 a.tool-card:hover {
@@ -2692,6 +2693,86 @@ a.tool-card:hover {
   grid-template-columns: 1fr;
 }
 
+/* 도구 가로 스크롤 캐러셀 */
+.tools-carousel {
+  position: relative;
+  margin: 0 -4px;
+}
+
+.tools-carousel-hint {
+  margin: 0 4px 12px;
+  font-size: 13px;
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.tools-scroll {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  padding: 4px 4px 16px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary-soft) transparent;
+  cursor: grab;
+  user-select: none;
+}
+
+.tools-scroll.is-dragging {
+  scroll-snap-type: none;
+  cursor: grabbing;
+  scroll-behavior: auto;
+}
+
+.tools-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.tools-scroll::-webkit-scrollbar-thumb {
+  background: var(--color-primary-soft);
+  border-radius: 999px;
+}
+
+.tools-scroll .tool-card {
+  flex: 0 0 calc(85% - 8px);
+  scroll-snap-align: start;
+  min-height: 220px;
+}
+
+.tools-scroll .tool-card:has(.tool-card-new) {
+  padding-top: 36px;
+}
+
+.tools-carousel::after {
+  content: "";
+  position: absolute;
+  top: 28px;
+  right: 0;
+  bottom: 16px;
+  width: 40px;
+  background: linear-gradient(to left, var(--color-bg) 20%, transparent);
+  pointer-events: none;
+}
+
+@media (min-width: 640px) {
+  .tools-scroll .tool-card {
+    flex: 0 0 calc(50% - 8px);
+  }
+}
+
+@media (min-width: 960px) {
+  .tools-scroll .tool-card {
+    flex: 0 0 calc(25% - 12px);
+  }
+
+  .tools-carousel::after {
+    width: 56px;
+  }
+}
+
 /* 관련 도구 안내 */
 .related-tool-card {
   text-align: center;
@@ -2733,8 +2814,12 @@ a.tool-card:hover {
 
 .tool-card-new,
 .tool-card .badge-new {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 1;
   display: inline-block;
-  align-self: flex-start;
+  align-self: auto;
   padding: 2px 8px;
   border-radius: 4px;
   font-size: 11px;

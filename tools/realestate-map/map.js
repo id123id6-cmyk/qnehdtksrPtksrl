@@ -1,0 +1,445 @@
+/**
+ * 강남구 부동산 지도 — 카카오맵 + Supabase 마커
+ */
+(function () {
+  "use strict";
+
+  const GANGNAM_CENTER = { lat: 37.5172, lng: 127.0473 };
+  const ZOOM_LEVEL = 5;
+  const SIGUNGU_CODE = "11680";
+  const RED_MARKER_IMAGE =
+    "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png";
+
+  const config = window.REALESTATE_MAP_CONFIG;
+  if (!config?.supabaseUrl || !config?.supabaseKey || !config?.kakaoJsKey) {
+    showError(
+      "설정 파일이 없습니다. config.example.js 를 config.js 로 복사하거나 " +
+        "node scripts/generate-frontend-config.mjs 를 실행하세요."
+    );
+    return;
+  }
+
+  const els = {
+    map: document.getElementById("map"),
+    loading: document.getElementById("map-loading"),
+    error: document.getElementById("map-error"),
+    count: document.getElementById("marker-count"),
+    searchInput: document.getElementById("search-input"),
+    searchResults: document.getElementById("search-results"),
+    sidebarContent: document.getElementById("sidebar-content"),
+    ddayBtn: document.getElementById("dday-btn"),
+  };
+
+  let map;
+  let clusterer;
+  let supabase;
+  let apartments = [];
+  const markerById = new Map();
+  let markerImage;
+  let selectedApt = null;
+
+  init();
+
+  async function init() {
+    loadKakaoSdk()
+      .then(initMap)
+      .then(initSupabase)
+      .then(loadApartments)
+      .then(renderMarkers)
+      .catch((err) => {
+        console.error(err);
+        showError(err.message || "지도를 불러오지 못했습니다.");
+      })
+      .finally(hideLoading);
+  }
+
+  function showError(message) {
+    if (els.error) {
+      els.error.hidden = false;
+      els.error.textContent = message;
+    }
+  }
+
+  function hideLoading() {
+    if (els.loading) els.loading.hidden = true;
+  }
+
+  function loadKakaoSdk() {
+    return new Promise((resolve, reject) => {
+      const deadline = Date.now() + 15000;
+
+      const wait = () => {
+        if (window.kakao?.maps) {
+          window.kakao.maps.load(resolve);
+          return;
+        }
+        if (Date.now() > deadline) {
+          reject(
+            new Error(
+              "카카오맵 SDK 로드 실패. 카카오 개발자 콘솔에 " +
+                "http://localhost (또는 사용 중인 도메인)을 Web 플랫폼에 등록했는지 확인하세요."
+            )
+          );
+          return;
+        }
+        setTimeout(wait, 100);
+      };
+
+      wait();
+    });
+  }
+
+  function initMap() {
+    map = new kakao.maps.Map(els.map, {
+      center: new kakao.maps.LatLng(GANGNAM_CENTER.lat, GANGNAM_CENTER.lng),
+      level: ZOOM_LEVEL,
+    });
+  }
+
+  function initSupabase() {
+    if (!window.supabase?.createClient) {
+      throw new Error("Supabase 라이브러리 로드 실패");
+    }
+    supabase = window.supabase.createClient(config.supabaseUrl, config.supabaseKey);
+  }
+
+  async function loadApartments() {
+    const { data, error } = await supabase
+      .from("apartments")
+      .select("id, name, dong, jibun, build_year, latitude, longitude")
+      .eq("sigungu_code", SIGUNGU_CODE)
+      .not("latitude", "is", null)
+      .not("longitude", "is", null)
+      .order("dong")
+      .order("name");
+
+    if (error) throw new Error(`단지 데이터 조회 실패: ${error.message}`);
+    apartments = data || [];
+
+    if (els.count) {
+      els.count.textContent = `${apartments.length}개 단지`;
+    }
+  }
+
+  function createMarkerImage() {
+    const size = new kakao.maps.Size(29, 42);
+    const option = { offset: new kakao.maps.Point(15, 42) };
+    return new kakao.maps.MarkerImage(RED_MARKER_IMAGE, size, option);
+  }
+
+  function renderMarkers() {
+    markerImage = createMarkerImage();
+
+    const markers = apartments.map((apt) => {
+      const position = new kakao.maps.LatLng(apt.latitude, apt.longitude);
+      const marker = new kakao.maps.Marker({
+        position,
+        image: markerImage,
+        title: apt.name,
+      });
+
+      kakao.maps.event.addListener(marker, "click", () => selectApartment(apt, marker));
+      markerById.set(apt.id, marker);
+      return marker;
+    });
+
+    clusterer = new kakao.maps.MarkerClusterer({
+      map,
+      markers,
+      averageCenter: true,
+      minLevel: 6,
+      gridSize: 60,
+    });
+
+    bindSearch();
+    bindDdayButton();
+    showEmptySidebar();
+  }
+
+  function bindSearch() {
+    if (!els.searchInput) return;
+
+    els.searchInput.addEventListener("input", () => {
+      const query = els.searchInput.value.trim().toLowerCase();
+      if (!query) {
+        closeSearchResults();
+        return;
+      }
+
+      const matches = apartments
+        .filter((apt) => {
+          const label = `${apt.dong || ""} ${apt.name}`.toLowerCase();
+          return label.includes(query) || apt.name.toLowerCase().includes(query);
+        })
+        .slice(0, 8);
+
+      renderSearchResults(matches);
+    });
+
+    document.addEventListener("click", (e) => {
+      if (
+        !els.searchResults?.contains(e.target) &&
+        e.target !== els.searchInput
+      ) {
+        closeSearchResults();
+      }
+    });
+  }
+
+  function renderSearchResults(matches) {
+    if (!els.searchResults) return;
+
+    if (!matches.length) {
+      els.searchResults.innerHTML =
+        '<p class="transactions-empty" style="padding:0.75rem;">검색 결과가 없습니다.</p>';
+      els.searchResults.classList.add("is-open");
+      return;
+    }
+
+    els.searchResults.innerHTML = matches
+      .map(
+        (apt) => `
+        <button type="button" class="search-result-item" data-id="${apt.id}">
+          ${escapeHtml(apt.name)}
+          <small>${escapeHtml(formatAddress(apt))}</small>
+        </button>`
+      )
+      .join("");
+
+    els.searchResults.classList.add("is-open");
+
+    els.searchResults.querySelectorAll(".search-result-item").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const apt = apartments.find((a) => a.id === btn.dataset.id);
+        if (apt) {
+          focusApartment(apt);
+          els.searchInput.value = apt.name;
+          closeSearchResults();
+        }
+      });
+    });
+  }
+
+  function closeSearchResults() {
+    if (els.searchResults) {
+      els.searchResults.classList.remove("is-open");
+      els.searchResults.innerHTML = "";
+    }
+  }
+
+  function focusApartment(apt) {
+    const marker = markerById.get(apt.id);
+    const position = new kakao.maps.LatLng(apt.latitude, apt.longitude);
+    map.setCenter(position);
+    map.setLevel(3);
+    selectApartment(apt, marker);
+  }
+
+  async function selectApartment(apt, marker) {
+    if (marker) {
+      map.panTo(marker.getPosition());
+    }
+
+    els.sidebarContent.innerHTML =
+      '<p class="transactions-empty">실거래 정보를 불러오는 중...</p>';
+
+    const transactions = await fetchRecentTransactions(apt.id);
+    const priceStats = await fetchPriceStats(apt.id);
+    selectedApt = {
+      ...apt,
+      medianPrice: priceStats.price,
+      priceSource: priceStats.source,
+    };
+    updateDdayButton();
+    renderSidebar(apt, transactions, priceStats);
+  }
+
+  async function fetchPriceStats(apartmentId) {
+    const cutoff = new Date();
+    cutoff.setFullYear(cutoff.getFullYear() - 1);
+    const cutoffStr = cutoff.toISOString().slice(0, 10);
+
+    const { data: recent12, error } = await supabase
+      .from("transactions")
+      .select("deal_amount, deal_date")
+      .eq("apartment_id", apartmentId)
+      .eq("deal_type", "매매")
+      .gte("deal_date", cutoffStr)
+      .order("deal_date", { ascending: false });
+
+    if (error) {
+      console.error(error);
+      return { price: null, source: "none" };
+    }
+
+    if (recent12?.length) {
+      const amounts = recent12.map((t) => t.deal_amount).sort((a, b) => a - b);
+      const mid = Math.floor(amounts.length / 2);
+      const price =
+        amounts.length % 2
+          ? amounts[mid]
+          : Math.round((amounts[mid - 1] + amounts[mid]) / 2);
+      return { price, source: "median12", count: recent12.length };
+    }
+
+    const { data: latest } = await supabase
+      .from("transactions")
+      .select("deal_amount")
+      .eq("apartment_id", apartmentId)
+      .eq("deal_type", "매매")
+      .order("deal_date", { ascending: false })
+      .limit(1);
+
+    if (latest?.[0]) {
+      return { price: latest[0].deal_amount, source: "latest", count: 1 };
+    }
+
+    return { price: null, source: "none" };
+  }
+
+  async function fetchRecentTransactions(apartmentId) {
+    const { data, error } = await supabase
+      .from("transactions")
+      .select(
+        "deal_amount, deal_year, deal_month, deal_day, exclu_use_ar, floor, deal_type"
+      )
+      .eq("apartment_id", apartmentId)
+      .order("deal_date", { ascending: false })
+      .limit(3);
+
+    if (error) {
+      console.error(error);
+      return [];
+    }
+    return data || [];
+  }
+
+  function renderSidebar(apt, transactions, priceStats) {
+    const buildYear = apt.build_year ? `${apt.build_year}년` : "-";
+    const priceLabel =
+      priceStats?.price != null
+        ? priceStats.source === "median12"
+          ? `최근 1년 중간값: ${formatAmount(priceStats.price)} (${priceStats.count}건)`
+          : `최근 거래가: ${formatAmount(priceStats.price)}`
+        : "거래 데이터 없음";
+
+    const txRows = transactions.length
+      ? transactions
+          .map(
+            (tx) => `
+          <tr>
+            <td>${tx.deal_year}.${String(tx.deal_month).padStart(2, "0")}.${String(tx.deal_day).padStart(2, "0")}</td>
+            <td>${tx.exclu_use_ar ? `${tx.exclu_use_ar}㎡` : "-"}</td>
+            <td>${tx.floor != null ? `${tx.floor}층` : "-"}</td>
+            <td class="amount">${formatAmount(tx.deal_amount)}</td>
+          </tr>`
+          )
+          .join("")
+      : "";
+
+    els.sidebarContent.innerHTML = `
+      <div class="apt-info-card">
+        <h2>${escapeHtml(apt.name)}</h2>
+        <p class="apt-address">${escapeHtml(formatAddress(apt))}</p>
+        <div class="apt-meta-grid">
+          <div class="apt-meta-item">
+            <span>평균 거래가</span>
+            <strong>${escapeHtml(priceLabel)}</strong>
+          </div>
+          <div class="apt-meta-item">
+            <span>준공년도</span>
+            <strong>${escapeHtml(buildYear)}</strong>
+          </div>
+          <div class="apt-meta-item">
+            <span>좌표</span>
+            <strong>${apt.latitude.toFixed(4)}, ${apt.longitude.toFixed(4)}</strong>
+          </div>
+        </div>
+      </div>
+
+      <section class="transactions-section">
+        <h3>최근 실거래 3건</h3>
+        ${
+          transactions.length
+            ? `<table class="transactions-table">
+                <thead>
+                  <tr>
+                    <th>거래일</th>
+                    <th>면적</th>
+                    <th>층</th>
+                    <th>금액</th>
+                  </tr>
+                </thead>
+                <tbody>${txRows}</tbody>
+              </table>`
+            : '<p class="transactions-empty">등록된 실거래 내역이 없습니다.</p>'
+        }
+      </section>
+    `;
+  }
+
+  function showEmptySidebar() {
+    selectedApt = null;
+    updateDdayButton();
+    els.sidebarContent.innerHTML = `
+      <div class="sidebar-empty">
+        <p>지도에서 마커를 클릭하거나<br>단지명을 검색해 보세요.</p>
+        <p style="margin-top:0.75rem;font-size:0.8rem;">총 ${apartments.length}개 단지</p>
+      </div>
+    `;
+  }
+
+  function updateDdayButton() {
+    if (!els.ddayBtn) return;
+    const ready = selectedApt?.medianPrice > 0;
+    els.ddayBtn.disabled = !ready;
+    els.ddayBtn.textContent = "D-day 계산하기";
+    els.ddayBtn.title = ready
+      ? "선택한 단지로 D-day 계산"
+      : "먼저 단지를 선택해 주세요";
+  }
+
+  function bindDdayButton() {
+    if (!els.ddayBtn) return;
+    updateDdayButton();
+    els.ddayBtn.addEventListener("click", () => {
+      if (!selectedApt?.medianPrice) {
+        alert("먼저 지도에서 단지를 선택해 주세요. (거래 데이터가 있는 단지)");
+        return;
+      }
+      const q = new URLSearchParams({
+        apt: selectedApt.name,
+        dong: selectedApt.dong || "",
+        price: String(selectedApt.medianPrice),
+        sigungu: SIGUNGU_CODE,
+        apt_id: selectedApt.id,
+      });
+      window.location.href = `../dday-calculator/?${q.toString()}`;
+    });
+  }
+
+  function formatAddress(apt) {
+    const parts = ["서울 강남구"];
+    if (apt.dong) parts.push(apt.dong);
+    if (apt.jibun) parts.push(apt.jibun);
+    return parts.join(" ");
+  }
+
+  function formatAmount(amountMan) {
+    if (amountMan == null) return "-";
+    if (amountMan >= 10000) {
+      const eok = Math.floor(amountMan / 10000);
+      const man = amountMan % 10000;
+      return man ? `${eok}억 ${man.toLocaleString()}만` : `${eok}억`;
+    }
+    return `${Number(amountMan).toLocaleString()}만`;
+  }
+
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+})();
