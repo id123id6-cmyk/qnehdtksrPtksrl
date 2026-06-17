@@ -1,0 +1,9 @@
+{
+  "name": "seungbak",
+  "version": "1.0.0",
+  "private": true,
+  "description": "seungbak.com — 부동산·연봉 계산기 허브",
+  "scripts": {
+    "build": "node scripts/generate-frontend-config.mjs"
+  }
+}

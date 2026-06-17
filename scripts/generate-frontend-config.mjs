@@ -1,13 +1,14 @@
 /**
- * .env.local → tools/realestate-map/config.js 생성
+ * 환경 변수 → tools/realestate-map/config.js 생성
+ * 로컬: .env.local | Vercel: process.env (빌드 시)
  * Publishable 키만 포함 (Secret 키 사용 안 함)
  */
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { loadEnvLocal, requireEnv } from "./load-env.mjs";
+import { loadEnv, requireEnv } from "./load-env.mjs";
 
-loadEnvLocal();
+loadEnv();
 requireEnv([
   "NEXT_PUBLIC_SUPABASE_URL",
   "NEXT_PUBLIC_SUPABASE_KEY",

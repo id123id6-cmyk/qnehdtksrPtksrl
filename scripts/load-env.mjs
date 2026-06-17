@@ -1,6 +1,7 @@
 /**
- * .env.local 파일을 읽어 process.env에 병합합니다.
- * Node 18+ 스크립트용 (dotenv 패키지 없이 사용)
+ * 환경 변수 로더
+ * - 로컬: .env.local 파일 읽기
+ * - Vercel: process.env (대시보드 Environment Variables)
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -9,15 +10,15 @@ import { fileURLToPath } from "node:url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
 
-export function loadEnvLocal(filename = ".env.local") {
-  const envPath = path.join(ROOT, filename);
-  if (!fs.existsSync(envPath)) {
-    throw new Error(
-      `${filename} 파일이 없습니다. .env.local.example 을 복사해 키를 입력하세요.`
-    );
+function mergeIntoProcessEnv(env) {
+  for (const [key, value] of Object.entries(env)) {
+    if (process.env[key] === undefined) {
+      process.env[key] = value;
+    }
   }
+}
 
-  const content = fs.readFileSync(envPath, "utf8");
+function parseEnvFile(content) {
   const env = {};
 
   for (const line of content.split(/\r?\n/)) {
@@ -36,19 +37,47 @@ export function loadEnvLocal(filename = ".env.local") {
       value = value.slice(1, -1);
     }
     env[key] = value;
-    if (process.env[key] === undefined) {
-      process.env[key] = value;
-    }
   }
 
   return env;
+}
+
+function loadEnvFromFile(envPath) {
+  const content = fs.readFileSync(envPath, "utf8");
+  return parseEnvFile(content);
+}
+
+/** 로컬 전용 — .env.local 필수 */
+export function loadEnvLocal(filename = ".env.local") {
+  const envPath = path.join(ROOT, filename);
+  if (!fs.existsSync(envPath)) {
+    throw new Error(
+      `${filename} 파일이 없습니다. .env.local.example 을 복사해 키를 입력하세요.`
+    );
+  }
+
+  const env = loadEnvFromFile(envPath);
+  mergeIntoProcessEnv(env);
+  return env;
+}
+
+/** 로컬(.env.local) + Vercel(process.env) 모두 지원 */
+export function loadEnv() {
+  const envPath = path.join(ROOT, ".env.local");
+  if (fs.existsSync(envPath)) {
+    const env = loadEnvFromFile(envPath);
+    mergeIntoProcessEnv(env);
+    return env;
+  }
+  return {};
 }
 
 export function requireEnv(keys) {
   const missing = keys.filter((key) => !process.env[key] || process.env[key].includes("..."));
   if (missing.length) {
     throw new Error(
-      `다음 환경 변수가 비어 있거나 불완전합니다: ${missing.join(", ")}\n.env.local 에 전체 키를 입력하세요.`
+      `다음 환경 변수가 비어 있거나 불완전합니다: ${missing.join(", ")}\n` +
+        "로컬: .env.local | Vercel: Project Settings > Environment Variables"
     );
   }
 }
