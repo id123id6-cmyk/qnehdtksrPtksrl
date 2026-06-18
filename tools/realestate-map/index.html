@@ -1,6 +1,18 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" class="map-page-root">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y7SC73P9JW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-Y7SC73P9JW', {
+    'page_title': document.title,
+    'page_path': window.location.pathname
+  });
+</script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>강남구 부동산 지도 | 실거래가 마커 | 승박</title>
@@ -22,7 +34,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
 </head>
-<body>
+<body class="map-page">
   <header class="site-header">
     <div class="container header-inner">
       <div class="logo"><a href="/">승박</a></div>
@@ -36,19 +48,15 @@
     </div>
   </header>
 
-  <div class="map-page-header">
-    <div class="container">
-      <h1 class="map-page-title">강남구 부동산 지도</h1>
-      <p class="map-page-meta" id="marker-count">단지 로딩 중...</p>
-    </div>
-  </div>
-
   <p class="map-error-banner" id="map-error" hidden></p>
+
+  <div class="bottom-sheet-backdrop" id="bottomSheetBackdrop" hidden aria-hidden="true"></div>
 
   <div class="map-layout">
     <section class="map-panel" aria-label="강남구 아파트 지도">
       <div id="map-loading" class="map-loading">지도와 단지 데이터를 불러오는 중...</div>
       <div id="map" role="application" aria-label="카카오맵"></div>
+      <p class="map-status-chip" id="marker-count" aria-live="polite">단지 로딩 중...</p>
       <div class="region-selector" id="region-selector" aria-label="지역 선택"></div>
       <div class="map-filter-bar" id="map-filter-bar" aria-label="단지 필터"></div>
       <div class="map-legend" id="map-legend">
@@ -61,9 +69,43 @@
         <div class="legend-item"><span class="dot dot-high"></span> 20억 이상</div>
         <div class="legend-item"><span class="dot dot-none"></span> 거래 없음</div>
       </div>
+
+      <div class="mobile-search-float" id="mobileSearchFloat" hidden>
+        <label class="mobile-search-label" for="mobile-search-input">단지명 검색</label>
+        <input
+          type="search"
+          id="mobile-search-input"
+          placeholder="예: 래미안, 아크로, 현대..."
+          autocomplete="off"
+        >
+        <div id="mobile-search-results" class="search-results"></div>
+      </div>
+
+      <button type="button" class="mobile-search-fab" id="mobileSearchFab" aria-label="단지 검색">
+        <span aria-hidden="true">🔍</span>
+      </button>
     </section>
 
-    <aside class="sidebar-panel" aria-label="단지 정보">
+    <aside class="sidebar-panel" id="sidebar-panel" aria-label="단지 정보">
+      <div class="bottom-sheet-handle" id="bottomSheetHandle" aria-hidden="true"></div>
+      <button
+        type="button"
+        class="bottom-sheet-close"
+        id="bottomSheetClose"
+        aria-label="단지 정보 닫기"
+      >
+        ×
+      </button>
+      <button
+        type="button"
+        class="sidebar-mobile-toggle"
+        id="sidebarToggle"
+        aria-expanded="true"
+        aria-controls="sidebar-panel"
+      >
+        <span class="sidebar-mobile-toggle-label">단지 정보 · 검색</span>
+        <span class="sidebar-mobile-toggle-icon" aria-hidden="true">▼</span>
+      </button>
       <div class="sidebar-search">
         <label for="search-input">단지명 검색</label>
         <input
@@ -145,6 +187,7 @@
   <script src="js/region.js"></script>
   <script src="js/marker.js"></script>
   <script src="js/chart.js"></script>
+  <script src="js/sidebar.js"></script>
   <script src="map.js"></script>
   <script>
     (function () {

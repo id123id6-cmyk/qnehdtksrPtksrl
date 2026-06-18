@@ -50,6 +50,10 @@
 
     searchResults: document.getElementById("search-results"),
 
+    mobileSearchInput: document.getElementById("mobile-search-input"),
+
+    mobileSearchResults: document.getElementById("mobile-search-results"),
+
     sidebarContent: document.getElementById("sidebar-content"),
 
     ddayBtn: document.getElementById("dday-btn"),
@@ -124,6 +128,8 @@
 
     if (els.loading) els.loading.hidden = true;
 
+    scheduleMapRelayout();
+
   }
 
 
@@ -189,6 +195,64 @@
     });
 
     map.setLevel(ZOOM_LEVEL);
+
+    initMapResizeHandler();
+
+    requestAnimationFrame(() => relayoutMap());
+
+  }
+
+
+
+  let mapResizeTimer = null;
+
+  function relayoutMap() {
+
+    if (!map || !els.map) return;
+
+    const center = map.getCenter();
+
+    const level = map.getLevel();
+
+    map.relayout();
+
+    if (center) map.setCenter(center);
+
+    if (level != null) map.setLevel(level);
+
+  }
+
+
+
+  function scheduleMapRelayout() {
+
+    clearTimeout(mapResizeTimer);
+
+    mapResizeTimer = setTimeout(relayoutMap, 120);
+
+  }
+
+
+
+  function initMapResizeHandler() {
+
+    if (initMapResizeHandler._bound) return;
+
+    initMapResizeHandler._bound = true;
+
+    window.addEventListener("resize", scheduleMapRelayout);
+
+    if (typeof ResizeObserver !== "undefined") {
+
+      const panel = els.map?.closest(".map-panel");
+
+      const ro = new ResizeObserver(scheduleMapRelayout);
+
+      if (els.map) ro.observe(els.map);
+
+      if (panel) ro.observe(panel);
+
+    }
 
   }
 
@@ -358,7 +422,13 @@
 
     bindLegendToggle();
 
+    initSidebarModule();
+
     showEmptySidebar();
+
+    requestAnimationFrame(() => relayoutMap());
+
+    setTimeout(relayoutMap, 300);
 
   }
 
@@ -512,15 +582,49 @@
 
 
 
+  function getActiveSearch() {
+
+    if (window.RealEstateMapSidebar?.isMobile?.()) {
+
+      return {
+
+        input: els.mobileSearchInput,
+
+        results: els.mobileSearchResults,
+
+      };
+
+    }
+
+    return {
+
+      input: els.searchInput,
+
+      results: els.searchResults,
+
+    };
+
+  }
+
+
+
+  function initSidebarModule() {
+
+    if (!window.RealEstateMapSidebar?.init) return;
+
+    window.RealEstateMapSidebar.init({
+
+      onRelayout: scheduleMapRelayout,
+
+    });
+
+  }
+
+
+
   function bindSearch() {
 
-    if (!els.searchInput) return;
-
-
-
-    els.searchInput.addEventListener("input", () => {
-
-      const query = els.searchInput.value.trim().toLowerCase();
+    const runSearch = (query) => {
 
       if (!query) {
 
@@ -529,8 +633,6 @@
         return;
 
       }
-
-
 
       const matches = apartments
 
@@ -544,9 +646,25 @@
 
         .slice(0, 8);
 
-
-
       renderSearchResults(matches);
+
+    };
+
+
+
+    const inputs = [els.searchInput, els.mobileSearchInput].filter(Boolean);
+
+    if (!inputs.length) return;
+
+
+
+    inputs.forEach((input) => {
+
+      input.addEventListener("input", () => {
+
+        runSearch(input.value.trim().toLowerCase());
+
+      });
 
     });
 
@@ -554,11 +672,15 @@
 
     document.addEventListener("click", (e) => {
 
+      const { input, results } = getActiveSearch();
+
       if (
 
-        !els.searchResults?.contains(e.target) &&
+        !results?.contains(e.target) &&
 
-        e.target !== els.searchInput
+        e.target !== input &&
+
+        e.target !== els.mobileSearchInput
 
       ) {
 
@@ -574,17 +696,19 @@
 
   function renderSearchResults(matches) {
 
-    if (!els.searchResults) return;
+    const { results } = getActiveSearch();
+
+    if (!results) return;
 
 
 
     if (!matches.length) {
 
-      els.searchResults.innerHTML =
+      results.innerHTML =
 
         '<p class="transactions-empty" style="padding:0.75rem;">검색 결과가 없습니다.</p>';
 
-      els.searchResults.classList.add("is-open");
+      results.classList.add("is-open");
 
       return;
 
@@ -596,7 +720,7 @@
 
 
 
-    els.searchResults.innerHTML = matches
+    results.innerHTML = matches
 
       .map((apt) => {
 
@@ -618,11 +742,11 @@
 
 
 
-    els.searchResults.classList.add("is-open");
+    results.classList.add("is-open");
 
 
 
-    els.searchResults.querySelectorAll(".search-result-item").forEach((btn) => {
+    results.querySelectorAll(".search-result-item").forEach((btn) => {
 
       btn.addEventListener("click", () => {
 
@@ -632,9 +756,17 @@
 
           focusApartment(apt);
 
-          els.searchInput.value = apt.name;
+          const { input } = getActiveSearch();
+
+          if (input) input.value = apt.name;
+
+          if (els.searchInput) els.searchInput.value = apt.name;
+
+          if (els.mobileSearchInput) els.mobileSearchInput.value = apt.name;
 
           closeSearchResults();
+
+          window.RealEstateMapSidebar?.closeSearchFloat?.();
 
         }
 
@@ -648,13 +780,15 @@
 
   function closeSearchResults() {
 
-    if (els.searchResults) {
+    [els.searchResults, els.mobileSearchResults].forEach((el) => {
 
-      els.searchResults.classList.remove("is-open");
+      if (!el) return;
 
-      els.searchResults.innerHTML = "";
+      el.classList.remove("is-open");
 
-    }
+      el.innerHTML = "";
+
+    });
 
   }
 
@@ -677,6 +811,12 @@
 
 
   async function selectApartment(apt) {
+
+    if (window.RealEstateMapSidebar?.isMobile?.()) {
+
+      window.RealEstateMapSidebar.openBottomSheet();
+
+    }
 
     if (markerLayer) {
 
