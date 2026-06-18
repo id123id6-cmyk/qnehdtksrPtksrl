@@ -9,7 +9,7 @@ await page.goto("http://localhost:8765/tools/realestate-map/", {
   timeout: 60000,
 });
 await page.waitForFunction(
-  () => document.getElementById("marker-count")?.textContent?.includes("390"),
+  () => document.getElementById("marker-count")?.textContent?.includes("741"),
   { timeout: 45000 }
 );
 

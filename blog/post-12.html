@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>비전공자 직장인이 강남구 부동산 지도 만든 후기 (호갱노노 따라잡기 1편) | 승박</title>
+  <meta name="description" content="코딩 한 줄 모르는 생산관리 직장인이 AI와 함께 강남구 부동산 지도를 만든 진짜 과정. 5년치 데이터 14만건, 741개 단지, 호갱노노 스타일 UI까지 - 하루 만에 가능했던 이유와 시행착오를 솔직하게 공유합니다.">
+  <meta name="keywords" content="부동산 지도, 호갱노노, 사이드프로젝트, Cursor, AI 코딩, 강남구 실거래가, 비전공자 개발">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="승박">
+  <link rel="canonical" href="https://seungbak.com/blog/post-12.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://seungbak.com/blog/post-12.html">
+  <meta property="og:title" content="비전공자 직장인이 강남구 부동산 지도 만든 후기 (호갱노노 따라잡기 1편)">
+  <meta property="og:description" content="5년치 실거래 14만건, 741개 단지. 코딩 0줄 직장인이 AI와 만든 강남구 부동산 지도 제작 후기.">
+  <meta property="og:image" content="https://seungbak.com/blog/images/post-12-main-screen.png">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:site_name" content="승박">
+  <meta property="article:published_time" content="2026-06-18">
+  <meta property="article:author" content="승박">
+
+  <link rel="icon" href="/favicon.ico">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+  <link rel="stylesheet" href="../styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "비전공자 직장인이 강남구 부동산 지도 만든 후기 (호갱노노 따라잡기 1편)",
+    "description": "코딩 한 줄 모르는 생산관리 직장인이 AI와 함께 강남구 부동산 지도를 만든 진짜 과정. 5년치 데이터 14만건, 741개 단지, 호갱노노 스타일 UI까지.",
+    "datePublished": "2026-06-18",
+    "dateModified": "2026-06-18",
+    "author": { "@type": "Person", "name": "승박" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "승박",
+      "url": "https://seungbak.com"
+    },
+    "image": "https://seungbak.com/blog/images/post-12-main-screen.png",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://seungbak.com/blog/post-12.html"
+    },
+    "inLanguage": "ko-KR"
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo"><a href="/">승박</a></div>
+      <nav class="main-nav">
+        <a href="/">홈</a>
+        <a href="/tools/">도구</a>
+        <a href="/blog/" class="active" aria-current="page">블로그</a>
+        <a href="/about.html">소개</a>
+        <a href="/contact.html">문의</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section post-section">
+      <div class="container">
+        <article class="post-article card page-card">
+          <span class="blog-category-badge blog-category-badge--project">🛠️ 사이드 프로젝트</span>
+          <h1>비전공자 직장인이 강남구 부동산 지도 만든 후기</h1>
+          <p class="post-subtitle">호갱노노 따라잡기 1편</p>
+
+          <p class="post-meta">
+            <time datetime="2026-06-18">2026-06-18</time>
+            <span class="post-meta-sep">|</span>
+            작성자: 승박
+          </p>
+
+          <p class="post-lead">
+            "이거 호갱노노 아니야?" — 지인들에게 보여줬을 때 가장 많이 들은 말입니다.
+            코딩 한 줄 못 하는 생산관리 직장인이 AI와 함께 강남구 5년치 부동산 지도를 만들었습니다.
+            매매·전세·월세 합쳐 14만 9천 건, 단지 741개. 오늘은 그 과정을 솔직하게 공유합니다.
+          </p>
+
+          <figure class="post-thumbnail">
+            <img
+              src="images/post-12-main.png"
+              alt="승박 사이트 메인 페이지의 강남구 부동산 지도 도구 카드"
+              loading="lazy"
+              width="1200"
+              height="675"
+            >
+            <figcaption class="post-caption">메인 페이지 도구 목록에 NEW로 표시된 강남구 부동산 지도</figcaption>
+          </figure>
+
+          <h2>왜 만들었나요?</h2>
+
+          <p>사실 처음 시작은 단순한 호기심이었어요.</p>
+
+          <p><strong>"강남구에 아파트가 도대체 몇 개나 있을까?"</strong></p>
+
+          <p>
+            부동산 공부를 한 지 1년 정도 됐는데, 늘 호갱노노나 아실 같은 앱을 보면서 —
+            <strong>"이 데이터들이 다 어디서 오는 걸까?"</strong> 가 궁금했습니다.
+          </p>
+
+          <p>
+            알아보니 국토교통부에서 <strong>실거래가 정보를 무료 API로 제공</strong>하고 있더라고요.
+            "어? 그럼 나도 만들 수 있는 거 아냐?" 라는 생각이 들었고, 그렇게 시작했습니다.
+          </p>
+
+          <p>처음에는 그냥 카카오맵에 마커 하나 띄우는 거였어요. 강남구 아파트 몇 개나 있는지 점으로 표시해보자.</p>
+
+          <p>
+            그런데 막상 데이터를 받아보니 — <strong>강남구 한 구에만 단지가 741개</strong>였습니다.
+            거기에 5년치 매매 거래만 17,784건. 전월세까지 합치면 15만 건에 가까웠습니다.
+          </p>
+
+          <p>"이거 그냥 띄우면 끝이 아니구나..."</p>
+
+          <p>이게 시작이었습니다.</p>
+
+          <h2>호갱노노가 왜 그렇게 만들었는지 알게 됐습니다</h2>
+
+          <p>부동산 앱 한번 써보신 분들은 아실 거예요. 호갱노노, 아실, 직방 — <strong>다 비슷한 UI</strong>를 가지고 있죠.</p>
+
+          <ul>
+            <li>가격대별로 마커 색상이 다름 (싸면 초록, 비싸면 빨강)</li>
+            <li>줌 인 하면 단지명이 나옴</li>
+            <li>줌 아웃 하면 점으로 변함</li>
+            <li>옆에 필터 바 (가격/평형/연식)</li>
+            <li>지역 선택 드롭다운</li>
+          </ul>
+
+          <p>
+            처음엔 <strong>"왜 다 비슷하게 만들지?"</strong> 싶었어요. 그런데 — <strong>직접 만들어보니 그렇게 안 만들면 안 되더라고요.</strong>
+          </p>
+
+          <p>
+            741개 단지를 그냥 다 띄우면 화면이 폭발합니다. 빨간 핀이 다닥다닥 붙어서 어디가 어딘지 구분이 안 돼요. 그래서:
+          </p>
+
+          <ul>
+            <li><strong>가격대별 색상</strong>으로 한눈에 분포를 파악하고</li>
+            <li><strong>줌 레벨에 따라 정보 양을 조절</strong>해서 (멀리서 점, 가까이서 가격, 더 가까이서 단지명)</li>
+            <li><strong>필터로 걸러내서</strong> 원하는 단지만 보고</li>
+          </ul>
+
+          <p>이 모든 게 — <strong>부동산 지도의 표준</strong>이 된 데에는 다 이유가 있었던 거예요.</p>
+
+          <h2>진짜 어려웠던 것 1: 데이터 적재</h2>
+
+          <p>국토교통부 실거래가 API는 무료지만 — <strong>한 번에 한 달치, 한 지역만</strong> 가져올 수 있습니다.</p>
+
+          <p>강남구 5년치를 가져오려면:</p>
+          <ul>
+            <li>78개월 × 매매 = 78회 호출</li>
+            <li>78개월 × 전세 = 78회 호출</li>
+            <li>78개월 × 월세 = 78회 호출</li>
+            <li><strong>총 234회 API 호출</strong></li>
+          </ul>
+
+          <p>
+            이걸 손으로 하나하나 하면 하루 종일 걸립니다. 그래서 <strong>자동화 스크립트</strong>를 만들었는데 —
+            처음엔 전월세 API가 자꾸 <strong>403 에러</strong>를 뱉어서 한참 헤맸어요.
+          </p>
+
+          <p>
+            원인은 황당하게도 — <strong>공공데이터포털에서 전월세 API를 별도로 신청해야 한다는 걸 몰랐던 것.</strong>
+            매매 API 키랑 같은 줄 알았는데, <strong>API마다 따로 신청</strong>해야 했습니다.
+          </p>
+
+          <blockquote class="post-note">
+            <p>💡 이거 알아내는데만 1시간 걸렸어요 😅</p>
+          </blockquote>
+
+          <h2>진짜 어려웠던 것 2: 좌표 변환</h2>
+
+          <p>
+            거래 데이터에는 <strong>단지명과 주소만</strong> 있습니다. 지도에 마커를 띄우려면 위도/경도가 필요한데요.
+          </p>
+
+          <p>
+            741개 단지의 주소를 하나하나 좌표로 변환해야 했습니다. <strong>카카오 지도 API</strong>를 이용해서 자동 변환 스크립트를 만들었는데 —
+            <strong>741개 중 99%가 변환 성공</strong>했습니다.
+          </p>
+
+          <p>나머지 1%는? 주소 표기가 미묘하게 다르거나, 재개발로 사라진 단지들이었어요. 이런 건 손으로 일일이 처리해야 했죠.</p>
+
+          <h2>진짜 어려웠던 것 3: 성능</h2>
+
+          <p>마커 741개를 다 띄우니까 — <strong>페이지 로딩이 5초</strong>가 넘었습니다. 줌만 변경해도 1~2초 멈춤. 이건 못 쓰는 수준이죠.</p>
+
+          <p>
+            해결책은 <strong>뷰포트 컬링(Viewport Culling)</strong> 이라는 기법이었습니다.
+            화면에 보이는 마커만 그리고, 화면 밖은 그리지 않는 거예요. 이걸 적용하니까:
+          </p>
+
+          <ul>
+            <li><strong>Before</strong>: 페이지 로드 5초, 줌 변경 1~2초</li>
+            <li><strong>After</strong>: 페이지 로드 1초, 마커 렌더링 35ms</li>
+          </ul>
+
+          <p>같은 데이터, 같은 단지 수인데 — 코드 한 번 갈아엎으니까 <strong>50배가 빨라졌습니다.</strong></p>
+
+          <p>이런 거 보면서 깨달았어요. <strong>"개발자들이 코드 리팩토링, 리팩토링 하는 데 다 이유가 있구나"</strong></p>
+
+          <h2>호갱노노 따라잡기: 완성된 기능들</h2>
+
+          <h3>📊 데이터</h3>
+          <ul>
+            <li>강남구 매매 5년치 17,784건</li>
+            <li>전세 5년치 70,611건</li>
+            <li>월세 5년치 61,161건</li>
+            <li>단지 741개 (좌표 99% 확보)</li>
+          </ul>
+
+          <h3>🎨 UI/UX</h3>
+          <ul>
+            <li>가격대별 색상 마커 (10억 미만 초록, 10~20억 노랑, 20억+ 빨강)</li>
+            <li>줌 레벨별 마커 디자인 (점 → 가격 → 단지명)</li>
+            <li>매매/전세/월세 토글</li>
+            <li>평형별 가격 변화 그래프 (5년치 꺾은선)</li>
+            <li>가격/평형/연식/거래량 필터</li>
+            <li>서울 &gt; 강남구 &gt; 동 선택 드롭다운</li>
+            <li>강남구 + 동 경계 폴리곤 표시</li>
+          </ul>
+
+          <p>말로 설명해도 감이 안 오실 것 같아서 — 실제 화면 한 장 보여드릴게요.</p>
+
+          <figure class="post-thumbnail">
+            <img
+              src="images/post-12-main-screen.png"
+              alt="강남구 부동산 지도에서 동양파라곤 단지를 클릭한 화면 - 논현동 경계가 빨간색으로 표시되고 사이드바에 5년 가격 변화 그래프가 보임"
+              loading="lazy"
+              width="1400"
+              height="900"
+            >
+            <figcaption class="post-caption">논현동 선택 → 동양파라곤 클릭 → 5년치 가격 변화가 한 화면에</figcaption>
+          </figure>
+
+          <p>위 화면에서 한꺼번에 보이는 정보를 정리하면:</p>
+
+          <ol>
+            <li><strong>상단 필터 바</strong>: 가격/평형/연식/거래량으로 단지 필터링</li>
+            <li><strong>지역 선택</strong>: 서울특별시 &gt; 강남구 &gt; 논현동 (빨간 경계로 표시)</li>
+            <li><strong>강남구 전체 경계</strong>: 파란 선으로 표시</li>
+            <li><strong>마커</strong>: 가격대별 색상 + 평균 가격 표시</li>
+            <li><strong>사이드바</strong>: 동양파라곤 정보 + 5년 가격 변화 그래프 + 평형별 탭</li>
+          </ol>
+
+          <p>이 모든 게 — 코드 한 줄 못 쓰는 직장인이 하루 만에 만든 결과물입니다.</p>
+
+          <h2>사람들이 가장 놀란 부분</h2>
+
+          <p>지인들에게 보여줬을 때 가장 놀라는 부분은 — <strong>"이걸 하루 만에 만들었다고?"</strong> 였습니다.</p>
+
+          <p>비결은 솔직히 두 가지입니다:</p>
+
+          <h3>1. AI 도구 (Cursor + Claude)</h3>
+
+          <p>
+            제가 코드를 한 줄도 못 쓰지만, AI한테 "이런 거 만들어줘" 하면 만들어줍니다. 진짜 그게 다예요.
+            단, AI가 만들어준 걸 <strong>이해하고 수정 요청</strong>하는 건 제 몫이에요.
+            그래야 "이게 왜 안 되지?" 를 AI한테 정확하게 물어볼 수 있거든요.
+          </p>
+
+          <h3>2. 포기하지 않기</h3>
+
+          <p>중간에 진짜 100번은 막혔습니다.</p>
+
+          <ul>
+            <li>전월세 API 403 에러 (1시간 헤맴)</li>
+            <li>마커가 사라지는 버그 (30분 헤맴)</li>
+            <li>드롭다운이 엉뚱한 곳에 뜨는 문제 (15분 헤맴)</li>
+            <li>화면이 깨지는 현상 (40분 헤맴)</li>
+            <li>캐시 때문에 변경이 적용 안 되는 거 (20분 헤맴)</li>
+          </ul>
+
+          <p>
+            한 번에 다 되는 건 없습니다. 그냥 계속 부딪히는 거예요.
+            <strong>AI가 다 해줄 거라고 기대하면 실망합니다.</strong> AI는 도구일 뿐이고, 결국 만드는 사람은 형이에요.
+          </p>
+
+          <h2>진짜 솔직한 후기</h2>
+
+          <p><strong>좋은 점</strong></p>
+          <ul>
+            <li>"내가 만들었다" 는 성취감이 어마어마함</li>
+            <li>부동산 공부에 진짜 도움됨 (데이터를 직접 봐서)</li>
+            <li>콘텐츠 소재가 무한대로 생김 (이 블로그 글처럼)</li>
+          </ul>
+
+          <p><strong>아쉬운 점</strong></p>
+          <ul>
+            <li>아직 강남구만 됨 (전국 확장 필요)</li>
+            <li>매일 새 거래 데이터가 자동으로 안 들어옴 (자동화 필요)</li>
+            <li>디자인은 호갱노노 대비 아직 부족함 (천천히 개선 중)</li>
+          </ul>
+
+          <p>
+            그리고 한 가지 더 — <strong>이거 만들면서 직장 일 외에 "두 번째 무언가"가 생겼다는 느낌</strong>이 들었어요.
+            퇴근하고 뭐 만들지 고민하는 게 재밌어요. 월급 외에 또 다른 가능성을 보고 있는 기분?
+          </p>
+
+          <h2>직접 사용해보세요</h2>
+
+          <p>만든 도구는 <strong>무료로 공개</strong>되어 있습니다.</p>
+
+          <div class="post-cta">
+            <p>강남구 부동산 지도 바로가기</p>
+            <a href="/tools/realestate-map/" class="btn-primary">지도 열기 →</a>
+          </div>
+
+          <p>지금은 강남구만 되지만, 다음 주에는 <strong>서울 25개 구 전체</strong>로 확장할 예정입니다.</p>
+
+          <p>
+            써보시고 불편한 점이나 추가됐으면 하는 기능이 있다면
+            <a href="/contact.html">문의 페이지</a>로 알려주세요. 진짜 다 듣고 반영합니다!
+          </p>
+
+          <figure class="post-thumbnail">
+            <img
+              src="images/post-12-tool-card.png"
+              alt="메인 페이지의 강남구 부동산 지도 도구 카드 - 741개 아파트 단지 정보 안내"
+              loading="lazy"
+              width="400"
+              height="280"
+            >
+            <figcaption class="post-caption">도구 둘러보기 → 강남구 부동산 지도 → 무료로 바로 사용 가능</figcaption>
+          </figure>
+
+          <h2>다음 편 예고</h2>
+
+          <p>이게 끝이 아닙니다. 다음 편에서는:</p>
+
+          <ul>
+            <li><strong>자동화</strong> — 매일 새벽 3시에 새 거래 데이터가 자동으로 들어오게 만들기</li>
+            <li><strong>서울 25구 확장</strong> — 한 구가 아니라 서울 전체로</li>
+            <li><strong>그래프 고도화</strong> — 매매 vs 전세 갭 비교, 평형별 비교 등</li>
+            <li><strong>모바일 최적화</strong> — 출퇴근길에 보기 좋게</li>
+          </ul>
+
+          <p>부동산 + AI + 사이드 프로젝트에 관심 있는 분들, 다음 글에서 만나요!</p>
+
+          <h2>마지막으로</h2>
+
+          <p>혹시 이 글을 읽고 — <strong>"나도 만들어보고 싶다"</strong> 생각이 드신다면.</p>
+
+          <p>
+            진짜 그냥 시작해보세요. <strong>저보다 코딩 더 못해도 됩니다.</strong> AI랑 같이 하면 됩니다.
+            막히면 검색하면 됩니다. 안 되면 다시 하면 됩니다.
+          </p>
+
+          <p>
+            1년 전의 저는 — <strong>HTML이 뭔지도 몰랐어요.</strong> 지금은 부동산 지도를 만듭니다.
+            인생은 진짜 어떻게 될지 모르는 거예요.
+          </p>
+
+          <p>여러분의 첫 사이드 프로젝트, 응원합니다! 💪</p>
+
+          <div class="post-related">
+            <p class="post-related-title">관련 글</p>
+            <ul>
+              <li><a href="post-2.html">평범한 생산관리 직장인이 사이트를 만들기로 한 이유</a></li>
+              <li><a href="post-1.html">비전공자 직장인이 코딩 0줄로 사이트 만든 후기</a></li>
+              <li><a href="post-3.html">Cursor 2개월 써본 솔직 후기 (+ 비전공자용 사용법)</a></li>
+              <li><a href="post-10.html">월급쟁이가 진짜 쓰는 AI 도구 BEST 5</a></li>
+            </ul>
+          </div>
+
+          <nav class="post-nav" aria-label="글 네비게이션">
+            <a href="post-11.html" class="post-nav-link">← 이전 글: ChatGPT vs Claude vs Gemini — 솔직 비교</a>
+            <a href="/blog/" class="post-nav-link">블로그 목록 →</a>
+          </nav>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col footer-brand">
+        <p class="footer-logo">승박</p>
+        <p class="footer-tagline">평범한 직장인의 두 번째 월급 만들기</p>
+        <p class="footer-owner">운영자: <strong>승박</strong></p>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">바로가기</p>
+        <ul class="footer-nav">
+          <li><a href="/">홈</a></li>
+          <li><a href="/tools/">도구</a></li>
+          <li><a href="/blog/">블로그</a></li>
+          <li><a href="/about.html">소개</a></li>
+          <li><a href="/contact.html">문의</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">정책</p>
+        <ul class="footer-nav">
+          <li><a href="/privacy.html">개인정보처리방침</a></li>
+          <li><a href="/disclaimer.html">면책조항</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">함께해요</p>
+        <ul class="footer-nav">
+          <li><a href="mailto:id123id6@gmail.com">이메일</a></li>
+          <li class="footer-coming-soon">유튜브 (준비 중)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p class="footer-copy">&copy; <span id="current-year"></span> 승박. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var el = document.getElementById("current-year");
+      if (el) el.textContent = new Date().getFullYear();
+    })();
+  </script>
+</body>
+</html>
