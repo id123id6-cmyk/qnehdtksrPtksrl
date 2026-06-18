@@ -19,6 +19,8 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
   <link rel="stylesheet" href="../../styles.css">
   <link rel="stylesheet" href="map.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
 </head>
 <body>
   <header class="site-header">
@@ -47,6 +49,18 @@
     <section class="map-panel" aria-label="강남구 아파트 지도">
       <div id="map-loading" class="map-loading">지도와 단지 데이터를 불러오는 중...</div>
       <div id="map" role="application" aria-label="카카오맵"></div>
+      <div class="region-selector" id="region-selector" aria-label="지역 선택"></div>
+      <div class="map-filter-bar" id="map-filter-bar" aria-label="단지 필터"></div>
+      <div class="map-legend" id="map-legend">
+        <button type="button" class="map-legend-toggle" aria-expanded="true" aria-controls="map-legend">
+          범례
+        </button>
+        <h4>1년 평균 거래가</h4>
+        <div class="legend-item"><span class="dot dot-low"></span> 10억 미만</div>
+        <div class="legend-item"><span class="dot dot-mid"></span> 10~20억</div>
+        <div class="legend-item"><span class="dot dot-high"></span> 20억 이상</div>
+        <div class="legend-item"><span class="dot dot-none"></span> 거래 없음</div>
+      </div>
     </section>
 
     <aside class="sidebar-panel" aria-label="단지 정보">
@@ -126,6 +140,11 @@
     })();
   </script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/filter.js"></script>
+  <script src="js/region.js"></script>
+  <script src="js/marker.js"></script>
+  <script src="js/chart.js"></script>
   <script src="map.js"></script>
   <script>
     (function () {

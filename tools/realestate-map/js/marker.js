@@ -1,0 +1,433 @@
+/**
+ * 가격대별 마커 — CustomOverlay + 뷰포트 컬링 + 줌 레벨별 표시
+ */
+(function (global) {
+  "use strict";
+
+  const DEBUG = false;
+  const CATEGORIES = {
+    low: { color: "#10b981", label: "low" },
+    mid: { color: "#f59e0b", label: "mid" },
+    high: { color: "#ef4444", label: "high" },
+    none: { color: "#9ca3af", label: "none" },
+  };
+
+  const BRAND_KEYWORDS = [
+    "래미안", "푸르지오", "자이", "롯데캐슬", "힐스테이트",
+    "e편한세상", "SK뷰", "아이파크", "더샵", "센트럴",
+    "캐슬", "센텀", "리치몬드", "브라운스톤", "데시앙",
+    "한신", "현대", "쌍용", "삼성", "대우", "한양",
+    "미도", "한보", "효성", "대치", "도곡", "압구정",
+    "개포", "은마", "경남", "청실", "우성",
+  ];
+
+  const CLUSTER_LEVEL = 10;
+  const DEBOUNCE_MS = 250;
+  const dotImageCache = new Map();
+
+  function log(...args) {
+    if (DEBUG) console.log("[마커]", ...args);
+  }
+
+  function escapeHtml(str) {
+    return String(str || "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function getPriceCategory(avgPrice1Y) {
+    if (avgPrice1Y == null || avgPrice1Y <= 0) return CATEGORIES.none;
+    if (avgPrice1Y < 100000) return CATEGORIES.low;
+    if (avgPrice1Y < 200000) return CATEGORIES.mid;
+    return CATEGORIES.high;
+  }
+
+  function formatPrice(amountMan) {
+    if (amountMan == null || amountMan <= 0) return null;
+    const eok = amountMan / 10000;
+    const rounded = Math.round(eok * 10) / 10;
+    return Number.isInteger(rounded) ? `${rounded}억` : `${rounded}억`;
+  }
+
+  function shortenAptName(fullName) {
+    if (!fullName) return "";
+    for (const brand of BRAND_KEYWORDS) {
+      if (fullName.includes(brand)) return brand;
+    }
+    return fullName.substring(0, 4);
+  }
+
+  function countBrandMatches(apartments) {
+    let matched = 0;
+    for (const apt of apartments) {
+      const short = shortenAptName(apt.name);
+      if (BRAND_KEYWORDS.includes(short)) matched++;
+    }
+    return { matched, total: apartments.length };
+  }
+
+  /** 줌 1~3: 브랜드+가격, 4~6: 가격만, 7~9: 점, 10+: 클러스터 */
+  function getMarkerMode(zoomLevel) {
+    if (zoomLevel >= CLUSTER_LEVEL) return "cluster";
+    if (zoomLevel >= 7) return "dot";
+    if (zoomLevel >= 4) return "price";
+    return "brand";
+  }
+
+  function isValidCoord(apt) {
+    const lat = apt.latitude;
+    const lng = apt.longitude;
+    return (
+      lat != null &&
+      lng != null &&
+      lat >= 33 &&
+      lat <= 38 &&
+      lng >= 124 &&
+      lng <= 132
+    );
+  }
+
+  function getMarkerLabel(apt, zoomLevel) {
+    const price = formatPrice(apt.avgPrice1Y) || "거래없음";
+    const mode = getMarkerMode(zoomLevel);
+    if (mode === "brand") {
+      return `${shortenAptName(apt.name)} ${price}`;
+    }
+    if (mode === "price") return price;
+    return "";
+  }
+
+  function createMarkerContent(apt, zoomLevel) {
+    const category = getPriceCategory(apt.avgPrice1Y);
+    const catLabel = category.label;
+    const price = formatPrice(apt.avgPrice1Y) || "거래없음";
+    const mode = getMarkerMode(zoomLevel);
+    const id = escapeHtml(apt.id);
+    const title = escapeHtml(apt.name);
+
+    if (mode === "dot") {
+      return `<div class="marker-dot marker-${catLabel}" data-apt-id="${id}" title="${title}"></div>`;
+    }
+    if (mode === "price") {
+      return `<div class="marker-pill marker-${catLabel} size-sm" data-apt-id="${id}" role="button" tabindex="0" title="${title}">${price}</div>`;
+    }
+    const shortName = escapeHtml(shortenAptName(apt.name));
+    return `<div class="marker-pill marker-${catLabel} size-md" data-apt-id="${id}" role="button" tabindex="0" title="${title}">${shortName} ${price}</div>`;
+  }
+
+  function htmlToElement(html) {
+    const wrap = document.createElement("div");
+    wrap.innerHTML = html.trim();
+    return wrap.firstElementChild;
+  }
+
+  function createMarkerElement(apt, zoomLevel) {
+    return htmlToElement(createMarkerContent(apt, zoomLevel));
+  }
+
+  function createDotMarkerImage(color) {
+    if (dotImageCache.has(color)) return dotImageCache.get(color);
+
+    const canvas = document.createElement("canvas");
+    canvas.width = 18;
+    canvas.height = 18;
+    const ctx = canvas.getContext("2d");
+    ctx.beginPath();
+    ctx.arc(9, 9, 7, 0, Math.PI * 2);
+    ctx.fillStyle = color;
+    ctx.fill();
+    ctx.strokeStyle = "#ffffff";
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    const imageSrc = canvas.toDataURL();
+    const size = new kakao.maps.Size(18, 18);
+    const option = { offset: new kakao.maps.Point(9, 9) };
+    const image = new kakao.maps.MarkerImage(imageSrc, size, option);
+    dotImageCache.set(color, image);
+    return image;
+  }
+
+  class ApartmentMarkerLayer {
+    constructor(map, apartments, onSelect, mapContainer) {
+      this.map = map;
+      this.mapContainer = mapContainer || document.getElementById("map");
+      this.apartments = apartments.filter(isValidCoord);
+      this.aptById = new Map(
+        this.apartments.map((a) => [String(a.id), a])
+      );
+      this.onSelect = onSelect;
+      this.overlays = [];
+      this.clusterMarkers = [];
+      this.clusterer = null;
+      this.clusterBuilt = false;
+      this.zoomTimer = null;
+      this.panTimer = null;
+      this.rafId = null;
+      this.currentLevel = map.getLevel();
+      this.stats = {
+        visibleCount: 0,
+        totalCount: this.apartments.length,
+        lastRenderMs: 0,
+      };
+    }
+
+    init() {
+      const brandStats = countBrandMatches(this.apartments);
+      log("초기화", {
+        단지수: this.apartments.length,
+        줌: this.currentLevel,
+        모드: getMarkerMode(this.currentLevel),
+        브랜드매칭: `${brandStats.matched}/${brandStats.total}`,
+      });
+
+      this.bindDelegation();
+      this.renderVisibleMarkers(this.currentLevel);
+
+      kakao.maps.event.addListener(this.map, "zoom_changed", () => {
+        clearTimeout(this.zoomTimer);
+        this.zoomTimer = setTimeout(() => {
+          const level = this.map.getLevel();
+          log("줌 변경:", level);
+          this.renderVisibleMarkers(level);
+        }, DEBOUNCE_MS);
+      });
+
+      kakao.maps.event.addListener(this.map, "center_changed", () => {
+        clearTimeout(this.panTimer);
+        this.panTimer = setTimeout(() => {
+          this.renderVisibleMarkers(this.map.getLevel());
+        }, DEBOUNCE_MS);
+      });
+
+      const onceHandler = () => {
+        kakao.maps.event.removeListener(this.map, "idle", onceHandler);
+        this.renderVisibleMarkers(this.map.getLevel());
+      };
+      kakao.maps.event.addListener(this.map, "idle", onceHandler);
+    }
+
+    bindDelegation() {
+      if (!this.mapContainer || this.mapContainer._markerDelegated) return;
+      this.mapContainer._markerDelegated = true;
+
+      this.mapContainer.addEventListener("click", (e) => {
+        const marker = e.target.closest("[data-apt-id]");
+        if (!marker) return;
+        e.preventDefault();
+        e.stopPropagation();
+        const apt = this.aptById.get(marker.dataset.aptId);
+        if (apt) this.onSelect(apt);
+      });
+
+      this.mapContainer.addEventListener("keydown", (e) => {
+        if (e.key !== "Enter" && e.key !== " ") return;
+        const marker = e.target.closest("[data-apt-id]");
+        if (!marker) return;
+        e.preventDefault();
+        const apt = this.aptById.get(marker.dataset.aptId);
+        if (apt) this.onSelect(apt);
+      });
+    }
+
+    getVisibleApartments() {
+      const bounds = this.map.getBounds();
+      if (!bounds) return this.apartments;
+
+      return this.apartments.filter((apt) =>
+        bounds.contain(
+          new kakao.maps.LatLng(apt.latitude, apt.longitude)
+        )
+      );
+    }
+
+    clearOverlays() {
+      for (const overlay of this.overlays) {
+        overlay.setMap(null);
+      }
+      this.overlays = [];
+      if (this.clusterer) this.clusterer.setMap(null);
+    }
+
+    buildClusterMarkers() {
+      if (this.clusterBuilt) return;
+
+      console.time("클러스터 마커 생성");
+      this.clusterMarkers = this.apartments.map((apt) => {
+        const category = getPriceCategory(apt.avgPrice1Y);
+        const position = new kakao.maps.LatLng(apt.latitude, apt.longitude);
+        const marker = new kakao.maps.Marker({
+          position,
+          image: createDotMarkerImage(category.color),
+          title: apt.name,
+        });
+        kakao.maps.event.addListener(marker, "click", () => {
+          this.onSelect(apt);
+        });
+        return marker;
+      });
+
+      this.clusterer = new kakao.maps.MarkerClusterer({
+        map: null,
+        markers: this.clusterMarkers,
+        averageCenter: true,
+        minLevel: CLUSTER_LEVEL,
+        gridSize: 60,
+        styles: [
+          {
+            width: "44px",
+            height: "44px",
+            background: "rgba(239, 68, 68, 0.88)",
+            borderRadius: "22px",
+            color: "#fff",
+            textAlign: "center",
+            fontWeight: "bold",
+            lineHeight: "44px",
+          },
+          {
+            width: "52px",
+            height: "52px",
+            background: "rgba(220, 38, 38, 0.9)",
+            borderRadius: "26px",
+            color: "#fff",
+            textAlign: "center",
+            fontWeight: "bold",
+            lineHeight: "52px",
+          },
+          {
+            width: "60px",
+            height: "60px",
+            background: "rgba(185, 28, 28, 0.92)",
+            borderRadius: "30px",
+            color: "#fff",
+            textAlign: "center",
+            fontWeight: "bold",
+            lineHeight: "60px",
+          },
+        ],
+      });
+      this.clusterBuilt = true;
+      console.timeEnd("클러스터 마커 생성");
+    }
+
+    renderClusterMode() {
+      this.buildClusterMarkers();
+      this.clusterer.setMap(this.map);
+      this.stats.visibleCount = this.apartments.length;
+    }
+
+    renderOverlayMode(level, visibleApts) {
+      const mode = getMarkerMode(level);
+      const positions = [];
+      const elements = [];
+
+      for (const apt of visibleApts) {
+        elements.push(createMarkerElement(apt, level));
+        positions.push(
+          new kakao.maps.LatLng(apt.latitude, apt.longitude)
+        );
+      }
+
+      cancelAnimationFrame(this.rafId);
+      this.rafId = requestAnimationFrame(() => {
+        for (let i = 0; i < elements.length; i++) {
+          const overlay = new kakao.maps.CustomOverlay({
+            position: positions[i],
+            content: elements[i],
+            yAnchor: 1,
+            xAnchor: 0.5,
+            zIndex: 10,
+            clickable: true,
+          });
+          overlay.setMap(this.map);
+          this.overlays.push(overlay);
+        }
+      });
+
+      this.stats.visibleCount = visibleApts.length;
+    }
+
+    renderVisibleMarkers(level) {
+      const t0 = performance.now();
+      console.time("마커 렌더링");
+
+      this.currentLevel = level;
+      const mode = getMarkerMode(level);
+      this.clearOverlays();
+
+      if (mode === "cluster") {
+        this.renderClusterMode();
+        console.log(
+          `클러스터 모드: ${this.apartments.length}/${this.apartments.length}`
+        );
+      } else {
+        const visibleApts = this.getVisibleApartments();
+        console.log(
+          `화면 내 단지: ${visibleApts.length}/${this.apartments.length} (줌 ${level}, ${mode})`
+        );
+        this.renderOverlayMode(level, visibleApts);
+      }
+
+      console.timeEnd("마커 렌더링");
+      this.stats.lastRenderMs = Math.round(performance.now() - t0);
+
+      log("렌더 완료", {
+        줌: level,
+        모드: mode,
+        visible: this.stats.visibleCount,
+        DOM알약: document.querySelectorAll(".marker-pill").length,
+        DOM점: document.querySelectorAll(".marker-dot").length,
+      });
+    }
+
+    panToApartment(apt) {
+      this.map.panTo(new kakao.maps.LatLng(apt.latitude, apt.longitude));
+    }
+
+    setFilteredApartments(filteredList) {
+      this.apartments = (filteredList || []).filter(isValidCoord);
+      this.aptById = new Map(
+        this.apartments.map((a) => [String(a.id), a])
+      );
+      this.clusterBuilt = false;
+      this.clusterMarkers = [];
+      if (this.clusterer) {
+        this.clusterer.setMap(null);
+        this.clusterer = null;
+      }
+      this.stats.totalCount = this.apartments.length;
+      this.renderVisibleMarkers(this.currentLevel);
+    }
+
+    getStats() {
+      const brand = countBrandMatches(this.apartments);
+      return {
+        ...this.stats,
+        total: this.apartments.length,
+        brandMatchRate: ((brand.matched / brand.total) * 100).toFixed(1) + "%",
+        mode: getMarkerMode(this.currentLevel),
+      };
+    }
+
+    destroy() {
+      clearTimeout(this.zoomTimer);
+      clearTimeout(this.panTimer);
+      cancelAnimationFrame(this.rafId);
+      this.clearOverlays();
+    }
+  }
+
+  global.RealEstateMapMarker = {
+    getPriceCategory,
+    formatPrice,
+    shortenAptName,
+    getMarkerMode,
+    getMarkerLabel,
+    createMarkerElement,
+    createMarkerContent,
+    countBrandMatches,
+    ApartmentMarkerLayer,
+    CLUSTER_LEVEL,
+  };
+})(window);
