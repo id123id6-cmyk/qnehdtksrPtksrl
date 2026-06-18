@@ -67,17 +67,39 @@ export function loadEnv() {
   if (fs.existsSync(envPath)) {
     const env = loadEnvFromFile(envPath);
     mergeIntoProcessEnv(env);
-    return env;
   }
+  normalizeSupabaseEnvAliases();
   return {};
+}
+
+/** Vercel 대시보드 등에 오타로 등록된 변수명 보정 */
+function normalizeSupabaseEnvAliases() {
+  const aliases = {
+    NEXT_PUBLIC_SUPASASE_URL: "NEXT_PUBLIC_SUPABASE_URL",
+    NEXT_PUBLIC_SUPASASE_KEY: "NEXT_PUBLIC_SUPABASE_KEY",
+  };
+
+  for (const [wrong, right] of Object.entries(aliases)) {
+    if (process.env[wrong] && !process.env[right]) {
+      process.env[right] = process.env[wrong];
+    }
+  }
 }
 
 export function requireEnv(keys) {
   const missing = keys.filter((key) => !process.env[key] || process.env[key].includes("..."));
   if (missing.length) {
+    const vercelHint = process.env.VERCEL
+      ? `\n[Vercel] 감지된 NEXT_PUBLIC_* 키: ${
+          Object.keys(process.env)
+            .filter((k) => k.startsWith("NEXT_PUBLIC_"))
+            .join(", ") || "(없음)"
+        }`
+      : "";
     throw new Error(
       `다음 환경 변수가 비어 있거나 불완전합니다: ${missing.join(", ")}\n` +
-        "로컬: .env.local | Vercel: Project Settings > Environment Variables"
+        "로컬: .env.local | Vercel: Project Settings > Environment Variables" +
+        vercelHint
     );
   }
 }
