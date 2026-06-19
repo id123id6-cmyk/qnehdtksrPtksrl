@@ -10,7 +10,7 @@
 
 
 
-  const DISTRICTS = {
+  const DISTRICTS = window.RealEstateMapDistricts?.SEOUL_DISTRICTS || {
     "11680": { name: "강남구", lat: 37.5172, lng: 127.0473, zoom: 5 },
     "11650": { name: "서초구", lat: 37.4837, lng: 127.0324, zoom: 5 },
     "11710": { name: "송파구", lat: 37.5145, lng: 127.1059, zoom: 5 },
@@ -58,6 +58,8 @@
 
     sidebarContent: document.getElementById("sidebar-content"),
 
+    searchIndexHint: document.getElementById("search-index-hint"),
+
     ddayBtn: document.getElementById("dday-btn"),
 
   };
@@ -78,6 +80,14 @@
 
   let apartments = [];
 
+  let allApartments = [];
+
+  let districtCache = {};
+
+  let searchIndex = [];
+
+  let searchIndexReady = false;
+
   let selectedApt = null;
 
 
@@ -88,25 +98,33 @@
 
   async function init() {
 
-    loadKakaoSdk()
+    try {
 
-      .then(initMap)
+      await loadKakaoSdk();
 
-      .then(initSupabase)
+      await initMap();
 
-      .then(loadApartments)
+      initSupabase();
 
-      .then(renderMarkers)
+      await loadInitialDistrict();
 
-      .catch((err) => {
+      renderMarkers();
 
-        console.error(err);
+      startDistrictStatsBackground();
 
-        showError(err.message || "지도를 불러오지 못했습니다.");
+      startSearchIndexBackground();
 
-      })
+    } catch (err) {
 
-      .finally(hideLoading);
+      console.error(err);
+
+      showError(err.message || "지도를 불러오지 못했습니다.");
+
+    } finally {
+
+      hideLoading();
+
+    }
 
   }
 
@@ -276,7 +294,7 @@
 
 
 
-  async function loadApartments() {
+  async function loadInitialDistrict() {
 
     if (!window.RealEstateMapData) {
 
@@ -286,7 +304,13 @@
 
 
 
-    apartments = await window.RealEstateMapData.loadApartmentsWithPrices(
+    console.time("initial_district_load");
+
+    const t0 = performance.now();
+
+
+
+    apartments = await window.RealEstateMapData.loadDistrictBasic(
 
       supabase,
 
@@ -294,59 +318,149 @@
 
     );
 
+    districtCache[sigunguCode] = apartments;
 
-
-    console.log("apartments 수:", apartments.length);
-
-    console.log("첫 번째 단지:", apartments[0]);
-
-    console.log(
-
-      "좌표 있는 단지:",
-
-      apartments.filter((a) => a.latitude && a.longitude).length
-
-    );
-
-    console.log(
-
-      "avgPrice1Y 있는 단지:",
-
-      apartments.filter((a) => a.avgPrice1Y).length
-
-    );
+    allApartments = apartments;
 
 
 
-    const withCoord = apartments.filter(
+    const elapsed = performance.now() - t0;
 
-      (a) => a.latitude != null && a.longitude != null
+    console.timeEnd("initial_district_load");
 
-    ).length;
-
-    const withPrice = apartments.filter((a) => a.avgPrice1Y != null).length;
-
-    const stats = window.RealEstateMapData.getCategoryStats(apartments);
+    emitTiming("initial_load", elapsed);
 
 
 
-    console.log("[지도] 데이터 로드", {
-
-      apartments: apartments.length,
-
-      좌표있음: withCoord,
-
-      avgPrice1Y계산됨: withPrice,
-
-      가격대분포: stats,
-
-    });
+    console.log(`[${sigunguCode}] apartments 수:`, apartments.length);
 
 
 
     if (els.count) {
 
       els.count.textContent = `${apartments.length}개 단지`;
+
+    }
+
+  }
+
+
+
+  function startDistrictStatsBackground() {
+
+    if (!window.RealEstateMapData?.enrichApartmentsWithStats) return;
+
+
+
+    console.time("district_stats_load");
+
+
+
+    window.RealEstateMapData.enrichApartmentsWithStats(supabase, apartments)
+
+      .then((enriched) => {
+
+        apartments = enriched;
+
+        districtCache[sigunguCode] = enriched;
+
+        console.timeEnd("district_stats_load");
+
+        console.log("[지도] 가격 통계 반영 완료");
+
+
+
+        if (filterBar) filterBar.updateApartments(apartments);
+
+        if (markerLayer) markerLayer.setFilteredApartments(getDisplayApartments());
+
+        refreshMapMarkers();
+
+      })
+
+      .catch((err) => console.error("[지도] 가격 통계 로드 실패:", err));
+
+  }
+
+
+
+  function startSearchIndexBackground() {
+
+    if (!window.RealEstateMapData?.loadSearchIndex) return;
+
+
+
+    updateSearchIndexHint(true);
+
+    console.time("search_index_load");
+
+    const t0 = performance.now();
+
+
+
+    window.RealEstateMapData.loadSearchIndex(supabase)
+
+      .then((index) => {
+
+        const elapsed = performance.now() - t0;
+
+        searchIndex = index;
+
+        searchIndexReady = true;
+
+        window.searchIndexReady = true;
+
+        console.timeEnd("search_index_load");
+
+        console.log("[검색] 인덱스 준비 완료:", index.length, "개");
+
+        emitTiming("search_index_load", elapsed);
+
+        updateSearchIndexHint(false);
+
+      })
+
+      .catch((err) => {
+
+        console.error("[검색] 인덱스 로드 실패:", err);
+
+        updateSearchIndexHint(false);
+
+      });
+
+  }
+
+
+
+  function updateSearchIndexHint(loading) {
+
+    if (els.searchIndexHint) els.searchIndexHint.hidden = !loading;
+
+  }
+
+
+
+  function getSearchPool() {
+
+    return searchIndexReady ? searchIndex : apartments;
+
+  }
+
+
+
+  function emitTiming(name, valueMs) {
+
+    console.log(`[timing] ${name}: ${Math.round(valueMs)}ms`);
+
+    if (typeof gtag !== "undefined") {
+
+      gtag("event", "timing_complete", {
+
+        name,
+
+        value: Math.round(valueMs),
+
+      });
 
     }
 
@@ -504,7 +618,27 @@
 
 
 
-    if (els.loading) els.loading.hidden = false;
+    const cacheHit = Array.isArray(districtCache[lawdCode]);
+
+    const timerName = cacheHit ? "district_switch_cached" : "district_switch_first";
+
+    console.time(timerName);
+
+    const t0 = performance.now();
+
+
+
+    if (els.loading) {
+
+      els.loading.hidden = false;
+
+      els.loading.textContent = cacheHit
+
+        ? "구 데이터 불러오는 중..."
+
+        : "구 데이터 로딩 중...";
+
+    }
 
 
 
@@ -518,13 +652,29 @@
 
 
 
-      apartments = await window.RealEstateMapData.loadApartmentsWithPrices(
+      let needsStatsEnrich = false;
 
-        supabase,
 
-        sigunguCode
 
-      );
+      if (cacheHit) {
+
+        apartments = districtCache[lawdCode];
+
+      } else {
+
+        apartments = await window.RealEstateMapData.loadDistrictBasic(
+
+          supabase,
+
+          lawdCode
+
+        );
+
+        districtCache[lawdCode] = apartments;
+
+        needsStatsEnrich = true;
+
+      }
 
 
 
@@ -604,6 +754,32 @@
 
       scheduleMapRelayout();
 
+
+
+      if (needsStatsEnrich) {
+
+        window.RealEstateMapData.enrichApartmentsWithStats(supabase, apartments)
+
+          .then((enriched) => {
+
+            if (sigunguCode !== lawdCode) return;
+
+            apartments = enriched;
+
+            districtCache[lawdCode] = enriched;
+
+            if (filterBar) filterBar.updateApartments(apartments);
+
+            if (markerLayer) markerLayer.setFilteredApartments(getDisplayApartments());
+
+            refreshMapMarkers();
+
+          })
+
+          .catch((err) => console.error("[지도] 구 통계 반영 실패:", err));
+
+      }
+
     } catch (err) {
 
       console.error(err);
@@ -612,7 +788,19 @@
 
     } finally {
 
-      if (els.loading) els.loading.hidden = true;
+      const elapsed = performance.now() - t0;
+
+      console.timeEnd(timerName);
+
+      emitTiming(timerName, elapsed);
+
+      if (els.loading) {
+
+        els.loading.hidden = true;
+
+        els.loading.textContent = "지도와 단지 데이터를 불러오는 중...";
+
+      }
 
     }
 
@@ -764,6 +952,44 @@
 
 
 
+  function aptMatchesSearchQuery(apt, query) {
+
+    const compactQuery = query.replace(/\s+/g, "");
+
+    const name = (apt.name || "").toLowerCase();
+
+    const compactName = name.replace(/\s+/g, "");
+
+    const label = `${apt.dong || ""}${apt.name}`.toLowerCase().replace(/\s+/g, "");
+
+
+
+    if (compactQuery && (label.includes(compactQuery) || compactName.includes(compactQuery))) {
+
+      return true;
+
+    }
+
+
+
+    const tokens = query.toLowerCase().split(/\s+/).filter(Boolean);
+
+    if (tokens.length > 1) {
+
+      const hay = `${apt.dong || ""} ${apt.name}`.toLowerCase();
+
+      return tokens.every((token) => hay.includes(token));
+
+    }
+
+
+
+    return name.includes(query);
+
+  }
+
+
+
   function bindSearch() {
 
     const runSearch = (query) => {
@@ -776,15 +1002,9 @@
 
       }
 
-      const matches = apartments
+      const matches = getSearchPool()
 
-        .filter((apt) => {
-
-          const label = `${apt.dong || ""} ${apt.name}`.toLowerCase();
-
-          return label.includes(query) || apt.name.toLowerCase().includes(query);
-
-        })
+        .filter((apt) => aptMatchesSearchQuery(apt, query))
 
         .slice(0, 8);
 
@@ -836,6 +1056,24 @@
 
 
 
+  function formatSearchLocation(apt) {
+
+    const district =
+
+      DISTRICTS[apt.sigungu_code]?.name ||
+
+      window.RealEstateMapRegion?.getDistrictName?.(apt.sigungu_code) ||
+
+      "";
+
+    const dong = apt.dong || "";
+
+    return `(${district} ${dong})`;
+
+  }
+
+
+
   function renderSearchResults(matches) {
 
     const { results } = getActiveSearch();
@@ -868,13 +1106,25 @@
 
         const price = fmt && apt.avgPrice1Y ? fmt(apt.avgPrice1Y) : "";
 
+        const isCurrent = apt.sigungu_code === sigunguCode;
+
+        const currentClass = isCurrent ? " is-current-district" : "";
+
+        const badge = isCurrent
+
+          ? '<span class="search-result-badge">현재</span>'
+
+          : "";
+
+
+
         return `
 
-        <button type="button" class="search-result-item" data-id="${apt.id}">
+        <button type="button" class="search-result-item${currentClass}" data-id="${apt.id}">
 
-          ${escapeHtml(apt.name)}
+          <span class="search-result-name">${escapeHtml(apt.name)}${badge}</span>
 
-          <small>${escapeHtml(formatAddress(apt))}${price ? ` · ${price}` : ""}</small>
+          <small>${escapeHtml(formatSearchLocation(apt))}${price ? ` · ${price}` : ""}</small>
 
         </button>`;
 
@@ -890,13 +1140,17 @@
 
     results.querySelectorAll(".search-result-item").forEach((btn) => {
 
-      btn.addEventListener("click", () => {
+      btn.addEventListener("click", async () => {
 
-        const apt = apartments.find((a) => a.id === btn.dataset.id);
+        const id = btn.dataset.id;
+
+        let apt = apartments.find((a) => a.id === id);
+
+        if (!apt) apt = getSearchPool().find((a) => a.id === id);
 
         if (apt) {
 
-          focusApartment(apt);
+          await focusApartmentFromSearch(apt);
 
           const { input } = getActiveSearch();
 
@@ -931,6 +1185,58 @@
       el.innerHTML = "";
 
     });
+
+  }
+
+
+
+  async function focusApartmentFromSearch(apt) {
+
+    if (!apt) return;
+
+
+
+    const targetCode = apt.sigungu_code || sigunguCode;
+
+    const crossDistrict = targetCode !== sigunguCode;
+
+
+
+    if (typeof gtag !== "undefined") {
+
+      gtag("event", "search_result_click", {
+
+        apartment_name: apt.name || "",
+
+        target_district: DISTRICTS[targetCode]?.name || targetCode,
+
+        cross_district: crossDistrict,
+
+      });
+
+    }
+
+
+
+    if (crossDistrict) {
+
+      await changeDistrict(targetCode);
+
+    }
+
+
+
+    const fullApt =
+
+      apartments.find((a) => a.id === apt.id) ||
+
+      districtCache[targetCode]?.find((a) => a.id === apt.id) ||
+
+      apt;
+
+
+
+    focusApartment(fullApt);
 
   }
 
@@ -1439,7 +1745,11 @@
 
     const districtName =
 
-      window.RealEstateMapRegion?.getDistrictName?.(sigunguCode) || "강남구";
+      DISTRICTS[apt.sigungu_code]?.name ||
+
+      window.RealEstateMapRegion?.getDistrictName?.(apt.sigungu_code || sigunguCode) ||
+
+      "강남구";
 
     const parts = [`서울 ${districtName}`];
 
@@ -1494,6 +1804,12 @@
     changeDistrict,
 
     getSigunguCode: () => sigunguCode,
+
+    getAllApartments: () => (searchIndexReady ? searchIndex : apartments),
+
+    isSearchIndexReady: () => searchIndexReady,
+
+    getDistrictCache: () => districtCache,
 
     DISTRICTS,
 

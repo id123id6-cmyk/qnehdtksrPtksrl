@@ -36,6 +36,7 @@ function getArg(name, fallback) {
 const LAWD_CD = getArg("lawd", "11680");
 const FROM_YM = getArg("from", "2020-01");
 const TO_YM = getArg("to", "2026-06");
+const JEONSE_ONLY = args.includes("--jeonse-only");
 
 const MOLIT_TRADE_KEY = process.env.MOLIT_API_KEY;
 const MOLIT_RENT_KEY = process.env.MOLIT_RENT_KEY || process.env.MOLIT_API_KEY;
@@ -498,6 +499,9 @@ async function processRentMonth(ym) {
       "전월세"
     );
     items = result.items;
+    if (JEONSE_ONLY) {
+      items = items.filter((item) => item.dealType === "전세");
+    }
     await sleep(API_DELAY_MS);
   } catch (err) {
     console.error(`  ❌ [전세 ${ym}] API 실패: ${err.message}`);
@@ -530,6 +534,7 @@ async function main() {
 
   console.log("=== 국토부 5년+ 실거래 → Supabase 적재 ===");
   console.log(`지역코드: ${LAWD_CD} | 기간: ${FROM_YM} ~ ${TO_YM} (${totalMonths}개월)`);
+  if (JEONSE_ONLY) console.log("거래 유형: 매매 + 전세만 (월세 제외)");
   console.log(`예상 API 호출: 매매 ${totalMonths}회 + 전월세 ${totalMonths}회 = ${totalMonths * 2}회\n`);
 
   console.log("Supabase 연결 확인 중...");

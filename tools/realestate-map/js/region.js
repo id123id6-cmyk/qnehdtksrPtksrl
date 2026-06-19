@@ -4,11 +4,12 @@
 (function (global) {
   "use strict";
 
-  const DISTRICTS = {
-    "11680": { name: "강남구", slug: "gangnam", lat: 37.5172, lng: 127.0473, zoom: 5 },
-    "11650": { name: "서초구", slug: "seocho", lat: 37.4837, lng: 127.0324, zoom: 5 },
-    "11710": { name: "송파구", slug: "songpa", lat: 37.5145, lng: 127.1059, zoom: 5 },
-  };
+  const DISTRICTS =
+    global.RealEstateMapDistricts?.SEOUL_DISTRICTS || {
+      "11680": { name: "강남구", slug: "gangnam", lat: 37.5172, lng: 127.0473, zoom: 5 },
+      "11650": { name: "서초구", slug: "seocho", lat: 37.4837, lng: 127.0324, zoom: 5 },
+      "11710": { name: "송파구", slug: "songpa", lat: 37.5145, lng: 127.1059, zoom: 5 },
+    };
 
   const GU_POLYGON_STYLE = {
     strokeWeight: 3,
@@ -66,7 +67,7 @@
   }
 
   function geoUrls(slug) {
-    return {
+    return global.RealEstateMapDistricts?.getGeoUrls?.(slug) || {
       dong: `data/${slug}-dong.geojson`,
       gu: `data/${slug}-gu.geojson`,
     };
@@ -246,7 +247,10 @@
       const root = document.getElementById("region-selector");
       if (!root) return;
 
-      const guItems = Object.entries(DISTRICTS)
+      const sorted = global.RealEstateMapDistricts?.getSortedDistrictEntries?.() ||
+        Object.entries(DISTRICTS);
+
+      const guItems = sorted
         .map(
           ([code, d]) =>
             `<button type="button" class="gu-item dong-item${code === this.sigunguCode ? " active" : ""}" data-sigungu="${code}">${d.name}</button>`

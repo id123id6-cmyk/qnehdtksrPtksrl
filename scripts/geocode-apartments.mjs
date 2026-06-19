@@ -29,13 +29,33 @@ function kakaoHeaders() {
   };
 }
 
-/** 시군구 코드 → 주소 접두사 (확장 가능) */
+/** 시군구 코드 → 주소 접두사 (서울 25개구) */
 const SIGUNGU_PREFIX = {
-  "11680": "서울 강남구",
-  "11650": "서울 서초구",
-  "11710": "서울 송파구",
   "11110": "서울 종로구",
   "11140": "서울 중구",
+  "11170": "서울 용산구",
+  "11200": "서울 성동구",
+  "11215": "서울 광진구",
+  "11230": "서울 동대문구",
+  "11260": "서울 중랑구",
+  "11290": "서울 성북구",
+  "11305": "서울 강북구",
+  "11320": "서울 도봉구",
+  "11350": "서울 노원구",
+  "11380": "서울 은평구",
+  "11410": "서울 서대문구",
+  "11440": "서울 마포구",
+  "11470": "서울 양천구",
+  "11500": "서울 강서구",
+  "11530": "서울 구로구",
+  "11545": "서울 금천구",
+  "11560": "서울 영등포구",
+  "11590": "서울 동작구",
+  "11620": "서울 관악구",
+  "11650": "서울 서초구",
+  "11680": "서울 강남구",
+  "11710": "서울 송파구",
+  "11740": "서울 강동구",
 };
 
 const stats = {
@@ -165,22 +185,37 @@ function label(apt) {
   return `${dong} ${apt.name}`;
 }
 
+async function fetchApartmentsNeedingGeo() {
+  const pageSize = 1000;
+  const all = [];
+  let from = 0;
+
+  while (true) {
+    const { data, error } = await supabase
+      .from("apartments")
+      .select("id, name, dong, jibun, sigungu_code, latitude, longitude")
+      .is("latitude", null)
+      .order("dong", { ascending: true })
+      .range(from, from + pageSize - 1);
+
+    if (error) throw new Error(`조회 실패: ${error.message}`);
+    if (!data?.length) break;
+    all.push(...data);
+    if (data.length < pageSize) break;
+    from += pageSize;
+  }
+
+  return all;
+}
+
 async function main() {
   const started = Date.now();
 
   console.log("=== 카카오 지오코딩 → apartments 좌표 저장 ===\n");
 
-  const { data: apartments, error } = await supabase
-    .from("apartments")
-    .select("id, name, dong, jibun, sigungu_code, latitude, longitude")
-    .is("latitude", null)
-    .order("dong", { ascending: true });
+  const apartments = await fetchApartmentsNeedingGeo();
 
-  if (error) {
-    throw new Error(`조회 실패: ${error.message}`);
-  }
-
-  stats.total = apartments?.length ?? 0;
+  stats.total = apartments.length;
 
   if (stats.total === 0) {
     console.log("좌표가 비어 있는 단지가 없습니다. (이미 모두 처리됨)");

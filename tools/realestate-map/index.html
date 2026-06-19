@@ -15,15 +15,15 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>강남구 부동산 지도 | 실거래가 마커 | 승박</title>
-  <meta name="description" content="강남구 741개 아파트 단지의 5년치 실거래가(매매·전세·월세)를 카카오맵에서 확인하세요. 마커 클릭 시 평형별 가격 그래프를 바로 볼 수 있습니다.">
+  <title>서울 부동산 지도 | 실거래가 마커 | 승박</title>
+  <meta name="description" content="서울 25개구 아파트 단지의 실거래가(매매·전세)를 카카오맵에서 확인하세요. 마커 클릭 시 평형별 가격 그래프를 바로 볼 수 있습니다.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://seungbak.com/tools/realestate-map/">
 
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://seungbak.com/tools/realestate-map/">
-  <meta property="og:title" content="강남구 부동산 지도 | 승박">
-  <meta property="og:description" content="강남구 741개 단지 · 5년치 매매·전세·월세 실거래가 지도">
+  <meta property="og:title" content="서울 부동산 지도 | 승박">
+  <meta property="og:description" content="서울 25개구 · 매매·전세 실거래가 지도">
   <meta property="og:locale" content="ko_KR">
   <meta property="og:site_name" content="승박">
 
@@ -115,6 +115,7 @@
           autocomplete="off"
         >
         <div id="search-results" class="search-results"></div>
+        <p class="search-index-hint" id="search-index-hint" hidden>🔍 전체 검색 준비 중...</p>
       </div>
 
       <div class="sidebar-content" id="sidebar-content">
@@ -183,6 +184,7 @@
   </script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
   <script src="js/data.js"></script>
+  <script src="js/districts.js"></script>
   <script src="js/filter.js"></script>
   <script src="js/region.js"></script>
   <script src="js/marker.js"></script>

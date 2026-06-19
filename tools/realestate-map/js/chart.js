@@ -452,6 +452,7 @@
 
   async function updateChartDealType(type) {
     if (!currentApartmentId) return;
+    if (type === "월세") return;
     if (currentDealType === type) return;
     currentDealType = type;
     currentArea = "all";
@@ -520,7 +521,6 @@
         <div class="deal-type-tabs">
           <button type="button" class="deal-tab active" data-deal="매매">매매</button>
           <button type="button" class="deal-tab" data-deal="전세">전세</button>
-          <button type="button" class="deal-tab" data-deal="월세">월세</button>
         </div>
         <div class="area-selector" id="area-selector" hidden>
           <h4>평형 선택</h4>

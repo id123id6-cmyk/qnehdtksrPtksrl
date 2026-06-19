@@ -94,10 +94,10 @@
     return areaCategoriesCache;
   }
 
-  async function loadApartmentsWithPrices(supabase, sigunguCode) {
+  async function loadDistrictBasic(supabase, sigunguCode) {
     const { data, error } = await supabase
       .from("apartments")
-      .select("id, name, dong, jibun, build_year, latitude, longitude")
+      .select("id, name, dong, jibun, build_year, latitude, longitude, sigungu_code")
       .eq("sigungu_code", sigunguCode)
       .not("latitude", "is", null)
       .not("longitude", "is", null)
@@ -106,17 +106,83 @@
 
     if (error) throw new Error(`단지 데이터 조회 실패: ${error.message}`);
 
+    return (data || []).map((apt) => ({
+      ...apt,
+      sigungu_code: apt.sigungu_code || sigunguCode,
+      avgPrice1Y: null,
+      tradeCount1Y: 0,
+      areaCategories: [],
+    }));
+  }
+
+  async function enrichApartmentsWithStats(supabase, apartments) {
     const [{ avgMap, countMap }, areaMap] = await Promise.all([
       fetchTradeStats1Y(supabase),
       fetchAreaCategories(supabase),
     ]);
 
-    return (data || []).map((apt) => ({
+    return apartments.map((apt) => ({
       ...apt,
       avgPrice1Y: avgMap.get(apt.id) ?? null,
       tradeCount1Y: countMap.get(apt.id) ?? 0,
       areaCategories: [...(areaMap.get(apt.id) || [])],
     }));
+  }
+
+  async function loadApartmentsWithPrices(supabase, sigunguCode) {
+    const basic = await loadDistrictBasic(supabase, sigunguCode);
+    return enrichApartmentsWithStats(supabase, basic);
+  }
+
+  async function loadDistrict(supabase, sigunguCode) {
+    return loadApartmentsWithPrices(supabase, sigunguCode);
+  }
+
+  async function loadSearchIndex(supabase) {
+    const rows = [];
+    const pageSize = 1000;
+    let from = 0;
+
+    while (true) {
+      const { data, error } = await supabase
+        .from("apartments")
+        .select("id, name, sigungu_code, dong")
+        .not("latitude", "is", null)
+        .order("sigungu_code")
+        .order("name")
+        .range(from, from + pageSize - 1);
+
+      if (error) throw new Error(`검색 인덱스 조회 실패: ${error.message}`);
+      if (!data?.length) break;
+      rows.push(...data);
+      if (data.length < pageSize) break;
+      from += pageSize;
+    }
+
+    return rows.map((row) => ({
+      id: row.id,
+      name: row.name,
+      sigungu_code: row.sigungu_code,
+      dong: row.dong,
+    }));
+  }
+
+  async function loadAllDistrictApartments(supabase, sigunguCodes, batchSize = 5) {
+    const byCode = {};
+    for (let i = 0; i < sigunguCodes.length; i += batchSize) {
+      const batch = sigunguCodes.slice(i, i + batchSize);
+      const entries = await Promise.all(
+        batch.map(async (code) => {
+          const list = await loadApartmentsWithPrices(supabase, code);
+          return [code, list];
+        })
+      );
+      for (const [code, list] of entries) {
+        byCode[code] = list;
+      }
+    }
+    const all = sigunguCodes.flatMap((code) => byCode[code] || []);
+    return { byCode, all };
   }
 
   function getCategoryStats(apartments) {
@@ -133,6 +199,11 @@
 
   global.RealEstateMapData = {
     loadApartmentsWithPrices,
+    loadDistrictBasic,
+    enrichApartmentsWithStats,
+    loadDistrict,
+    loadSearchIndex,
+    loadAllDistrictApartments,
     getCategoryStats,
   };
 })(window);
