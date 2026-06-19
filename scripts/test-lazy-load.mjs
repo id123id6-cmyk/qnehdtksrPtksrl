@@ -57,16 +57,36 @@ async function main() {
 
   await page.waitForFunction(
     () => {
+      const list = window.RealEstateMap?.getDistrictCache?.()?.["11680"] || [];
+      const withPrice = list.filter((a) => a.avgPrice1Y != null && a.avgPrice1Y > 0).length;
       const count = parseInt(
         document.getElementById("marker-count")?.textContent || "0",
         10
       );
       const gu = document.getElementById("selectedGu")?.textContent?.trim();
-      return gu === "강남구" && count >= 500;
+      return gu === "강남구" && count >= 500 && list.length >= 500 && withPrice > 200;
     },
-    { timeout: 15000 }
+    { timeout: 20000 }
   );
   const initialVisibleMs = Date.now() - tStart;
+
+  const statsT0 = await page.evaluate((c) => {
+    const list = window.RealEstateMap?.getDistrictCache?.()?.[c] || [];
+    return {
+      apartments: list.length,
+      withPrice: list.filter((a) => a.avgPrice1Y != null && a.avgPrice1Y > 0).length,
+    };
+  }, "11680");
+  await page.waitForTimeout(3000);
+  const statsT3 = await page.evaluate((c) => {
+    const list = window.RealEstateMap?.getDistrictCache?.()?.[c] || [];
+    return {
+      apartments: list.length,
+      withPrice: list.filter((a) => a.avgPrice1Y != null && a.avgPrice1Y > 0).length,
+    };
+  }, "11680");
+  const colorFlicker = statsT0.withPrice !== statsT3.withPrice;
+  const priceReady = statsT0.withPrice > 200;
 
   const earlyState = await page.evaluate(() => ({
     searchIndexReady: window.searchIndexReady === true,
@@ -153,7 +173,11 @@ async function main() {
   const timingMap = Object.fromEntries(timings.map((t) => [t.name, t.ms]));
   const checks = {
     initialVisibleMs,
-    initialUnder2s: initialVisibleMs < 2000,
+    initialUnder3s: initialVisibleMs < 3000,
+    priceReadyOnFirstPaint: priceReady,
+    noColorFlicker: !colorFlicker,
+    statsT0,
+    statsT3,
     earlyOnlyGangnamCache: earlyState.cacheSize === 1,
     earlyAptCountSmall: earlyState.aptCount < 1000,
     beforeIndexNoCrossSearch:
@@ -169,7 +193,9 @@ async function main() {
   console.log(JSON.stringify({ checks, searchResults, errors }, null, 2));
 
   const pass =
-    checks.initialUnder2s &&
+    checks.initialUnder3s &&
+    checks.priceReadyOnFirstPaint &&
+    checks.noColorFlicker &&
     checks.earlyOnlyGangnamCache &&
     checks.searchIndexReady &&
     checks.searchIndexCount > 7000 &&

@@ -18,6 +18,94 @@
     return "xlarge";
   }
 
+  async function fetchTradeStatsForApartments(supabase, apartmentIds) {
+    if (!apartmentIds.length) {
+      return { avgMap: new Map(), countMap: new Map() };
+    }
+
+    const cutoff = new Date();
+    cutoff.setFullYear(cutoff.getFullYear() - 1);
+    const cutoffStr = cutoff.toISOString().slice(0, 10);
+
+    const sums = new Map();
+    const idChunkSize = 150;
+
+    for (let i = 0; i < apartmentIds.length; i += idChunkSize) {
+      const idChunk = apartmentIds.slice(i, i + idChunkSize);
+      let from = 0;
+      const pageSize = 2000;
+
+      while (true) {
+        const { data, error } = await supabase
+          .from("transactions")
+          .select("apartment_id, deal_amount")
+          .eq("deal_type", "매매")
+          .gte("deal_date", cutoffStr)
+          .in("apartment_id", idChunk)
+          .range(from, from + pageSize - 1);
+
+        if (error) throw new Error(`거래 통계 조회 실패: ${error.message}`);
+        if (!data?.length) break;
+
+        for (const row of data) {
+          const prev = sums.get(row.apartment_id) || { sum: 0, count: 0 };
+          prev.sum += row.deal_amount;
+          prev.count += 1;
+          sums.set(row.apartment_id, prev);
+        }
+
+        if (data.length < pageSize) break;
+        from += pageSize;
+      }
+    }
+
+    const avgMap = new Map();
+    const countMap = new Map();
+    for (const [id, { sum, count }] of sums) {
+      avgMap.set(id, Math.round(sum / count));
+      countMap.set(id, count);
+    }
+
+    return { avgMap, countMap };
+  }
+
+  async function fetchAreaCategoriesForApartments(supabase, apartmentIds) {
+    if (!apartmentIds.length) return new Map();
+
+    const map = new Map();
+    const idChunkSize = 150;
+
+    for (let i = 0; i < apartmentIds.length; i += idChunkSize) {
+      const idChunk = apartmentIds.slice(i, i + idChunkSize);
+      let from = 0;
+      const pageSize = 1000;
+
+      while (true) {
+        const { data, error } = await supabase
+          .from("transactions")
+          .select("apartment_id, exclu_use_ar")
+          .eq("deal_type", "매매")
+          .not("exclu_use_ar", "is", null)
+          .in("apartment_id", idChunk)
+          .range(from, from + pageSize - 1);
+
+        if (error) throw new Error(`평형 데이터 조회 실패: ${error.message}`);
+        if (!data?.length) break;
+
+        for (const row of data) {
+          const cat = getSqmCategory(row.exclu_use_ar);
+          if (!map.has(row.apartment_id)) map.set(row.apartment_id, new Set());
+          map.get(row.apartment_id).add(cat);
+        }
+
+        if (data.length < pageSize) break;
+        from += pageSize;
+      }
+    }
+
+    return map;
+  }
+
   async function fetchTradeStats1Y(supabase) {
     if (tradeStatsCache) return tradeStatsCache;
 
@@ -116,9 +204,10 @@
   }
 
   async function enrichApartmentsWithStats(supabase, apartments) {
+    const ids = apartments.map((apt) => apt.id);
     const [{ avgMap, countMap }, areaMap] = await Promise.all([
-      fetchTradeStats1Y(supabase),
-      fetchAreaCategories(supabase),
+      fetchTradeStatsForApartments(supabase, ids),
+      fetchAreaCategoriesForApartments(supabase, ids),
     ]);
 
     return apartments.map((apt) => ({
@@ -129,9 +218,48 @@
     }));
   }
 
-  async function loadApartmentsWithPrices(supabase, sigunguCode) {
+  let statsPrefetchPromise = null;
+
+  function prefetchDistrictStats(supabase) {
+    if (!statsPrefetchPromise) {
+      statsPrefetchPromise = Promise.all([
+        fetchTradeStats1Y(supabase),
+        fetchAreaCategories(supabase),
+      ]);
+    }
+    return statsPrefetchPromise;
+  }
+
+  async function loadDistrictForMap(supabase, sigunguCode) {
     const basic = await loadDistrictBasic(supabase, sigunguCode);
-    return enrichApartmentsWithStats(supabase, basic);
+    const ids = basic.map((apt) => apt.id);
+    const { avgMap, countMap } = await fetchTradeStatsForApartments(supabase, ids);
+
+    return basic.map((apt) => ({
+      ...apt,
+      avgPrice1Y: avgMap.get(apt.id) ?? null,
+      tradeCount1Y: countMap.get(apt.id) ?? 0,
+      areaCategories: [],
+    }));
+  }
+
+  async function attachAreaCategories(supabase, apartments) {
+    const ids = apartments.map((apt) => apt.id);
+    const areaMap = await fetchAreaCategoriesForApartments(supabase, ids);
+    for (const apt of apartments) {
+      apt.areaCategories = [...(areaMap.get(apt.id) || [])];
+    }
+    return apartments;
+  }
+
+  async function loadDistrictFull(supabase, sigunguCode) {
+    const list = await loadDistrictForMap(supabase, sigunguCode);
+    await attachAreaCategories(supabase, list);
+    return list;
+  }
+
+  async function loadApartmentsWithPrices(supabase, sigunguCode) {
+    return loadDistrictFull(supabase, sigunguCode);
   }
 
   async function loadDistrict(supabase, sigunguCode) {
@@ -200,6 +328,10 @@
   global.RealEstateMapData = {
     loadApartmentsWithPrices,
     loadDistrictBasic,
+    loadDistrictForMap,
+    loadDistrictFull,
+    attachAreaCategories,
+    prefetchDistrictStats,
     enrichApartmentsWithStats,
     loadDistrict,
     loadSearchIndex,

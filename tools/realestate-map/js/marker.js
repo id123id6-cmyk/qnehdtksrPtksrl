@@ -165,12 +165,41 @@
       this.zoomTimer = null;
       this.panTimer = null;
       this.rafId = null;
+      this.renderTimer = null;
+      this.pendingLevel = null;
+      this._bootstrapping = false;
       this.currentLevel = map.getLevel();
       this.stats = {
         visibleCount: 0,
         totalCount: this.apartments.length,
         lastRenderMs: 0,
       };
+    }
+
+    beginBootstrap() {
+      this._bootstrapping = true;
+    }
+
+    endBootstrap() {
+      this._bootstrapping = false;
+    }
+
+    scheduleRender(level, immediate = false) {
+      this.pendingLevel = level;
+      clearTimeout(this.renderTimer);
+      if (immediate) {
+        this.renderTimer = null;
+        const lvl = this.pendingLevel;
+        this.pendingLevel = null;
+        this.renderVisibleMarkers(lvl);
+        return;
+      }
+      this.renderTimer = setTimeout(() => {
+        this.renderTimer = null;
+        const lvl = this.pendingLevel ?? this.map.getLevel();
+        this.pendingLevel = null;
+        this.renderVisibleMarkers(lvl);
+      }, 80);
     }
 
     init() {
@@ -183,29 +212,24 @@
       });
 
       this.bindDelegation();
+      this.beginBootstrap();
       this.renderVisibleMarkers(this.currentLevel);
 
       kakao.maps.event.addListener(this.map, "zoom_changed", () => {
+        if (this._bootstrapping) return;
         clearTimeout(this.zoomTimer);
         this.zoomTimer = setTimeout(() => {
-          const level = this.map.getLevel();
-          log("줌 변경:", level);
-          this.renderVisibleMarkers(level);
+          this.scheduleRender(this.map.getLevel());
         }, DEBOUNCE_MS);
       });
 
       kakao.maps.event.addListener(this.map, "center_changed", () => {
+        if (this._bootstrapping) return;
         clearTimeout(this.panTimer);
         this.panTimer = setTimeout(() => {
-          this.renderVisibleMarkers(this.map.getLevel());
+          this.scheduleRender(this.map.getLevel());
         }, DEBOUNCE_MS);
       });
-
-      const onceHandler = () => {
-        kakao.maps.event.removeListener(this.map, "idle", onceHandler);
-        this.renderVisibleMarkers(this.map.getLevel());
-      };
-      kakao.maps.event.addListener(this.map, "idle", onceHandler);
     }
 
     bindDelegation() {
@@ -253,7 +277,7 @@
     buildClusterMarkers() {
       if (this.clusterBuilt) return;
 
-      console.time("클러스터 마커 생성");
+      if (DEBUG) console.time("클러스터 마커 생성");
       this.clusterMarkers = this.apartments.map((apt) => {
         const category = getPriceCategory(apt.avgPrice1Y);
         const position = new kakao.maps.LatLng(apt.latitude, apt.longitude);
@@ -308,7 +332,7 @@
         ],
       });
       this.clusterBuilt = true;
-      console.timeEnd("클러스터 마커 생성");
+      if (DEBUG) console.timeEnd("클러스터 마커 생성");
     }
 
     renderClusterMode() {
@@ -329,8 +353,7 @@
         );
       }
 
-      cancelAnimationFrame(this.rafId);
-      this.rafId = requestAnimationFrame(() => {
+      const attachOverlays = () => {
         for (let i = 0; i < elements.length; i++) {
           const overlay = new kakao.maps.CustomOverlay({
             position: positions[i],
@@ -343,14 +366,21 @@
           overlay.setMap(this.map);
           this.overlays.push(overlay);
         }
-      });
+      };
+
+      if (this._bootstrapping) {
+        attachOverlays();
+      } else {
+        cancelAnimationFrame(this.rafId);
+        this.rafId = requestAnimationFrame(attachOverlays);
+      }
 
       this.stats.visibleCount = visibleApts.length;
     }
 
     renderVisibleMarkers(level) {
       const t0 = performance.now();
-      console.time("마커 렌더링");
+      if (DEBUG) console.time("마커 렌더링");
 
       this.currentLevel = level;
       const mode = getMarkerMode(level);
@@ -358,18 +388,16 @@
 
       if (mode === "cluster") {
         this.renderClusterMode();
-        console.log(
-          `클러스터 모드: ${this.apartments.length}/${this.apartments.length}`
-        );
+        log(`클러스터 모드: ${this.apartments.length}/${this.apartments.length}`);
       } else {
         const visibleApts = this.getVisibleApartments();
-        console.log(
+        log(
           `화면 내 단지: ${visibleApts.length}/${this.apartments.length} (줌 ${level}, ${mode})`
         );
         this.renderOverlayMode(level, visibleApts);
       }
 
-      console.timeEnd("마커 렌더링");
+      if (DEBUG) console.timeEnd("마커 렌더링");
       this.stats.lastRenderMs = Math.round(performance.now() - t0);
 
       log("렌더 완료", {
@@ -397,7 +425,7 @@
         this.clusterer = null;
       }
       this.stats.totalCount = this.apartments.length;
-      this.renderVisibleMarkers(this.currentLevel);
+      this.scheduleRender(this.currentLevel, this._bootstrapping);
     }
 
     getStats() {
@@ -413,6 +441,7 @@
     destroy() {
       clearTimeout(this.zoomTimer);
       clearTimeout(this.panTimer);
+      clearTimeout(this.renderTimer);
       cancelAnimationFrame(this.rafId);
       this.clearOverlays();
     }

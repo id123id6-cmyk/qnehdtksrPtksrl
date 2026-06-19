@@ -104,7 +104,19 @@
     return rings.map(ringToLatLngObjects);
   }
 
+  function isValidPaths(paths) {
+    if (!paths?.length) return false;
+    for (const ring of paths) {
+      if (!ring?.length) return false;
+      for (const pt of ring) {
+        if (!Number.isFinite(pt.lat) || !Number.isFinite(pt.lng)) return false;
+      }
+    }
+    return true;
+  }
+
   function createPolygonFromPaths(map, paths, style) {
+    if (!isValidPaths(paths)) return null;
     const kakaoPaths = pathsToKakaoLatLng(paths);
     const polygon = new kakao.maps.Polygon({
       path: kakaoPaths.length === 1 ? kakaoPaths[0] : kakaoPaths,
@@ -117,7 +129,12 @@
   function extendBoundsFromPaths(bounds, paths) {
     const kakaoPaths = pathsToKakaoLatLng(paths);
     for (const ring of kakaoPaths) {
-      for (const ll of ring) bounds.extend(ll);
+      for (const ll of ring) {
+        const lat = ll.getLat();
+        const lng = ll.getLng();
+        if (!Number.isFinite(lat) || !Number.isFinite(lng)) continue;
+        bounds.extend(ll);
+      }
     }
   }
 
@@ -152,13 +169,25 @@
       this.menuOpen = false;
       this.guMenuOpen = false;
       this._changingDistrict = false;
+      this._boundaryGen = 0;
     }
 
-    async init() {
+    init() {
       this.renderUI();
       this.bindEvents();
-      await this.loadBoundaries();
-      this.fitGuBounds();
+      this.deferLoadBoundaries();
+    }
+
+    deferLoadBoundaries() {
+      const code = this.sigunguCode;
+      this.loadBoundaries()
+        .then((fresh) => {
+          if (!fresh || this._changingDistrict || this.sigunguCode !== code) return;
+          this.fitGuBounds();
+        })
+        .catch((err) => {
+          console.warn("[지역] 경계 로드 실패", err?.message || err);
+        });
     }
 
     getDistrictConfig() {
@@ -166,47 +195,62 @@
     }
 
     async loadBoundaries() {
+      const gen = ++this._boundaryGen;
       const { slug, name } = this.getDistrictConfig();
       const urls = geoUrls(slug);
       await Promise.all([
-        this.loadGeoJson(urls.dong, name),
-        this.loadGuBoundary(urls.gu, name),
+        this.loadGeoJson(urls.dong, name, gen),
+        this.loadGuBoundary(urls.gu, name, gen),
       ]);
+      return gen === this._boundaryGen;
     }
 
-    async loadGuBoundary(guUrl, districtName) {
+    async loadGuBoundary(guUrl, districtName, gen) {
+      if (gen !== this._boundaryGen) return;
       this.clearGuPolygon();
       try {
         const res = await fetch(guUrl);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        if (gen !== this._boundaryGen) return;
         const guGeojson = await res.json();
         const feature = guGeojson.features?.[0];
         if (!feature) throw new Error(`${districtName} feature 없음`);
 
-        this.guPaths = pathsFromGeoFeature(feature);
+        const paths = pathsFromGeoFeature(feature);
+        if (gen !== this._boundaryGen) return;
+        if (!isValidPaths(paths)) throw new Error(`${districtName} 경계 좌표 무효`);
+
+        this.guPaths = paths;
         this.guPolygon = createPolygonFromPaths(
           this.map,
           this.guPaths,
           GU_POLYGON_STYLE
         );
-        console.log(`[${districtName} 경계] 지도에 추가 완료`);
+        if (this.guPolygon) {
+          console.log(`[${districtName} 경계] 지도에 추가 완료`);
+        }
       } catch (err) {
+        if (gen !== this._boundaryGen) return;
         console.warn(`[${districtName} 경계] 로드 실패`, err.message);
         this.guPaths = null;
       }
     }
 
-    async loadGeoJson(dongUrl, districtName) {
+    async loadGeoJson(dongUrl, districtName, gen) {
       try {
         const res = await fetch(dongUrl);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        this.geojson = await res.json();
+        if (gen !== this._boundaryGen) return;
+        const geojson = await res.json();
+        if (gen !== this._boundaryGen) return;
+        this.geojson = geojson;
         this.dongIndex = buildDongIndex(this.geojson);
         console.log(`[${districtName}] GeoJSON 로드`, {
           features: this.geojson.features?.length,
           legalDongs: [...this.dongIndex.keys()],
         });
       } catch (err) {
+        if (gen !== this._boundaryGen) return;
         console.warn(`[${districtName}] GeoJSON 로드 실패`, err.message);
         this.geojson = null;
         this.dongIndex = new Map();
@@ -342,7 +386,6 @@
       this.renderDongMenu();
       this.clearDongOverlay();
       await this.loadBoundaries();
-      this.fitGuBounds();
       this._changingDistrict = false;
     }
 
@@ -367,8 +410,17 @@
       if (this.guPaths?.length) {
         const bounds = new kakao.maps.LatLngBounds();
         extendBoundsFromPaths(bounds, this.guPaths);
-        this.map.setBounds(bounds, 40, 40, 40, 40);
-        return;
+        const ne = bounds.getNorthEast();
+        const sw = bounds.getSouthWest();
+        if (
+          ne &&
+          sw &&
+          Number.isFinite(ne.getLat()) &&
+          Number.isFinite(ne.getLng())
+        ) {
+          this.map.setBounds(bounds, 40, 40, 40, 40);
+          return;
+        }
       }
 
       this.map.setCenter(new kakao.maps.LatLng(cfg.lat, cfg.lng));
@@ -477,7 +529,7 @@
       }
 
       const paths = this.dongIndex.get(dongName);
-      if (paths?.length) {
+      if (paths?.length && isValidPaths(paths)) {
         this.dongPolygon = createPolygonFromPaths(
           this.map,
           paths,
@@ -486,8 +538,11 @@
 
         const bounds = new kakao.maps.LatLngBounds();
         extendBoundsFromPaths(bounds, paths);
-        this.map.setBounds(bounds, 40, 40, 40, 40);
-        return;
+        const ne = bounds.getNorthEast();
+        if (ne && Number.isFinite(ne.getLat())) {
+          this.map.setBounds(bounds, 40, 40, 40, 40);
+          return;
+        }
       }
 
       const center = DONG_CENTERS[dongName];

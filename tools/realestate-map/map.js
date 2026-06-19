@@ -90,6 +90,10 @@
 
   let selectedApt = null;
 
+  let refreshMarkersTimer = null;
+
+  let uiBound = false;
+
 
 
   init();
@@ -100,19 +104,23 @@
 
     try {
 
-      await loadKakaoSdk();
-
-      await initMap();
-
       initSupabase();
 
-      await loadInitialDistrict();
+      const districtPromise = loadInitialDistrict();
 
-      renderMarkers();
+      await loadKakaoSdk();
 
-      startDistrictStatsBackground();
+      await districtPromise;
+
+      initMap();
+
+      setupMapUi();
+
+      initMarkerLayer();
 
       startSearchIndexBackground();
+
+      startAreaCategoriesBackground();
 
     } catch (err) {
 
@@ -310,7 +318,7 @@
 
 
 
-    apartments = await window.RealEstateMapData.loadDistrictBasic(
+    apartments = await window.RealEstateMapData.loadDistrictForMap(
 
       supabase,
 
@@ -346,43 +354,16 @@
 
 
 
-  function startDistrictStatsBackground() {
+  function startAreaCategoriesBackground() {
+    if (!window.RealEstateMapData?.attachAreaCategories) return;
 
-    if (!window.RealEstateMapData?.enrichApartmentsWithStats) return;
-
-
-
-    console.time("district_stats_load");
-
-
-
-    window.RealEstateMapData.enrichApartmentsWithStats(supabase, apartments)
-
-      .then((enriched) => {
-
-        apartments = enriched;
-
-        districtCache[sigunguCode] = enriched;
-
-        console.timeEnd("district_stats_load");
-
-        console.log("[지도] 가격 통계 반영 완료");
-
-
-
-        if (filterBar) filterBar.updateApartments(apartments);
-
-        if (markerLayer) markerLayer.setFilteredApartments(getDisplayApartments());
-
-        refreshMapMarkers();
-
+    window.RealEstateMapData.attachAreaCategories(supabase, apartments)
+      .then(() => {
+        districtCache[sigunguCode] = apartments;
+        if (filterBar) filterBar.updateApartments(apartments, { silent: true });
       })
-
-      .catch((err) => console.error("[지도] 가격 통계 로드 실패:", err));
-
+      .catch((err) => console.warn("[평형] 백그라운드 로드 실패:", err));
   }
-
-
 
   function startSearchIndexBackground() {
 
@@ -468,15 +449,39 @@
 
 
 
-  function renderMarkers() {
+  function setupMapUi() {
+
+    initMapRegion();
+
+    initMapFilter(true);
+
+    if (!uiBound) {
+
+      bindSearch();
+
+      bindDdayButton();
+
+      bindLegendToggle();
+
+      initSidebarModule();
+
+      uiBound = true;
+
+    }
+
+    showEmptySidebar();
+
+  }
+
+
+
+  function initMarkerLayer() {
 
     if (!window.RealEstateMapMarker?.ApartmentMarkerLayer) {
 
       throw new Error("마커 모듈 로드 실패 (js/marker.js)");
 
     }
-
-
 
     if (!window.kakao?.maps) {
 
@@ -486,23 +491,11 @@
 
 
 
-    console.log("[지도] 마커 생성 시작", {
-
-      map: !!map,
-
-      zoom: map.getLevel(),
-
-      kakao: !!window.kakao?.maps,
-
-    });
-
-
-
     markerLayer = new window.RealEstateMapMarker.ApartmentMarkerLayer(
 
       map,
 
-      apartments,
+      getDisplayApartments(),
 
       (apt) => selectApartment(apt),
 
@@ -512,41 +505,31 @@
 
     markerLayer.init();
 
-    initMapRegion();
+    if (filterBar) {
 
-    initMapFilter();
+      const filtered = getDisplayApartments();
 
-    setTimeout(() => {
+      window.RealEstateMapFilter?.updateResultCount?.(
 
-      const s = markerLayer.getStats();
+        filtered.length,
 
-      console.log("[지도] 마커 최종 상태", s);
-
-      console.log(
-
-        "DOM .marker-pill:",
-
-        document.querySelectorAll(".marker-pill").length
+        apartments.length
 
       );
 
-    }, 2000);
+    }
 
-
-
-    bindSearch();
-
-    bindDdayButton();
-
-    bindLegendToggle();
-
-    initSidebarModule();
-
-    showEmptySidebar();
+    markerLayer.endBootstrap();
 
     requestAnimationFrame(() => relayoutMap());
 
-    setTimeout(relayoutMap, 300);
+  }
+
+
+
+  function renderMarkers() {
+
+    initMarkerLayer();
 
   }
 
@@ -580,21 +563,29 @@
 
   function refreshMapMarkers() {
 
-    const filtered = getDisplayApartments();
+    clearTimeout(refreshMarkersTimer);
 
-    const baseCount = getDongApartments().length;
+    refreshMarkersTimer = setTimeout(() => {
 
-    if (markerLayer) {
+      refreshMarkersTimer = null;
 
-      markerLayer.setFilteredApartments(filtered);
+      const filtered = getDisplayApartments();
 
-    }
+      const baseCount = getDongApartments().length;
 
-    if (window.RealEstateMapFilter?.updateResultCount) {
+      if (markerLayer) {
 
-      window.RealEstateMapFilter.updateResultCount(filtered.length, baseCount);
+        markerLayer.setFilteredApartments(filtered);
 
-    }
+      }
+
+      if (window.RealEstateMapFilter?.updateResultCount) {
+
+        window.RealEstateMapFilter.updateResultCount(filtered.length, baseCount);
+
+      }
+
+    }, 50);
 
   }
 
@@ -652,17 +643,13 @@
 
 
 
-      let needsStatsEnrich = false;
-
-
-
       if (cacheHit) {
 
         apartments = districtCache[lawdCode];
 
       } else {
 
-        apartments = await window.RealEstateMapData.loadDistrictBasic(
+        apartments = await window.RealEstateMapData.loadDistrictForMap(
 
           supabase,
 
@@ -672,7 +659,14 @@
 
         districtCache[lawdCode] = apartments;
 
-        needsStatsEnrich = true;
+        window.RealEstateMapData.attachAreaCategories(supabase, apartments)
+          .then(() => {
+            districtCache[lawdCode] = apartments;
+            if (lawdCode === sigunguCode && filterBar) {
+              filterBar.updateApartments(apartments, { silent: true });
+            }
+          })
+          .catch((err) => console.warn("[평형] 로드 실패:", err));
 
       }
 
@@ -698,21 +692,15 @@
 
         filterBar.syncUI();
 
-        filterBar.updateApartments(apartments);
-
-      }
-
-
-
-      if (markerLayer) {
-
-        markerLayer.setFilteredApartments(apartments);
+        filterBar.updateApartments(apartments, { silent: true });
 
       }
 
 
 
       if (regionSelector) {
+
+        if (markerLayer) markerLayer.beginBootstrap();
 
         await regionSelector.changeDistrict(lawdCode, getDongList());
 
@@ -729,6 +717,8 @@
 
 
       refreshMapMarkers();
+
+      if (markerLayer) markerLayer.endBootstrap();
 
       showEmptySidebar();
 
@@ -754,32 +744,6 @@
 
       scheduleMapRelayout();
 
-
-
-      if (needsStatsEnrich) {
-
-        window.RealEstateMapData.enrichApartmentsWithStats(supabase, apartments)
-
-          .then((enriched) => {
-
-            if (sigunguCode !== lawdCode) return;
-
-            apartments = enriched;
-
-            districtCache[lawdCode] = enriched;
-
-            if (filterBar) filterBar.updateApartments(apartments);
-
-            if (markerLayer) markerLayer.setFilteredApartments(getDisplayApartments());
-
-            refreshMapMarkers();
-
-          })
-
-          .catch((err) => console.error("[지도] 구 통계 반영 실패:", err));
-
-      }
-
     } catch (err) {
 
       console.error(err);
@@ -798,7 +762,7 @@
 
         els.loading.hidden = true;
 
-        els.loading.textContent = "지도와 단지 데이터를 불러오는 중...";
+        els.loading.textContent = "지도 데이터를 불러오는 중...";
 
       }
 
@@ -808,7 +772,7 @@
 
 
 
-  async function initMapRegion() {
+  function initMapRegion() {
 
     if (!window.RealEstateMapRegion?.DistrictRegionSelector) {
 
@@ -848,13 +812,13 @@
 
     });
 
-    await regionSelector.init();
+    regionSelector.init();
 
   }
 
 
 
-  function initMapFilter() {
+  function initMapFilter(silent = false) {
 
     if (!window.RealEstateMapFilter?.MapFilterBar) {
 
@@ -878,7 +842,7 @@
 
     });
 
-    filterBar.init();
+    filterBar.init({ silent });
 
   }
 
@@ -1599,7 +1563,7 @@
 
             <span>좌표</span>
 
-            <strong>${apt.latitude.toFixed(4)}, ${apt.longitude.toFixed(4)}</strong>
+            <strong>${apt.latitude != null && apt.longitude != null ? `${apt.latitude.toFixed(4)}, ${apt.longitude.toFixed(4)}` : "-"}</strong>
 
           </div>
 

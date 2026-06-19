@@ -203,12 +203,12 @@
       this.openDropdown = null;
     }
 
-    init() {
+    init(options = {}) {
       if (!this.barEl) return;
       this.renderBar();
       this.bindEvents();
       this.syncUI();
-      this.emitChange();
+      if (!options.silent) this.emitChange();
     }
 
     renderBar() {
@@ -419,8 +419,12 @@
       });
     }
 
-    updateApartments(apartments) {
+    updateApartments(apartments, options = {}) {
       this.allApartments = apartments;
+      if (options.silent) {
+        updateResultCount(apartments.length, apartments.length);
+        return;
+      }
       this.emitChange();
     }
   }
