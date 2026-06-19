@@ -10,11 +10,13 @@
 
 
 
-  const GANGNAM_CENTER = { lat: 37.5172, lng: 127.0473 };
+  const DISTRICTS = {
+    "11680": { name: "강남구", lat: 37.5172, lng: 127.0473, zoom: 5 },
+    "11650": { name: "서초구", lat: 37.4837, lng: 127.0324, zoom: 5 },
+    "11710": { name: "송파구", lat: 37.5145, lng: 127.1059, zoom: 5 },
+  };
 
-  const ZOOM_LEVEL = 6;
-
-  const SIGUNGU_CODE = "11680";
+  let sigunguCode = "11680";
 
 
 
@@ -186,15 +188,17 @@
 
   function initMap() {
 
+    const cfg = DISTRICTS[sigunguCode] || DISTRICTS["11680"];
+
     map = new kakao.maps.Map(els.map, {
 
-      center: new kakao.maps.LatLng(GANGNAM_CENTER.lat, GANGNAM_CENTER.lng),
+      center: new kakao.maps.LatLng(cfg.lat, cfg.lng),
 
-      level: ZOOM_LEVEL,
+      level: cfg.zoom,
 
     });
 
-    map.setLevel(ZOOM_LEVEL);
+    map.setLevel(cfg.zoom);
 
     initMapResizeHandler();
 
@@ -286,7 +290,7 @@
 
       supabase,
 
-      SIGUNGU_CODE
+      sigunguCode
 
     );
 
@@ -482,9 +486,143 @@
 
 
 
+  function getDongList() {
+
+    return [
+
+      ...new Set(apartments.map((a) => a.dong).filter(Boolean)),
+
+    ].sort((a, b) => a.localeCompare(b, "ko"));
+
+  }
+
+
+
+  async function changeDistrict(lawdCode) {
+
+    if (!DISTRICTS[lawdCode] || lawdCode === sigunguCode) return;
+
+
+
+    if (els.loading) els.loading.hidden = false;
+
+
+
+    try {
+
+      sigunguCode = lawdCode;
+
+      selectedDong = "all";
+
+      selectedApt = null;
+
+
+
+      apartments = await window.RealEstateMapData.loadApartmentsWithPrices(
+
+        supabase,
+
+        sigunguCode
+
+      );
+
+
+
+      if (els.count) {
+
+        els.count.textContent = `${apartments.length}개 단지`;
+
+      }
+
+
+
+      if (window.RealEstateMapFilter?.resetFilters) {
+
+        window.RealEstateMapFilter.resetFilters();
+
+      }
+
+
+
+      if (filterBar) {
+
+        filterBar.syncUI();
+
+        filterBar.updateApartments(apartments);
+
+      }
+
+
+
+      if (markerLayer) {
+
+        markerLayer.setFilteredApartments(apartments);
+
+      }
+
+
+
+      if (regionSelector) {
+
+        await regionSelector.changeDistrict(lawdCode, getDongList());
+
+      }
+
+
+
+      const cfg = DISTRICTS[lawdCode];
+
+      map.setCenter(new kakao.maps.LatLng(cfg.lat, cfg.lng));
+
+      map.setLevel(cfg.zoom);
+
+
+
+      refreshMapMarkers();
+
+      showEmptySidebar();
+
+      closeSearchResults();
+
+
+
+      if (window.RealEstatePriceChart?.destroyChart) {
+
+        window.RealEstatePriceChart.destroyChart();
+
+      }
+
+
+
+      if (window.RealEstateMapSidebar?.closeBottomSheet) {
+
+        window.RealEstateMapSidebar.closeBottomSheet();
+
+      }
+
+
+
+      scheduleMapRelayout();
+
+    } catch (err) {
+
+      console.error(err);
+
+      showError(err.message || "구 데이터를 불러오지 못했습니다.");
+
+    } finally {
+
+      if (els.loading) els.loading.hidden = true;
+
+    }
+
+  }
+
+
+
   async function initMapRegion() {
 
-    if (!window.RealEstateMapRegion?.GangnamRegionSelector) {
+    if (!window.RealEstateMapRegion?.DistrictRegionSelector) {
 
       console.warn("지역 모듈 로드 실패 (js/region.js)");
 
@@ -494,25 +632,29 @@
 
 
 
-    const dongList = [
-
-      ...new Set(apartments.map((a) => a.dong).filter(Boolean)),
-
-    ].sort((a, b) => a.localeCompare(b, "ko"));
+    const dongList = getDongList();
 
 
 
-    regionSelector = new window.RealEstateMapRegion.GangnamRegionSelector({
+    regionSelector = new window.RealEstateMapRegion.DistrictRegionSelector({
 
       map,
 
       dongList,
+
+      sigunguCode,
 
       onDongChange: (dong) => {
 
         selectedDong = dong;
 
         refreshMapMarkers();
+
+      },
+
+      onDistrictChange: (code) => {
+
+        changeDistrict(code);
 
       },
 
@@ -1279,7 +1421,7 @@
 
         price: String(selectedApt.medianPrice),
 
-        sigungu: SIGUNGU_CODE,
+        sigungu: sigunguCode,
 
         apt_id: selectedApt.id,
 
@@ -1295,7 +1437,11 @@
 
   function formatAddress(apt) {
 
-    const parts = ["서울 강남구"];
+    const districtName =
+
+      window.RealEstateMapRegion?.getDistrictName?.(sigunguCode) || "강남구";
+
+    const parts = [`서울 ${districtName}`];
 
     if (apt.dong) parts.push(apt.dong);
 
@@ -1340,6 +1486,18 @@
       .replace(/"/g, "&quot;");
 
   }
+
+
+
+  window.RealEstateMap = {
+
+    changeDistrict,
+
+    getSigunguCode: () => sigunguCode,
+
+    DISTRICTS,
+
+  };
 
 })();
 

@@ -888,8 +888,13 @@ body.map-page .sidebar-panel {
   white-space: nowrap;
 }
 
-.region-dropdown-btn:hover {
-  background: #eff6ff;
+.region-gu-btn {
+  color: #1f2937;
+  font-weight: 600;
+}
+
+.region-gu-wrap .region-dropdown-menu {
+  min-width: 140px;
 }
 
 .dropdown-arrow {
@@ -1197,7 +1202,7 @@ body.map-page .sidebar-panel {
 @media (max-width: 768px) {
   :root {
     --map-mobile-chrome-top: calc(var(--map-header-h) + 8px);
-    --map-mobile-region-w: 148px;
+    --map-mobile-region-w: 200px;
   }
 
   body.map-page .map-layout {

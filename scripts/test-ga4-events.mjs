@@ -58,13 +58,20 @@ await page.evaluate(() => {
 });
 await page.waitForTimeout(1500);
 
-// 2. 동 선택
+  // 구 전환
+  await page.evaluate(() => {
+    document.getElementById("guDropdownBtn")?.click();
+    document.querySelector('.gu-item[data-sigungu="11650"]')?.click();
+  });
+  await page.waitForTimeout(2500);
+
+  // 동 선택
 await page.evaluate(() => {
   document.getElementById("dongDropdownBtn")?.click();
 });
 await page.waitForTimeout(200);
 await page.evaluate(() => {
-  document.querySelector('.dong-item[data-dong="역삼동"]')?.click();
+  document.querySelector('.dong-item[data-dong="반포동"]')?.click();
 });
 await page.waitForTimeout(1500);
 
@@ -90,6 +97,8 @@ const spyNames = gaSpy.map((e) => e.name);
 const checks = {
   marker_click: spyNames.includes("marker_click") || events.includes("marker_click"),
   dong_select: spyNames.includes("dong_select") || events.includes("dong_select"),
+  district_select: spyNames.includes("district_select") || events.includes("district_select"),
+  dong_has_district: gaSpy.some((e) => e.name === "dong_select" && e.params?.district_name),
   filter_change: spyNames.includes("filter_change") || events.includes("filter_change"),
   deal_type_toggle: spyNames.includes("deal_type_toggle") || events.includes("deal_type_toggle"),
   consoleErrors: errors.length,
@@ -99,6 +108,9 @@ console.log(JSON.stringify({ checks, uniqueEvents: unique, gaSpy, totalCollect: 
 
 await browser.close();
 
-if (Object.values(checks).some((v, i) => i < 4 && v === false) || errors.length) {
+if (
+  Object.entries(checks).some(([k, v]) => k !== "consoleErrors" && v === false) ||
+  errors.length
+) {
   process.exit(1);
 }

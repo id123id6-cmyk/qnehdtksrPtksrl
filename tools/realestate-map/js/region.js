@@ -1,12 +1,14 @@
 /**
- * 강남구 동 단위 지역 선택 + 경계 폴리곤
+ * 서울 강남3구 지역 선택 + 경계 폴리곤
  */
 (function (global) {
   "use strict";
 
-  const GANGNAM_CENTER = { lat: 37.5172, lng: 127.0473 };
-  const GEOJSON_URL = "data/gangnam-dong.geojson";
-  const GU_GEOJSON_URL = "data/gangnam-gu.geojson";
+  const DISTRICTS = {
+    "11680": { name: "강남구", slug: "gangnam", lat: 37.5172, lng: 127.0473, zoom: 5 },
+    "11650": { name: "서초구", slug: "seocho", lat: 37.4837, lng: 127.0324, zoom: 5 },
+    "11710": { name: "송파구", slug: "songpa", lat: 37.5145, lng: 127.1059, zoom: 5 },
+  };
 
   const GU_POLYGON_STYLE = {
     strokeWeight: 3,
@@ -43,17 +45,43 @@
     자곡동: { lat: 37.476, lng: 127.098 },
   };
 
+  function getDistrictName(sigunguCode) {
+    return DISTRICTS[sigunguCode]?.name || sigunguCode;
+  }
+
+  function trackDistrictSelect(sigunguCode) {
+    if (typeof gtag === "undefined") return;
+    gtag("event", "district_select", {
+      district_name: getDistrictName(sigunguCode),
+      lawd_code: sigunguCode,
+    });
+  }
+
+  function trackDongSelect(dong, label, sigunguCode) {
+    if (typeof gtag === "undefined") return;
+    gtag("event", "dong_select", {
+      dong_name: dong === "all" ? "전체" : label || dong,
+      district_name: getDistrictName(sigunguCode),
+    });
+  }
+
+  function geoUrls(slug) {
+    return {
+      dong: `data/${slug}-dong.geojson`,
+      gu: `data/${slug}-gu.geojson`,
+    };
+  }
+
   function toLegalDong(emdName) {
     if (!emdName) return "";
     if (emdName === "일원본동" || emdName.startsWith("일원")) return "일원동";
+    if (emdName.endsWith("본동")) return emdName.replace(/본동$/, "동");
     return emdName.replace(/\d+동$/, "동");
   }
 
   function ringsFromGeometry(geometry) {
     if (!geometry) return [];
-    if (geometry.type === "Polygon") {
-      return [geometry.coordinates[0]];
-    }
+    if (geometry.type === "Polygon") return [geometry.coordinates[0]];
     if (geometry.type === "MultiPolygon") {
       return geometry.coordinates.map((poly) => poly[0]);
     }
@@ -91,6 +119,7 @@
       for (const ll of ring) bounds.extend(ll);
     }
   }
+
   function buildDongIndex(geojson) {
     const index = new Map();
     for (const feature of geojson.features || []) {
@@ -99,82 +128,93 @@
       if (!index.has(legal)) index.set(legal, []);
       const rings = ringsFromGeometry(feature.geometry);
       for (const ring of rings) {
-        index.get(legal).push(
-          ring.map(([lng, lat]) => ({ lat, lng }))
-        );
+        index.get(legal).push(ring.map(([lng, lat]) => ({ lat, lng })));
       }
     }
     return index;
   }
 
-  class GangnamRegionSelector {
+  class DistrictRegionSelector {
     constructor(options) {
       this.map = options.map;
       this.onDongChange = options.onDongChange || (() => {});
+      this.onDistrictChange = options.onDistrictChange || (() => {});
+      this.sigunguCode = options.sigunguCode || "11680";
       this.dongList = options.dongList || [];
       this.selectedDong = "all";
       this.dongIndex = new Map();
       this.geojson = null;
-      this.guGeojson = null;
       this.guPaths = null;
       this.guPolygon = null;
       this.dongPolygon = null;
       this.dongCircle = null;
       this.menuOpen = false;
+      this.guMenuOpen = false;
+      this._changingDistrict = false;
     }
 
     async init() {
       this.renderUI();
       this.bindEvents();
-      await Promise.all([this.loadGeoJson(), this.loadGuBoundary()]);
-      if (this.guPaths?.length) {
-        this.fitGuBounds();
-      }
+      await this.loadBoundaries();
+      this.fitGuBounds();
     }
 
-    async loadGuBoundary() {
+    getDistrictConfig() {
+      return DISTRICTS[this.sigunguCode] || DISTRICTS["11680"];
+    }
+
+    async loadBoundaries() {
+      const { slug, name } = this.getDistrictConfig();
+      const urls = geoUrls(slug);
+      await Promise.all([
+        this.loadGeoJson(urls.dong, name),
+        this.loadGuBoundary(urls.gu, name),
+      ]);
+    }
+
+    async loadGuBoundary(guUrl, districtName) {
+      this.clearGuPolygon();
       try {
-        const res = await fetch(GU_GEOJSON_URL);
+        const res = await fetch(guUrl);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        this.guGeojson = await res.json();
-        const feature = this.guGeojson.features?.[0];
-        if (!feature) throw new Error("강남구 feature 없음");
+        const guGeojson = await res.json();
+        const feature = guGeojson.features?.[0];
+        if (!feature) throw new Error(`${districtName} feature 없음`);
 
         this.guPaths = pathsFromGeoFeature(feature);
-        const coordCount = this.guPaths.reduce((n, ring) => n + ring.length, 0);
-        console.log("[강남구 경계] 폴리곤 좌표 수:", coordCount);
-
         this.guPolygon = createPolygonFromPaths(
           this.map,
           this.guPaths,
           GU_POLYGON_STYLE
         );
-        console.log("[강남구 경계] 지도에 추가 완료", {
-          source: feature.properties?.source || "gangnam-gu.geojson",
-        });
+        console.log(`[${districtName} 경계] 지도에 추가 완료`);
       } catch (err) {
-        console.warn("[강남구 경계] 로드 실패", err.message);
+        console.warn(`[${districtName} 경계] 로드 실패`, err.message);
+        this.guPaths = null;
       }
     }
 
-    async loadGeoJson() {
+    async loadGeoJson(dongUrl, districtName) {
       try {
-        const res = await fetch(GEOJSON_URL);
+        const res = await fetch(dongUrl);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         this.geojson = await res.json();
         this.dongIndex = buildDongIndex(this.geojson);
-        console.log("[지역] GeoJSON 로드", {
+        console.log(`[${districtName}] GeoJSON 로드`, {
           features: this.geojson.features?.length,
           legalDongs: [...this.dongIndex.keys()],
         });
       } catch (err) {
-        console.warn("[지역] GeoJSON 로드 실패, 원형 폴백 사용", err.message);
+        console.warn(`[${districtName}] GeoJSON 로드 실패`, err.message);
+        this.geojson = null;
+        this.dongIndex = new Map();
       }
     }
 
-    renderUI() {
-      const root = document.getElementById("region-selector");
-      if (!root) return;
+    renderDongMenu() {
+      const menu = document.getElementById("dongDropdownMenu");
+      if (!menu) return;
 
       const dongItems = [
         `<button type="button" class="dong-item active" data-dong="all">전체 보기</button>`,
@@ -184,11 +224,48 @@
         ),
       ].join("");
 
+      menu.innerHTML = dongItems;
+      menu.querySelectorAll(".dong-item").forEach((item) => {
+        item.addEventListener("click", (e) => {
+          e.stopPropagation();
+          this.selectDong(item.dataset.dong, item.textContent.trim());
+        });
+      });
+    }
+
+    updateGuLabel() {
+      const labelEl = document.getElementById("selectedGu");
+      if (labelEl) labelEl.textContent = this.getDistrictConfig().name;
+
+      document.querySelectorAll(".gu-item").forEach((el) => {
+        el.classList.toggle("active", el.dataset.sigungu === this.sigunguCode);
+      });
+    }
+
+    renderUI() {
+      const root = document.getElementById("region-selector");
+      if (!root) return;
+
+      const guItems = Object.entries(DISTRICTS)
+        .map(
+          ([code, d]) =>
+            `<button type="button" class="gu-item dong-item${code === this.sigunguCode ? " active" : ""}" data-sigungu="${code}">${d.name}</button>`
+        )
+        .join("");
+
       root.innerHTML = `
         <span class="region-pin" aria-hidden="true">📍</span>
         <span class="region-item">서울특별시</span>
         <span class="region-divider">›</span>
-        <button type="button" class="region-item region-item--gu" id="regionGuBtn" title="강남구 전체 보기">강남구</button>
+        <div class="region-dropdown-wrap region-gu-wrap">
+          <button type="button" class="region-dropdown-btn region-gu-btn" id="guDropdownBtn" aria-expanded="false">
+            <span id="selectedGu">${this.getDistrictConfig().name}</span>
+            <span class="dropdown-arrow">▼</span>
+          </button>
+          <div class="region-dropdown-menu" id="guDropdownMenu" hidden>
+            ${guItems}
+          </div>
+        </div>
         <span class="region-divider">›</span>
         <div class="region-dropdown-wrap">
           <button type="button" class="region-dropdown-btn" id="dongDropdownBtn" aria-expanded="false">
@@ -196,49 +273,73 @@
             <span class="dropdown-arrow">▼</span>
           </button>
           <div class="region-dropdown-menu" id="dongDropdownMenu" hidden>
-            ${dongItems}
           </div>
         </div>`;
+
+      this.renderDongMenu();
     }
 
     bindEvents() {
-      const btn = document.getElementById("dongDropdownBtn");
-      const menu = document.getElementById("dongDropdownMenu");
-      if (!btn || !menu) return;
+      const guBtn = document.getElementById("guDropdownBtn");
+      const guMenu = document.getElementById("guDropdownMenu");
+      const dongBtn = document.getElementById("dongDropdownBtn");
 
-      btn.addEventListener("click", (e) => {
+      guBtn?.addEventListener("click", (e) => {
         e.stopPropagation();
-        this.toggleMenu();
+        this.toggleGuMenu();
       });
 
-      menu.querySelectorAll(".dong-item").forEach((item) => {
+      guMenu?.querySelectorAll(".gu-item").forEach((item) => {
         item.addEventListener("click", (e) => {
           e.stopPropagation();
-          const dong = item.dataset.dong;
-          this.selectDong(dong, item.textContent.trim());
+          const code = item.dataset.sigungu;
+          this.selectDistrict(code);
         });
       });
 
+      dongBtn?.addEventListener("click", (e) => {
+        e.stopPropagation();
+        this.toggleDongMenu();
+      });
+
       document.addEventListener("click", (e) => {
-        if (
-          !e.target.closest("#region-selector") &&
-          !e.target.closest(".region-dropdown-menu")
-        ) {
-          this.closeMenu();
+        if (!e.target.closest("#region-selector")) {
+          this.closeAllMenus();
         }
       });
 
       window.addEventListener("resize", () => {
-        if (this.menuOpen) this.logMenuPosition();
+        if (this.menuOpen || this.guMenuOpen) this.logMenuPosition();
       });
+    }
 
-      const guBtn = document.getElementById("regionGuBtn");
-      if (guBtn) {
-        guBtn.addEventListener("click", (e) => {
-          e.stopPropagation();
-          this.resetToGuView();
-        });
+    selectDistrict(sigunguCode) {
+      if (!DISTRICTS[sigunguCode] || sigunguCode === this.sigunguCode) {
+        this.closeAllMenus();
+        return;
       }
+      this.closeAllMenus();
+      trackDistrictSelect(sigunguCode);
+      this.onDistrictChange(sigunguCode);
+    }
+
+    async changeDistrict(sigunguCode, dongList) {
+      if (!DISTRICTS[sigunguCode]) return;
+
+      this._changingDistrict = true;
+      this.sigunguCode = sigunguCode;
+      this.dongList = dongList || [];
+      this.selectedDong = "all";
+
+      const labelEl = document.getElementById("selectedDong");
+      if (labelEl) labelEl.textContent = "동 선택";
+
+      this.updateGuLabel();
+      this.renderDongMenu();
+      this.clearDongOverlay();
+      await this.loadBoundaries();
+      this.fitGuBounds();
+      this._changingDistrict = false;
     }
 
     resetToGuView() {
@@ -246,23 +347,19 @@
       const labelEl = document.getElementById("selectedDong");
       if (labelEl) labelEl.textContent = "동 선택";
 
-      document.querySelectorAll(".dong-item").forEach((el) => {
+      document.querySelectorAll("#dongDropdownMenu .dong-item").forEach((el) => {
         el.classList.toggle("active", el.dataset.dong === "all");
       });
 
       this.clearDongOverlay();
       this.fitGuBounds();
-      this.closeMenu();
+      this.closeAllMenus();
       this.onDongChange("all");
-
-      if (typeof gtag !== "undefined") {
-        gtag("event", "dong_select", {
-          dong_name: "전체",
-        });
-      }
+      trackDongSelect("all", "전체", this.sigunguCode);
     }
 
     fitGuBounds() {
+      const cfg = this.getDistrictConfig();
       if (this.guPaths?.length) {
         const bounds = new kakao.maps.LatLngBounds();
         extendBoundsFromPaths(bounds, this.guPaths);
@@ -270,20 +367,33 @@
         return;
       }
 
-      this.map.setCenter(
-        new kakao.maps.LatLng(GANGNAM_CENTER.lat, GANGNAM_CENTER.lng)
-      );
-      this.map.setLevel(6);
+      this.map.setCenter(new kakao.maps.LatLng(cfg.lat, cfg.lng));
+      this.map.setLevel(cfg.zoom);
     }
 
-    toggleMenu() {
+    toggleGuMenu() {
+      const menu = document.getElementById("guDropdownMenu");
+      const btn = document.getElementById("guDropdownBtn");
+      if (!menu) return;
+      if (this.guMenuOpen) {
+        this.closeGuMenu();
+        return;
+      }
+      this.closeDongMenu();
+      menu.hidden = false;
+      this.guMenuOpen = true;
+      if (btn) btn.setAttribute("aria-expanded", "true");
+    }
+
+    toggleDongMenu() {
       const menu = document.getElementById("dongDropdownMenu");
       const btn = document.getElementById("dongDropdownBtn");
       if (!menu) return;
       if (this.menuOpen) {
-        this.closeMenu();
+        this.closeDongMenu();
         return;
       }
+      this.closeGuMenu();
       menu.hidden = false;
       this.menuOpen = true;
       if (btn) btn.setAttribute("aria-expanded", "true");
@@ -294,20 +404,29 @@
       const button = btn || document.getElementById("dongDropdownBtn");
       const dropdown = menu || document.getElementById("dongDropdownMenu");
       if (!button || !dropdown || dropdown.hidden) return;
-
       console.log("[드롭다운] 버튼 위치:", button.getBoundingClientRect());
       console.log("[드롭다운] 메뉴 위치:", dropdown.getBoundingClientRect());
-      console.log("[드롭다운] 부모:", dropdown.parentElement?.className);
     }
 
-    closeMenu() {
+    closeGuMenu() {
+      const menu = document.getElementById("guDropdownMenu");
+      const btn = document.getElementById("guDropdownBtn");
+      if (menu) menu.hidden = true;
+      if (btn) btn.setAttribute("aria-expanded", "false");
+      this.guMenuOpen = false;
+    }
+
+    closeDongMenu() {
       const menu = document.getElementById("dongDropdownMenu");
       const btn = document.getElementById("dongDropdownBtn");
-      if (menu) {
-        menu.hidden = true;
-      }
+      if (menu) menu.hidden = true;
       if (btn) btn.setAttribute("aria-expanded", "false");
       this.menuOpen = false;
+    }
+
+    closeAllMenus() {
+      this.closeGuMenu();
+      this.closeDongMenu();
     }
 
     selectDong(dong, label) {
@@ -317,18 +436,20 @@
         labelEl.textContent = dong === "all" ? "동 선택" : label;
       }
 
-      document.querySelectorAll(".dong-item").forEach((el) => {
+      document.querySelectorAll("#dongDropdownMenu .dong-item").forEach((el) => {
         el.classList.toggle("active", el.dataset.dong === dong);
       });
 
       this.highlightDong(dong);
-      this.closeMenu();
+      this.closeAllMenus();
       this.onDongChange(dong);
+      trackDongSelect(dong, label, this.sigunguCode);
+    }
 
-      if (typeof gtag !== "undefined") {
-        gtag("event", "dong_select", {
-          dong_name: dong === "all" ? "전체" : label || dong,
-        });
+    clearGuPolygon() {
+      if (this.guPolygon) {
+        this.guPolygon.setMap(null);
+        this.guPolygon = null;
       }
     }
 
@@ -386,12 +507,18 @@
     getSelectedDong() {
       return this.selectedDong;
     }
+
+    getSigunguCode() {
+      return this.sigunguCode;
+    }
   }
 
   global.RealEstateMapRegion = {
-    GangnamRegionSelector,
+    DISTRICTS,
+    DistrictRegionSelector,
+    GangnamRegionSelector: DistrictRegionSelector,
     toLegalDong,
     DONG_CENTERS,
-    GANGNAM_CENTER,
+    getDistrictName,
   };
 })(window);
