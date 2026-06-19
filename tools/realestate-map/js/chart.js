@@ -460,10 +460,20 @@
     try {
       await refreshChart();
       renderAreaTabs();
+
+      if (typeof gtag !== "undefined") {
+        gtag("event", "deal_type_toggle", {
+          deal_type: type,
+        });
+      }
     } catch (err) {
       console.error(err);
       showChartMessage("차트를 불러오지 못했습니다", err.message);
     }
+  }
+
+  function getCurrentDealType() {
+    return currentDealType;
   }
 
   async function initChart(supabase, apartmentId, period, options) {
@@ -549,6 +559,7 @@
     updateChartPeriod,
     updateChartArea,
     updateChartDealType,
+    getCurrentDealType,
     destroyChart,
     formatAmount,
     toPyeong,

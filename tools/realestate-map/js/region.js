@@ -254,6 +254,12 @@
       this.fitGuBounds();
       this.closeMenu();
       this.onDongChange("all");
+
+      if (typeof gtag !== "undefined") {
+        gtag("event", "dong_select", {
+          dong_name: "전체",
+        });
+      }
     }
 
     fitGuBounds() {
@@ -318,6 +324,12 @@
       this.highlightDong(dong);
       this.closeMenu();
       this.onDongChange(dong);
+
+      if (typeof gtag !== "undefined") {
+        gtag("event", "dong_select", {
+          dong_name: dong === "all" ? "전체" : label || dong,
+        });
+      }
     }
 
     clearDongOverlay() {

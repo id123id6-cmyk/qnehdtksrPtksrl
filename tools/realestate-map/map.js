@@ -864,6 +864,15 @@
 
     }
 
+    if (typeof gtag !== "undefined") {
+      gtag("event", "marker_click", {
+        complex_name: apt.name || "",
+        dong: apt.dong || "",
+        deal_type:
+          window.RealEstatePriceChart?.getCurrentDealType?.() || "매매",
+      });
+    }
+
   }
 
 

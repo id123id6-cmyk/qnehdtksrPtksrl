@@ -378,6 +378,13 @@
       this.syncUI();
       this.closeAllDropdowns();
       this.emitChange();
+
+      if (typeof gtag !== "undefined") {
+        gtag("event", "filter_change", {
+          filter_type: FILTER_TYPE_NAMES[type] || type,
+          filter_value: String(value),
+        });
+      }
     }
 
     syncUI() {
