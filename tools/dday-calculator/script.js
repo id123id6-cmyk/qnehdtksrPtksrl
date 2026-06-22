@@ -12,6 +12,9 @@
   const aptName = params.get("apt") || "";
   const dong = params.get("dong") || "";
   const priceParam = parseInt(params.get("price") || "0", 10);
+  const targetParam = parseInt(params.get("target") || "0", 10);
+  const resolvedPrice =
+    priceParam > 0 ? priceParam : targetParam > 0 ? Math.round(targetParam / 10000) : 0;
   const sigungu = params.get("sigungu") || "11680";
   const aptId = params.get("apt_id") || "";
 
@@ -51,9 +54,9 @@
 
   function init() {
     bindEvents();
-    if (aptName && priceParam > 0) {
-      showAptHeader();
-      els.targetPrice.value = priceParam;
+    if (aptName && resolvedPrice > 0) {
+      showAptHeader(resolvedPrice);
+      els.targetPrice.value = resolvedPrice;
       els.aptEmpty.hidden = true;
       els.aptHeader.hidden = false;
     } else {
@@ -79,10 +82,13 @@
     });
   }
 
-  function showAptHeader() {
+  function showAptHeader(priceMan) {
+    const districtName =
+      { "11680": "강남구", "11650": "서초구", "11710": "송파구" }[sigungu] ||
+      "서울";
     els.aptTitle.textContent = aptName;
-    els.aptLocation.textContent = `강남구 ${dong}`;
-    els.aptPriceDisplay.textContent = formatAmount(priceParam);
+    els.aptLocation.textContent = dong ? `${districtName} ${dong}` : districtName;
+    els.aptPriceDisplay.textContent = formatAmount(priceMan);
   }
 
   function updateLtvLabel() {

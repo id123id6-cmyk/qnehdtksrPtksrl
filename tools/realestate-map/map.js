@@ -1479,9 +1479,39 @@
 
 
 
+  function getDdayPriceMan(apt, priceStats) {
+    const fromStats = priceStats?.price;
+    const fromApt = apt.avgPrice1Y;
+    const price = fromStats ?? fromApt;
+    return price != null && price > 0 ? price : null;
+  }
+
+  function buildDdayCalculatorUrl(apt, priceMan) {
+    const q = new URLSearchParams({
+      apt: apt.name,
+      dong: apt.dong || "",
+      price: String(priceMan),
+      target: String(priceMan * 10000),
+      sigungu: apt.sigungu_code || sigunguCode,
+      apt_id: apt.id,
+    });
+    return `../dday-calculator/?${q.toString()}`;
+  }
+
+  function renderDdayPromptHtml(apt, priceMan) {
+    if (!priceMan) return "";
+    const url = buildDdayCalculatorUrl(apt, priceMan);
+    return `
+      <div class="dday-link-box">
+        <div class="dday-link-text">💡 이 단지까지 얼마나 걸릴까?</div>
+        <a href="${url}" class="dday-link-btn">D-Day 계산기로 확인하기 →</a>
+      </div>`;
+  }
+
   function renderSidebar(apt, transactions, priceStats) {
 
     const buildYear = apt.build_year ? `${apt.build_year}년` : "-";
+    const ddayPriceMan = getDdayPriceMan(apt, priceStats);
 
     const avgLabel =
 
@@ -1571,7 +1601,7 @@
 
       </div>
 
-
+      ${renderDdayPromptHtml(apt, ddayPriceMan)}
 
       ${window.RealEstatePriceChart ? window.RealEstatePriceChart.getChartSectionHtml() : ""}
 
@@ -1683,21 +1713,10 @@
 
       }
 
-      const q = new URLSearchParams({
-
-        apt: selectedApt.name,
-
-        dong: selectedApt.dong || "",
-
-        price: String(selectedApt.medianPrice),
-
-        sigungu: sigunguCode,
-
-        apt_id: selectedApt.id,
-
-      });
-
-      window.location.href = `../dday-calculator/?${q.toString()}`;
+      window.location.href = buildDdayCalculatorUrl(
+        selectedApt,
+        selectedApt.medianPrice
+      );
 
     });
 
@@ -1774,6 +1793,8 @@
     isSearchIndexReady: () => searchIndexReady,
 
     getDistrictCache: () => districtCache,
+
+    focusApartment,
 
     DISTRICTS,
 

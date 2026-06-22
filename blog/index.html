@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <!--
 ============================================
-📌 새 글 추가 시 주의사항:
-1. blog-card에 반드시 data-category 속성 부여
-2. 카테고리 값:
-   - side-project (🛠️ 사이드 프로젝트)
-   - ai-tools (🤖 AI 도구)
-   - side-income (💰 직장인 부업)
-   - real-estate (🏢 부동산/재테크)
-3. 위치는 .blog-grid 안에 추가
+📌 새 글 추가 시:
+1. blog/post-N.html 작성 (og:image 또는 본문 img 권장)
+2. node scripts/build-blog-index.mjs 실행 → index 자동 갱신
+3. 카테고리: blog:category 메타 또는 badge 클래스
+   - side-project / ai-tools / side-income / real-estate
 ============================================
 -->
 <html lang="ko">
@@ -84,134 +81,207 @@
         </div>
 
         <div class="blog-grid" id="blog-grid">
-          <a href="post-13.html" class="blog-card fade-in" data-category="side-project">
-            <span class="blog-category-badge blog-category-badge--project">🛠️ 사이드 프로젝트</span>
-            <h3 class="blog-card-title">드디어 첫 방문자! GA4에 1이 찍힌 날 - 사이드 프로젝트 8시간의 기록</h3>
-            <p class="blog-card-summary">
-              GA4에 첫 활성 사용자 1명. GA4 설치, 서울 25개구 확장, 통합 검색, 로딩 13.5배 최적화까지 — 0이 1이 되는 순간.
-            </p>
-            <time class="blog-date" datetime="2026-06-19">2026-06-19</time>
-            <span class="blog-card-more">자세히 보기 →</span>
+          <a href="post-15.html" class="blog-card fade-in has-thumbnail" data-category="real-estate">
+          <div class="blog-card-thumbnail">
+            <img src="images/post-15-comparison.png" alt="청년미래적금 vs 청년도약계좌, 뭐가 더 이득? 갈아타기 손익 완벽정리" loading="lazy">
+          </div>
+            <div class="blog-card-content">
+              <span class="blog-category-badge blog-card-category blog-category-badge--real-estate">🏢 재테크 비교</span>
+              <h3 class="blog-card-title">청년미래적금 vs 청년도약계좌, 뭐가 더 이득? 갈아타기 손익 완벽정리</h3>
+              <p class="blog-card-excerpt">2026년 6월 출시 청년미래적금과 기존 청년도약계좌 비교. 만기 수령액, 정부 기여금, 갈아타기 손익까지 상황별 추천 한눈에 정리</p>
+              <div class="blog-card-meta">
+                <time class="blog-card-date" datetime="2026-06-22">2026-06-22</time>
+                <span class="blog-card-readtime">5분 읽기</span>
+              </div>
+            </div>
           </a>
 
-          <a href="post-12.html" class="blog-card fade-in" data-category="side-project">
-            <span class="blog-category-badge blog-category-badge--project">🛠️ 사이드 프로젝트</span>
-            <h3 class="blog-card-title">비전공자 직장인이 강남구 부동산 지도 만든 후기 (호갱노노 따라잡기 1편)</h3>
-            <p class="blog-card-summary">
-              코딩 0줄 직장인이 AI와 만든 강남구 부동산 지도. 5년치 실거래 14만건, 741개 단지, 호갱노노 스타일 UI까지 — 하루 만에 가능했던 이유와 시행착오.
-            </p>
-            <time class="blog-date" datetime="2026-06-18">2026-06-18</time>
-            <span class="blog-card-more">자세히 보기 →</span>
+          <a href="post-14.html" class="blog-card fade-in has-thumbnail" data-category="real-estate">
+          <div class="blog-card-thumbnail">
+            <img src="images/post-14-youth-savings.png" alt="청년미래적금 완벽정리: 6월 22일 출시! 놓치면 진짜 후회하는 이유" loading="lazy">
+          </div>
+            <div class="blog-card-content">
+              <span class="blog-category-badge blog-card-category blog-category-badge--real-estate">🏢 재테크</span>
+              <h3 class="blog-card-title">청년미래적금 완벽정리: 6월 22일 출시! 놓치면 진짜 후회하는 이유</h3>
+              <p class="blog-card-excerpt">2026년 6월 22일 출시 청년미래적금 가입조건, 일반형·우대형 차이, 5부제 일정, 청년도약계좌 갈아타기 방법, 은행별 금리 비교, 주의사항까지 한 번에 정리</p>
+              <div class="blog-card-meta">
+                <time class="blog-card-date" datetime="2026-06-22">2026-06-22</time>
+                <span class="blog-card-readtime">4분 읽기</span>
+              </div>
+            </div>
           </a>
 
-          <a href="post-11.html" class="blog-card fade-in" data-category="ai-tools">
-            <span class="blog-category-badge blog-category-badge--ai">🤖 AI 도구</span>
-            <h3 class="blog-card-title">ChatGPT vs Claude vs Gemini — 솔직 비교</h3>
-            <p class="blog-card-summary">
-              ChatGPT, Claude, Gemini를 직장인이 3개 다 써본 솔직 비교. 글쓰기, 코딩, 검색, 가성비까지 항목별 승자와 추천 조합을 정리했습니다.
-            </p>
-            <time class="blog-date" datetime="2026-06-17">2026-06-17</time>
-            <span class="blog-card-more">자세히 보기 →</span>
+          <a href="post-13.html" class="blog-card fade-in has-thumbnail" data-category="side-project">
+          <div class="blog-card-thumbnail">
+            <img src="images/post-13-ga4-realtime.png" alt="드디어 첫 방문자! GA4에 1이 찍힌 날" loading="lazy">
+          </div>
+            <div class="blog-card-content">
+              <span class="blog-category-badge blog-card-category blog-category-badge--project">🛠️ 사이드 프로젝트</span>
+              <h3 class="blog-card-title">드디어 첫 방문자! GA4에 1이 찍힌 날</h3>
+              <p class="blog-card-excerpt">seungbak.com 사이드 프로젝트에서 GA4에 첫 활성 사용자 1명이 찍힌 날. GA4 설치, 서울 25개구 부동산 지도 확장, 통합 검색, 초기 로딩 13.5배 최적화까지 8시간 작업 기록.</p>
+              <div class="blog-card-meta">
+                <time class="blog-card-date" datetime="2026-06-19">2026-06-19</time>
+                <span class="blog-card-readtime">3분 읽기</span>
+              </div>
+            </div>
           </a>
 
-          <a href="post-10.html" class="blog-card fade-in" data-category="ai-tools">
-            <span class="blog-category-badge blog-category-badge--ai">🤖 AI 도구</span>
-            <h3 class="blog-card-title">월급쟁이가 진짜 쓰는 AI 도구 BEST 5</h3>
-            <p class="blog-card-summary">
-              ChatGPT, Claude, Cursor, Perplexity, Gemini — 월급쟁이가 실제로 매일 쓰는 AI 도구 5가지와 상황별 활용법을 솔직하게 정리했습니다.
-            </p>
-            <time class="blog-date" datetime="2026-06-16">2026-06-16</time>
-            <span class="blog-card-more">자세히 보기 →</span>
+          <a href="post-12.html" class="blog-card fade-in has-thumbnail" data-category="side-project">
+          <div class="blog-card-thumbnail">
+            <img src="images/post-12-main-screen.png" alt="비전공자 직장인이 강남구 부동산 지도 만든 후기" loading="lazy">
+          </div>
+            <div class="blog-card-content">
+              <span class="blog-category-badge blog-card-category blog-category-badge--project">🛠️ 사이드 프로젝트</span>
+              <h3 class="blog-card-title">비전공자 직장인이 강남구 부동산 지도 만든 후기</h3>
+              <p class="blog-card-excerpt">코딩 한 줄 모르는 생산관리 직장인이 AI와 함께 강남구 부동산 지도를 만든 진짜 과정. 5년치 데이터 14만건, 741개 단지, 호갱노노 스타일 UI까지 - 하루 만에 가능했던 이유와 시행착오를 솔직하게 공유합니다.</p>
+              <div class="blog-card-meta">
+                <time class="blog-card-date" datetime="2026-06-18">2026-06-18</time>
+                <span class="blog-card-readtime">5분 읽기</span>
+              </div>
+            </div>
           </a>
 
-          <a href="post-9.html" class="blog-card fade-in" data-category="ai-tools">
-            <span class="blog-category-badge blog-category-badge--ai">🤖 AI 도구</span>
-            <h3 class="blog-card-title">Claude Opus 4.7 vs GPT-5.5, 직장인은 뭐 써야 할까? (비전공자 솔직 정리)</h3>
-            <p class="blog-card-summary">
-              Claude Opus 4.7과 GPT-5.5, 둘 다 써본 직장인의 솔직 후기. 코딩, 글쓰기, 업무 자동화 어디에 뭐가 좋은지 비전공자 눈높이로 정리했습니다.
-            </p>
-            <time class="blog-date" datetime="2026-06-15">2026-06-15</time>
-            <span class="blog-card-more">자세히 보기 →</span>
+          <a href="post-11.html" class="blog-card fade-in no-thumbnail" data-category="ai-tools">
+
+            <div class="blog-card-content">
+              <span class="blog-category-badge blog-card-category blog-category-badge--ai">🤖 AI 도구</span>
+              <h3 class="blog-card-title">ChatGPT vs Claude vs Gemini — 솔직 비교</h3>
+              <p class="blog-card-excerpt">ChatGPT, Claude, Gemini를 직장인이 3개 다 써본 솔직 비교. 글쓰기, 코딩, 검색, 가성비까지 항목별 승자와 추천 조합을 정리했습니다.</p>
+              <div class="blog-card-meta">
+                <time class="blog-card-date" datetime="2026-06-17">2026-06-17</time>
+                <span class="blog-card-readtime">3분 읽기</span>
+              </div>
+            </div>
           </a>
 
-          <a href="post-8.html" class="blog-card fade-in" data-category="side-income">
-            <span class="blog-category-badge blog-category-badge--side">💰 직장인 부업</span>
-            <h3 class="blog-card-title">막연하게 "돈 벌고 싶다"로 시작했는데, 이것저것 하다 보니 여기까지 왔습니다</h3>
-            <p class="blog-card-summary">
-              중국 구매대행, 부동산 공부, 사이트 제작까지. 작게 시작한 것들이 모여 지금의 저를 만들었습니다. 작은 시작이 망설여지는 분들께 드리는 진짜 이야기.
-            </p>
-            <time class="blog-date" datetime="2026-06-15">2026-06-15</time>
-            <span class="blog-card-more">자세히 보기 →</span>
+          <a href="post-10.html" class="blog-card fade-in no-thumbnail" data-category="ai-tools">
+
+            <div class="blog-card-content">
+              <span class="blog-category-badge blog-card-category blog-category-badge--ai">🤖 AI 도구</span>
+              <h3 class="blog-card-title">월급쟁이가 진짜 쓰는 AI 도구 BEST 5</h3>
+              <p class="blog-card-excerpt">ChatGPT, Claude, Cursor, Perplexity, Gemini — 월급쟁이가 실제로 매일 쓰는 AI 도구 5가지와 상황별 활용법을 솔직하게 정리했습니다.</p>
+              <div class="blog-card-meta">
+                <time class="blog-card-date" datetime="2026-06-16">2026-06-16</time>
+                <span class="blog-card-readtime">3분 읽기</span>
+              </div>
+            </div>
           </a>
 
-          <a href="post-7.html" class="blog-card fade-in" data-category="side-income">
-            <span class="blog-category-badge blog-category-badge--side">💰 직장인 부업</span>
-            <h3 class="blog-card-title">중국 구매대행 1년 해본 후기, 솔직히 추천 안 합니다</h3>
-            <p class="blog-card-summary">
-              직장인 부업으로 중국 구매대행을 1년간 직접 해본 솔직한 후기. 광고와 현실의 차이, 반품·파손 문제까지 가감없이 공유합니다.
-            </p>
-            <time class="blog-date" datetime="2026-06-12">2026-06-12</time>
-            <span class="blog-card-more">자세히 보기 →</span>
+          <a href="post-9.html" class="blog-card fade-in no-thumbnail" data-category="ai-tools">
+
+            <div class="blog-card-content">
+              <span class="blog-category-badge blog-card-category blog-category-badge--ai">🤖 AI 도구</span>
+              <h3 class="blog-card-title">Claude Opus 4.7 vs GPT-5.5, 직장인은 뭐 써야 할까? (비전공자 솔직 정리)</h3>
+              <p class="blog-card-excerpt">Claude Opus 4.7과 GPT-5.5, 둘 다 써본 직장인의 솔직 후기. 코딩, 글쓰기, 업무 자동화 어디에 뭐가 좋은지 비전공자 눈높이로 정리했습니다.</p>
+              <div class="blog-card-meta">
+                <time class="blog-card-date" datetime="2026-06-15">2026-06-15</time>
+                <span class="blog-card-readtime">3분 읽기</span>
+              </div>
+            </div>
           </a>
 
-          <a href="post-6.html" class="blog-card fade-in" data-category="ai-tools">
-            <span class="blog-category-badge blog-category-badge--ai">🤖 AI 도구</span>
-            <h3 class="blog-card-title">비전공자가 AI한테 질문 잘하는 5가지 팁 (프롬프트 기초)</h3>
-            <p class="blog-card-summary">
-              ChatGPT, Claude를 써도 원하는 답이 안 나온다면? 2개월간 AI를 쓰며 깨달은 프롬프트 작성 핵심 5가지.
-            </p>
-            <time class="blog-date" datetime="2026-06-12">2026-06-12</time>
-            <span class="blog-card-more">자세히 보기 →</span>
+          <a href="post-8.html" class="blog-card fade-in no-thumbnail" data-category="side-income">
+
+            <div class="blog-card-content">
+              <span class="blog-category-badge blog-card-category blog-category-badge--side">💰 직장인 부업</span>
+              <h3 class="blog-card-title">막연하게 &quot;돈 벌고 싶다&quot;로 시작했는데, 이것저것 하다 보니 여기까지 왔습니다</h3>
+              <p class="blog-card-excerpt">평범한 직장인이 막연한 마음으로 시작한 부업들. 중국 구매대행, 블로그, 사이트 제작까지. 작게 시작한 것들이 모여 지금의 저를 만들었습니다. 작은 시작이 망설여지는 분들께 드리는 진짜 이야기.</p>
+              <div class="blog-card-meta">
+                <time class="blog-card-date" datetime="2026-06-15">2026-06-15</time>
+                <span class="blog-card-readtime">3분 읽기</span>
+              </div>
+            </div>
           </a>
 
-          <a href="post-5.html" class="blog-card fade-in" data-category="ai-tools">
-            <span class="blog-category-badge blog-category-badge--ai">🤖 AI 도구</span>
-            <h3 class="blog-card-title">ChatGPT vs Claude, 직장인 부업엔 뭐가 더 좋을까? (2개월 사용 비교)</h3>
-            <p class="blog-card-summary">
-              ChatGPT와 Claude를 2개월간 둘 다 써본 솔직 비교. 글쓰기, 코딩, 아이디어 등 용도별 추천과 가성비까지.
-            </p>
-            <time class="blog-date" datetime="2026-06-10">2026-06-10</time>
-            <span class="blog-card-more">자세히 보기 →</span>
+          <a href="post-7.html" class="blog-card fade-in no-thumbnail" data-category="side-income">
+
+            <div class="blog-card-content">
+              <span class="blog-category-badge blog-card-category blog-category-badge--side">💰 직장인 부업</span>
+              <h3 class="blog-card-title">중국 구매대행 1년 해본 후기, 솔직히 추천 안 합니다</h3>
+              <p class="blog-card-excerpt">직장인 부업으로 중국 구매대행을 1년간 직접 해본 솔직한 후기. 광고에서 말하는 것과 현실의 차이, 반품과 파손 문제까지 가감없이 공유합니다.</p>
+              <div class="blog-card-meta">
+                <time class="blog-card-date" datetime="2026-06-12">2026-06-12</time>
+                <span class="blog-card-readtime">4분 읽기</span>
+              </div>
+            </div>
           </a>
 
-          <a href="post-4.html" class="blog-card fade-in" data-category="side-project">
-            <span class="blog-category-badge blog-category-badge--project">🛠️ 사이드 프로젝트</span>
-            <h3 class="blog-card-title">사이트 만들고 첫 주, 솔직히 이런 기분이었습니다</h3>
-            <p class="blog-card-summary">
-              비전공자 직장인이 AI로 사이트 만든 첫 주의 진짜 후기. 신기했던 순간, 막막했던 순간, 그리고 깨달은 것들.
-            </p>
-            <time class="blog-date" datetime="2026-06-10">2026-06-10</time>
-            <span class="blog-card-more">자세히 보기 →</span>
+          <a href="post-6.html" class="blog-card fade-in no-thumbnail" data-category="ai-tools">
+
+            <div class="blog-card-content">
+              <span class="blog-category-badge blog-card-category blog-category-badge--ai">🤖 AI 도구</span>
+              <h3 class="blog-card-title">비전공자가 AI한테 질문 잘하는 5가지 팁 (프롬프트 기초)</h3>
+              <p class="blog-card-excerpt">ChatGPT, Claude를 써도 원하는 답이 안 나오시나요? 비전공자 직장인이 2개월간 AI를 쓰면서 깨달은 프롬프트 작성 핵심 5가지를 공유합니다.</p>
+              <div class="blog-card-meta">
+                <time class="blog-card-date" datetime="2026-06-12">2026-06-12</time>
+                <span class="blog-card-readtime">3분 읽기</span>
+              </div>
+            </div>
           </a>
 
-          <a href="post-3.html" class="blog-card fade-in" data-category="ai-tools">
-            <span class="blog-category-badge blog-category-badge--ai">🤖 AI 도구</span>
-            <h3 class="blog-card-title">Cursor 2개월 써본 솔직 후기 (+ 비전공자용 사용법)</h3>
-            <p class="blog-card-summary">
-              코딩 한 줄 모르는 직장인이 Cursor를 2달간 직접 써본 진짜 후기. 장단점과 사용법까지.
-            </p>
-            <time class="blog-date" datetime="2026-06-09">2026-06-09</time>
-            <span class="blog-card-more">자세히 보기 →</span>
+          <a href="post-5.html" class="blog-card fade-in no-thumbnail" data-category="ai-tools">
+
+            <div class="blog-card-content">
+              <span class="blog-category-badge blog-card-category blog-category-badge--ai">🤖 AI 도구</span>
+              <h3 class="blog-card-title">ChatGPT vs Claude, 직장인 부업엔 뭐가 더 좋을까? (2개월 사용 비교)</h3>
+              <p class="blog-card-excerpt">직장인이 ChatGPT와 Claude를 2개월간 둘 다 써본 솔직 비교. 글쓰기, 코딩, 아이디어 등 용도별 추천과 가성비까지 정리했습니다.</p>
+              <div class="blog-card-meta">
+                <time class="blog-card-date" datetime="2026-06-10">2026-06-10</time>
+                <span class="blog-card-readtime">3분 읽기</span>
+              </div>
+            </div>
           </a>
 
-          <a href="post-2.html" class="blog-card fade-in" data-category="side-project">
-            <span class="blog-category-badge blog-category-badge--project">🛠️ 사이드 프로젝트</span>
-            <h3 class="blog-card-title">평범한 생산관리 직장인이 사이트를 만들기로 한 이유</h3>
-            <p class="blog-card-summary">
-              월급 말고도 내 이름으로 된 무언가를 만들고 싶었습니다. 두 번째 월급 만들기 프로젝트의 시작.
-            </p>
-            <time class="blog-date" datetime="2026-06-09">2026-06-09</time>
-            <span class="blog-card-more">자세히 보기 →</span>
+          <a href="post-4.html" class="blog-card fade-in no-thumbnail" data-category="side-project">
+
+            <div class="blog-card-content">
+              <span class="blog-category-badge blog-card-category blog-category-badge--project">🛠️ 사이드 프로젝트</span>
+              <h3 class="blog-card-title">사이트 만들고 첫 주, 솔직히 이런 기분이었습니다</h3>
+              <p class="blog-card-excerpt">비전공자 직장인이 AI로 사이트 만든 첫 주의 진짜 후기. 신기했던 순간, 막막했던 순간, 그리고 깨달은 것들을 솔직하게 정리했습니다.</p>
+              <div class="blog-card-meta">
+                <time class="blog-card-date" datetime="2026-06-10">2026-06-10</time>
+                <span class="blog-card-readtime">3분 읽기</span>
+              </div>
+            </div>
           </a>
 
-          <a href="post-1.html" class="blog-card fade-in" data-category="side-project">
-            <span class="blog-category-badge blog-category-badge--project">🛠️ 사이드 프로젝트</span>
-            <h3 class="blog-card-title">비전공자 직장인이 코딩 0줄로 사이트 만든 후기</h3>
-            <p class="blog-card-summary">
-              도메인 구매부터 Vercel 배포까지, 진짜 3일 만에 가능할까?
-            </p>
-            <time class="blog-date" datetime="2026-06-09">2026-06-09</time>
-            <span class="blog-card-more">자세히 보기 →</span>
+          <a href="post-3.html" class="blog-card fade-in no-thumbnail" data-category="ai-tools">
+
+            <div class="blog-card-content">
+              <span class="blog-category-badge blog-card-category blog-category-badge--ai">🤖 AI 도구</span>
+              <h3 class="blog-card-title">비전공자 직장인이 Cursor 2개월 써본 솔직 후기 (+ 비전공자용 사용법)</h3>
+              <p class="blog-card-excerpt">비전공자 직장인이 Cursor AI 코드 에디터를 2개월 직접 써본 솔직 후기. 장단점, 가격, 비전공자용 사용법 5단계까지 정리.</p>
+              <div class="blog-card-meta">
+                <time class="blog-card-date" datetime="2026-06-09">2026-06-09</time>
+                <span class="blog-card-readtime">3분 읽기</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="post-2.html" class="blog-card fade-in no-thumbnail" data-category="side-project">
+
+            <div class="blog-card-content">
+              <span class="blog-category-badge blog-card-category blog-category-badge--project">🛠️ 사이드 프로젝트</span>
+              <h3 class="blog-card-title">평범한 생산관리 직장인이 사이트를 만들기로 한 이유</h3>
+              <p class="blog-card-excerpt">비전공자 생산관리 직장인이 AI로 부업을 시작하기로 한 진짜 이유. 승박의 사이드 프로젝트 시즌 1, 첫 번째 이야기.</p>
+              <div class="blog-card-meta">
+                <time class="blog-card-date" datetime="2026-06-09">2026-06-09</time>
+                <span class="blog-card-readtime">3분 읽기</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="post-1.html" class="blog-card fade-in no-thumbnail" data-category="side-project">
+
+            <div class="blog-card-content">
+              <span class="blog-category-badge blog-card-category blog-category-badge--project">🛠️ 사이드 프로젝트</span>
+              <h3 class="blog-card-title">비전공자 직장인이 코딩 0줄로 사이트 만든 후기 (도메인부터 배포까지 진짜 3일 도전기)</h3>
+              <p class="blog-card-excerpt">생산관리 직장인이 AI 도구만으로 부동산 계산기 사이트를 만든 3일 후기. 도메인 구매, Vercel 배포, DNS 설정까지 비전공자가 직접 겪은 시행착오 전부 공개.</p>
+              <div class="blog-card-meta">
+                <time class="blog-card-date" datetime="2026-06-09">2026-06-09</time>
+                <span class="blog-card-readtime">3분 읽기</span>
+              </div>
+            </div>
           </a>
         </div>
 
