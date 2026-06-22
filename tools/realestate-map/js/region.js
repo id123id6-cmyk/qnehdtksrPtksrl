@@ -5,11 +5,17 @@
   "use strict";
 
   const DISTRICTS =
+    global.RealEstateMapDistricts?.getAllDistricts?.() ||
     global.RealEstateMapDistricts?.SEOUL_DISTRICTS || {
-      "11680": { name: "강남구", slug: "gangnam", lat: 37.5172, lng: 127.0473, zoom: 5 },
-      "11650": { name: "서초구", slug: "seocho", lat: 37.4837, lng: 127.0324, zoom: 5 },
-      "11710": { name: "송파구", slug: "songpa", lat: 37.5145, lng: 127.1059, zoom: 5 },
+      "11680": { name: "강남구", slug: "gangnam", lat: 37.5172, lng: 127.0473, zoom: 5, sido: "seoul" },
+      "11650": { name: "서초구", slug: "seocho", lat: 37.4837, lng: 127.0324, zoom: 5, sido: "seoul" },
+      "11710": { name: "송파구", slug: "songpa", lat: 37.5145, lng: 127.1059, zoom: 5, sido: "seoul" },
     };
+
+  const SIDO_OPTIONS = global.RealEstateMapDistricts?.SIDO_OPTIONS || [
+    { id: "seoul", name: "서울특별시" },
+    { id: "gyeonggi", name: "경기도" },
+  ];
 
   const GU_POLYGON_STYLE = {
     strokeWeight: 3,
@@ -47,7 +53,15 @@
   };
 
   function getDistrictName(sigunguCode) {
-    return DISTRICTS[sigunguCode]?.name || sigunguCode;
+    return (
+      global.RealEstateMapDistricts?.getDistrictName?.(sigunguCode) ||
+      DISTRICTS[sigunguCode]?.name ||
+      sigunguCode
+    );
+  }
+
+  function getSidoName(sidoId) {
+    return global.RealEstateMapDistricts?.getSidoName?.(sidoId) || sidoId;
   }
 
   function trackDistrictSelect(sigunguCode) {
@@ -66,8 +80,8 @@
     });
   }
 
-  function geoUrls(slug) {
-    return global.RealEstateMapDistricts?.getGeoUrls?.(slug) || {
+  function geoUrls(slug, sido) {
+    return global.RealEstateMapDistricts?.getGeoUrls?.(slug, sido) || {
       dong: `data/${slug}-dong.geojson`,
       gu: `data/${slug}-gu.geojson`,
     };
@@ -159,6 +173,10 @@
       this.onDistrictChange = options.onDistrictChange || (() => {});
       this.sigunguCode =
         options.sigunguCode === undefined ? "11680" : options.sigunguCode;
+      this.sidoId =
+        options.sidoId ||
+        global.RealEstateMapDistricts?.getSidoForCode?.(this.sigunguCode) ||
+        "seoul";
       this.dongList = options.dongList || [];
       this.selectedDong = "all";
       this.dongIndex = new Map();
@@ -169,6 +187,7 @@
       this.dongCircle = null;
       this.menuOpen = false;
       this.guMenuOpen = false;
+      this.sidoMenuOpen = false;
       this._changingDistrict = false;
       this._boundaryGen = 0;
     }
@@ -201,13 +220,33 @@
     }
 
     hasDistrictSelected() {
-      return Boolean(this.sigunguCode && DISTRICTS[this.sigunguCode]);
+      return Boolean(
+        this.sigunguCode &&
+          DISTRICTS[this.sigunguCode] &&
+          global.RealEstateMapDistricts?.isDistrictReady?.(DISTRICTS[this.sigunguCode]) !== false
+      );
+    }
+
+    updateSelectionHint() {
+      const guBtn = document.getElementById("guDropdownBtn");
+      const guLabel = document.getElementById("selectedGu");
+      if (!guBtn || !guLabel) return;
+
+      if (this.hasDistrictSelected()) {
+        guBtn.classList.remove("region-btn-hint");
+        guLabel.textContent = this.getDistrictConfig().name;
+        return;
+      }
+
+      guBtn.classList.add("region-btn-hint");
+      guLabel.textContent = "👆 여기서 지역을 선택해주세요";
     }
 
     async loadBoundaries() {
       const gen = ++this._boundaryGen;
-      const { slug, name } = this.getDistrictConfig();
-      const urls = geoUrls(slug);
+      const cfg = this.getDistrictConfig();
+      const { slug, name, sido } = cfg;
+      const urls = geoUrls(slug, sido);
       await Promise.all([
         this.loadGeoJson(urls.dong, name, gen),
         this.loadGuBoundary(urls.gu, name, gen),
@@ -308,8 +347,12 @@
       const root = document.getElementById("region-selector");
       if (!root) return;
 
-      const sorted = global.RealEstateMapDistricts?.getSortedDistrictEntries?.() ||
-        Object.entries(DISTRICTS);
+      const sorted =
+        global.RealEstateMapDistricts?.getSortedDistrictEntries?.(this.sidoId) ||
+        Object.entries(
+          global.RealEstateMapDistricts?.getDistrictsBySido?.(this.sidoId) ||
+            DISTRICTS
+        );
 
       const guItems = sorted
         .map(
@@ -322,9 +365,22 @@
         ? this.getDistrictConfig().name
         : "구 선택";
 
+      const sidoItems = SIDO_OPTIONS.map(
+        (s) =>
+          `<button type="button" class="sido-item gu-item dong-item${this.sidoId === s.id ? " active" : ""}" data-sido="${s.id}">${s.name}</button>`
+      ).join("");
+
       root.innerHTML = `
         <span class="region-pin" aria-hidden="true">📍</span>
-        <span class="region-item">서울특별시</span>
+        <div class="region-dropdown-wrap region-sido-wrap">
+          <button type="button" class="region-dropdown-btn region-gu-btn" id="sidoDropdownBtn" aria-expanded="false">
+            <span id="selectedSido">${getSidoName(this.sidoId)}</span>
+            <span class="dropdown-arrow">▼</span>
+          </button>
+          <div class="region-dropdown-menu" id="sidoDropdownMenu" hidden>
+            ${sidoItems}
+          </div>
+        </div>
         <span class="region-divider">›</span>
         <div class="region-dropdown-wrap region-gu-wrap">
           <button type="button" class="region-dropdown-btn region-gu-btn" id="guDropdownBtn" aria-expanded="false">
@@ -337,7 +393,7 @@
         </div>
         <span class="region-divider">›</span>
         <div class="region-dropdown-wrap">
-          <button type="button" class="region-dropdown-btn" id="dongDropdownBtn" aria-expanded="false">
+          <button type="button" class="region-dropdown-btn region-gu-btn" id="dongDropdownBtn" aria-expanded="false">
             <span id="selectedDong">동 선택</span>
             <span class="dropdown-arrow">▼</span>
           </button>
@@ -346,19 +402,34 @@
         </div>`;
 
       this.renderDongMenu();
+      this.updateSelectionHint();
     }
 
     bindEvents() {
+      const sidoBtn = document.getElementById("sidoDropdownBtn");
+      const sidoMenu = document.getElementById("sidoDropdownMenu");
       const guBtn = document.getElementById("guDropdownBtn");
       const guMenu = document.getElementById("guDropdownMenu");
       const dongBtn = document.getElementById("dongDropdownBtn");
+
+      sidoBtn?.addEventListener("click", (e) => {
+        e.stopPropagation();
+        this.toggleSidoMenu();
+      });
+
+      sidoMenu?.querySelectorAll("[data-sido]").forEach((item) => {
+        item.addEventListener("click", (e) => {
+          e.stopPropagation();
+          this.selectSido(item.dataset.sido);
+        });
+      });
 
       guBtn?.addEventListener("click", (e) => {
         e.stopPropagation();
         this.toggleGuMenu();
       });
 
-      guMenu?.querySelectorAll(".gu-item").forEach((item) => {
+      guMenu?.querySelectorAll("[data-sigungu]").forEach((item) => {
         item.addEventListener("click", (e) => {
           e.stopPropagation();
           const code = item.dataset.sigungu;
@@ -378,14 +449,37 @@
       });
 
       window.addEventListener("resize", () => {
-        if (this.menuOpen || this.guMenuOpen) this.logMenuPosition();
+        if (this.menuOpen || this.guMenuOpen || this.sidoMenuOpen) {
+          this.logMenuPosition();
+        }
       });
+    }
+
+    selectSido(sidoId) {
+      if (!SIDO_OPTIONS.some((s) => s.id === sidoId)) return;
+      if (sidoId === this.sidoId) {
+        this.closeAllMenus();
+        return;
+      }
+      this.closeAllMenus();
+      this.sidoId = sidoId;
+      this.renderUI();
+      this.bindEvents();
+      if (typeof gtag !== "undefined") {
+        gtag("event", "sido_select", { sido_name: getSidoName(sidoId) });
+      }
     }
 
     selectDistrict(sigunguCode) {
       if (!DISTRICTS[sigunguCode]) {
         this.closeAllMenus();
         return;
+      }
+      const districtSido = DISTRICTS[sigunguCode]?.sido;
+      if (districtSido && districtSido !== this.sidoId) {
+        this.sidoId = districtSido;
+        this.renderUI();
+        this.bindEvents();
       }
       if (sigunguCode === this.sigunguCode) {
         this.closeAllMenus();
@@ -397,16 +491,7 @@
     }
 
     pulseGuButton() {
-      const btn = document.getElementById("guDropdownBtn");
-      if (!btn) return;
-      btn.classList.remove("region-pulse");
-      void btn.offsetWidth;
-      btn.classList.add("region-pulse");
-      btn.addEventListener(
-        "animationend",
-        () => btn.classList.remove("region-pulse"),
-        { once: true }
-      );
+      this.updateSelectionHint();
     }
 
     async changeDistrict(sigunguCode, dongList) {
@@ -421,6 +506,7 @@
       if (labelEl) labelEl.textContent = "동 선택";
 
       this.updateGuLabel();
+      this.updateSelectionHint();
       this.renderDongMenu();
       this.clearDongOverlay();
       await this.loadBoundaries();
@@ -495,9 +581,25 @@
         this.closeGuMenu();
         return;
       }
+      this.closeSidoMenu();
       this.closeDongMenu();
       menu.hidden = false;
       this.guMenuOpen = true;
+      if (btn) btn.setAttribute("aria-expanded", "true");
+    }
+
+    toggleSidoMenu() {
+      const menu = document.getElementById("sidoDropdownMenu");
+      const btn = document.getElementById("sidoDropdownBtn");
+      if (!menu) return;
+      if (this.sidoMenuOpen) {
+        this.closeSidoMenu();
+        return;
+      }
+      this.closeGuMenu();
+      this.closeDongMenu();
+      menu.hidden = false;
+      this.sidoMenuOpen = true;
       if (btn) btn.setAttribute("aria-expanded", "true");
     }
 
@@ -510,6 +612,7 @@
         return;
       }
       this.closeGuMenu();
+      this.closeSidoMenu();
       menu.hidden = false;
       this.menuOpen = true;
       if (btn) btn.setAttribute("aria-expanded", "true");
@@ -540,7 +643,16 @@
       this.menuOpen = false;
     }
 
+    closeSidoMenu() {
+      const menu = document.getElementById("sidoDropdownMenu");
+      const btn = document.getElementById("sidoDropdownBtn");
+      if (menu) menu.hidden = true;
+      if (btn) btn.setAttribute("aria-expanded", "false");
+      this.sidoMenuOpen = false;
+    }
+
     closeAllMenus() {
+      this.closeSidoMenu();
       this.closeGuMenu();
       this.closeDongMenu();
     }

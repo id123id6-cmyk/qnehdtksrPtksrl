@@ -6,6 +6,7 @@
  */
 import { createClient } from "@supabase/supabase-js";
 import { loadEnvLocal, requireEnv } from "./load-env.mjs";
+import { geocodePrefix as gyeonggiPrefix } from "./lib/gyeonggi-districts.mjs";
 
 loadEnvLocal();
 requireEnv(["NEXT_PUBLIC_SUPABASE_URL", "SUPABASE_SECRET", "KAKAO_REST_KEY"]);
@@ -69,7 +70,11 @@ function sleep(ms) {
 }
 
 function regionPrefix(sigunguCode) {
-  return SIGUNGU_PREFIX[sigunguCode?.trim()] || "서울";
+  const code = sigunguCode?.trim();
+  if (SIGUNGU_PREFIX[code]) return SIGUNGU_PREFIX[code];
+  const gg = gyeonggiPrefix(code);
+  if (gg !== "경기도") return gg;
+  return "서울";
 }
 
 async function withRetry(fn, label) {

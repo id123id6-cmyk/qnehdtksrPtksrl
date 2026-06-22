@@ -10,7 +10,9 @@
 
 
 
-  const DISTRICTS = window.RealEstateMapDistricts?.SEOUL_DISTRICTS || {
+  const DISTRICTS =
+    window.RealEstateMapDistricts?.getAllDistricts?.() ||
+    window.RealEstateMapDistricts?.SEOUL_DISTRICTS || {
     "11680": { name: "강남구", lat: 37.5172, lng: 127.0473, zoom: 5 },
     "11650": { name: "서초구", lat: 37.4837, lng: 127.0324, zoom: 5 },
     "11710": { name: "송파구", lat: 37.5145, lng: 127.1059, zoom: 5 },
@@ -18,14 +20,23 @@
 
   const KOREA_VIEW = { lat: 36.35, lng: 127.77, zoom: 12 };
 
-  const POPULAR_REGIONS = [
-    { name: "강남구", code: "11680", available: true },
-    { name: "송파구", code: "11710", available: true },
-    { name: "마포구", code: "11440", available: true },
-    { name: "용산구", code: "11170", available: true },
-    { name: "성동구", code: "11200", available: true },
-    { name: "영등포구", code: "11560", available: true },
+  const POPULAR_REGION_CODES = [
+    ["강남구", "11680"],
+    ["송파구", "11710"],
+    ["마포구", "11440"],
+    ["분당구", "41135"],
+    ["일산서구", "41287"],
+    ["영통구", "41117"],
+    ["용산구", "11170"],
+    ["성동구", "11200"],
+    ["영등포구", "11560"],
   ];
+
+  const POPULAR_REGIONS = POPULAR_REGION_CODES.map(([name, code]) => ({
+    name,
+    code,
+    available: Boolean(DISTRICTS[code]),
+  }));
 
   let sigunguCode = null;
   let districtSelected = false;
@@ -79,8 +90,6 @@
     popularGrid: document.getElementById("popular-regions-grid"),
 
     helpBtn: document.getElementById("map-help-btn"),
-
-    regionHint: document.getElementById("region-select-hint"),
 
     filterBar: document.getElementById("map-filter-bar"),
 
@@ -667,35 +676,11 @@
 
 
   function showRegionSelectHint() {
-
-    if (!els.regionHint || districtSelected) return;
-
-    els.regionHint.classList.remove("is-hiding");
-
-    els.regionHint.hidden = false;
-
-    regionSelector?.pulseGuButton?.();
-
+    regionSelector?.updateSelectionHint?.();
   }
 
-
-
   function hideRegionSelectHint() {
-
-    if (!els.regionHint || els.regionHint.hidden) return;
-
-    els.regionHint.classList.add("is-hiding");
-
-    window.setTimeout(() => {
-
-      if (!els.regionHint) return;
-
-      els.regionHint.hidden = true;
-
-      els.regionHint.classList.remove("is-hiding");
-
-    }, 300);
-
+    regionSelector?.updateSelectionHint?.();
   }
 
 
@@ -2041,7 +2026,17 @@
 
       "강남구";
 
-    const parts = [`서울 ${districtName}`];
+    const sidoId =
+      DISTRICTS[apt.sigungu_code || sigunguCode]?.sido ||
+      window.RealEstateMapDistricts?.getSidoForCode?.(apt.sigungu_code || sigunguCode) ||
+      "seoul";
+
+    const sidoLabel =
+      sidoId === "gyeonggi"
+        ? ""
+        : `${window.RealEstateMapDistricts?.getSidoName?.(sidoId) || "서울특별시"} `;
+
+    const parts = [`${sidoLabel}${districtName}`.trim()];
 
     if (apt.dong) parts.push(apt.dong);
 
