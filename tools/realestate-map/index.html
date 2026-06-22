@@ -53,9 +53,32 @@
   <div class="bottom-sheet-backdrop" id="bottomSheetBackdrop" hidden aria-hidden="true"></div>
 
   <div class="map-layout">
-    <section class="map-panel" aria-label="강남구 아파트 지도">
+    <section class="map-panel" aria-label="부동산 실거래가 지도">
       <div id="map-loading" class="map-loading">지도 데이터를 불러오는 중...</div>
       <div id="map" role="application" aria-label="카카오맵"></div>
+
+      <div id="map-empty-state" class="map-empty-state" hidden aria-live="polite">
+        <div class="map-empty-state-card">
+          <div class="map-empty-state-icon" aria-hidden="true">🗺️</div>
+          <h2 class="map-empty-state-title">어디부터 살펴볼까요?</h2>
+          <div class="map-empty-state-stats" aria-label="서비스 통계">
+            <div class="map-empty-stat"><strong>22,000+</strong><span>단지</span></div>
+            <div class="map-empty-stat"><strong>80만+</strong><span>거래</span></div>
+            <div class="map-empty-stat"><strong>3개</strong><span>지역</span></div>
+          </div>
+          <p class="map-empty-state-guide">💡 상단에서 시·도와 시·군·구를 선택하면 지도에 표시됩니다</p>
+          <hr class="map-empty-state-divider">
+          <p class="map-empty-state-section-label">🔥 인기 지역</p>
+          <div class="map-empty-popular-grid" id="popular-regions-grid"></div>
+        </div>
+      </div>
+
+      <button type="button" class="map-help-btn" id="map-help-btn" hidden aria-label="도움말 보기">ⓘ 도움말</button>
+      <p class="region-select-hint region-hint" id="region-select-hint" hidden>
+        <span class="region-hint-arrow" aria-hidden="true">👆</span>
+        여기서 지역을 선택해주세요!
+      </p>
+
       <p class="map-status-chip" id="marker-count" aria-live="polite">단지 로딩 중...</p>
       <div class="region-selector" id="region-selector" aria-label="지역 선택"></div>
       <div class="map-filter-bar" id="map-filter-bar" aria-label="단지 필터"></div>
@@ -120,7 +143,7 @@
 
       <div class="sidebar-content" id="sidebar-content">
         <div class="sidebar-empty">
-          <p>지도에서 마커를 클릭하거나<br>단지명을 검색해 보세요.</p>
+          <p>상단에서 구를 선택하면<br>단지 정보를 확인할 수 있어요.</p>
         </div>
       </div>
 

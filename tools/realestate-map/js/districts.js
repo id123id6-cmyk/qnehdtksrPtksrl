@@ -4,6 +4,14 @@
 (function (global) {
   "use strict";
 
+  /**
+   * 구 선택 시 flyTo 줌 레벨 (카카오맵 API)
+   * - 카카오맵: 숫자가 작을수록 확대 (1=최대확대, 14=전국)
+   * - districts.zoom(5) 필드는 레거시이며 flyTo에서는 사용하지 않음
+   * - Leaflet/OSM zoom 13(구 단위)에 해당하는 카카오 레벨 ≈ 3
+   */
+  const DISTRICT_FLY_LEVEL = 3;
+
   const SEOUL_DISTRICTS = {
     "11680": { name: "강남구", slug: "gangnam", lat: 37.5172, lng: 127.0473, zoom: 5 },
     "11650": { name: "서초구", slug: "seocho", lat: 37.4837, lng: 127.0324, zoom: 5 },
@@ -51,6 +59,7 @@
 
   global.RealEstateMapDistricts = {
     SEOUL_DISTRICTS,
+    DISTRICT_FLY_LEVEL,
     getSortedDistrictEntries,
     getDistrictName,
     getGeoUrls,

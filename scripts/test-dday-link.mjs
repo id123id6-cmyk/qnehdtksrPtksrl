@@ -101,8 +101,10 @@ async function main() {
   });
 
   await page.goto(`${BASE}/tools/realestate-map/`, { waitUntil: "domcontentloaded" });
+  await page.waitForSelector("#map-empty-state:not([hidden])", { timeout: 15000 });
+  await page.click('.map-empty-popular-btn[data-code="11680"]');
   await page.waitForFunction(
-    () => parseInt(document.getElementById("marker-count")?.textContent || "0", 10) >= 500,
+    () => parseInt(document.getElementById("total-count")?.textContent || "0", 10) >= 500,
     { timeout: 25000 }
   );
 
@@ -134,8 +136,10 @@ async function main() {
   await page.locator(".hero-badges-grid").screenshot({ path: `${OUT}/badges-mobile.png` });
 
   await page.goto(`${BASE}/tools/realestate-map/`, { waitUntil: "domcontentloaded" });
+  await page.waitForSelector("#map-empty-state:not([hidden])", { timeout: 15000 });
+  await page.click('.map-empty-popular-btn[data-code="11680"]');
   await page.waitForFunction(
-    () => parseInt(document.getElementById("marker-count")?.textContent || "0", 10) >= 500,
+    () => parseInt(document.getElementById("total-count")?.textContent || "0", 10) >= 500,
     { timeout: 25000 }
   );
   await page.evaluate(() => {

@@ -157,7 +157,8 @@
       this.map = options.map;
       this.onDongChange = options.onDongChange || (() => {});
       this.onDistrictChange = options.onDistrictChange || (() => {});
-      this.sigunguCode = options.sigunguCode || "11680";
+      this.sigunguCode =
+        options.sigunguCode === undefined ? "11680" : options.sigunguCode;
       this.dongList = options.dongList || [];
       this.selectedDong = "all";
       this.dongIndex = new Map();
@@ -175,7 +176,9 @@
     init() {
       this.renderUI();
       this.bindEvents();
-      this.deferLoadBoundaries();
+      if (this.hasDistrictSelected()) {
+        this.deferLoadBoundaries();
+      }
     }
 
     deferLoadBoundaries() {
@@ -191,7 +194,14 @@
     }
 
     getDistrictConfig() {
+      if (!this.sigunguCode) {
+        return { name: "구 선택", slug: null, lat: 36.35, lng: 127.77, zoom: 12 };
+      }
       return DISTRICTS[this.sigunguCode] || DISTRICTS["11680"];
+    }
+
+    hasDistrictSelected() {
+      return Boolean(this.sigunguCode && DISTRICTS[this.sigunguCode]);
     }
 
     async loadBoundaries() {
@@ -280,10 +290,17 @@
 
     updateGuLabel() {
       const labelEl = document.getElementById("selectedGu");
-      if (labelEl) labelEl.textContent = this.getDistrictConfig().name;
+      if (labelEl) {
+        labelEl.textContent = this.hasDistrictSelected()
+          ? this.getDistrictConfig().name
+          : "구 선택";
+      }
 
       document.querySelectorAll(".gu-item").forEach((el) => {
-        el.classList.toggle("active", el.dataset.sigungu === this.sigunguCode);
+        el.classList.toggle(
+          "active",
+          this.hasDistrictSelected() && el.dataset.sigungu === this.sigunguCode
+        );
       });
     }
 
@@ -297,9 +314,13 @@
       const guItems = sorted
         .map(
           ([code, d]) =>
-            `<button type="button" class="gu-item dong-item${code === this.sigunguCode ? " active" : ""}" data-sigungu="${code}">${d.name}</button>`
+            `<button type="button" class="gu-item dong-item${this.sigunguCode === code ? " active" : ""}" data-sigungu="${code}">${d.name}</button>`
         )
         .join("");
+
+      const guLabel = this.hasDistrictSelected()
+        ? this.getDistrictConfig().name
+        : "구 선택";
 
       root.innerHTML = `
         <span class="region-pin" aria-hidden="true">📍</span>
@@ -307,7 +328,7 @@
         <span class="region-divider">›</span>
         <div class="region-dropdown-wrap region-gu-wrap">
           <button type="button" class="region-dropdown-btn region-gu-btn" id="guDropdownBtn" aria-expanded="false">
-            <span id="selectedGu">${this.getDistrictConfig().name}</span>
+            <span id="selectedGu">${guLabel}</span>
             <span class="dropdown-arrow">▼</span>
           </button>
           <div class="region-dropdown-menu" id="guDropdownMenu" hidden>
@@ -362,13 +383,30 @@
     }
 
     selectDistrict(sigunguCode) {
-      if (!DISTRICTS[sigunguCode] || sigunguCode === this.sigunguCode) {
+      if (!DISTRICTS[sigunguCode]) {
+        this.closeAllMenus();
+        return;
+      }
+      if (sigunguCode === this.sigunguCode) {
         this.closeAllMenus();
         return;
       }
       this.closeAllMenus();
       trackDistrictSelect(sigunguCode);
       this.onDistrictChange(sigunguCode);
+    }
+
+    pulseGuButton() {
+      const btn = document.getElementById("guDropdownBtn");
+      if (!btn) return;
+      btn.classList.remove("region-pulse");
+      void btn.offsetWidth;
+      btn.classList.add("region-pulse");
+      btn.addEventListener(
+        "animationend",
+        () => btn.classList.remove("region-pulse"),
+        { once: true }
+      );
     }
 
     async changeDistrict(sigunguCode, dongList) {
@@ -399,13 +437,17 @@
       });
 
       this.clearDongOverlay();
-      this.fitGuBounds();
+      this.fitGuBounds({ animate: true, duration: 1500 });
       this.closeAllMenus();
       this.onDongChange("all");
       trackDongSelect("all", "전체", this.sigunguCode);
     }
 
-    fitGuBounds() {
+    fitGuBounds(options = {}) {
+      if (options.animate) {
+        this.flyToDistrict(options);
+        return;
+      }
       const cfg = this.getDistrictConfig();
       if (this.guPaths?.length) {
         const bounds = new kakao.maps.LatLngBounds();
@@ -424,7 +466,25 @@
       }
 
       this.map.setCenter(new kakao.maps.LatLng(cfg.lat, cfg.lng));
-      this.map.setLevel(cfg.zoom);
+      this.map.setLevel(
+        global.RealEstateMapDistricts?.DISTRICT_FLY_LEVEL ?? 3
+      );
+    }
+
+    /** 구·시·군 선택 시 부드럽게 확대 */
+    flyToDistrict(options = {}) {
+      const duration = options.duration ?? 1500;
+      const cfg = this.getDistrictConfig();
+      if (!cfg?.lat || !cfg?.lng) return;
+
+      const targetLevel =
+        global.RealEstateMapDistricts?.DISTRICT_FLY_LEVEL ?? 3;
+      const center = new kakao.maps.LatLng(cfg.lat, cfg.lng);
+      const levelOpts = { animate: true, duration };
+
+      // panTo + setLevel 동시 실행 시 한국 전체 뷰 중심(산간)에서 먼저 확대되는 버그 방지
+      this.map.setCenter(center);
+      this.map.setLevel(targetLevel, levelOpts);
     }
 
     toggleGuMenu() {

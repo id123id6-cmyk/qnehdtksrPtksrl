@@ -16,7 +16,19 @@
     "11710": { name: "송파구", lat: 37.5145, lng: 127.1059, zoom: 5 },
   };
 
-  let sigunguCode = "11680";
+  const KOREA_VIEW = { lat: 36.35, lng: 127.77, zoom: 12 };
+
+  const POPULAR_REGIONS = [
+    { name: "강남구", code: "11680", available: true },
+    { name: "송파구", code: "11710", available: true },
+    { name: "마포구", code: "11440", available: true },
+    { name: "용산구", code: "11170", available: true },
+    { name: "성동구", code: "11200", available: true },
+    { name: "영등포구", code: "11560", available: true },
+  ];
+
+  let sigunguCode = null;
+  let districtSelected = false;
 
 
 
@@ -62,6 +74,20 @@
 
     ddayBtn: document.getElementById("dday-btn"),
 
+    emptyState: document.getElementById("map-empty-state"),
+
+    popularGrid: document.getElementById("popular-regions-grid"),
+
+    helpBtn: document.getElementById("map-help-btn"),
+
+    regionHint: document.getElementById("region-select-hint"),
+
+    filterBar: document.getElementById("map-filter-bar"),
+
+    legend: document.getElementById("map-legend"),
+
+    mobileFab: document.getElementById("mobileSearchFab"),
+
   };
 
 
@@ -106,17 +132,31 @@
 
       initSupabase();
 
-      const districtPromise = loadInitialDistrict();
-
       await loadKakaoSdk();
-
-      await districtPromise;
 
       initMap();
 
       setupMapUi();
 
-      initMarkerLayer();
+      bindEmptyStateUi();
+
+      if (districtSelected) {
+
+        await loadInitialDistrict();
+
+        initMarkerLayer();
+
+      } else {
+
+        showMapEmptyState();
+
+        showRegionSelectHint();
+
+        hideMapControls();
+
+        showInitialEmptySidebar();
+
+      }
 
       startSearchIndexBackground();
 
@@ -214,7 +254,9 @@
 
   function initMap() {
 
-    const cfg = DISTRICTS[sigunguCode] || DISTRICTS["11680"];
+    const cfg = districtSelected && DISTRICTS[sigunguCode]
+      ? DISTRICTS[sigunguCode]
+      : KOREA_VIEW;
 
     map = new kakao.maps.Map(els.map, {
 
@@ -304,6 +346,8 @@
 
   async function loadInitialDistrict() {
 
+    if (!sigunguCode) return;
+
     if (!window.RealEstateMapData) {
 
       throw new Error("데이터 모듈 로드 실패 (js/data.js)");
@@ -355,6 +399,7 @@
 
 
   function startAreaCategoriesBackground() {
+    if (!districtSelected || !sigunguCode) return;
     if (!window.RealEstateMapData?.attachAreaCategories) return;
 
     window.RealEstateMapData.attachAreaCategories(supabase, apartments)
@@ -470,6 +515,244 @@
     }
 
     showEmptySidebar();
+
+    if (!districtSelected) {
+
+      showInitialEmptySidebar();
+
+    }
+
+  }
+
+
+
+  function bindEmptyStateUi() {
+
+    if (els.popularGrid) {
+
+      els.popularGrid.innerHTML = POPULAR_REGIONS.map((region) => {
+
+        const note = region.note
+          ? `<small>${region.note}</small>`
+          : "";
+
+        return `<button type="button" class="map-empty-popular-btn${region.available ? "" : " is-coming-soon"}" data-code="${region.code || ""}" data-available="${region.available}" ${region.available ? "" : "disabled"}>${region.name}${note}</button>`;
+
+      }).join("");
+
+      els.popularGrid.querySelectorAll(".map-empty-popular-btn").forEach((btn) => {
+
+        btn.addEventListener("click", () => {
+
+          const code = btn.dataset.code;
+
+          const available = btn.dataset.available === "true";
+
+          if (!available || !code) {
+
+            if (typeof gtag !== "undefined") {
+
+              gtag("event", "popular_region_click", {
+
+                region_name: btn.textContent.trim(),
+
+                available: false,
+
+              });
+
+            }
+
+            return;
+
+          }
+
+          if (typeof gtag !== "undefined") {
+
+            gtag("event", "popular_region_click", {
+
+              region_name: btn.textContent.trim(),
+
+              lawd_code: code,
+
+              available: true,
+
+            });
+
+          }
+
+          selectPopularRegion(code);
+
+        });
+
+      });
+
+    }
+
+    els.helpBtn?.addEventListener("click", () => {
+
+      if (typeof gtag !== "undefined") {
+
+        gtag("event", "map_help_click", { district_selected: districtSelected });
+
+      }
+
+      showMapEmptyState({ force: true });
+
+    });
+
+  }
+
+
+
+  function selectPopularRegion(code) {
+
+    if (!DISTRICTS[code]) return;
+
+    if (regionSelector) {
+
+      regionSelector.selectDistrict(code);
+
+      return;
+
+    }
+
+    changeDistrict(code);
+
+  }
+
+
+
+  function showMapEmptyState(options = {}) {
+
+    if (!els.emptyState) return;
+
+    if (districtSelected && !options.force) return;
+
+    els.emptyState.hidden = false;
+
+    els.emptyState.classList.remove("is-hiding");
+
+    if (els.helpBtn) els.helpBtn.hidden = false;
+
+    if (typeof gtag !== "undefined" && !options.silent) {
+
+      gtag("event", "empty_state_view", { district_selected: districtSelected });
+
+    }
+
+  }
+
+
+
+  function hideMapEmptyState() {
+
+    if (!els.emptyState || els.emptyState.hidden) return;
+
+    els.emptyState.classList.add("is-hiding");
+
+    window.setTimeout(() => {
+
+      if (!els.emptyState) return;
+
+      els.emptyState.hidden = true;
+
+      els.emptyState.classList.remove("is-hiding");
+
+    }, 400);
+
+    if (els.helpBtn) els.helpBtn.hidden = false;
+
+  }
+
+
+
+  function showRegionSelectHint() {
+
+    if (!els.regionHint || districtSelected) return;
+
+    els.regionHint.classList.remove("is-hiding");
+
+    els.regionHint.hidden = false;
+
+    regionSelector?.pulseGuButton?.();
+
+  }
+
+
+
+  function hideRegionSelectHint() {
+
+    if (!els.regionHint || els.regionHint.hidden) return;
+
+    els.regionHint.classList.add("is-hiding");
+
+    window.setTimeout(() => {
+
+      if (!els.regionHint) return;
+
+      els.regionHint.hidden = true;
+
+      els.regionHint.classList.remove("is-hiding");
+
+    }, 300);
+
+  }
+
+
+
+  function hideMapControls() {
+
+    els.filterBar?.classList.add("map-controls-hidden");
+
+    els.legend?.classList.add("map-controls-hidden");
+
+    if (els.mobileFab) els.mobileFab.hidden = true;
+
+    if (els.count) els.count.classList.add("map-controls-hidden");
+
+    if (els.searchInput) els.searchInput.disabled = true;
+
+    if (els.mobileSearchInput) els.mobileSearchInput.disabled = true;
+
+  }
+
+
+
+  function showMapControls() {
+
+    els.filterBar?.classList.remove("map-controls-hidden");
+
+    els.legend?.classList.remove("map-controls-hidden");
+
+    if (els.mobileFab) els.mobileFab.hidden = false;
+
+    if (els.count) els.count.classList.remove("map-controls-hidden");
+
+    if (els.searchInput) els.searchInput.disabled = false;
+
+    if (els.mobileSearchInput) els.mobileSearchInput.disabled = false;
+
+  }
+
+
+
+  function showInitialEmptySidebar() {
+
+    selectedApt = null;
+
+    updateDdayButton();
+
+    if (!els.sidebarContent) return;
+
+    els.sidebarContent.innerHTML = `
+
+      <div class="sidebar-empty">
+
+        <p>상단에서 구를 선택하면<br>단지 정보를 확인할 수 있어요.</p>
+
+      </div>
+
+    `;
 
   }
 
@@ -605,9 +888,13 @@
 
   async function changeDistrict(lawdCode) {
 
-    if (!DISTRICTS[lawdCode] || lawdCode === sigunguCode) return;
+    if (!DISTRICTS[lawdCode]) return;
+
+    if (lawdCode === sigunguCode) return;
 
 
+
+    const isFirstSelection = !districtSelected;
 
     const cacheHit = Array.isArray(districtCache[lawdCode]);
 
@@ -637,9 +924,17 @@
 
       sigunguCode = lawdCode;
 
+      districtSelected = true;
+
       selectedDong = "all";
 
       selectedApt = null;
+
+      hideMapEmptyState();
+
+      hideRegionSelectHint();
+
+      showMapControls();
 
 
 
@@ -676,6 +971,8 @@
 
         els.count.textContent = `${apartments.length}개 단지`;
 
+        els.count.classList.remove("map-controls-hidden");
+
       }
 
 
@@ -704,21 +1001,23 @@
 
         await regionSelector.changeDistrict(lawdCode, getDongList());
 
+        regionSelector.flyToDistrict({ duration: 1500 });
+
       }
 
 
 
-      const cfg = DISTRICTS[lawdCode];
+      if (isFirstSelection && !markerLayer) {
 
-      map.setCenter(new kakao.maps.LatLng(cfg.lat, cfg.lng));
+        initMarkerLayer();
 
-      map.setLevel(cfg.zoom);
+      } else {
 
+        refreshMapMarkers();
 
+        if (markerLayer) markerLayer.endBootstrap();
 
-      refreshMapMarkers();
-
-      if (markerLayer) markerLayer.endBootstrap();
+      }
 
       showEmptySidebar();
 
@@ -1661,6 +1960,14 @@
 
     }
 
+    if (!districtSelected) {
+
+      showInitialEmptySidebar();
+
+      return;
+
+    }
+
     els.sidebarContent.innerHTML = `
 
       <div class="sidebar-empty">
@@ -1788,11 +2095,22 @@
 
     getSigunguCode: () => sigunguCode,
 
+    isDistrictSelected: () => districtSelected,
+
+    selectDistrict: (code) => changeDistrict(code),
+
     getAllApartments: () => (searchIndexReady ? searchIndex : apartments),
 
     isSearchIndexReady: () => searchIndexReady,
 
     getDistrictCache: () => districtCache,
+
+    getMapLevel: () => map?.getLevel?.() ?? null,
+
+    getMapCenter: () => {
+      const c = map?.getCenter?.();
+      return c ? { lat: c.getLat(), lng: c.getLng() } : null;
+    },
 
     focusApartment,
 
