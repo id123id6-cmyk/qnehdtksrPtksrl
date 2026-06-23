@@ -3,9 +3,10 @@
 새 블로그 글 추가 방법:
 1. 이 파일 복사 → post-N.html 저장
 2. title, meta, og, h1, 작성일, 본문 교체
-3. blog/index.html에 새 카드 추가 (최신글이 위)
+3. node scripts/build-blog-index.mjs 실행
 4. sitemap.xml에 URL 추가
 5. 이전/다음 글 post-nav 연결 업데이트
+6. (신규 글에 AdSense 없으면) node scripts/inject-adsense.mjs 실행
 ========================================
 -->
 <!DOCTYPE html>
@@ -25,6 +26,9 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-adsense-account" content="ca-pub-8232968272801958">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8232968272801958" crossorigin="anonymous"></script>
+
   <title>비전공자 직장인이 코딩 0줄로 사이트 만든 후기 (도메인부터 배포까지 진짜 3일 도전기) | 승박 블로그</title>
   <meta name="description" content="생산관리 직장인이 AI 도구만으로 부동산 계산기 사이트를 만든 3일 후기. 도메인 구매, Vercel 배포, DNS 설정까지 비전공자가 직접 겪은 시행착오 전부 공개.">
   <meta name="robots" content="index, follow">
