@@ -49,86 +49,13 @@
   </header>
 
   <div class="map-page-shell">
-    <section class="hero map-hero">
-      <div class="container hero-inner">
-        <div class="hero-badges" aria-label="서비스 특징">
-          <span class="trust-badge">✅ 2026 최신</span>
-          <span class="trust-badge">📱 모바일 최적화</span>
-          <span class="trust-badge trust-badge-accent">🆓 완전 무료</span>
-        </div>
-        <h1>
-          서울·경기 부동산 실거래가 지도<br>
-          <span class="hero-highlight">단지별 매매·전세 조회</span>
-        </h1>
-        <p class="hero-subtitle">아파트 단지별 실거래가를 지도에서 확인하고, 평형별 가격 그래프를 바로 볼 수 있습니다</p>
-        <div class="hero-cta">
-          <a href="#map-layout" class="btn-primary hero-cta-btn">지도 바로가기</a>
-          <button type="button" class="btn-outline hero-cta-btn" onclick="toggleGuide()">사용법 보기</button>
-        </div>
-      </div>
-    </section>
-
-    <section class="section guide-section" id="guide">
-      <div class="container">
-        <button
-          type="button"
-          class="guide-toggle-btn"
-          id="guide-toggle"
-          aria-expanded="false"
-          aria-controls="guide-content"
-        >
-          처음이신가요? 30초 가이드 보기
-          <span class="toggle-icon" aria-hidden="true">▼</span>
-        </button>
-
-        <div class="card guide-card" id="guide-content" hidden>
-          <h2 class="section-title">사용법 가이드</h2>
-          <p class="guide-intro">
-            아래 3단계만 따라가면 관심 지역의 아파트 실거래가를 약 30초 안에 확인할 수 있습니다.
-          </p>
-
-          <article class="guide-step">
-            <div class="guide-step-header">
-              <span class="step-badge" aria-hidden="true">1</span>
-              <h3>시·도를 선택하세요</h3>
-            </div>
-            <p class="guide-desc">
-              지도 상단에서 <strong>서울</strong> 또는 <strong>경기</strong> 시·도를 선택하세요. 선택한 지역의 단지 데이터가 지도에 불러와집니다.
-            </p>
-            <button type="button" class="guide-next-btn" data-scroll-to="#region-selector">다음 →</button>
-          </article>
-
-          <article class="guide-step">
-            <div class="guide-step-header">
-              <span class="step-badge" aria-hidden="true">2</span>
-              <h3>구·동을 선택하세요</h3>
-            </div>
-            <p class="guide-desc">
-              시·군·구와 동을 선택하거나, 빈 화면의 <strong>인기 지역</strong> 버튼을 눌러 바로 탐색할 수 있습니다.
-            </p>
-            <button type="button" class="guide-next-btn" data-scroll-to="#region-selector">다음 →</button>
-          </article>
-
-          <article class="guide-step">
-            <div class="guide-step-header">
-              <span class="step-badge" aria-hidden="true">3</span>
-              <h3>마커를 클릭하세요</h3>
-            </div>
-            <p class="guide-desc">
-              지도의 마커를 클릭하면 단지별 <strong>실거래가</strong>와 평형별 가격 그래프를 확인할 수 있습니다. D-Day 계산으로 이어갈 수도 있습니다.
-            </p>
-            <button type="button" class="guide-next-btn" data-scroll-to="#map-layout">지도 보기 →</button>
-          </article>
-        </div>
-      </div>
-    </section>
-
   <p class="map-error-banner" id="map-error" hidden></p>
 
   <div class="bottom-sheet-backdrop" id="bottomSheetBackdrop" hidden aria-hidden="true"></div>
 
   <div class="map-layout" id="map-layout">
     <section class="map-panel" aria-label="부동산 실거래가 지도">
+      <h1 class="sr-only">서울·경기 부동산 실거래가 지도</h1>
       <div id="map-loading" class="map-loading">지도 데이터를 불러오는 중...</div>
       <div id="map" role="application" aria-label="카카오맵"></div>
 
@@ -290,41 +217,6 @@
     (function () {
       var el = document.getElementById("current-year");
       if (el) el.textContent = new Date().getFullYear();
-
-      function toggleGuide() {
-        var guide = document.getElementById("guide-content");
-        var toggle = document.getElementById("guide-toggle");
-        var icon = toggle ? toggle.querySelector(".toggle-icon") : null;
-        if (!guide) return;
-
-        var isHidden = guide.hidden;
-        if (isHidden) {
-          guide.hidden = false;
-          if (toggle) toggle.setAttribute("aria-expanded", "true");
-          if (icon) icon.textContent = "▲";
-        } else {
-          guide.hidden = true;
-          if (toggle) toggle.setAttribute("aria-expanded", "false");
-          if (icon) icon.textContent = "▼";
-        }
-      }
-
-      window.toggleGuide = toggleGuide;
-
-      var guideToggle = document.getElementById("guide-toggle");
-      if (guideToggle) {
-        guideToggle.addEventListener("click", toggleGuide);
-      }
-
-      document.querySelectorAll(".guide-next-btn").forEach(function (btn) {
-        btn.addEventListener("click", function () {
-          var selector = btn.getAttribute("data-scroll-to");
-          if (!selector) return;
-          var target = document.querySelector(selector);
-          if (!target) return;
-          target.scrollIntoView({ behavior: "smooth", block: "center" });
-        });
-      });
     })();
   </script>
 </body>

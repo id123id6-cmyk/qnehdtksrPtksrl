@@ -8,6 +8,8 @@ import { join } from "node:path";
 const ROOT = join(import.meta.dirname, "..");
 const BLOG_DIR = join(ROOT, "blog");
 const INDEX_PATH = join(BLOG_DIR, "index.html");
+const HOME_INDEX_PATH = join(ROOT, "index.html");
+const HOME_PREVIEW_COUNT = 6;
 const SITE = "https://seungbak.com";
 
 const CATEGORY_MAP = {
@@ -156,6 +158,34 @@ ${thumbHtml}
           </a>`;
 }
 
+function truncateExcerpt(text, maxLen = 72) {
+  const t = String(text || "").trim();
+  if (t.length <= maxLen) return t;
+  return t.slice(0, maxLen).trimEnd() + "…";
+}
+
+function renderHomeCard(post) {
+  const thumbClass = post.thumbnail ? "has-thumbnail" : "";
+  const thumbHtml = post.thumbnail
+    ? `            <div class="blog-card-thumbnail">
+              <img src="/blog/${escapeHtml(post.thumbnail)}" alt="${escapeHtml(post.cardTitle)}" loading="lazy">
+            </div>`
+    : "";
+
+  return `          <a href="/blog/${escapeHtml(post.filename)}" class="blog-card ${thumbClass}">
+${thumbHtml}
+            <div class="blog-card-content">
+              <span class="blog-category-badge ${post.badgeClass}">${escapeHtml(post.categoryLabel)}</span>
+              <h3 class="blog-card-title">${escapeHtml(post.cardTitle)}</h3>
+              <p class="blog-card-excerpt">${escapeHtml(truncateExcerpt(post.excerpt))}</p>
+              <div class="blog-card-meta">
+                <time class="blog-card-date" datetime="${escapeHtml(post.date)}">${escapeHtml(post.dateDisplay)}</time>
+                <span class="blog-card-readtime">${post.readTime}분 읽기</span>
+              </div>
+            </div>
+          </a>`;
+}
+
 async function main() {
   const files = (await readdir(BLOG_DIR))
     .filter((f) => /^post-\d+\.html$/.test(f))
@@ -170,6 +200,12 @@ async function main() {
     const html = await readFile(join(BLOG_DIR, file), "utf8");
     posts.push(parsePostFile(file, html));
   }
+
+  posts.sort((a, b) => {
+    const dateCmp = (b.date || "").localeCompare(a.date || "");
+    if (dateCmp !== 0) return dateCmp;
+    return b.postNum - a.postNum;
+  });
 
   const cardsHtml = posts.map(renderCard).join("\n\n");
   const indexHtml = await readFile(INDEX_PATH, "utf8");
@@ -186,6 +222,27 @@ async function main() {
 
   await writeFile(INDEX_PATH, newIndex, "utf8");
 
+  const homeHtml = await readFile(HOME_INDEX_PATH, "utf8");
+  const homeCardsHtml = posts
+    .slice(0, HOME_PREVIEW_COUNT)
+    .map(renderHomeCard)
+    .join("\n\n");
+
+  const homeGridRe =
+    /(<div class="blog-grid">)\s*[\s\S]*?(\s*<\/div>\s*\n\s*<div class="blog-section-footer">)/;
+  if (!homeGridRe.test(homeHtml)) {
+    throw new Error("index.html에서 blog-preview-section blog-grid 마커를 찾을 수 없습니다.");
+  }
+
+  const newHome = homeHtml
+    .replace(homeGridRe, `$1\n${homeCardsHtml}\n$2`)
+    .replace(
+      /(<strong id="stat-posts">)\d+(<\/strong>)/,
+      `$1${posts.length}$2`
+    );
+
+  await writeFile(HOME_INDEX_PATH, newHome, "utf8");
+
   const withThumb = posts.filter((p) => p.thumbnail).length;
   console.log(
     JSON.stringify(
@@ -194,6 +251,7 @@ async function main() {
         withThumbnail: withThumb,
         withoutThumbnail: posts.length - withThumb,
         latest: posts[0]?.filename,
+        homePreview: posts.slice(0, HOME_PREVIEW_COUNT).map((p) => p.filename),
       },
       null,
       2
