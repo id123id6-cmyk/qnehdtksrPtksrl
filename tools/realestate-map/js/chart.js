@@ -1,12 +1,10 @@
 /**
- * 단지별 매매 가격 변화 차트 (Chart.js) — 평형 필터 + 5년 X축
+ * 단지별 매매 가격 변화 차트 (Chart.js) — 평형대 필터 + 5년 X축
  */
 (function (global) {
   "use strict";
 
-  const CHART_COLOR = "#2563eb";
-  const CHART_FILL = "rgba(37, 99, 235, 0.08)";
-  const SQM_PER_PYEONG = 3.3058;
+  const Pyeong = () => global.RealEstateMapPyeong;
 
   let supabaseClient = null;
   let chartInstance = null;
@@ -19,34 +17,15 @@
   let onFilterChange = null;
 
   function toPyeong(sqm) {
-    if (sqm == null || Number.isNaN(sqm)) return null;
-    return Math.round(Number(sqm) / SQM_PER_PYEONG);
-  }
-
-  function categorizeArea(areaSqm) {
-    const pyeong = Number(areaSqm) / SQM_PER_PYEONG;
-    if (pyeong < 20) return { label: "소형", range: "~20평", color: "#10b981" };
-    if (pyeong < 30) return { label: "중소형", range: "20~30평", color: "#3b82f6" };
-    if (pyeong < 40) return { label: "중형", range: "30~40평", color: "#8b5cf6" };
-    if (pyeong < 50) return { label: "중대형", range: "40~50평", color: "#f59e0b" };
-    if (pyeong < 60) return { label: "대형", range: "50~60평", color: "#ef4444" };
-    return { label: "초대형", range: "60평+", color: "#dc2626" };
+    return Pyeong()?.toPyeong(sqm) ?? null;
   }
 
   function getAvailableAreas(transactions) {
-    const areas = new Set();
-    for (const tx of transactions) {
-      const p = toPyeong(tx.exclu_use_ar);
-      if (p != null) areas.add(p);
-    }
-    return [...areas].sort((a, b) => a - b);
+    return Pyeong()?.getAvailableBands(transactions) || [];
   }
 
   function filterByArea(transactions, areaTab) {
-    if (!areaTab || areaTab === "all") return transactions;
-    const target = parseInt(areaTab, 10);
-    if (Number.isNaN(target)) return transactions;
-    return transactions.filter((t) => toPyeong(t.exclu_use_ar) === target);
+    return Pyeong()?.filterByBand(transactions, areaTab) ?? transactions;
   }
 
   function formatAmount(amountMan) {
@@ -108,15 +87,10 @@
       currentApartmentId = apartmentId;
       lastLoadedDealType = currentDealType;
 
-      const years = {};
-      for (const tx of cachedTransactions) {
-        years[tx.deal_year] = (years[tx.deal_year] || 0) + 1;
-      }
       console.log("[차트] 거래 로드", {
         apartmentId,
         총건수: cachedTransactions.length,
-        연도별: years,
-        평형종류: getAvailableAreas(cachedTransactions),
+        평형대: getAvailableAreas(cachedTransactions),
       });
     }
     return applyFilters(currentPeriod, currentArea);
@@ -128,7 +102,7 @@
     for (const tx of transactions) {
       const key = `${tx.deal_year}-${String(tx.deal_month).padStart(2, "0")}`;
       if (!buckets.has(key)) {
-        buckets.set(key, { sum: 0, count: 0 });
+        buckets.set(key, { sum: 0, count: 0, sampleExcl: tx.exclu_use_ar });
       }
       const bucket = buckets.get(key);
       bucket.sum += tx.deal_amount;
@@ -137,12 +111,15 @@
 
     return [...buckets.entries()]
       .sort(([a], [b]) => a.localeCompare(b))
-      .map(([ym, { sum, count }]) => {
+      .map(([ym, { sum, count, sampleExcl }]) => {
         const [year, month] = ym.split("-");
+        const avg = Math.round(sum / count);
         return {
           x: new Date(parseInt(year, 10), parseInt(month, 10) - 1, 1),
-          y: Math.round(sum / count),
+          y: avg,
           label: ym,
+          sampleExcl,
+          tooltip: Pyeong()?.formatChartTooltip(sampleExcl, formatAmount(avg)) || formatAmount(avg),
         };
       });
   }
@@ -215,7 +192,7 @@
     return document.getElementById("priceChart");
   }
 
-  function buildChartOptions(period) {
+  function buildChartOptions(period, monthlyData) {
     const { min, max } = getPeriodRange(period);
     const unit = period === "1y" ? "month" : period === "3y" ? "quarter" : "year";
 
@@ -233,7 +210,8 @@
               return `${d.getFullYear()}년 ${d.getMonth() + 1}월`;
             },
             label(ctx) {
-              return formatAmount(ctx.parsed.y);
+              const point = monthlyData[ctx.dataIndex];
+              return point?.tooltip || formatAmount(ctx.parsed.y);
             },
           },
         },
@@ -290,10 +268,12 @@
 
     if (!transactions.length) {
       const areaLabel =
-        currentArea === "all" ? "" : ` (${currentArea}평)`;
+        currentArea === "all"
+          ? ""
+          : ` (${Pyeong()?.getBandLabel(currentArea) || currentArea})`;
       showChartMessage(
         `선택한 조건의 거래가 없습니다${areaLabel}`,
-        "다른 평형 또는 기간을 선택해 보세요."
+        "다른 평형대 또는 기간을 선택해 보세요."
       );
       if (hint) hint.hidden = true;
       return;
@@ -316,8 +296,8 @@
           {
             label: "월평균 거래가",
             data: monthlyData,
-            borderColor: CHART_COLOR,
-            backgroundColor: CHART_FILL,
+            borderColor: "#2563eb",
+            backgroundColor: "rgba(37, 99, 235, 0.08)",
             pointRadius,
             pointHoverRadius: pointRadius + 2,
             borderWidth: 2,
@@ -327,7 +307,7 @@
           },
         ],
       },
-      options: buildChartOptions(period),
+      options: buildChartOptions(period, monthlyData),
     });
   }
 
@@ -336,23 +316,19 @@
     const tabsEl = document.getElementById("area-tabs");
     if (!selector || !tabsEl) return;
 
-    const areas = getAvailableAreas(cachedTransactions);
-
-    if (!areas.length) {
-      selector.hidden = true;
-      return;
-    }
+    const bands = getAvailableAreas(cachedTransactions);
+    const P = Pyeong();
 
     selector.hidden = false;
     const buttons = [
       `<button type="button" class="area-tab${currentArea === "all" ? " active" : ""}" data-area="all">전체</button>`,
     ];
 
-    for (const pyeong of areas) {
-      const cat = categorizeArea(pyeong * SQM_PER_PYEONG);
-      const active = String(pyeong) === String(currentArea) ? " active" : "";
+    for (const bandId of bands) {
+      const label = P?.getBandLabel(bandId) || bandId;
+      const active = bandId === currentArea ? " active" : "";
       buttons.push(
-        `<button type="button" class="area-tab${active}" data-area="${pyeong}" title="${cat.range}">${pyeong}평</button>`
+        `<button type="button" class="area-tab${active}" data-area="${bandId}">${label}</button>`
       );
     }
 
@@ -522,8 +498,8 @@
           <button type="button" class="deal-tab active" data-deal="매매">매매</button>
           <button type="button" class="deal-tab" data-deal="전세">전세</button>
         </div>
-        <div class="area-selector" id="area-selector" hidden>
-          <h4>평형 선택</h4>
+        <div class="area-selector" id="area-selector">
+          <h4>평형대 선택</h4>
           <div class="area-tabs" id="area-tabs"></div>
         </div>
         <div class="chart-controls">
@@ -560,10 +536,10 @@
     updateChartArea,
     updateChartDealType,
     getCurrentDealType,
+    getCurrentArea: () => currentArea,
     destroyChart,
     formatAmount,
     toPyeong,
-    categorizeArea,
     getAvailableAreas,
     filterByArea,
   };

@@ -1,0 +1,92 @@
+{
+  "generatedAt": "2026-06-23T09:35:10.028Z",
+  "totalApartments": 14923,
+  "apartmentsWithDominantPyeong": 6044,
+  "labelDistribution": [
+    {
+      "label": "34평",
+      "count": 2462,
+      "rate": "40.7%"
+    },
+    {
+      "label": "24평",
+      "count": 1293,
+      "rate": "21.4%"
+    },
+    {
+      "label": "50평",
+      "count": 469,
+      "rate": "7.8%"
+    },
+    {
+      "label": "29평",
+      "count": 445,
+      "rate": "7.4%"
+    },
+    {
+      "label": "13평",
+      "count": 333,
+      "rate": "5.5%"
+    },
+    {
+      "label": "60평",
+      "count": 282,
+      "rate": "4.7%"
+    },
+    {
+      "label": "20평",
+      "count": 270,
+      "rate": "4.5%"
+    },
+    {
+      "label": "40평",
+      "count": 241,
+      "rate": "4.0%"
+    },
+    {
+      "label": "16평",
+      "count": 136,
+      "rate": "2.3%"
+    },
+    {
+      "label": "18평",
+      "count": 113,
+      "rate": "1.9%"
+    }
+  ],
+  "bandDistribution": [
+    {
+      "band": "band30",
+      "label": "30평대",
+      "count": 2462,
+      "rate": "40.7%"
+    },
+    {
+      "band": "band20",
+      "label": "20평대",
+      "count": 2008,
+      "rate": "33.2%"
+    },
+    {
+      "band": "band50",
+      "label": "50평대+",
+      "count": 751,
+      "rate": "12.4%"
+    },
+    {
+      "band": "band10",
+      "label": "10평대",
+      "count": 582,
+      "rate": "9.6%"
+    },
+    {
+      "band": "band40",
+      "label": "40평대",
+      "count": 241,
+      "rate": "4.0%"
+    }
+  ],
+  "nonStandardCount": 0,
+  "nonStandardRate": "0.00%",
+  "nonStandardSamples": []
+}

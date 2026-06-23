@@ -125,6 +125,10 @@
 
   let selectedApt = null;
 
+  let sidebarTxFilter = "all";
+
+  let cachedSidebarTransactions = [];
+
   let refreshMarkersTimer = null;
 
   let uiBound = false;
@@ -927,6 +931,18 @@
 
         apartments = districtCache[lawdCode];
 
+        if (
+          apartments.some((a) => a.jeonseCount == null) &&
+          window.RealEstateMapData?.attachRentCounts
+        ) {
+          window.RealEstateMapData.attachRentCounts(supabase, apartments)
+            .then(() => {
+              districtCache[lawdCode] = apartments;
+              refreshMapMarkers();
+            })
+            .catch((err) => console.warn("[전월세] 카운트 로드 실패:", err));
+        }
+
       } else {
 
         apartments = await window.RealEstateMapData.loadDistrictForMap(
@@ -986,7 +1002,7 @@
 
         await regionSelector.changeDistrict(lawdCode, getDongList());
 
-        regionSelector.flyToDistrict({ duration: 1500 });
+        regionSelector.fitGuBounds();
 
       }
 
@@ -1506,7 +1522,61 @@
 
 
 
+  function resolveApartmentRecord(apt) {
+
+    if (!apt?.id) return apt;
+
+    return (
+
+      apartments.find((a) => a.id === apt.id) ||
+
+      districtCache[apt.sigungu_code || sigunguCode]?.find((a) => a.id === apt.id) ||
+
+      apt
+
+    );
+
+  }
+
+
+
+  function enrichApartmentFromSelection(apt, priceStats) {
+
+    if (!apt) return apt;
+
+    if (
+
+      (apt.avgPrice1Y == null || apt.avgPrice1Y <= 0) &&
+
+      priceStats?.price != null &&
+
+      priceStats.price > 0
+
+    ) {
+
+      apt.avgPrice1Y = priceStats.price;
+
+      if (priceStats.count != null) apt.tradeCount1Y = priceStats.count;
+
+    }
+
+    return apt;
+
+  }
+
+
+
+  function syncApartmentToMarkerLayer(apt) {
+
+    if (!markerLayer?.updateApartment || !apt?.id) return;
+
+    markerLayer.updateApartment(apt);
+
+  }
+
   async function selectApartment(apt) {
+
+    apt = resolveApartmentRecord(apt);
 
     if (window.RealEstateMapSidebar?.isMobile?.()) {
 
@@ -1515,6 +1585,8 @@
     }
 
     if (markerLayer) {
+
+      markerLayer.setSelectedApartment(apt.id);
 
       markerLayer.panToApartment(apt);
 
@@ -1528,9 +1600,17 @@
 
 
 
+    sidebarTxFilter = "all";
+
     const transactions = await fetchRecentTransactions(apt.id);
 
+    cachedSidebarTransactions = transactions;
+
     const priceStats = await fetchPriceStats(apt.id);
+
+    enrichApartmentFromSelection(apt, priceStats);
+
+    syncApartmentToMarkerLayer(apt);
 
     selectedApt = {
 
@@ -1544,7 +1624,9 @@
 
     updateDdayButton();
 
-    renderSidebar(apt, transactions, priceStats);
+    renderSidebar(apt, filterSidebarTransactions(transactions, sidebarTxFilter), priceStats);
+
+    bindSidebarInteractions(apt);
 
     if (window.RealEstatePriceChart) {
 
@@ -1552,7 +1634,13 @@
 
         onFilterChange: (filtered) => {
 
-          updateRecentTransactionsTable(filtered.slice(0, 3));
+          const area = window.RealEstatePriceChart?.getCurrentArea?.();
+
+          if (area && area !== "all") {
+
+            updateRecentTransactionsTable(filtered.slice(0, 3));
+
+          }
 
         },
 
@@ -1666,14 +1754,14 @@
       .from("transactions")
 
       .select(
-        "deal_amount, deal_year, deal_month, deal_day, exclu_use_ar, floor, deal_type, rent_deposit, monthly_rent"
+        "deal_amount, deal_year, deal_month, deal_day, deal_date, exclu_use_ar, floor, deal_type, rent_deposit, monthly_rent"
       )
 
       .eq("apartment_id", apartmentId)
 
       .order("deal_date", { ascending: false })
 
-      .limit(3);
+      .limit(20);
 
 
 
@@ -1691,17 +1779,123 @@
 
 
 
-  function formatAreaCell(tx) {
+  function formatAreaCells(tx) {
+    if (!tx.exclu_use_ar) return { pyeong: "-", excl: "-" };
+    const P = window.RealEstateMapPyeong;
+    if (P?.formatTableCells) return P.formatTableCells(tx.exclu_use_ar);
+    return { pyeong: "-", excl: `${tx.exclu_use_ar}㎡` };
+  }
 
-    if (!tx.exclu_use_ar) return "-";
+  function getAptPyeongSummary(apt, transactions) {
+    const P = window.RealEstateMapPyeong;
+    if (!P) return null;
+    const dom = P.dominantFromTransactions(transactions);
+    if (dom?.exclSqm != null) return P.formatDetail(dom.exclSqm);
+    if (apt.dominantPyeong != null && transactions.length) {
+      const sample = transactions.find(
+        (t) => P.toPyeong(t.exclu_use_ar) === apt.dominantPyeong
+      );
+      if (sample?.exclu_use_ar) return P.formatDetail(sample.exclu_use_ar);
+      return `${apt.dominantPyeong}평`;
+    }
+    return null;
+  }
 
-    const pyeong = window.RealEstatePriceChart?.toPyeong(tx.exclu_use_ar);
 
-    return pyeong
 
-      ? `${tx.exclu_use_ar}㎡ (${pyeong}평)`
+  function formatTxDate(tx) {
 
-      : `${tx.exclu_use_ar}㎡`;
+    if (tx.deal_date) {
+
+      const [y, m, d] = tx.deal_date.slice(0, 10).split("-");
+
+      return `${y}.${m}.${d}`;
+
+    }
+
+    return `${tx.deal_year}.${String(tx.deal_month).padStart(2, "0")}.${String(tx.deal_day).padStart(2, "0")}`;
+
+  }
+
+
+
+  function formatTxAmountText(tx) {
+
+    if (tx.deal_type === "월세") {
+
+      const deposit = tx.rent_deposit ?? tx.deal_amount;
+
+      const rent = tx.monthly_rent;
+
+      const depositStr =
+
+        deposit != null ? formatAmount(deposit) : "보증금 정보 없음";
+
+      const rentStr =
+
+        rent != null ? `${rent.toLocaleString()}만` : "월세 정보 없음";
+
+      return `보증금 ${depositStr} / 월 ${rentStr}`;
+
+    }
+
+    if (tx.deal_type === "전세") {
+
+      const deposit = tx.deal_amount ?? tx.rent_deposit;
+
+      return deposit != null ? `보증금 ${formatAmount(deposit)}` : "-";
+
+    }
+
+    return formatAmount(tx.deal_amount);
+
+  }
+
+
+
+  function dealTypeBadgeHtml(dealType) {
+
+    const type = dealType || "기타";
+
+    let cls = "tx-badge tx-badge-other";
+
+    if (type === "매매") cls = "tx-badge tx-badge-sale";
+
+    else if (type === "전세") cls = "tx-badge tx-badge-jeonse";
+
+    else if (type === "월세") cls = "tx-badge tx-badge-wolse";
+
+    return `<span class="${cls}">${escapeHtml(type)}</span>`;
+
+  }
+
+
+
+  function filterSidebarTransactions(transactions, filter) {
+
+    if (filter === "all") return transactions.slice(0, 3);
+
+    return transactions.filter((tx) => tx.deal_type === filter).slice(0, 3);
+
+  }
+
+
+
+  function buildTransactionRowHtml(tx) {
+
+    const areaCells = formatAreaCells(tx);
+
+    const floorText = tx.floor != null ? `${tx.floor}층` : "-";
+
+    return `
+          <tr>
+            <td>${formatTxDate(tx)}</td>
+            <td>${dealTypeBadgeHtml(tx.deal_type)}</td>
+            <td>${areaCells.pyeong}</td>
+            <td>${areaCells.excl}</td>
+            <td>${floorText}</td>
+            <td class="amount">${formatTxAmountText(tx)}</td>
+          </tr>`;
 
   }
 
@@ -1719,7 +1913,7 @@
 
       tbody.innerHTML =
 
-        '<tr><td colspan="4" class="transactions-empty">해당 평형의 최근 거래가 없습니다.</td></tr>';
+        '<tr><td colspan="6" class="transactions-empty">해당 유형의 최근 거래가 없습니다.</td></tr>';
 
       return;
 
@@ -1727,37 +1921,59 @@
 
 
 
-    tbody.innerHTML = transactions
-      .map((tx) => {
-        const dateText = `${tx.deal_year}.${String(tx.deal_month).padStart(
-          2,
-          "0"
-        )}.${String(tx.deal_day).padStart(2, "0")}`;
-        const areaText = formatAreaCell(tx);
-        const floorText = tx.floor != null ? `${tx.floor}층` : "-";
+    tbody.innerHTML = transactions.map((tx) => buildTransactionRowHtml(tx)).join("");
 
-        let amountText;
-        if (tx.deal_type === "월세") {
-          const deposit = tx.rent_deposit ?? tx.deal_amount;
-          const rent = tx.monthly_rent;
-          const depositStr =
-            deposit != null ? formatAmount(deposit) : "보증금 정보 없음";
-          const rentStr =
-            rent != null ? `${rent.toLocaleString()}만` : "월세 정보 없음";
-          amountText = `보증금 ${depositStr} / 월 ${rentStr}`;
-        } else {
-          amountText = formatAmount(tx.deal_amount);
+  }
+
+
+
+  function bindSidebarInteractions(apt) {
+
+    const banner = document.getElementById("sidebar-selected-banner");
+
+    if (banner) {
+
+      const flyToApt = () => focusApartment(apt);
+
+      banner.addEventListener("click", flyToApt);
+
+      banner.addEventListener("keydown", (e) => {
+
+        if (e.key === "Enter" || e.key === " ") {
+
+          e.preventDefault();
+
+          flyToApt();
+
         }
 
-        return `
-          <tr>
-            <td>${dateText}</td>
-            <td>${areaText}</td>
-            <td>${floorText}</td>
-            <td class="amount">${amountText}</td>
-          </tr>`;
-      })
-      .join("");
+      });
+
+    }
+
+
+
+    els.sidebarContent.querySelectorAll("[data-sidebar-tx-filter]").forEach((btn) => {
+
+      btn.addEventListener("click", () => {
+
+        sidebarTxFilter = btn.dataset.sidebarTxFilter || "all";
+
+        els.sidebarContent.querySelectorAll("[data-sidebar-tx-filter]").forEach((b) => {
+
+          b.classList.toggle("active", b === btn);
+
+        });
+
+        updateRecentTransactionsTable(
+
+          filterSidebarTransactions(cachedSidebarTransactions, sidebarTxFilter)
+
+        );
+
+      });
+
+    });
 
   }
 
@@ -1819,41 +2035,41 @@
 
 
 
+    const pyeongSummary = getAptPyeongSummary(apt, cachedSidebarTransactions.length ? cachedSidebarTransactions : transactions);
+
     const txRows = transactions.length
 
-      ? transactions
-
-          .map(
-
-            (tx) => `
-
-          <tr>
-
-            <td>${tx.deal_year}.${String(tx.deal_month).padStart(2, "0")}.${String(tx.deal_day).padStart(2, "0")}</td>
-
-            <td>${formatAreaCell(tx)}</td>
-
-            <td>${tx.floor != null ? `${tx.floor}층` : "-"}</td>
-
-            <td class="amount">${formatAmount(tx.deal_amount)}</td>
-
-          </tr>`
-
-          )
-
-          .join("")
+      ? transactions.map((tx) => buildTransactionRowHtml(tx)).join("")
 
       : "";
 
 
 
+    const txFilterActive = (value) =>
+
+      sidebarTxFilter === value ? " active" : "";
+
+
+
     els.sidebarContent.innerHTML = `
+
+      <div class="sidebar-selected-banner" id="sidebar-selected-banner" role="button" tabindex="0" title="지도에서 이 단지로 이동">
+
+        <span class="sidebar-selected-icon" aria-hidden="true">📍</span>
+
+        <span class="sidebar-selected-label">현재 선택:</span>
+
+        <strong class="sidebar-selected-name">${escapeHtml(apt.name)}</strong>
+
+      </div>
 
       <div class="apt-info-card">
 
         <h2>${escapeHtml(apt.name)}</h2>
 
         <p class="apt-address">${escapeHtml(formatAddress(apt))}</p>
+
+        ${pyeongSummary ? `<p class="apt-pyeong-summary">${escapeHtml(pyeongSummary)}</p>` : ""}
 
         <div class="apt-meta-grid">
 
@@ -1893,7 +2109,21 @@
 
       <section class="transactions-section">
 
-        <h3>최근 실거래 3건</h3>
+        <div class="transactions-section-head">
+
+          <h3>최근 거래 3건</h3>
+
+          <div class="sidebar-tx-filter" role="tablist" aria-label="거래 유형 필터">
+
+            <button type="button" class="sidebar-tx-filter-btn${txFilterActive("all")}" data-sidebar-tx-filter="all" role="tab">전체</button>
+
+            <button type="button" class="sidebar-tx-filter-btn${txFilterActive("매매")}" data-sidebar-tx-filter="매매" role="tab">매매</button>
+
+            <button type="button" class="sidebar-tx-filter-btn${txFilterActive("전세")}" data-sidebar-tx-filter="전세" role="tab">전세</button>
+
+          </div>
+
+        </div>
 
         ${
 
@@ -1907,7 +2137,11 @@
 
                     <th>거래일</th>
 
-                    <th>면적</th>
+                    <th>유형</th>
+
+                    <th>평형</th>
+
+                    <th>전용면적</th>
 
                     <th>층</th>
 
@@ -1921,7 +2155,7 @@
 
               </table>`
 
-            : '<p class="transactions-empty">등록된 실거래 내역이 없습니다.</p>'
+            : '<p class="transactions-empty">등록된 거래 내역이 없습니다.</p>'
 
         }
 
@@ -1936,6 +2170,16 @@
   function showEmptySidebar() {
 
     selectedApt = null;
+
+    sidebarTxFilter = "all";
+
+    cachedSidebarTransactions = [];
+
+    if (markerLayer?.setSelectedApartment) {
+
+      markerLayer.setSelectedApartment(null);
+
+    }
 
     updateDdayButton();
 
@@ -2092,7 +2336,10 @@
 
     isDistrictSelected: () => districtSelected,
 
-    selectDistrict: (code) => changeDistrict(code),
+    selectDistrict: (code) => {
+      if (regionSelector) regionSelector.selectDistrict(code);
+      else changeDistrict(code);
+    },
 
     getAllApartments: () => (searchIndexReady ? searchIndex : apartments),
 

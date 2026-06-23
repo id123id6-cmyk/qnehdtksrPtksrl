@@ -1,0 +1,1337 @@
+{
+  "regions": [
+    {
+      "slug": "gangnam",
+      "code": "11680",
+      "name": "강남구",
+      "zooms": [
+        {
+          "targetZoom": 4,
+          "actualZoom": 4,
+          "level": 4,
+          "totalApts": 13408,
+          "filteredCount": 13408,
+          "domPills": 42,
+          "domDots": 0,
+          "domClusters": 0,
+          "noTradePills": 9,
+          "pyeongOnMarker": true,
+          "screenshot": "gangnam-zoom4.png",
+          "ok": true
+        },
+        {
+          "targetZoom": 7,
+          "actualZoom": 7,
+          "level": 7,
+          "totalApts": 13408,
+          "filteredCount": 13408,
+          "domPills": 0,
+          "domDots": 740,
+          "domClusters": 0,
+          "noTradePills": 0,
+          "pyeongOnMarker": false,
+          "screenshot": "gangnam-zoom7.png",
+          "ok": true
+        },
+        {
+          "targetZoom": 9,
+          "actualZoom": 9,
+          "level": 9,
+          "totalApts": 13408,
+          "filteredCount": 13408,
+          "domPills": 0,
+          "domDots": 740,
+          "domClusters": 0,
+          "noTradePills": 0,
+          "pyeongOnMarker": false,
+          "screenshot": "gangnam-zoom9.png",
+          "ok": true
+        },
+        {
+          "targetZoom": 13,
+          "actualZoom": 13,
+          "level": 13,
+          "totalApts": 13408,
+          "filteredCount": 13408,
+          "domPills": 0,
+          "domDots": 0,
+          "domClusters": 0,
+          "noTradePills": 0,
+          "pyeongOnMarker": false,
+          "screenshot": "gangnam-zoom13.png",
+          "ok": false
+        }
+      ],
+      "filter": [
+        {
+          "filter": "전체",
+          "value": "all",
+          "filteredCount": 13408,
+          "domMarkers": 163
+        },
+        {
+          "filter": "10평대",
+          "value": "band10",
+          "filteredCount": 0,
+          "domMarkers": 17
+        },
+        {
+          "filter": "20평대",
+          "value": "band20",
+          "filteredCount": 0,
+          "domMarkers": 37
+        },
+        {
+          "filter": "30평대",
+          "value": "band30",
+          "filteredCount": 0,
+          "domMarkers": 65
+        },
+        {
+          "filter": "40평대",
+          "value": "band40",
+          "filteredCount": 0,
+          "domMarkers": 16
+        },
+        {
+          "filter": "50평대+",
+          "value": "band50",
+          "filteredCount": 0,
+          "domMarkers": 59
+        }
+      ],
+      "errors": [],
+      "sample": {
+        "sampleMarkerText": "50평 28.8억",
+        "sampleApt": null
+      }
+    },
+    {
+      "slug": "songpa",
+      "code": "11710",
+      "name": "송파구",
+      "zooms": [
+        {
+          "targetZoom": 4,
+          "actualZoom": 4,
+          "level": 4,
+          "totalApts": 13408,
+          "filteredCount": 13408,
+          "domPills": 70,
+          "domDots": 0,
+          "domClusters": 0,
+          "noTradePills": 29,
+          "pyeongOnMarker": true,
+          "screenshot": "songpa-zoom4.png",
+          "ok": true
+        },
+        {
+          "targetZoom": 7,
+          "actualZoom": 7,
+          "level": 7,
+          "totalApts": 13408,
+          "filteredCount": 13408,
+          "domPills": 0,
+          "domDots": 428,
+          "domClusters": 0,
+          "noTradePills": 0,
+          "pyeongOnMarker": false,
+          "screenshot": "songpa-zoom7.png",
+          "ok": true
+        },
+        {
+          "targetZoom": 9,
+          "actualZoom": 9,
+          "level": 9,
+          "totalApts": 13408,
+          "filteredCount": 13408,
+          "domPills": 0,
+          "domDots": 428,
+          "domClusters": 0,
+          "noTradePills": 0,
+          "pyeongOnMarker": false,
+          "screenshot": "songpa-zoom9.png",
+          "ok": true
+        },
+        {
+          "targetZoom": 13,
+          "actualZoom": 13,
+          "level": 13,
+          "totalApts": 13408,
+          "filteredCount": 13408,
+          "domPills": 0,
+          "domDots": 0,
+          "domClusters": 0,
+          "noTradePills": 0,
+          "pyeongOnMarker": false,
+          "screenshot": "songpa-zoom13.png",
+          "ok": false
+        }
+      ],
+      "filter": [
+        {
+          "filter": "전체",
+          "value": "all",
+          "filteredCount": 13408,
+          "domMarkers": 243
+        },
+        {
+          "filter": "10평대",
+          "value": "band10",
+          "filteredCount": 0,
+          "domMarkers": 22
+        },
+        {
+          "filter": "20평대",
+          "value": "band20",
+          "filteredCount": 0,
+          "domMarkers": 66
+        },
+        {
+          "filter": "30평대",
+          "value": "band30",
+          "filteredCount": 0,
+          "domMarkers": 92
+        },
+        {
+          "filter": "40평대",
+          "value": "band40",
+          "filteredCount": 0,
+          "domMarkers": 17
+        },
+        {
+          "filter": "50평대+",
+          "value": "band50",
+          "filteredCount": 0,
+          "domMarkers": 74
+        }
+      ],
+      "errors": [],
+      "sample": {
+        "sampleMarkerText": "34평 12.1억",
+        "sampleApt": null
+      }
+    },
+    {
+      "slug": "mapo",
+      "code": "11440",
+      "name": "마포구",
+      "zooms": [
+        {
+          "targetZoom": 4,
+          "actualZoom": 4,
+          "level": 4,
+          "totalApts": 13408,
+          "filteredCount": 13408,
+          "domPills": 61,
+          "domDots": 0,
+          "domClusters": 0,
+          "noTradePills": 24,
+          "pyeongOnMarker": true,
+          "screenshot": "mapo-zoom4.png",
+          "ok": true
+        },
+        {
+          "targetZoom": 7,
+          "actualZoom": 7,
+          "level": 7,
+          "totalApts": 13408,
+          "filteredCount": 13408,
+          "domPills": 0,
+          "domDots": 296,
+          "domClusters": 0,
+          "noTradePills": 0,
+          "pyeongOnMarker": false,
+          "screenshot": "mapo-zoom7.png",
+          "ok": true
+        },
+        {
+          "targetZoom": 9,
+          "actualZoom": 9,
+          "level": 9,
+          "totalApts": 13408,
+          "filteredCount": 13408,
+          "domPills": 0,
+          "domDots": 296,
+          "domClusters": 0,
+          "noTradePills": 0,
+          "pyeongOnMarker": false,
+          "screenshot": "mapo-zoom9.png",
+          "ok": true
+        },
+        {
+          "targetZoom": 13,
+          "actualZoom": 13,
+          "level": 13,
+          "totalApts": 13408,
+          "filteredCount": 13408,
+          "domPills": 0,
+          "domDots": 0,
+          "domClusters": 0,
+          "noTradePills": 0,
+          "pyeongOnMarker": false,
+          "screenshot": "mapo-zoom13.png",
+          "ok": false
+        }
+      ],
+      "filter": [
+        {
+          "filter": "전체",
+          "value": "all",
+          "filteredCount": 13408,
+          "domMarkers": 166
+        },
+        {
+          "filter": "10평대",
+          "value": "band10",
+          "filteredCount": 0,
+          "domMarkers": 6
+        },
+        {
+          "filter": "20평대",
+          "value": "band20",
+          "filteredCount": 0,
+          "domMarkers": 69
+        },
+        {
+          "filter": "30평대",
+          "value": "band30",
+          "filteredCount": 0,
+          "domMarkers": 75
+        },
+        {
+          "filter": "40평대",
+          "value": "band40",
+          "filteredCount": 0,
+          "domMarkers": 8
+        },
+        {
+          "filter": "50평대+",
+          "value": "band50",
+          "filteredCount": 0,
+          "domMarkers": 33
+        }
+      ],
+      "errors": [],
+      "sample": {
+        "sampleMarkerText": "50평 9.4억",
+        "sampleApt": null
+      }
+    },
+    {
+      "slug": "nowon",
+      "code": "11350",
+      "name": "노원구",
+      "zooms": [
+        {
+          "targetZoom": 4,
+          "actualZoom": 4,
+          "level": 4,
+          "totalApts": 13408,
+          "filteredCount": 13408,
+          "domPills": 57,
+          "domDots": 0,
+          "domClusters": 0,
+          "noTradePills": 44,
+          "pyeongOnMarker": true,
+          "screenshot": "nowon-zoom4.png",
+          "ok": true
+        },
+        {
+          "targetZoom": 7,
+          "actualZoom": 7,
+          "level": 7,
+          "totalApts": 13408,
+          "filteredCount": 13408,
+          "domPills": 0,
+          "domDots": 298,
+          "domClusters": 0,
+          "noTradePills": 0,
+          "pyeongOnMarker": false,
+          "screenshot": "nowon-zoom7.png",
+          "ok": true
+        },
+        {
+          "targetZoom": 9,
+          "actualZoom": 9,
+          "level": 9,
+          "totalApts": 13408,
+          "filteredCount": 13408,
+          "domPills": 0,
+          "domDots": 298,
+          "domClusters": 0,
+          "noTradePills": 0,
+          "pyeongOnMarker": false,
+          "screenshot": "nowon-zoom9.png",
+          "ok": true
+        },
+        {
+          "targetZoom": 13,
+          "actualZoom": 13,
+          "level": 13,
+          "totalApts": 13408,
+          "filteredCount": 13408,
+          "domPills": 0,
+          "domDots": 0,
+          "domClusters": 0,
+          "noTradePills": 0,
+          "pyeongOnMarker": false,
+          "screenshot": "nowon-zoom13.png",
+          "ok": false
+        }
+      ],
+      "filter": [
+        {
+          "filter": "전체",
+          "value": "all",
+          "filteredCount": 13408,
+          "domMarkers": 117
+        },
+        {
+          "filter": "10평대",
+          "value": "band10",
+          "filteredCount": 0,
+          "domMarkers": 20
+        },
+        {
+          "filter": "20평대",
+          "value": "band20",
+          "filteredCount": 0,
+          "domMarkers": 69
+        },
+        {
+          "filter": "30평대",
+          "value": "band30",
+          "filteredCount": 0,
+          "domMarkers": 72
+        },
+        {
+          "filter": "40평대",
+          "value": "band40",
+          "filteredCount": 0,
+          "domMarkers": 10
+        },
+        {
+          "filter": "50평대+",
+          "value": "band50",
+          "filteredCount": 0,
+          "domMarkers": 29
+        }
+      ],
+      "errors": [],
+      "sample": {
+        "sampleMarkerText": "60평 6.9억",
+        "sampleApt": null
+      }
+    },
+    {
+      "slug": "pyeongtaek",
+      "code": "41220",
+      "name": "평택시",
+      "zooms": [
+        {
+          "targetZoom": 4,
+          "actualZoom": 4,
+          "level": 4,
+          "totalApts": 13408,
+          "filteredCount": 13408,
+          "domPills": 0,
+          "domDots": 0,
+          "domClusters": 0,
+          "noTradePills": 0,
+          "pyeongOnMarker": false,
+          "screenshot": "pyeongtaek-zoom4.png",
+          "ok": false
+        },
+        {
+          "targetZoom": 7,
+          "actualZoom": 7,
+          "level": 7,
+          "totalApts": 13408,
+          "filteredCount": 13408,
+          "domPills": 0,
+          "domDots": 72,
+          "domClusters": 0,
+          "noTradePills": 0,
+          "pyeongOnMarker": false,
+          "screenshot": "pyeongtaek-zoom7.png",
+          "ok": true
+        },
+        {
+          "targetZoom": 9,
+          "actualZoom": 9,
+          "level": 9,
+          "totalApts": 13408,
+          "filteredCount": 13408,
+          "domPills": 0,
+          "domDots": 357,
+          "domClusters": 0,
+          "noTradePills": 0,
+          "pyeongOnMarker": false,
+          "screenshot": "pyeongtaek-zoom9.png",
+          "ok": true
+        },
+        {
+          "targetZoom": 13,
+          "actualZoom": 13,
+          "level": 13,
+          "totalApts": 13408,
+          "filteredCount": 13408,
+          "domPills": 0,
+          "domDots": 0,
+          "domClusters": 0,
+          "noTradePills": 0,
+          "pyeongOnMarker": false,
+          "screenshot": "pyeongtaek-zoom13.png",
+          "ok": false
+        }
+      ],
+      "filter": [
+        {
+          "filter": "전체",
+          "value": "all",
+          "filteredCount": 13408,
+          "domMarkers": 0
+        },
+        {
+          "filter": "10평대",
+          "value": "band10",
+          "filteredCount": 0,
+          "domMarkers": 0
+        },
+        {
+          "filter": "20평대",
+          "value": "band20",
+          "filteredCount": 0,
+          "domMarkers": 0
+        },
+        {
+          "filter": "30평대",
+          "value": "band30",
+          "filteredCount": 0,
+          "domMarkers": 0
+        },
+        {
+          "filter": "40평대",
+          "value": "band40",
+          "filteredCount": 0,
+          "domMarkers": 0
+        },
+        {
+          "filter": "50평대+",
+          "value": "band50",
+          "filteredCount": 0,
+          "domMarkers": 0
+        }
+      ],
+      "errors": [],
+      "sample": {
+        "sampleMarkerText": null,
+        "sampleApt": null
+      }
+    },
+    {
+      "slug": "suwon-yeongtong",
+      "code": "41117",
+      "name": "수원 영통구",
+      "zooms": [
+        {
+          "targetZoom": 4,
+          "actualZoom": 4,
+          "level": 4,
+          "totalApts": 13408,
+          "filteredCount": 13408,
+          "domPills": 11,
+          "domDots": 0,
+          "domClusters": 0,
+          "noTradePills": 10,
+          "pyeongOnMarker": true,
+          "screenshot": "suwon-yeongtong-zoom4.png",
+          "ok": true
+        },
+        {
+          "targetZoom": 7,
+          "actualZoom": 7,
+          "level": 7,
+          "totalApts": 13408,
+          "filteredCount": 13408,
+          "domPills": 0,
+          "domDots": 154,
+          "domClusters": 0,
+          "noTradePills": 0,
+          "pyeongOnMarker": false,
+          "screenshot": "suwon-yeongtong-zoom7.png",
+          "ok": true
+        },
+        {
+          "targetZoom": 9,
+          "actualZoom": 9,
+          "level": 9,
+          "totalApts": 13408,
+          "filteredCount": 13408,
+          "domPills": 0,
+          "domDots": 154,
+          "domClusters": 0,
+          "noTradePills": 0,
+          "pyeongOnMarker": false,
+          "screenshot": "suwon-yeongtong-zoom9.png",
+          "ok": true
+        },
+        {
+          "targetZoom": 13,
+          "actualZoom": 13,
+          "level": 13,
+          "totalApts": 13408,
+          "filteredCount": 13408,
+          "domPills": 0,
+          "domDots": 0,
+          "domClusters": 0,
+          "noTradePills": 0,
+          "pyeongOnMarker": false,
+          "screenshot": "suwon-yeongtong-zoom13.png",
+          "ok": false
+        }
+      ],
+      "filter": [
+        {
+          "filter": "전체",
+          "value": "all",
+          "filteredCount": 13408,
+          "domMarkers": 37
+        },
+        {
+          "filter": "10평대",
+          "value": "band10",
+          "filteredCount": 0,
+          "domMarkers": 2
+        },
+        {
+          "filter": "20평대",
+          "value": "band20",
+          "filteredCount": 0,
+          "domMarkers": 20
+        },
+        {
+          "filter": "30평대",
+          "value": "band30",
+          "filteredCount": 0,
+          "domMarkers": 21
+        },
+        {
+          "filter": "40평대",
+          "value": "band40",
+          "filteredCount": 0,
+          "domMarkers": 6
+        },
+        {
+          "filter": "50평대+",
+          "value": "band50",
+          "filteredCount": 0,
+          "domMarkers": 11
+        }
+      ],
+      "errors": [],
+      "sample": {
+        "sampleMarkerText": "34평 거래없음",
+        "sampleApt": null
+      }
+    },
+    {
+      "slug": "bundang",
+      "code": "41135",
+      "name": "성남 분당구",
+      "zooms": [
+        {
+          "targetZoom": 4,
+          "actualZoom": 4,
+          "level": 4,
+          "totalApts": 13408,
+          "filteredCount": 13408,
+          "domPills": 8,
+          "domDots": 0,
+          "domClusters": 0,
+          "noTradePills": 6,
+          "pyeongOnMarker": true,
+          "screenshot": "bundang-zoom4.png",
+          "ok": true
+        },
+        {
+          "targetZoom": 7,
+          "actualZoom": 7,
+          "level": 7,
+          "totalApts": 13408,
+          "filteredCount": 13408,
+          "domPills": 0,
+          "domDots": 200,
+          "domClusters": 0,
+          "noTradePills": 0,
+          "pyeongOnMarker": false,
+          "screenshot": "bundang-zoom7.png",
+          "ok": true
+        },
+        {
+          "targetZoom": 9,
+          "actualZoom": 9,
+          "level": 9,
+          "totalApts": 13408,
+          "filteredCount": 13408,
+          "domPills": 0,
+          "domDots": 201,
+          "domClusters": 0,
+          "noTradePills": 0,
+          "pyeongOnMarker": false,
+          "screenshot": "bundang-zoom9.png",
+          "ok": true
+        },
+        {
+          "targetZoom": 13,
+          "actualZoom": 13,
+          "level": 13,
+          "totalApts": 13408,
+          "filteredCount": 13408,
+          "domPills": 0,
+          "domDots": 0,
+          "domClusters": 0,
+          "noTradePills": 0,
+          "pyeongOnMarker": false,
+          "screenshot": "bundang-zoom13.png",
+          "ok": false
+        }
+      ],
+      "filter": [
+        {
+          "filter": "전체",
+          "value": "all",
+          "filteredCount": 13408,
+          "domMarkers": 23
+        },
+        {
+          "filter": "10평대",
+          "value": "band10",
+          "filteredCount": 0,
+          "domMarkers": 1
+        },
+        {
+          "filter": "20평대",
+          "value": "band20",
+          "filteredCount": 0,
+          "domMarkers": 22
+        },
+        {
+          "filter": "30평대",
+          "value": "band30",
+          "filteredCount": 0,
+          "domMarkers": 21
+        },
+        {
+          "filter": "40평대",
+          "value": "band40",
+          "filteredCount": 0,
+          "domMarkers": 13
+        },
+        {
+          "filter": "50평대+",
+          "value": "band50",
+          "filteredCount": 0,
+          "domMarkers": 19
+        }
+      ],
+      "errors": [],
+      "sample": {
+        "sampleMarkerText": "29평 거래없음",
+        "sampleApt": null
+      }
+    },
+    {
+      "slug": "ilsan-dong",
+      "code": "41285",
+      "name": "고양 일산동구",
+      "zooms": [
+        {
+          "targetZoom": 4,
+          "actualZoom": 4,
+          "level": 4,
+          "totalApts": 13408,
+          "filteredCount": 13408,
+          "domPills": 10,
+          "domDots": 0,
+          "domClusters": 0,
+          "noTradePills": 5,
+          "pyeongOnMarker": true,
+          "screenshot": "ilsan-dong-zoom4.png",
+          "ok": true
+        },
+        {
+          "targetZoom": 7,
+          "actualZoom": 7,
+          "level": 7,
+          "totalApts": 13408,
+          "filteredCount": 13408,
+          "domPills": 0,
+          "domDots": 106,
+          "domClusters": 0,
+          "noTradePills": 0,
+          "pyeongOnMarker": false,
+          "screenshot": "ilsan-dong-zoom7.png",
+          "ok": true
+        },
+        {
+          "targetZoom": 9,
+          "actualZoom": 9,
+          "level": 9,
+          "totalApts": 13408,
+          "filteredCount": 13408,
+          "domPills": 0,
+          "domDots": 106,
+          "domClusters": 0,
+          "noTradePills": 0,
+          "pyeongOnMarker": false,
+          "screenshot": "ilsan-dong-zoom9.png",
+          "ok": true
+        },
+        {
+          "targetZoom": 13,
+          "actualZoom": 13,
+          "level": 13,
+          "totalApts": 13408,
+          "filteredCount": 13408,
+          "domPills": 0,
+          "domDots": 0,
+          "domClusters": 0,
+          "noTradePills": 0,
+          "pyeongOnMarker": false,
+          "screenshot": "ilsan-dong-zoom13.png",
+          "ok": false
+        }
+      ],
+      "filter": [
+        {
+          "filter": "전체",
+          "value": "all",
+          "filteredCount": 13408,
+          "domMarkers": 24
+        },
+        {
+          "filter": "10평대",
+          "value": "band10",
+          "filteredCount": 0,
+          "domMarkers": 1
+        },
+        {
+          "filter": "20평대",
+          "value": "band20",
+          "filteredCount": 0,
+          "domMarkers": 8
+        },
+        {
+          "filter": "30평대",
+          "value": "band30",
+          "filteredCount": 0,
+          "domMarkers": 12
+        },
+        {
+          "filter": "40평대",
+          "value": "band40",
+          "filteredCount": 0,
+          "domMarkers": 6
+        },
+        {
+          "filter": "50평대+",
+          "value": "band50",
+          "filteredCount": 0,
+          "domMarkers": 14
+        }
+      ],
+      "errors": [],
+      "sample": {
+        "sampleMarkerText": "34평 4.1억",
+        "sampleApt": null
+      }
+    },
+    {
+      "slug": "ilsan-seo",
+      "code": "41287",
+      "name": "고양 일산서구",
+      "zooms": [
+        {
+          "targetZoom": 4,
+          "actualZoom": 4,
+          "level": 4,
+          "totalApts": 13408,
+          "filteredCount": 13408,
+          "domPills": 64,
+          "domDots": 0,
+          "domClusters": 0,
+          "noTradePills": 35,
+          "pyeongOnMarker": true,
+          "screenshot": "ilsan-seo-zoom4.png",
+          "ok": true
+        },
+        {
+          "targetZoom": 7,
+          "actualZoom": 7,
+          "level": 7,
+          "totalApts": 13408,
+          "filteredCount": 13408,
+          "domPills": 0,
+          "domDots": 166,
+          "domClusters": 0,
+          "noTradePills": 0,
+          "pyeongOnMarker": false,
+          "screenshot": "ilsan-seo-zoom7.png",
+          "ok": true
+        },
+        {
+          "targetZoom": 9,
+          "actualZoom": 9,
+          "level": 9,
+          "totalApts": 13408,
+          "filteredCount": 13408,
+          "domPills": 0,
+          "domDots": 166,
+          "domClusters": 0,
+          "noTradePills": 0,
+          "pyeongOnMarker": false,
+          "screenshot": "ilsan-seo-zoom9.png",
+          "ok": true
+        },
+        {
+          "targetZoom": 13,
+          "actualZoom": 13,
+          "level": 13,
+          "totalApts": 13408,
+          "filteredCount": 13408,
+          "domPills": 0,
+          "domDots": 0,
+          "domClusters": 0,
+          "noTradePills": 0,
+          "pyeongOnMarker": false,
+          "screenshot": "ilsan-seo-zoom13.png",
+          "ok": false
+        }
+      ],
+      "filter": [
+        {
+          "filter": "전체",
+          "value": "all",
+          "filteredCount": 13408,
+          "domMarkers": 113
+        },
+        {
+          "filter": "10평대",
+          "value": "band10",
+          "filteredCount": 0,
+          "domMarkers": 9
+        },
+        {
+          "filter": "20평대",
+          "value": "band20",
+          "filteredCount": 0,
+          "domMarkers": 65
+        },
+        {
+          "filter": "30평대",
+          "value": "band30",
+          "filteredCount": 0,
+          "domMarkers": 66
+        },
+        {
+          "filter": "40평대",
+          "value": "band40",
+          "filteredCount": 0,
+          "domMarkers": 21
+        },
+        {
+          "filter": "50평대+",
+          "value": "band50",
+          "filteredCount": 0,
+          "domMarkers": 39
+        }
+      ],
+      "errors": [],
+      "sample": {
+        "sampleMarkerText": "50평 거래없음",
+        "sampleApt": null
+      }
+    }
+  ],
+  "filterTests": [],
+  "consoleErrors": [],
+  "filterSummary": [
+    {
+      "region": "강남구",
+      "filters": [
+        {
+          "filter": "전체",
+          "value": "all",
+          "filteredCount": 13408,
+          "domMarkers": 163
+        },
+        {
+          "filter": "10평대",
+          "value": "band10",
+          "filteredCount": 0,
+          "domMarkers": 17
+        },
+        {
+          "filter": "20평대",
+          "value": "band20",
+          "filteredCount": 0,
+          "domMarkers": 37
+        },
+        {
+          "filter": "30평대",
+          "value": "band30",
+          "filteredCount": 0,
+          "domMarkers": 65
+        },
+        {
+          "filter": "40평대",
+          "value": "band40",
+          "filteredCount": 0,
+          "domMarkers": 16
+        },
+        {
+          "filter": "50평대+",
+          "value": "band50",
+          "filteredCount": 0,
+          "domMarkers": 59
+        }
+      ]
+    },
+    {
+      "region": "송파구",
+      "filters": [
+        {
+          "filter": "전체",
+          "value": "all",
+          "filteredCount": 13408,
+          "domMarkers": 243
+        },
+        {
+          "filter": "10평대",
+          "value": "band10",
+          "filteredCount": 0,
+          "domMarkers": 22
+        },
+        {
+          "filter": "20평대",
+          "value": "band20",
+          "filteredCount": 0,
+          "domMarkers": 66
+        },
+        {
+          "filter": "30평대",
+          "value": "band30",
+          "filteredCount": 0,
+          "domMarkers": 92
+        },
+        {
+          "filter": "40평대",
+          "value": "band40",
+          "filteredCount": 0,
+          "domMarkers": 17
+        },
+        {
+          "filter": "50평대+",
+          "value": "band50",
+          "filteredCount": 0,
+          "domMarkers": 74
+        }
+      ]
+    },
+    {
+      "region": "마포구",
+      "filters": [
+        {
+          "filter": "전체",
+          "value": "all",
+          "filteredCount": 13408,
+          "domMarkers": 166
+        },
+        {
+          "filter": "10평대",
+          "value": "band10",
+          "filteredCount": 0,
+          "domMarkers": 6
+        },
+        {
+          "filter": "20평대",
+          "value": "band20",
+          "filteredCount": 0,
+          "domMarkers": 69
+        },
+        {
+          "filter": "30평대",
+          "value": "band30",
+          "filteredCount": 0,
+          "domMarkers": 75
+        },
+        {
+          "filter": "40평대",
+          "value": "band40",
+          "filteredCount": 0,
+          "domMarkers": 8
+        },
+        {
+          "filter": "50평대+",
+          "value": "band50",
+          "filteredCount": 0,
+          "domMarkers": 33
+        }
+      ]
+    },
+    {
+      "region": "노원구",
+      "filters": [
+        {
+          "filter": "전체",
+          "value": "all",
+          "filteredCount": 13408,
+          "domMarkers": 117
+        },
+        {
+          "filter": "10평대",
+          "value": "band10",
+          "filteredCount": 0,
+          "domMarkers": 20
+        },
+        {
+          "filter": "20평대",
+          "value": "band20",
+          "filteredCount": 0,
+          "domMarkers": 69
+        },
+        {
+          "filter": "30평대",
+          "value": "band30",
+          "filteredCount": 0,
+          "domMarkers": 72
+        },
+        {
+          "filter": "40평대",
+          "value": "band40",
+          "filteredCount": 0,
+          "domMarkers": 10
+        },
+        {
+          "filter": "50평대+",
+          "value": "band50",
+          "filteredCount": 0,
+          "domMarkers": 29
+        }
+      ]
+    },
+    {
+      "region": "평택시",
+      "filters": [
+        {
+          "filter": "전체",
+          "value": "all",
+          "filteredCount": 13408,
+          "domMarkers": 0
+        },
+        {
+          "filter": "10평대",
+          "value": "band10",
+          "filteredCount": 0,
+          "domMarkers": 0
+        },
+        {
+          "filter": "20평대",
+          "value": "band20",
+          "filteredCount": 0,
+          "domMarkers": 0
+        },
+        {
+          "filter": "30평대",
+          "value": "band30",
+          "filteredCount": 0,
+          "domMarkers": 0
+        },
+        {
+          "filter": "40평대",
+          "value": "band40",
+          "filteredCount": 0,
+          "domMarkers": 0
+        },
+        {
+          "filter": "50평대+",
+          "value": "band50",
+          "filteredCount": 0,
+          "domMarkers": 0
+        }
+      ]
+    },
+    {
+      "region": "수원 영통구",
+      "filters": [
+        {
+          "filter": "전체",
+          "value": "all",
+          "filteredCount": 13408,
+          "domMarkers": 37
+        },
+        {
+          "filter": "10평대",
+          "value": "band10",
+          "filteredCount": 0,
+          "domMarkers": 2
+        },
+        {
+          "filter": "20평대",
+          "value": "band20",
+          "filteredCount": 0,
+          "domMarkers": 20
+        },
+        {
+          "filter": "30평대",
+          "value": "band30",
+          "filteredCount": 0,
+          "domMarkers": 21
+        },
+        {
+          "filter": "40평대",
+          "value": "band40",
+          "filteredCount": 0,
+          "domMarkers": 6
+        },
+        {
+          "filter": "50평대+",
+          "value": "band50",
+          "filteredCount": 0,
+          "domMarkers": 11
+        }
+      ]
+    },
+    {
+      "region": "성남 분당구",
+      "filters": [
+        {
+          "filter": "전체",
+          "value": "all",
+          "filteredCount": 13408,
+          "domMarkers": 23
+        },
+        {
+          "filter": "10평대",
+          "value": "band10",
+          "filteredCount": 0,
+          "domMarkers": 1
+        },
+        {
+          "filter": "20평대",
+          "value": "band20",
+          "filteredCount": 0,
+          "domMarkers": 22
+        },
+        {
+          "filter": "30평대",
+          "value": "band30",
+          "filteredCount": 0,
+          "domMarkers": 21
+        },
+        {
+          "filter": "40평대",
+          "value": "band40",
+          "filteredCount": 0,
+          "domMarkers": 13
+        },
+        {
+          "filter": "50평대+",
+          "value": "band50",
+          "filteredCount": 0,
+          "domMarkers": 19
+        }
+      ]
+    },
+    {
+      "region": "고양 일산동구",
+      "filters": [
+        {
+          "filter": "전체",
+          "value": "all",
+          "filteredCount": 13408,
+          "domMarkers": 24
+        },
+        {
+          "filter": "10평대",
+          "value": "band10",
+          "filteredCount": 0,
+          "domMarkers": 1
+        },
+        {
+          "filter": "20평대",
+          "value": "band20",
+          "filteredCount": 0,
+          "domMarkers": 8
+        },
+        {
+          "filter": "30평대",
+          "value": "band30",
+          "filteredCount": 0,
+          "domMarkers": 12
+        },
+        {
+          "filter": "40평대",
+          "value": "band40",
+          "filteredCount": 0,
+          "domMarkers": 6
+        },
+        {
+          "filter": "50평대+",
+          "value": "band50",
+          "filteredCount": 0,
+          "domMarkers": 14
+        }
+      ]
+    },
+    {
+      "region": "고양 일산서구",
+      "filters": [
+        {
+          "filter": "전체",
+          "value": "all",
+          "filteredCount": 13408,
+          "domMarkers": 113
+        },
+        {
+          "filter": "10평대",
+          "value": "band10",
+          "filteredCount": 0,
+          "domMarkers": 9
+        },
+        {
+          "filter": "20평대",
+          "value": "band20",
+          "filteredCount": 0,
+          "domMarkers": 65
+        },
+        {
+          "filter": "30평대",
+          "value": "band30",
+          "filteredCount": 0,
+          "domMarkers": 66
+        },
+        {
+          "filter": "40평대",
+          "value": "band40",
+          "filteredCount": 0,
+          "domMarkers": 21
+        },
+        {
+          "filter": "50평대+",
+          "value": "band50",
+          "filteredCount": 0,
+          "domMarkers": 39
+        }
+      ]
+    }
+  ],
+  "generatedAt": "2026-06-23T09:34:21.330Z",
+  "screenshotsDir": "C:\\Users\\2606\\Desktop\\커서\\260608 부동산 계산기\\screenshots\\pre-push-verify",
+  "notes": {
+    "incheon": "인천 연수구 — districts.js 미등록·DB 미수집으로 검증 제외",
+    "nonCapital": "비수도권 — DB에 서울·경기만 존재, 별도 지역 검증 불가"
+  }
+}

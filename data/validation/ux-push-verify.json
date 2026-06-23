@@ -1,0 +1,128 @@
+{
+  "consoleErrors": [],
+  "cases": [
+    {
+      "slug": "pyeongtaek-godeok",
+      "code": "41220",
+      "query": "고덕국제신도시금호어울림",
+      "errors": [],
+      "checks": {
+        "banner": "📍\n\n        현재 선택:\n\n        고덕국제신도시금호어울림",
+        "badges": [
+          "매매",
+          "전세",
+          "전세"
+        ],
+        "title": "최근 거래 3건",
+        "pyeong": "24평 (전용 59.98㎡)",
+        "hasSelectedMarker": true,
+        "selectedMarkerText": "고덕국제 24평 3.8억",
+        "ok": true,
+        "pyeong24": true,
+        "hasMaemaeBadge": true,
+        "hasJeonseBadge": true,
+        "maemaeFilterWorks": true
+      }
+    },
+    {
+      "slug": "gangnam",
+      "code": "11680",
+      "query": "래미안대치",
+      "errors": [],
+      "checks": {
+        "banner": "📍\n\n        현재 선택:\n\n        래미안대치팰리스",
+        "badges": [
+          "매매",
+          "매매",
+          "전세"
+        ],
+        "title": "최근 거래 3건",
+        "pyeong": "40평 (전용 94.49㎡)",
+        "hasSelectedMarker": true,
+        "selectedMarkerText": "래미안 34평 50.3억",
+        "ok": true
+      }
+    },
+    {
+      "slug": "songpa",
+      "code": "11710",
+      "query": "잠실엘스",
+      "errors": [],
+      "checks": {
+        "banner": "📍\n\n        현재 선택:\n\n        잠실엘스",
+        "badges": [
+          "전세",
+          "전세",
+          "전세"
+        ],
+        "title": "최근 거래 3건",
+        "pyeong": "34평 (전용 84.8㎡)",
+        "hasSelectedMarker": true,
+        "selectedMarkerText": "잠실엘스 34평 32.4억",
+        "ok": true
+      }
+    },
+    {
+      "slug": "mapo",
+      "code": "11440",
+      "query": "마포",
+      "errors": [],
+      "checks": {
+        "banner": "📍\n\n        현재 선택:\n\n        DMC마포청구아파트",
+        "badges": [
+          "전세",
+          "전세",
+          "전세"
+        ],
+        "title": "최근 거래 3건",
+        "pyeong": "34평 (전용 84.6㎡)",
+        "hasSelectedMarker": true,
+        "selectedMarkerText": "DMC마 34평 10억",
+        "ok": true
+      }
+    },
+    {
+      "slug": "nowon",
+      "code": "11350",
+      "query": "노원",
+      "errors": [],
+      "checks": {
+        "banner": "📍\n\n        현재 선택:\n\n        노원IPARK",
+        "badges": [
+          "매매",
+          "매매",
+          "전세"
+        ],
+        "title": "최근 거래 3건",
+        "pyeong": "60평 (전용 139.28㎡)",
+        "hasSelectedMarker": true,
+        "selectedMarkerText": "노원IP 60평 6.9억",
+        "ok": true
+      }
+    }
+  ],
+  "grayMarkerTooltips": [
+    {
+      "title": "고덕국제신도시 포레스트자이 — 거래 없음",
+      "text": ""
+    },
+    {
+      "title": "고덕국제신도시금호어울림 — 거래 없음",
+      "text": ""
+    },
+    {
+      "title": "고덕국제신도시로제비앙&amp;엘가에듀센트럴 — 거래 없음",
+      "text": ""
+    },
+    {
+      "title": "고덕국제신도시르플로랑 — 거래 없음",
+      "text": ""
+    },
+    {
+      "title": "고덕국제신도시리슈빌레이크파크 — 거래 없음",
+      "text": ""
+    }
+  ],
+  "grayTooltipOk": false,
+  "allOk": true
+}

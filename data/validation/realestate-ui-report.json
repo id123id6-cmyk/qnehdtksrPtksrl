@@ -1,0 +1,280 @@
+{
+  "generatedAt": "2026-06-23T07:34:25.251Z",
+  "dbSummary": {
+    "generatedAt": "2026-06-23T07:33:42.170Z",
+    "totals": {
+      "apartments": 14923,
+      "transactions": 552740,
+      "scanned": 14923
+    },
+    "issueCounts": {
+      "noCoords": 500,
+      "noTxEver": 500,
+      "noTx1yButOlder": 500,
+      "areaInconsistent": 286,
+      "pyeongDrift": 0,
+      "outsideBbox": 500,
+      "weakGeojson": 21
+    },
+    "issueRates": {
+      "noCoords": "3.35%",
+      "outsideBbox": "3.35%"
+    },
+    "topIssueDistricts": [
+      {
+        "code": "11680",
+        "name": "강남구",
+        "total": 741,
+        "issues": 653,
+        "rate": 88.1
+      },
+      {
+        "code": "41220",
+        "name": "평택시",
+        "total": 357,
+        "issues": 558,
+        "rate": 156.3
+      },
+      {
+        "code": "11230",
+        "name": "동대문구",
+        "total": 290,
+        "issues": 545,
+        "rate": 187.9
+      },
+      {
+        "code": "11650",
+        "name": "서초구",
+        "total": 661,
+        "issues": 517,
+        "rate": 78.2
+      },
+      {
+        "code": "11380",
+        "name": "은평구",
+        "total": 430,
+        "issues": 376,
+        "rate": 87.4
+      },
+      {
+        "code": "11500",
+        "name": "강서구",
+        "total": 554,
+        "issues": 370,
+        "rate": 66.8
+      },
+      {
+        "code": "11740",
+        "name": "강동구",
+        "total": 458,
+        "issues": 366,
+        "rate": 79.9
+      },
+      {
+        "code": "11170",
+        "name": "용산구",
+        "total": 199,
+        "issues": 354,
+        "rate": 177.9
+      },
+      {
+        "code": "11470",
+        "name": "양천구",
+        "total": 403,
+        "issues": 347,
+        "rate": 86.1
+      },
+      {
+        "code": "41281",
+        "name": "고양시 덕양구",
+        "total": 243,
+        "issues": 341,
+        "rate": 140.3
+      }
+    ],
+    "samples": {
+      "noCoords": [
+        {
+          "name": "북서울자이폴라리스(2단지)",
+          "dong": "미아동",
+          "code": "11305"
+        },
+        {
+          "name": "북서울자이폴라리스(1단지)",
+          "dong": "미아동",
+          "code": "11305"
+        },
+        {
+          "name": "893-1",
+          "dong": "도곡동",
+          "code": "11680"
+        }
+      ],
+      "noTx1yButOlder": [
+        {
+          "name": "별빛고운",
+          "dong": "부암동",
+          "code": "11110",
+          "totalTx": 1
+        },
+        {
+          "name": "오성",
+          "dong": "숭인동",
+          "code": "11110",
+          "totalTx": 3
+        },
+        {
+          "name": "일우",
+          "dong": "창신동",
+          "code": "11110",
+          "totalTx": 2
+        }
+      ],
+      "outsideBbox": [
+        {
+          "name": "마운틴뷰",
+          "dong": "구기동",
+          "code": "11110",
+          "lat": 37.6090367429995,
+          "lng": 126.956263374539,
+          "bbox": {
+            "minLat": 37.61136014256744,
+            "maxLat": 37.693602239076704,
+            "minLng": 127.04358800895609,
+            "maxLng": 127.1144974746579,
+            "polygonCount": 1,
+            "source": "jongno-gu.geojson"
+          }
+        },
+        {
+          "name": "경희궁파크팰리스",
+          "dong": "내수동",
+          "code": "11110",
+          "lat": 37.5743052996042,
+          "lng": 126.970848249339,
+          "bbox": {
+            "minLat": 37.61136014256744,
+            "maxLat": 37.693602239076704,
+            "minLng": 127.04358800895609,
+            "maxLng": 127.1144974746579,
+            "polygonCount": 1,
+            "source": "jongno-gu.geojson"
+          }
+        },
+        {
+          "name": "별빛고운",
+          "dong": "부암동",
+          "code": "11110",
+          "lat": 37.593347825746,
+          "lng": 126.964400259225,
+          "bbox": {
+            "minLat": 37.61136014256744,
+            "maxLat": 37.693602239076704,
+            "minLng": 127.04358800895609,
+            "maxLng": 127.1144974746579,
+            "polygonCount": 1,
+            "source": "jongno-gu.geojson"
+          }
+        }
+      ],
+      "pyeongDrift": [],
+      "weakGeojson": [
+        {
+          "code": "41111",
+          "name": "수원시 장안구",
+          "polygonCount": 1,
+          "dongCount": 10
+        },
+        {
+          "code": "41113",
+          "name": "수원시 권선구",
+          "polygonCount": 1,
+          "dongCount": 12
+        },
+        {
+          "code": "41115",
+          "name": "수원시 팔달구",
+          "polygonCount": 1,
+          "dongCount": 10
+        },
+        {
+          "code": "41117",
+          "name": "수원시 영통구",
+          "polygonCount": 1,
+          "dongCount": 12
+        },
+        {
+          "code": "41131",
+          "name": "성남시 수정구",
+          "polygonCount": 1,
+          "dongCount": 17
+        }
+      ]
+    }
+  },
+  "beforeAfter": {
+    "geumho": {
+      "sidebar": "왕십리금호어울림 서울특별시 성동구 마장동 820 평균 거래가 1년 평균: 14.5억 준공년도 2006년 좌표 37.5629, 127.0410 💡 이 단지까지 얼마나 걸릴까? D-Day 계산기로 확인하기 → 📈 5년 가격 변화 매매 전세 평형 선택 전체26평35평 전체 3년 1년 최고가 16억 7,000만 최저가 10억 8,000만 평균가 14억 4,075만 최근 실거래 3건 거래일 면적 층 금액 2026.05.11 84.97㎡ (26평) 23층 7억 3,500만 2026.04.04 114.97㎡ (35평) 6층 9억 2,400만 2026.03.18 84.97㎡ (26평) 12층 15억 9,500만",
+      "hasTx": true,
+      "pyeongTypes": [
+        "26평",
+        "35평"
+      ]
+    }
+  },
+  "uiResults": [
+    {
+      "code": "11680",
+      "slug": "gangnam",
+      "name": "강남구",
+      "min": 500,
+      "guLabel": "강남구",
+      "markerCount": 740,
+      "mapLevel": 7,
+      "ok": true
+    },
+    {
+      "code": "41117",
+      "slug": "suwon-yeongtong",
+      "name": "수원 영통구",
+      "min": 100,
+      "guLabel": "수원시 영통구",
+      "markerCount": 154,
+      "mapLevel": 4,
+      "ok": true
+    },
+    {
+      "code": "11710",
+      "slug": "songpa",
+      "name": "송파구(인천 대체)",
+      "min": 300,
+      "guLabel": "송파구",
+      "markerCount": 428,
+      "mapLevel": 7,
+      "ok": true
+    },
+    {
+      "code": "41135",
+      "slug": "bundang",
+      "name": "성남 분당구",
+      "min": 200,
+      "guLabel": "성남시 분당구",
+      "markerCount": 201,
+      "mapLevel": 5,
+      "ok": true
+    },
+    {
+      "code": "41220",
+      "slug": "pyeongtaek-check",
+      "name": "평택시 재확인",
+      "min": 200,
+      "guLabel": "평택시",
+      "markerCount": 357,
+      "mapLevel": 7,
+      "ok": true
+    }
+  ],
+  "note": "인천 연수구(28200) 미수집 — 송파구(11710) 대체",
+  "consoleErrors": [],
+  "screenshotsDir": "C:\\Users\\2606\\Desktop\\커서\\260608 부동산 계산기\\screenshots\\realestate-validation"
+}

@@ -25,11 +25,11 @@
     ],
     area: [
       { value: "all", label: "전체" },
-      { value: "small", label: "소형 (~20평)" },
-      { value: "mid_small", label: "중소형 (20~30평)" },
-      { value: "mid", label: "중형 (30~40평)" },
-      { value: "large", label: "대형 (40~50평)" },
-      { value: "xlarge", label: "초대형 (50평+)" },
+      { value: "band10", label: "10평대" },
+      { value: "band20", label: "20평대" },
+      { value: "band30", label: "30평대" },
+      { value: "band40", label: "40평대" },
+      { value: "band50", label: "50평대+" },
     ],
     age: [
       { value: "all", label: "전체" },
@@ -48,6 +48,9 @@
   };
 
   function sqmToCategory(sqm) {
+    if (global.RealEstateMapPyeong?.sqmToCategory) {
+      return global.RealEstateMapPyeong.sqmToCategory(sqm);
+    }
     const pyeong = Number(sqm) / SQM_PER_PYEONG;
     if (pyeong < 20) return "small";
     if (pyeong < 30) return "mid_small";
@@ -152,11 +155,12 @@
       over30: "30억+",
     },
     area: {
-      small: "소형",
-      mid_small: "중소형",
-      mid: "중형",
-      large: "대형",
-      xlarge: "초대형",
+      band10: "10평대",
+      band20: "20평대",
+      band30: "30평대",
+      band40: "40평대",
+      band50: "50평대+",
+      other: "기타",
     },
     age: {
       new: "신축",

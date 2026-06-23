@@ -90,30 +90,56 @@
 
   function getMarkerLabel(apt, zoomLevel) {
     const price = formatPrice(apt.avgPrice1Y) || "거래없음";
+    const pyeong =
+      apt.dominantPyeong != null ? `${apt.dominantPyeong}평` : "";
     const mode = getMarkerMode(zoomLevel);
     if (mode === "brand") {
-      return `${shortenAptName(apt.name)} ${price}`;
+      const name = shortenAptName(apt.name);
+      return [name, pyeong, price].filter(Boolean).join(" ");
     }
-    if (mode === "price") return price;
+    if (mode === "price") return pyeong ? `${pyeong} ${price}` : price;
     return "";
   }
 
-  function createMarkerContent(apt, zoomLevel) {
+  function getMarkerTooltip(apt) {
+    const name = apt.name || "";
+    const maemae = apt.tradeCount1Y ?? 0;
+    if (maemae > 0) return name;
+
+    const jeonse = apt.jeonseCount ?? 0;
+    const wolse = apt.wolseCount ?? 0;
+    if (jeonse || wolse) {
+      const parts = ["매매 없음"];
+      if (jeonse) parts.push(`전세 ${jeonse}건`);
+      if (wolse) parts.push(`월세 ${wolse}건`);
+      return `${name} — ${parts.join(" · ")}`;
+    }
+    return `${name} — 거래 없음`;
+  }
+
+  function createMarkerContent(apt, zoomLevel, selectedId) {
     const category = getPriceCategory(apt.avgPrice1Y);
     const catLabel = category.label;
     const price = formatPrice(apt.avgPrice1Y) || "거래없음";
+    const pyeong =
+      apt.dominantPyeong != null ? `${apt.dominantPyeong}평` : "";
     const mode = getMarkerMode(zoomLevel);
     const id = escapeHtml(apt.id);
-    const title = escapeHtml(apt.name);
+    const tooltip = escapeHtml(getMarkerTooltip(apt));
+    const isSelected =
+      selectedId != null && String(apt.id) === String(selectedId);
+    const selectedCls = isSelected ? " marker-selected" : "";
 
     if (mode === "dot") {
-      return `<div class="marker-dot marker-${catLabel}" data-apt-id="${id}" title="${title}"></div>`;
+      return `<div class="marker-dot marker-${catLabel}${selectedCls}" data-apt-id="${id}" title="${tooltip}"></div>`;
     }
     if (mode === "price") {
-      return `<div class="marker-pill marker-${catLabel} size-sm" data-apt-id="${id}" role="button" tabindex="0" title="${title}">${price}</div>`;
+      const label = pyeong ? `${pyeong} ${price}` : price;
+      return `<div class="marker-pill marker-${catLabel} size-sm${selectedCls}" data-apt-id="${id}" role="button" tabindex="0" title="${tooltip}">${label}</div>`;
     }
     const shortName = escapeHtml(shortenAptName(apt.name));
-    return `<div class="marker-pill marker-${catLabel} size-md" data-apt-id="${id}" role="button" tabindex="0" title="${title}">${shortName} ${price}</div>`;
+    const label = pyeong ? `${shortName} ${pyeong} ${price}` : `${shortName} ${price}`;
+    return `<div class="marker-pill marker-${catLabel} size-md${selectedCls}" data-apt-id="${id}" role="button" tabindex="0" title="${tooltip}">${label}</div>`;
   }
 
   function htmlToElement(html) {
@@ -122,8 +148,8 @@
     return wrap.firstElementChild;
   }
 
-  function createMarkerElement(apt, zoomLevel) {
-    return htmlToElement(createMarkerContent(apt, zoomLevel));
+  function createMarkerElement(apt, zoomLevel, selectedId) {
+    return htmlToElement(createMarkerContent(apt, zoomLevel, selectedId));
   }
 
   function createDotMarkerImage(color) {
@@ -168,6 +194,7 @@
       this.renderTimer = null;
       this.pendingLevel = null;
       this._bootstrapping = false;
+      this.selectedId = null;
       this.currentLevel = map.getLevel();
       this.stats = {
         visibleCount: 0,
@@ -284,7 +311,7 @@
         const marker = new kakao.maps.Marker({
           position,
           image: createDotMarkerImage(category.color),
-          title: apt.name,
+          title: getMarkerTooltip(apt),
         });
         kakao.maps.event.addListener(marker, "click", () => {
           this.onSelect(apt);
@@ -347,7 +374,7 @@
       const elements = [];
 
       for (const apt of visibleApts) {
-        elements.push(createMarkerElement(apt, level));
+        elements.push(createMarkerElement(apt, level, this.selectedId));
         positions.push(
           new kakao.maps.LatLng(apt.latitude, apt.longitude)
         );
@@ -413,6 +440,25 @@
       this.map.panTo(new kakao.maps.LatLng(apt.latitude, apt.longitude));
     }
 
+    setSelectedApartment(aptId) {
+      this.selectedId = aptId != null ? String(aptId) : null;
+      this.scheduleRender(this.currentLevel);
+    }
+
+    updateApartment(apt) {
+      if (!apt?.id) return;
+      const id = String(apt.id);
+      const prev = this.aptById.get(id);
+      if (!prev) return;
+      const merged = { ...prev, ...apt };
+      this.aptById.set(id, merged);
+      const idx = this.apartments.findIndex((a) => String(a.id) === id);
+      if (idx >= 0) this.apartments[idx] = merged;
+      if (this.selectedId === id) {
+        this.scheduleRender(this.currentLevel);
+      }
+    }
+
     setFilteredApartments(filteredList) {
       this.apartments = (filteredList || []).filter(isValidCoord);
       this.aptById = new Map(
@@ -453,6 +499,7 @@
     shortenAptName,
     getMarkerMode,
     getMarkerLabel,
+    getMarkerTooltip,
     createMarkerElement,
     createMarkerContent,
     countBrandMatches,

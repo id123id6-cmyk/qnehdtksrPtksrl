@@ -1,0 +1,171 @@
+{
+  "generatedAt": "2026-06-23T09:36:33.910Z",
+  "godeokMapping": {
+    "exclSqm": 59.98,
+    "supplySqm": 79.34,
+    "pyeong": 24,
+    "band": "band20",
+    "isStandard": true,
+    "source": "estimate"
+  },
+  "uiResults": [
+    {
+      "slug": "pyeongtaek-godeok-geumho",
+      "code": "41220",
+      "query": "평택고덕금호",
+      "expect": "24평",
+      "ok": false,
+      "error": "page.waitForSelector: Timeout 20000ms exceeded.\nCall log:\n  - waiting for locator('.search-result-item') to be visible\n"
+    },
+    {
+      "slug": "gangnam",
+      "code": "11680",
+      "query": "래미안대치",
+      "expect": "34평",
+      "summary": "34평 (전용 84.97㎡)",
+      "tabs": [
+        "전체",
+        "30평대",
+        "40평대",
+        "50평대+"
+      ],
+      "has24": false,
+      "has18": false,
+      "ok": true
+    },
+    {
+      "slug": "suwon-yeongtong",
+      "code": "41117",
+      "query": "영통",
+      "expect": "평",
+      "summary": "24평 (전용 59.92㎡)",
+      "tabs": [
+        "전체",
+        "20평대",
+        "30평대"
+      ],
+      "has24": true,
+      "has18": false,
+      "ok": true
+    },
+    {
+      "slug": "songpa",
+      "code": "11710",
+      "query": "잠실엘스",
+      "expect": "평",
+      "summary": "34평 (전용 84.8㎡)",
+      "tabs": [
+        "전체",
+        "20평대",
+        "30평대",
+        "50평대+"
+      ],
+      "has24": false,
+      "has18": false,
+      "ok": true
+    },
+    {
+      "slug": "bundang",
+      "code": "41135",
+      "query": "분당",
+      "expect": "평",
+      "summary": "34평 (전용 84.87㎡)",
+      "tabs": [
+        "전체",
+        "30평대"
+      ],
+      "has24": false,
+      "has18": false,
+      "ok": true
+    }
+  ],
+  "distribution": {
+    "topLabels": [
+      {
+        "label": "34평",
+        "count": 2462,
+        "rate": "40.7%"
+      },
+      {
+        "label": "24평",
+        "count": 1293,
+        "rate": "21.4%"
+      },
+      {
+        "label": "50평",
+        "count": 469,
+        "rate": "7.8%"
+      },
+      {
+        "label": "29평",
+        "count": 445,
+        "rate": "7.4%"
+      },
+      {
+        "label": "13평",
+        "count": 333,
+        "rate": "5.5%"
+      },
+      {
+        "label": "60평",
+        "count": 282,
+        "rate": "4.7%"
+      },
+      {
+        "label": "20평",
+        "count": 270,
+        "rate": "4.5%"
+      },
+      {
+        "label": "40평",
+        "count": 241,
+        "rate": "4.0%"
+      },
+      {
+        "label": "16평",
+        "count": 136,
+        "rate": "2.3%"
+      },
+      {
+        "label": "18평",
+        "count": 113,
+        "rate": "1.9%"
+      }
+    ],
+    "bands": [
+      {
+        "band": "band30",
+        "label": "30평대",
+        "count": 2462,
+        "rate": "40.7%"
+      },
+      {
+        "band": "band20",
+        "label": "20평대",
+        "count": 2008,
+        "rate": "33.2%"
+      },
+      {
+        "band": "band50",
+        "label": "50평대+",
+        "count": 751,
+        "rate": "12.4%"
+      },
+      {
+        "band": "band10",
+        "label": "10평대",
+        "count": 582,
+        "rate": "9.6%"
+      },
+      {
+        "band": "band40",
+        "label": "40평대",
+        "count": 241,
+        "rate": "4.0%"
+      }
+    ],
+    "nonStandardCount": 0,
+    "nonStandardRate": "0.00%"
+  },
+  "screenshotsDir": "C:\\Users\\2606\\Desktop\\커서\\260608 부동산 계산기\\screenshots\\phase1-pyeong"
+}

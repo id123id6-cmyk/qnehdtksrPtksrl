@@ -89,7 +89,17 @@ for (const city of GYEONGGI_CITIES) {
           if (next) merged = next;
         }
       } catch {
-        merged = sub[0];
+        const coordinates = [];
+        for (const f of sub) {
+          const g = f.geometry;
+          if (g?.type === "Polygon") coordinates.push(g.coordinates);
+          else if (g?.type === "MultiPolygon") coordinates.push(...g.coordinates);
+        }
+        merged = {
+          type: "Feature",
+          properties: sub[0].properties,
+          geometry: { type: "MultiPolygon", coordinates },
+        };
       }
     }
     const c = centroidOfFeature(merged);

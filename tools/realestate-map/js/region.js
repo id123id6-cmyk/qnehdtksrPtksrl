@@ -129,15 +129,33 @@
     return true;
   }
 
-  function createPolygonFromPaths(map, paths, style) {
-    if (!isValidPaths(paths)) return null;
-    const kakaoPaths = pathsToKakaoLatLng(paths);
+  function createSinglePolygon(map, ring, style) {
+    if (!ring?.length) return null;
+    const kakaoPath = ring.map((c) => new kakao.maps.LatLng(c.lat, c.lng));
     const polygon = new kakao.maps.Polygon({
-      path: kakaoPaths.length === 1 ? kakaoPaths[0] : kakaoPaths,
+      path: kakaoPath,
       ...style,
     });
     polygon.setMap(map);
     return polygon;
+  }
+
+  function createPolygonFromPaths(map, paths, style) {
+    if (!isValidPaths(paths)) return null;
+    if (paths.length === 1) {
+      return createSinglePolygon(map, paths[0], style);
+    }
+    return paths
+      .map((ring) => createSinglePolygon(map, ring, style))
+      .filter(Boolean);
+  }
+
+  function clearPolygonOverlay(polygonOrList) {
+    if (!polygonOrList) return;
+    const list = Array.isArray(polygonOrList) ? polygonOrList : [polygonOrList];
+    for (const poly of list) {
+      if (poly) poly.setMap(null);
+    }
   }
 
   function extendBoundsFromPaths(bounds, paths) {
@@ -183,7 +201,9 @@
       this.geojson = null;
       this.guPaths = null;
       this.guPolygon = null;
+      this.guPolygons = [];
       this.dongPolygon = null;
+      this.dongPolygons = [];
       this.dongCircle = null;
       this.menuOpen = false;
       this.guMenuOpen = false;
@@ -262,26 +282,56 @@
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         if (gen !== this._boundaryGen) return;
         const guGeojson = await res.json();
-        const feature = guGeojson.features?.[0];
-        if (!feature) throw new Error(`${districtName} feature 없음`);
 
-        const paths = pathsFromGeoFeature(feature);
+        let allPaths = [];
+        for (const feature of guGeojson.features || []) {
+          allPaths.push(...pathsFromGeoFeature(feature));
+        }
+
+        if (this.geojson?.features?.length) {
+          const dongPaths = [];
+          for (const feature of this.geojson.features) {
+            dongPaths.push(...pathsFromGeoFeature(feature));
+          }
+          if (dongPaths.length > allPaths.length) {
+            allPaths = dongPaths;
+          }
+        }
+
         if (gen !== this._boundaryGen) return;
-        if (!isValidPaths(paths)) throw new Error(`${districtName} 경계 좌표 무효`);
+        if (!isValidPaths(allPaths)) throw new Error(`${districtName} 경계 좌표 무효`);
 
-        this.guPaths = paths;
+        this.guPaths = allPaths;
         this.guPolygon = createPolygonFromPaths(
           this.map,
           this.guPaths,
           GU_POLYGON_STYLE
         );
-        if (this.guPolygon) {
-          console.log(`[${districtName} 경계] 지도에 추가 완료`);
+        this.guPolygons = Array.isArray(this.guPolygon)
+          ? this.guPolygon
+          : this.guPolygon
+            ? [this.guPolygon]
+            : [];
+
+        const bounds = new kakao.maps.LatLngBounds();
+        extendBoundsFromPaths(bounds, this.guPaths);
+        const ne = bounds.getNorthEast();
+        const sw = bounds.getSouthWest();
+        if (ne && sw) {
+          console.log(`[${districtName} 경계] polygon ${this.guPaths.length}개`, {
+            bounds: {
+              minLat: sw.getLat(),
+              maxLat: ne.getLat(),
+              minLng: sw.getLng(),
+              maxLng: ne.getLng(),
+            },
+          });
         }
       } catch (err) {
         if (gen !== this._boundaryGen) return;
         console.warn(`[${districtName} 경계] 로드 실패`, err.message);
         this.guPaths = null;
+        this.guPolygons = [];
       }
     }
 
@@ -675,17 +725,21 @@
     }
 
     clearGuPolygon() {
-      if (this.guPolygon) {
+      clearPolygonOverlay(this.guPolygons);
+      if (this.guPolygon && !Array.isArray(this.guPolygon)) {
         this.guPolygon.setMap(null);
-        this.guPolygon = null;
       }
+      this.guPolygon = null;
+      this.guPolygons = [];
     }
 
     clearDongOverlay() {
-      if (this.dongPolygon) {
+      clearPolygonOverlay(this.dongPolygons);
+      if (this.dongPolygon && !Array.isArray(this.dongPolygon)) {
         this.dongPolygon.setMap(null);
-        this.dongPolygon = null;
       }
+      this.dongPolygon = null;
+      this.dongPolygons = [];
       if (this.dongCircle) {
         this.dongCircle.setMap(null);
         this.dongCircle = null;
@@ -707,6 +761,11 @@
           paths,
           DONG_POLYGON_STYLE
         );
+        this.dongPolygons = Array.isArray(this.dongPolygon)
+          ? this.dongPolygon
+          : this.dongPolygon
+            ? [this.dongPolygon]
+            : [];
 
         const bounds = new kakao.maps.LatLngBounds();
         extendBoundsFromPaths(bounds, paths);
