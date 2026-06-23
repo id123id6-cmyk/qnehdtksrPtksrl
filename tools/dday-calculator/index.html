@@ -47,13 +47,105 @@
   </header>
 
   <main class="dday-page">
-    <section class="section">
-      <div class="container">
-        <div class="section-header">
-          <h1 class="section-title">📅 아파트 D-day 계산기</h1>
-          <p class="section-subtitle">자산·저축·대출을 반영해 언제 살 수 있는지 계산합니다</p>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-badges" aria-label="서비스 특징">
+          <span class="trust-badge">✅ 2026 최신</span>
+          <span class="trust-badge">📱 모바일 최적화</span>
+          <span class="trust-badge trust-badge-accent">🆓 완전 무료</span>
         </div>
+        <h1>
+          🏠 아파트 D-Day 계산기<br>
+          <span class="hero-highlight">내 집 마련 D-Day</span>
+        </h1>
+        <p class="hero-subtitle">내 집 마련까지 며칠 남았을까? 자산·저축·대출로 D-Day 계산</p>
+        <div class="hero-cta">
+          <a href="#calculator" class="btn-primary hero-cta-btn">바로 계산하기</a>
+          <a href="#guide" class="btn-outline hero-cta-btn">사용법 보기</a>
+        </div>
+      </div>
+    </section>
 
+    <!-- 사용법 가이드 섹션 (아코디언, 기본 접힘) -->
+    <section class="section guide-section" id="guide">
+      <div class="container">
+        <button
+          type="button"
+          class="guide-toggle-btn"
+          id="guide-toggle"
+          aria-expanded="false"
+          aria-controls="guide-content"
+        >
+          처음이신가요? 30초 가이드 보기
+          <span class="toggle-icon" aria-hidden="true">▼</span>
+        </button>
+
+        <div class="card guide-card" id="guide-content" hidden>
+          <h2 class="section-title">사용법 가이드</h2>
+          <p class="guide-intro">
+            아래 5단계만 따라가면 아파트 매수 가능 시점을 약 30초 안에 확인할 수 있습니다.
+          </p>
+
+          <article class="guide-step">
+            <div class="guide-step-header">
+              <span class="step-badge" aria-hidden="true">1</span>
+              <h3>목표 아파트 가격 입력</h3>
+            </div>
+            <p class="guide-desc">
+              사고 싶은 아파트의 매매가를 <strong>만원 단위</strong>로 입력하세요. 부동산 지도에서 단지를 선택해 들어오면 최근 1년 평균 거래가가 자동으로 채워집니다.
+            </p>
+            <button type="button" class="guide-next-btn" data-scroll-to="#target-price">다음 →</button>
+          </article>
+
+          <article class="guide-step">
+            <div class="guide-step-header">
+              <span class="step-badge" aria-hidden="true">2</span>
+              <h3>현재 자산 입력</h3>
+            </div>
+            <p class="guide-desc">
+              현금, 예적금, 주식 등 매수에 쓸 수 있는 자산 합계를 만원 단위로 입력합니다. 예: 5,000만 원 → <code>5000</code>
+            </p>
+            <button type="button" class="guide-next-btn" data-scroll-to="#current-assets">다음 →</button>
+          </article>
+
+          <article class="guide-step">
+            <div class="guide-step-header">
+              <span class="step-badge" aria-hidden="true">3</span>
+              <h3>월 저축액 입력</h3>
+            </div>
+            <p class="guide-desc">
+              매달 저축 가능한 금액을 만원 단위로 입력하세요. 이 금액이 D-Day에 가장 큰 영향을 줍니다.
+            </p>
+            <button type="button" class="guide-next-btn" data-scroll-to="#monthly-save">다음 →</button>
+          </article>
+
+          <article class="guide-step">
+            <div class="guide-step-header">
+              <span class="step-badge" aria-hidden="true">4</span>
+              <h3>(선택) 대출·수익률 설정</h3>
+            </div>
+            <p class="guide-desc">
+              <strong>연 평균 수익률</strong>과 <strong>LTV(대출 활용 비율)</strong> 슬라이더로 시나리오를 조정할 수 있습니다. 대출을 많이 쓰면 D-Day는 빨라지지만 이자 부담도 커집니다.
+            </p>
+            <button type="button" class="guide-next-btn" data-scroll-to="#ltv-slider">다음 →</button>
+          </article>
+
+          <article class="guide-step">
+            <div class="guide-step-header">
+              <span class="step-badge" aria-hidden="true">5</span>
+              <h3>계산 결과 + 시뮬레이션 확인</h3>
+            </div>
+            <p class="guide-desc">
+              <strong>계산하기</strong>를 누르면 매수 가능 시점, 자산 증식 그래프, 월 저축액 변경 시뮬레이션이 표시됩니다. URL 복사로 입력값을 저장해 두었다가 다시 열 수 있습니다.
+            </p>
+            <button type="button" class="guide-next-btn" data-scroll-to="#calc-btn">계산하기 →</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="calculator">
+      <div class="container">
         <div id="dday-empty" class="dday-empty-state card page-card" hidden>
           <p>단지 정보가 없습니다. 부동산 지도에서 아파트를 선택한 뒤 D-day 계산하기를 눌러 주세요.</p>
           <a href="../realestate-map/" class="btn-primary" style="margin-top:1rem;display:inline-block;">부동산 지도로 이동</a>
@@ -67,8 +159,8 @@
         </div>
 
         <div class="dday-layout" id="dday-layout">
-          <div class="dday-form-card">
-            <h3>내 정보 입력</h3>
+          <div class="dday-form-card" id="dday-calculator-form">
+            <h2 class="section-title">내 정보 입력</h2>
 
             <div class="dday-field">
               <label for="target-price">목표 금액 (만원)</label>
@@ -77,13 +169,13 @@
             </div>
 
             <div class="dday-field">
-              <label for="current-assets">현재 자산 (만원) <span style="color:#ef4444">*</span></label>
+              <label for="current-assets">현재 자산 (만원) <span class="dday-required">*</span></label>
               <input type="number" id="current-assets" min="0" step="100" placeholder="예: 5000">
               <p class="dday-hint">현금, 예적금, 주식 등 모든 자산 합계</p>
             </div>
 
             <div class="dday-field">
-              <label for="monthly-save">월 저축액 (만원) <span style="color:#ef4444">*</span></label>
+              <label for="monthly-save">월 저축액 (만원) <span class="dday-required">*</span></label>
               <input type="number" id="monthly-save" min="0" step="10" placeholder="예: 200">
               <p class="dday-hint">월급에서 매달 저축 가능한 금액</p>
             </div>
@@ -115,7 +207,7 @@
           </div>
 
           <div class="dday-result-card" id="result-card" hidden>
-            <h3>📊 계산 결과</h3>
+            <h2 class="section-title">📊 계산 결과</h2>
 
             <div class="dday-result-hero">
               <p class="label">🎯 매수 가능 시점</p>
@@ -156,6 +248,69 @@
         </div>
       </div>
     </section>
+
+    <!-- FAQ 섹션 -->
+    <section class="section faq-section" id="faq">
+      <div class="container">
+        <h2 class="section-title">❓ 자주 묻는 질문 (FAQ)</h2>
+        <p class="faq-intro">궁금한 점을 눌러 자세한 설명을 확인하세요.</p>
+
+        <div class="faq-accordion">
+          <details class="faq-accordion-item">
+            <summary>D-Day는 어떻게 계산되나요?</summary>
+            <div class="faq-accordion-body"><p>
+              목표 아파트 가격에서 대출(LTV)로 충당할 금액을 뺀 <strong>필요 자기자금</strong>을 구한 뒤, 현재 자산과 매달 저축액이 복리 수익률을 반영해 얼마나 불어나는지 월 단위로 시뮬레이션합니다. 자기자금이 목표에 도달하는 시점이 매수 가능 D-Day로 표시됩니다.
+            </p></div>
+          </details>
+
+          <details class="faq-accordion-item">
+            <summary>월 저축액을 늘리면 얼마나 빨라지나요?</summary>
+            <div class="faq-accordion-body"><p>
+              계산 결과 화면의 <strong>「월 저축액을 바꾸면?」</strong> 슬라이더로 즉시 확인할 수 있습니다. 저축액이 클수록 필요 자기자금을 더 빨리 모을 수 있지만, 생활비 부담도 함께 고려해 현실적인 금액을 입력하는 것이 좋습니다.
+            </p></div>
+          </details>
+
+          <details class="faq-accordion-item">
+            <summary>대출은 어떻게 반영되나요?</summary>
+            <div class="faq-accordion-body"><p>
+              LTV(대출 활용 비율) 슬라이더로 집값의 몇 %를 대출로 쓸지 설정합니다. LTV가 높을수록 필요 자기자금은 줄어 D-Day가 앞당겨지지만, 결과에 표시되는 <strong>월 이자 부담(참고)</strong>은 커집니다. 실제 한도는 DSR·신용등급 등에 따라 달라질 수 있습니다.
+            </p></div>
+          </details>
+
+          <details class="faq-accordion-item">
+            <summary>자산 수익률은 뭔가요?</summary>
+            <div class="faq-accordion-body"><p>
+              보유 자산과 저축금이 1년에 평균 몇 % 성장한다고 가정하는 값입니다. 예적금 위주면 보수형(3%), 혼합 투자는 균형형(5%), 주식 비중이 크면 공격형(7%)을 선택하거나 직접 입력할 수 있습니다. 수익률이 높을수록 D-Day는 앞당겨집니다.
+            </p></div>
+          </details>
+
+          <details class="faq-accordion-item">
+            <summary>실제 매수 시기와 차이날 수 있나요?</summary>
+            <div class="faq-accordion-body"><p>
+              네. 본 계산기는 자산·저축·단순 LTV 기준의 <strong>참고 시뮬레이션</strong>입니다. 집값 변동, 금리·규제 변화, 취득세·중개수수료 등 부대비용, 대출 심사 결과는 반영되지 않으므로 실제 매수 계획은 여유 있게 잡으시기 바랍니다.
+            </p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="card related-tool-card">
+          <p class="related-tool-text">👉 내 연봉으로 어느 정도 집을 살 수 있는지 궁금하다면?</p>
+          <a href="/tools/apt-calculator/" class="btn-outline">내 연봉 아파트 계산기 →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="card related-tool-card">
+          <p class="related-tool-text">👉 지역별 실거래가가 궁금하다면?</p>
+          <a href="/tools/realestate-map/" class="btn-outline">부동산 실거래가 지도 →</a>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
@@ -191,6 +346,9 @@
       </div>
     </div>
     <div class="container footer-bottom">
+      <p class="footer-disclaimer">
+        본 계산 결과는 참고용이며, 실제 매수 시기는 시장 상황·금리·정책 등에 따라 달라질 수 있습니다.
+      </p>
       <p class="footer-copy">&copy; <span id="current-year"></span> 승박. All rights reserved.</p>
     </div>
   </footer>
@@ -201,6 +359,38 @@
     (function () {
       var el = document.getElementById("current-year");
       if (el) el.textContent = new Date().getFullYear();
+
+      function toggleGuide() {
+        var guide = document.getElementById("guide-content");
+        var toggle = document.getElementById("guide-toggle");
+        var icon = toggle ? toggle.querySelector(".toggle-icon") : null;
+        if (!guide || !toggle) return;
+
+        var nextExpanded = toggle.getAttribute("aria-expanded") !== "true";
+        toggle.setAttribute("aria-expanded", String(nextExpanded));
+        guide.hidden = !nextExpanded;
+        if (icon) icon.textContent = nextExpanded ? "▲" : "▼";
+      }
+
+      window.toggleGuide = toggleGuide;
+
+      var guideToggle = document.getElementById("guide-toggle");
+      if (guideToggle) {
+        guideToggle.addEventListener("click", toggleGuide);
+      }
+
+      document.querySelectorAll(".guide-next-btn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var selector = btn.getAttribute("data-scroll-to");
+          if (!selector) return;
+          var target = document.querySelector(selector);
+          if (!target) return;
+          target.scrollIntoView({ behavior: "smooth", block: "center" });
+          if (typeof target.focus === "function") {
+            target.focus({ preventScroll: true });
+          }
+        });
+      });
     })();
   </script>
 </body>

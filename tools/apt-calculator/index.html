@@ -96,21 +96,21 @@
       </div>
     </section>
 
-    <!-- 사용법 가이드 섹션 (아코디언, 기본 펼침) -->
+    <!-- 사용법 가이드 섹션 (아코디언, 기본 접힘) -->
     <section class="section guide-section" id="guide">
       <div class="container">
         <button
           type="button"
           class="guide-toggle-btn"
           id="guide-toggle"
-          aria-expanded="true"
+          aria-expanded="false"
           aria-controls="guide-content"
         >
           처음이신가요? 30초 가이드 보기
-          <span class="toggle-icon" aria-hidden="true">▲</span>
+          <span class="toggle-icon" aria-hidden="true">▼</span>
         </button>
 
-        <div class="card guide-card" id="guide-content">
+        <div class="card guide-card" id="guide-content" hidden>
           <h2 class="section-title">사용법 가이드</h2>
           <p class="guide-intro">
             아래 7단계만 따라가면 연봉 기준 최대 매수 가능 아파트 가격과 월 상환액을 약 30초 안에 확인할 수 있습니다.

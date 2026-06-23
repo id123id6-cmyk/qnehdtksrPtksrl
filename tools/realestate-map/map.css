@@ -34,6 +34,43 @@ body.map-page .site-header .header-inner {
   box-sizing: border-box;
 }
 
+body.map-page .map-page-shell {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+body.map-page .map-hero {
+  flex-shrink: 0;
+  padding: 1rem 0 0.75rem;
+}
+
+body.map-page .map-hero .hero-inner {
+  padding-bottom: 0.25rem;
+}
+
+body.map-page .map-hero h1 {
+  font-size: clamp(1.25rem, 3.5vw, 1.65rem);
+  margin-bottom: 0.35rem;
+}
+
+body.map-page .map-hero .hero-subtitle {
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+}
+
+body.map-page .map-hero .hero-cta {
+  margin-bottom: 0;
+}
+
+body.map-page .guide-section {
+  flex-shrink: 0;
+  padding-top: 0;
+  padding-bottom: 8px;
+}
+
 body.map-page .map-page-header {
   display: none;
 }
@@ -88,8 +125,7 @@ body.map-page .map-layout {
   flex-direction: row;
   align-items: stretch;
   min-height: 0;
-  height: calc(100vh - var(--map-header-h));
-  height: calc(100dvh - var(--map-header-h));
+  height: auto;
   overflow: hidden;
   background: #e5e7eb;
 }
