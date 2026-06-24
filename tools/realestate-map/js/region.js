@@ -267,10 +267,16 @@
       const cfg = this.getDistrictConfig();
       const { slug, name, sido } = cfg;
       const urls = geoUrls(slug, sido);
-      await Promise.all([
-        this.loadGeoJson(urls.dong, name, gen),
-        this.loadGuBoundary(urls.gu, name, gen),
-      ]);
+
+      // 이전 구 dong GeoJSON이 gu 경계·fitGuBounds에 섞이지 않도록 즉시 초기화
+      this.geojson = null;
+      this.dongIndex = new Map();
+      this.clearGuPolygon();
+      this.guPaths = null;
+
+      await this.loadGeoJson(urls.dong, name, gen);
+      if (gen !== this._boundaryGen) return false;
+      await this.loadGuBoundary(urls.gu, name, gen);
       return gen === this._boundaryGen;
     }
 

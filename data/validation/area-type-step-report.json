@@ -1,0 +1,274 @@
+{
+  "generatedAt": "2026-06-24T01:32:37.832Z",
+  "distribution": {
+    "totalApartmentsWithTrades": 14613,
+    "singleGroup": 4444,
+    "twoToThreeGroups": 6720,
+    "fourPlusGroups": 3449
+  },
+  "timings": [
+    {
+      "key": "geumho",
+      "sidebarLoadMs": 144
+    },
+    {
+      "key": "jamsil-els",
+      "sidebarLoadMs": 116
+    },
+    {
+      "key": "raemian-daechi",
+      "sidebarLoadMs": 90
+    },
+    {
+      "key": "helio",
+      "sidebarLoadMs": 99
+    },
+    {
+      "key": "hansol",
+      "sidebarLoadMs": 177
+    }
+  ],
+  "consoleErrors": [],
+  "results": [
+    {
+      "key": "geumho",
+      "name": "고덕국제신도시금호어울림",
+      "checks": [
+        {
+          "name": "sidebar_load_ms",
+          "pass": true,
+          "value": 144
+        },
+        {
+          "name": "tab_count",
+          "pass": true,
+          "expected": 2,
+          "actual": 2
+        },
+        {
+          "name": "tab_labels",
+          "pass": true,
+          "labels": [
+            "전체",
+            "60㎡ (29평)"
+          ]
+        },
+        {
+          "name": "marker_label",
+          "pass": true,
+          "value": "60㎡ 3.8억"
+        },
+        {
+          "name": "filter_visible",
+          "pass": true
+        },
+        {
+          "name": "marker_after_filter",
+          "pass": true,
+          "value": "60㎡ 3.8억"
+        }
+      ],
+      "tabs": {
+        "labels": [
+          "전체",
+          "60㎡ (29평)"
+        ],
+        "count": 2,
+        "scrollWidth": 327,
+        "clientWidth": 327
+      },
+      "markerLabel": "60㎡ 3.8억",
+      "pass": true
+    },
+    {
+      "key": "jamsil-els",
+      "name": "잠실엘스",
+      "checks": [
+        {
+          "name": "sidebar_load_ms",
+          "pass": true,
+          "value": 116
+        },
+        {
+          "name": "tab_count",
+          "pass": true,
+          "expected": 6,
+          "actual": 6
+        },
+        {
+          "name": "tab_labels",
+          "pass": true,
+          "labels": [
+            "전체",
+            "60㎡ (29평)",
+            "84.8㎡ (34평)",
+            "84.9㎡ (34평)",
+            "85㎡ (40평)",
+            "119.9㎡ (50평)"
+          ]
+        },
+        {
+          "name": "distinct_charts",
+          "pass": true,
+          "prices": [
+            "28억 5,867만",
+            "32억 7,234만",
+            "33억 4,000만"
+          ]
+        }
+      ],
+      "tabs": {
+        "labels": [
+          "전체",
+          "60㎡ (29평)",
+          "84.8㎡ (34평)",
+          "84.9㎡ (34평)",
+          "85㎡ (40평)",
+          "119.9㎡ (50평)"
+        ],
+        "count": 6,
+        "scrollWidth": 543,
+        "clientWidth": 327
+      },
+      "pass": true
+    },
+    {
+      "key": "raemian-daechi",
+      "name": "래미안대치팰리스",
+      "checks": [
+        {
+          "name": "sidebar_load_ms",
+          "pass": true,
+          "value": 90
+        },
+        {
+          "name": "tab_count",
+          "pass": true,
+          "expected": 8,
+          "actual": 8
+        },
+        {
+          "name": "horizontal_scroll",
+          "pass": true,
+          "scrollWidth": 762,
+          "clientWidth": 327
+        }
+      ],
+      "tabs": {
+        "labels": [
+          "전체",
+          "85㎡ (40평)",
+          "91.9㎡ (40평)",
+          "93.2㎡ (40평)",
+          "94.5㎡ (40평)",
+          "114.1㎡ (50평)",
+          "114.2㎡ (50평)",
+          "151.3㎡ (60평)"
+        ],
+        "count": 8,
+        "scrollWidth": 762,
+        "clientWidth": 327
+      },
+      "pass": true
+    },
+    {
+      "key": "helio",
+      "name": "헬리오시티",
+      "checks": [
+        {
+          "name": "sidebar_load_ms",
+          "pass": true,
+          "value": 99
+        },
+        {
+          "name": "tab_count",
+          "pass": true,
+          "expected": 13,
+          "actual": 13
+        },
+        {
+          "name": "horizontal_scroll",
+          "pass": true,
+          "scrollWidth": 1262,
+          "clientWidth": 327
+        },
+        {
+          "name": "mobile_scrollable",
+          "pass": true
+        }
+      ],
+      "tabs": {
+        "labels": [
+          "전체",
+          "39.1㎡ (16평)",
+          "39.2㎡ (16평)",
+          "39.9㎡ (16평)",
+          "49.2㎡ (20평)",
+          "49.3㎡ (20평)",
+          "60㎡ (29평)",
+          "84.9㎡ (34평)",
+          "85㎡ (40평)",
+          "99.6㎡ (40평)",
+          "110.4㎡ (50평)",
+          "110.7㎡ (50평)",
+          "130.1㎡ (50평)"
+        ],
+        "count": 13,
+        "scrollWidth": 1262,
+        "clientWidth": 327
+      },
+      "mobileTabs": {
+        "labels": [
+          "전체",
+          "39.1㎡ (16평)",
+          "39.2㎡ (16평)",
+          "39.9㎡ (16평)",
+          "49.2㎡ (20평)",
+          "49.3㎡ (20평)",
+          "60㎡ (29평)",
+          "84.9㎡ (34평)",
+          "85㎡ (40평)",
+          "99.6㎡ (40평)",
+          "110.4㎡ (50평)",
+          "110.7㎡ (50평)",
+          "130.1㎡ (50평)"
+        ],
+        "count": 13,
+        "scrollWidth": 1262,
+        "clientWidth": 358
+      },
+      "pass": true
+    },
+    {
+      "key": "hansol",
+      "name": "한솔마을(1단지)(청구)",
+      "checks": [
+        {
+          "name": "sidebar_load_ms",
+          "pass": true,
+          "value": 177
+        },
+        {
+          "name": "tab_count",
+          "pass": true,
+          "expected": 5,
+          "actual": 5
+        }
+      ],
+      "tabs": {
+        "labels": [
+          "전체",
+          "49.4㎡ (20평)",
+          "85㎡ (40평)",
+          "102㎡ (50평)",
+          "135㎡ (60평)"
+        ],
+        "count": 5,
+        "scrollWidth": 437,
+        "clientWidth": 327
+      },
+      "pass": true
+    }
+  ],
+  "allPass": true
+}

@@ -5,27 +5,32 @@
   "use strict";
 
   const Pyeong = () => global.RealEstateMapPyeong;
+  const AT = () => global.RealEstateMapAreaTypes;
 
   let supabaseClient = null;
   let chartInstance = null;
   let currentApartmentId = null;
   let cachedTransactions = [];
+  let currentAreaGroups = [];
   let currentPeriod = "all";
   let currentArea = "all";
   let currentDealType = "매매";
-  let lastLoadedDealType = "매매";
+  let lastLoadedApartmentId = null;
   let onFilterChange = null;
+  let onAreaTabChange = null;
 
   function toPyeong(sqm) {
     return Pyeong()?.toPyeong(sqm) ?? null;
   }
 
-  function getAvailableAreas(transactions) {
-    return Pyeong()?.getAvailableBands(transactions) || [];
-  }
-
   function filterByArea(transactions, areaTab) {
-    return Pyeong()?.filterByBand(transactions, areaTab) ?? transactions;
+    return (
+      AT()?.filterTransactionsByAreaGroup(
+        transactions,
+        areaTab,
+        currentAreaGroups
+      ) ?? transactions
+    );
   }
 
   function formatAmount(amountMan) {
@@ -66,34 +71,39 @@
     return transactions.filter((tx) => parseDealDate(tx) >= min);
   }
 
-  function applyFilters(period, area) {
-    return filterByArea(filterByPeriod(cachedTransactions, period), area);
+  function applyFilters(period, area, transactions) {
+    return filterByArea(filterByPeriod(transactions, period), area);
   }
 
   async function loadApartmentTransactions(apartmentId) {
-    if (currentApartmentId !== apartmentId || lastLoadedDealType !== currentDealType) {
+    if (lastLoadedApartmentId !== apartmentId) {
+      const cutoffStr = AT()?.getCutoffDateStr?.();
       const { data, error } = await supabaseClient
         .from("transactions")
         .select(
           "deal_amount, deal_year, deal_month, deal_day, deal_date, exclu_use_ar, floor, deal_type, rent_deposit, monthly_rent"
         )
         .eq("apartment_id", apartmentId)
-        .eq("deal_type", currentDealType)
+        .in("deal_type", ["매매", "전세"])
+        .gte("deal_date", cutoffStr)
         .order("deal_year", { ascending: true })
         .order("deal_month", { ascending: true });
 
       if (error) throw new Error(error.message);
       cachedTransactions = data || [];
+      lastLoadedApartmentId = apartmentId;
       currentApartmentId = apartmentId;
-      lastLoadedDealType = currentDealType;
+      currentAreaGroups = AT()?.buildAreaTypesFromTransactions(cachedTransactions)?.groups || [];
 
       console.log("[차트] 거래 로드", {
         apartmentId,
         총건수: cachedTransactions.length,
-        평형대: getAvailableAreas(cachedTransactions),
+        면적그룹: currentAreaGroups.map((g) => g.areaGroup),
       });
     }
-    return applyFilters(currentPeriod, currentArea);
+
+    const byDeal = cachedTransactions.filter((tx) => tx.deal_type === currentDealType);
+    return applyFilters(currentPeriod, currentArea, byDeal);
   }
 
   function aggregateByMonth(transactions) {
@@ -270,10 +280,10 @@
       const areaLabel =
         currentArea === "all"
           ? ""
-          : ` (${Pyeong()?.getBandLabel(currentArea) || currentArea})`;
+          : ` (${AT()?.formatAreaTabLabel?.(Number(currentArea), true) || currentArea})`;
       showChartMessage(
         `선택한 조건의 거래가 없습니다${areaLabel}`,
-        "다른 평형대 또는 기간을 선택해 보세요."
+        "다른 면적 또는 기간을 선택해 보세요."
       );
       if (hint) hint.hidden = true;
       return;
@@ -316,24 +326,29 @@
     const tabsEl = document.getElementById("area-tabs");
     if (!selector || !tabsEl) return;
 
-    const bands = getAvailableAreas(cachedTransactions);
-    const P = Pyeong();
-
-    selector.hidden = false;
+    selector.hidden = true;
     const buttons = [
       `<button type="button" class="area-tab${currentArea === "all" ? " active" : ""}" data-area="all">전체</button>`,
     ];
 
-    for (const bandId of bands) {
-      const label = P?.getBandLabel(bandId) || bandId;
-      const active = bandId === currentArea ? " active" : "";
+    for (const group of currentAreaGroups) {
+      const key = String(group.areaGroup);
+      const label = AT()?.formatAreaTabLabel(group.areaGroup, true) || `${key}㎡`;
+      const active = key === String(currentArea) ? " active" : "";
       buttons.push(
-        `<button type="button" class="area-tab${active}" data-area="${bandId}">${label}</button>`
+        `<button type="button" class="area-tab${active}" data-area="${key}">${label}</button>`
       );
     }
 
     tabsEl.innerHTML = buttons.join("");
     bindAreaTabs();
+  }
+
+  function setAreaGroups(groups) {
+    if (Array.isArray(groups) && groups.length) {
+      currentAreaGroups = groups;
+      renderAreaTabs();
+    }
   }
 
   function setActiveAreaTab(area) {
@@ -347,6 +362,41 @@
       btn.addEventListener("click", () => {
         const area = btn.dataset.area;
         if (area) updateChartArea(area);
+      });
+    });
+  }
+
+  function setSidebarAreaTabs(groups, activeArea, onSelect) {
+    onAreaTabChange = onSelect || null;
+    if (Array.isArray(groups)) currentAreaGroups = groups;
+    if (activeArea != null) currentArea = String(activeArea);
+    renderSidebarAreaTabs();
+  }
+
+  function renderSidebarAreaTabs() {
+    const wrap = document.getElementById("sidebar-area-tabs");
+    if (!wrap) return;
+
+    const buttons = [
+      `<button type="button" class="sidebar-area-tab${currentArea === "all" ? " active" : ""}" data-area="all">전체</button>`,
+    ];
+
+    for (const group of currentAreaGroups) {
+      const key = String(group.areaGroup);
+      const label = AT()?.formatAreaTabLabel(group.areaGroup, true) || `${key}㎡`;
+      const active = key === String(currentArea) ? " active" : "";
+      buttons.push(
+        `<button type="button" class="sidebar-area-tab${active}" data-area="${key}">${label}</button>`
+      );
+    }
+
+    wrap.innerHTML = buttons.join("");
+    wrap.querySelectorAll(".sidebar-area-tab").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const area = btn.dataset.area;
+        if (!area) return;
+        updateChartArea(area);
+        if (typeof onAreaTabChange === "function") onAreaTabChange(area);
       });
     });
   }
@@ -417,6 +467,12 @@
     if (!currentApartmentId) return;
     currentArea = area;
     setActiveAreaTab(area);
+    const sidebarTabs = document.getElementById("sidebar-area-tabs");
+    if (sidebarTabs) {
+      sidebarTabs.querySelectorAll(".sidebar-area-tab").forEach((btn) => {
+        btn.classList.toggle("active", btn.dataset.area === String(area));
+      });
+    }
     showChartLoading();
     try {
       await refreshChart();
@@ -431,7 +487,6 @@
     if (type === "월세") return;
     if (currentDealType === type) return;
     currentDealType = type;
-    currentArea = "all";
     setActiveDealTab(type);
     showChartLoading();
     try {
@@ -457,19 +512,25 @@
     if (!supabase) return;
     supabaseClient = supabase;
     onFilterChange = options?.onFilterChange || null;
+    onAreaTabChange = options?.onAreaTabChange || null;
     currentDealType = options?.dealType || "매매";
     currentPeriod = period || "all";
-    currentArea = "all";
+    currentArea = options?.areaGroup != null ? String(options.areaGroup) : "all";
     currentApartmentId = null;
+    lastLoadedApartmentId = null;
     cachedTransactions = [];
-    lastLoadedDealType = "매매";
+    currentAreaGroups = options?.areaGroups || [];
 
     setActivePeriodButton(currentPeriod);
     showChartLoading();
 
     try {
       await loadApartmentTransactions(apartmentId);
+      if (!currentAreaGroups.length) {
+        currentAreaGroups = AT()?.buildAreaTypesFromTransactions(cachedTransactions)?.groups || [];
+      }
       renderAreaTabs();
+      renderSidebarAreaTabs();
       await refreshChart();
       bindPeriodButtons();
       bindDealTypeTabs();
@@ -485,9 +546,12 @@
       chartInstance = null;
     }
     currentApartmentId = null;
+    lastLoadedApartmentId = null;
     cachedTransactions = [];
+    currentAreaGroups = [];
     currentArea = "all";
     onFilterChange = null;
+    onAreaTabChange = null;
   }
 
   function getChartSectionHtml() {
@@ -498,9 +562,9 @@
           <button type="button" class="deal-tab active" data-deal="매매">매매</button>
           <button type="button" class="deal-tab" data-deal="전세">전세</button>
         </div>
-        <div class="area-selector" id="area-selector">
-          <h4>평형대 선택</h4>
-          <div class="area-tabs" id="area-tabs"></div>
+        <div class="area-selector" id="area-selector" hidden>
+          <h4>면적 선택</h4>
+          <div class="area-tabs area-tabs-scroll" id="area-tabs"></div>
         </div>
         <div class="chart-controls">
           <button type="button" class="period-btn active" data-period="all">전체</button>
@@ -537,10 +601,12 @@
     updateChartDealType,
     getCurrentDealType,
     getCurrentArea: () => currentArea,
+    getCurrentAreaGroups: () => currentAreaGroups,
+    setAreaGroups,
+    setSidebarAreaTabs,
     destroyChart,
     formatAmount,
     toPyeong,
-    getAvailableAreas,
     filterByArea,
   };
 })(window);

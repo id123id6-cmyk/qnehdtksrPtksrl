@@ -7,8 +7,9 @@
   const DEBUG = false;
   const CATEGORIES = {
     low: { color: "#10b981", label: "low" },
-    mid: { color: "#f59e0b", label: "mid" },
+    mid: { color: "#ea580c", label: "mid" },
     high: { color: "#ef4444", label: "high" },
+    jeonse: { color: "#FFC107", label: "jeonse" },
     none: { color: "#9ca3af", label: "none" },
   };
 
@@ -36,11 +37,47 @@
       .replace(/"/g, "&quot;");
   }
 
+  function hasMaemae1Y(apt) {
+    return apt.avgPrice1Y != null && apt.avgPrice1Y > 0;
+  }
+
+  function hasJeonse1Y(apt) {
+    return (apt.jeonseCount1Y ?? 0) > 0 || (apt.avgJeonseDeposit1Y != null && apt.avgJeonseDeposit1Y > 0);
+  }
+
   function getPriceCategory(avgPrice1Y) {
     if (avgPrice1Y == null || avgPrice1Y <= 0) return CATEGORIES.none;
     if (avgPrice1Y < 100000) return CATEGORIES.low;
     if (avgPrice1Y < 200000) return CATEGORIES.mid;
     return CATEGORIES.high;
+  }
+
+  function getMarkerCategory(apt) {
+    if (hasMaemae1Y(apt)) return getPriceCategory(apt.avgPrice1Y);
+    if (hasJeonse1Y(apt)) return CATEGORIES.jeonse;
+    return CATEGORIES.none;
+  }
+
+  function getPyeongLabel(apt) {
+    const AT = global.RealEstateMapAreaTypes;
+    const activeBand = global.RealEstateMapFilter?.getActiveAreaFilter?.();
+    if (AT?.formatMarkerAreaLabel) {
+      const label = AT.formatMarkerAreaLabel(apt, activeBand);
+      if (label) return label;
+    }
+    const p = apt.dominantPyeong ?? apt.jeonseDominantPyeong;
+    return p != null ? `${p}평` : "";
+  }
+
+  function getMarkerPriceText(apt) {
+    if (hasMaemae1Y(apt)) {
+      return formatPrice(apt.avgPrice1Y) || "거래없음";
+    }
+    if (hasJeonse1Y(apt)) {
+      const deposit = formatPrice(apt.avgJeonseDeposit1Y);
+      return deposit ? `전세 ${deposit}` : "전세";
+    }
+    return "거래없음";
   }
 
   function formatPrice(amountMan) {
@@ -89,9 +126,8 @@
   }
 
   function getMarkerLabel(apt, zoomLevel) {
-    const price = formatPrice(apt.avgPrice1Y) || "거래없음";
-    const pyeong =
-      apt.dominantPyeong != null ? `${apt.dominantPyeong}평` : "";
+    const price = getMarkerPriceText(apt);
+    const pyeong = getPyeongLabel(apt);
     const mode = getMarkerMode(zoomLevel);
     if (mode === "brand") {
       const name = shortenAptName(apt.name);
@@ -102,27 +138,30 @@
   }
 
   function getMarkerTooltip(apt) {
-    const name = apt.name || "";
-    const maemae = apt.tradeCount1Y ?? 0;
-    if (maemae > 0) return name;
-
-    const jeonse = apt.jeonseCount ?? 0;
-    const wolse = apt.wolseCount ?? 0;
-    if (jeonse || wolse) {
-      const parts = ["매매 없음"];
-      if (jeonse) parts.push(`전세 ${jeonse}건`);
-      if (wolse) parts.push(`월세 ${wolse}건`);
-      return `${name} — ${parts.join(" · ")}`;
+    const AT = global.RealEstateMapAreaTypes;
+    if (AT?.formatMarkerTooltip && (apt.avgPrice1Y > 0 || (apt.jeonseCount1Y ?? 0) > 0)) {
+      return AT.formatMarkerTooltip(apt);
     }
-    return `${name} — 거래 없음`;
+    const name = apt.name || "";
+    if (hasMaemae1Y(apt)) return name;
+
+    const jeonse1y = apt.jeonseCount1Y ?? 0;
+    if (jeonse1y > 0 || hasJeonse1Y(apt)) {
+      return `${name} — 매매 없음 · 전세 ${jeonse1y || "?"}건`;
+    }
+
+    const wolse = apt.wolseCount ?? 0;
+    if (wolse > 0) {
+      return `${name} — 매매 없음 · 월세 ${wolse}건`;
+    }
+    return `${name} — 최근 1년 거래 없음`;
   }
 
   function createMarkerContent(apt, zoomLevel, selectedId) {
-    const category = getPriceCategory(apt.avgPrice1Y);
+    const category = getMarkerCategory(apt);
     const catLabel = category.label;
-    const price = formatPrice(apt.avgPrice1Y) || "거래없음";
-    const pyeong =
-      apt.dominantPyeong != null ? `${apt.dominantPyeong}평` : "";
+    const price = getMarkerPriceText(apt);
+    const pyeong = getPyeongLabel(apt);
     const mode = getMarkerMode(zoomLevel);
     const id = escapeHtml(apt.id);
     const tooltip = escapeHtml(getMarkerTooltip(apt));
@@ -306,7 +345,7 @@
 
       if (DEBUG) console.time("클러스터 마커 생성");
       this.clusterMarkers = this.apartments.map((apt) => {
-        const category = getPriceCategory(apt.avgPrice1Y);
+        const category = getMarkerCategory(apt);
         const position = new kakao.maps.LatLng(apt.latitude, apt.longitude);
         const marker = new kakao.maps.Marker({
           position,
@@ -495,11 +534,13 @@
 
   global.RealEstateMapMarker = {
     getPriceCategory,
+    getMarkerCategory,
     formatPrice,
     shortenAptName,
     getMarkerMode,
     getMarkerLabel,
     getMarkerTooltip,
+    getMarkerPriceText,
     createMarkerElement,
     createMarkerContent,
     countBrandMatches,

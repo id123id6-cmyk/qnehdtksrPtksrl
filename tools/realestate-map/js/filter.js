@@ -25,11 +25,11 @@
     ],
     area: [
       { value: "all", label: "전체" },
-      { value: "band10", label: "10평대" },
-      { value: "band20", label: "20평대" },
-      { value: "band30", label: "30평대" },
-      { value: "band40", label: "40평대" },
-      { value: "band50", label: "50평대+" },
+      { value: "under40", label: "40㎡ 미만" },
+      { value: "40_60", label: "40-60㎡" },
+      { value: "60_85", label: "60-85㎡" },
+      { value: "85_102", label: "85-102㎡" },
+      { value: "102plus", label: "102㎡ 이상" },
     ],
     age: [
       { value: "all", label: "전체" },
@@ -82,8 +82,8 @@
 
   function matchAreaFilter(apt, filter) {
     if (filter === "all") return true;
-    const cats = apt.areaCategories || [];
-    return cats.includes(filter);
+    const bands = apt.areaSqmBands || apt.areaCategories || [];
+    return bands.includes(filter);
   }
 
   function matchAgeFilter(apt, filter) {
@@ -155,12 +155,11 @@
       over30: "30억+",
     },
     area: {
-      band10: "10평대",
-      band20: "20평대",
-      band30: "30평대",
-      band40: "40평대",
-      band50: "50평대+",
-      other: "기타",
+      under40: "40㎡ 미만",
+      "40_60": "40-60㎡",
+      "60_85": "60-85㎡",
+      "85_102": "85-102㎡",
+      "102plus": "102㎡+",
     },
     age: {
       new: "신축",
@@ -453,6 +452,7 @@
     isFilterActive,
     getOptionLabel,
     getButtonDisplayLabel,
+    getActiveAreaFilter: () => filterState.area,
     MapFilterBar,
     updateResultCount,
   };

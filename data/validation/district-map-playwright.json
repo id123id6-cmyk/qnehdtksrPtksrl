@@ -1,0 +1,210 @@
+{
+  "maxDelta": 0.08,
+  "results": [
+    {
+      "code": "11680",
+      "name": "강남구",
+      "lat": 37.5172,
+      "lng": 127.0473,
+      "mapCenter": {
+        "lat": 37.4987004885176,
+        "lng": 127.0669478916897
+      },
+      "aptCenter": {
+        "lat": 37.50567630396892,
+        "lng": 127.0488681049282,
+        "count": 740
+      },
+      "markerDom": 740,
+      "deltaMap": 0.02698650723856694,
+      "deltaApt": 0.011629897819097623,
+      "ok": true,
+      "screenshot": "C:\\Users\\2606\\Desktop\\커서\\260608 부동산 계산기\\screenshots\\district-alignment-fix\\11680-강남구.png"
+    },
+    {
+      "code": "11710",
+      "name": "송파구",
+      "lat": 37.5145,
+      "lng": 127.1059,
+      "mapCenter": {
+        "lat": 37.504286900888594,
+        "lng": 127.1138198827333
+      },
+      "aptCenter": {
+        "lat": 37.50236132179637,
+        "lng": 127.12330861679838,
+        "count": 428
+      },
+      "markerDom": 428,
+      "deltaMap": 0.012924083563967919,
+      "deltaApt": 0.02122280488917406,
+      "ok": true,
+      "screenshot": "C:\\Users\\2606\\Desktop\\커서\\260608 부동산 계산기\\screenshots\\district-alignment-fix\\11710-송파구.png"
+    },
+    {
+      "code": "11740",
+      "name": "강동구",
+      "lat": 37.5301,
+      "lng": 127.1238,
+      "mapCenter": {
+        "lat": 37.54879642311514,
+        "lng": 127.14647853722425
+      },
+      "aptCenter": {
+        "lat": 37.54039185695994,
+        "lng": 127.13905555975666,
+        "count": 458
+      },
+      "markerDom": 458,
+      "deltaMap": 0.029391704406725006,
+      "deltaApt": 0.01840256566821031,
+      "ok": true,
+      "screenshot": "C:\\Users\\2606\\Desktop\\커서\\260608 부동산 계산기\\screenshots\\district-alignment-fix\\11740-강동구.png"
+    },
+    {
+      "code": "11620",
+      "name": "관악구",
+      "lat": 37.4784,
+      "lng": 126.9516,
+      "mapCenter": {
+        "lat": 37.465404870294385,
+        "lng": 126.94393340644201
+      },
+      "aptCenter": {
+        "lat": 37.47835563339338,
+        "lng": 126.9468395110758,
+        "count": 251
+      },
+      "markerDom": 251,
+      "deltaMap": 0.015088076512568003,
+      "deltaApt": 0.004760695662743401,
+      "ok": true,
+      "screenshot": "C:\\Users\\2606\\Desktop\\커서\\260608 부동산 계산기\\screenshots\\district-alignment-fix\\11620-관악구.png"
+    },
+    {
+      "code": "11440",
+      "name": "마포구",
+      "lat": 37.5663,
+      "lng": 126.9019,
+      "mapCenter": {
+        "lat": 37.560097564037484,
+        "lng": 126.910180050254
+      },
+      "aptCenter": {
+        "lat": 37.55438200067751,
+        "lng": 126.92392560653691,
+        "count": 296
+      },
+      "markerDom": 296,
+      "deltaMap": 0.010345503568114558,
+      "deltaApt": 0.02504328355407302,
+      "ok": true,
+      "screenshot": "C:\\Users\\2606\\Desktop\\커서\\260608 부동산 계산기\\screenshots\\district-alignment-fix\\11440-마포구.png"
+    },
+    {
+      "code": "11350",
+      "name": "노원구",
+      "lat": 37.6543,
+      "lng": 127.0568,
+      "mapCenter": {
+        "lat": 37.65525118457024,
+        "lng": 127.07687944747187
+      },
+      "aptCenter": {
+        "lat": 37.64375783138912,
+        "lng": 127.06883018181526,
+        "count": 298
+      },
+      "markerDom": 298,
+      "deltaMap": 0.020101964154338972,
+      "deltaApt": 0.015995705471424336,
+      "ok": true,
+      "screenshot": "C:\\Users\\2606\\Desktop\\커서\\260608 부동산 계산기\\screenshots\\district-alignment-fix\\11350-노원구.png"
+    },
+    {
+      "code": "41220",
+      "name": "평택시",
+      "lat": 36.9673,
+      "lng": 127.0528,
+      "mapCenter": {
+        "lat": 37.024477630512806,
+        "lng": 126.96511698429235
+      },
+      "aptCenter": {
+        "lat": 37.02306246834502,
+        "lng": 127.04443252261247,
+        "count": 357
+      },
+      "markerDom": 357,
+      "deltaMap": 0.10467852059829387,
+      "deltaApt": 0.05638676754132863,
+      "ok": false,
+      "screenshot": "C:\\Users\\2606\\Desktop\\커서\\260608 부동산 계산기\\screenshots\\district-alignment-fix\\41220-평택시.png"
+    },
+    {
+      "code": "41135",
+      "name": "성남 분당구",
+      "lat": 37.3711,
+      "lng": 127.1457,
+      "mapCenter": {
+        "lat": 37.37527230227687,
+        "lng": 127.10206347931127
+      },
+      "aptCenter": {
+        "lat": 37.37788863808894,
+        "lng": 127.11408495414847,
+        "count": 201
+      },
+      "markerDom": 200,
+      "deltaMap": 0.04383553403470816,
+      "deltaApt": 0.032335688198915566,
+      "ok": true,
+      "screenshot": "C:\\Users\\2606\\Desktop\\커서\\260608 부동산 계산기\\screenshots\\district-alignment-fix\\41135-성남분당구.png"
+    }
+  ],
+  "switchScenario": {
+    "gangdong": {
+      "code": "11740",
+      "name": "강동구",
+      "lat": 37.5301,
+      "lng": 127.1238,
+      "mapCenter": {
+        "lat": 37.54879642311514,
+        "lng": 127.14647853722425
+      },
+      "aptCenter": {
+        "lat": 37.54039185695994,
+        "lng": 127.13905555975666,
+        "count": 458
+      },
+      "markerDom": 458,
+      "deltaMap": 0.029391704406725006,
+      "deltaApt": 0.01840256566821031,
+      "ok": true,
+      "screenshot": "C:\\Users\\2606\\Desktop\\커서\\260608 부동산 계산기\\screenshots\\district-alignment-fix\\11740-강동구.png"
+    },
+    "gwanak": {
+      "code": "11620",
+      "name": "관악구",
+      "lat": 37.4784,
+      "lng": 126.9516,
+      "mapCenter": {
+        "lat": 37.465404870294385,
+        "lng": 126.94393340644201
+      },
+      "aptCenter": {
+        "lat": 37.47835563339338,
+        "lng": 126.9468395110758,
+        "count": 251
+      },
+      "markerDom": 251,
+      "deltaMap": 0.015088076512568003,
+      "deltaApt": 0.004760695662743401,
+      "ok": true,
+      "screenshot": "C:\\Users\\2606\\Desktop\\커서\\260608 부동산 계산기\\screenshots\\district-alignment-fix\\11620-관악구.png"
+    },
+    "ok": true
+  },
+  "consoleErrors": [],
+  "pass": false
+}

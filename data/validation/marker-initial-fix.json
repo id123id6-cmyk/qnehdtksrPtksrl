@@ -1,0 +1,118 @@
+{
+  "regions": [
+    {
+      "region": "평택시",
+      "code": "41220",
+      "db": {
+        "total": 357,
+        "dbMaemae1Y": 330,
+        "geumhoId": "6399a9e3-ffb8-4e44-9711-af6bfd1db91a",
+        "geumhoDbHasMaemae": true
+      },
+      "markerStats": {
+        "low": 329,
+        "mid": 1,
+        "high": 0,
+        "jeonse": 25,
+        "none": 2
+      },
+      "noneCount": 2,
+      "geumhoBefore": {
+        "id": "6399a9e3-ffb8-4e44-9711-af6bfd1db91a",
+        "name": "고덕국제신도시금호어울림",
+        "avgPrice1Y": 37756,
+        "tradeCount1Y": 93,
+        "dominantPyeong": 24,
+        "category": "low",
+        "label": "3.8억"
+      },
+      "geumhoAfter": {
+        "id": "6399a9e3-ffb8-4e44-9711-af6bfd1db91a",
+        "name": "고덕국제신도시금호어울림",
+        "avgPrice1Y": 37756,
+        "tradeCount1Y": 93,
+        "dominantPyeong": 24,
+        "category": "low",
+        "label": "3.8억"
+      },
+      "domMarkerCount": 357,
+      "domGreyCount": 2,
+      "selectMismatch": false,
+      "screenshot": "C:\\Users\\2606\\Desktop\\커서\\260608 부동산 계산기\\screenshots\\marker-initial-fix\\pyeongtaek-initial.png"
+    },
+    {
+      "region": "강남구",
+      "code": "11680",
+      "db": {
+        "total": 740,
+        "dbMaemae1Y": 398,
+        "geumhoId": null,
+        "geumhoDbHasMaemae": false
+      },
+      "markerStats": {
+        "low": 62,
+        "mid": 110,
+        "high": 226,
+        "jeonse": 176,
+        "none": 166
+      },
+      "noneCount": 166,
+      "geumhoBefore": null,
+      "geumhoAfter": null,
+      "domMarkerCount": 0,
+      "domGreyCount": 0,
+      "selectMismatch": false,
+      "screenshot": "C:\\Users\\2606\\Desktop\\커서\\260608 부동산 계산기\\screenshots\\marker-initial-fix\\gangnam-initial.png"
+    },
+    {
+      "region": "송파구",
+      "code": "11710",
+      "db": {
+        "total": 428,
+        "dbMaemae1Y": 339,
+        "geumhoId": null,
+        "geumhoDbHasMaemae": false
+      },
+      "markerStats": {
+        "low": 145,
+        "mid": 149,
+        "high": 45,
+        "jeonse": 56,
+        "none": 33
+      },
+      "noneCount": 33,
+      "geumhoBefore": null,
+      "geumhoAfter": null,
+      "domMarkerCount": 413,
+      "domGreyCount": 32,
+      "selectMismatch": false,
+      "screenshot": "C:\\Users\\2606\\Desktop\\커서\\260608 부동산 계산기\\screenshots\\marker-initial-fix\\songpa-initial.png"
+    },
+    {
+      "region": "성남 분당구",
+      "code": "41135",
+      "db": {
+        "total": 201,
+        "dbMaemae1Y": 192,
+        "geumhoId": null,
+        "geumhoDbHasMaemae": false
+      },
+      "markerStats": {
+        "low": 17,
+        "mid": 138,
+        "high": 37,
+        "jeonse": 6,
+        "none": 3
+      },
+      "noneCount": 3,
+      "geumhoBefore": null,
+      "geumhoAfter": null,
+      "domMarkerCount": 0,
+      "domGreyCount": 0,
+      "selectMismatch": false,
+      "screenshot": "C:\\Users\\2606\\Desktop\\커서\\260608 부동산 계산기\\screenshots\\marker-initial-fix\\bundang-initial.png"
+    }
+  ],
+  "consoleErrors": [],
+  "pass": true
+}

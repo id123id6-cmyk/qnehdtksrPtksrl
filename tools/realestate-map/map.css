@@ -817,6 +817,87 @@ body.map-page .sidebar-panel {
   font-weight: 700;
 }
 
+/* 사이드바 — 면적 타입 탭 (가로 스크롤) */
+.sidebar-area-tabs-scroll {
+  position: relative;
+  margin: 0.65rem 0 0.5rem;
+  overflow: hidden;
+}
+
+.sidebar-area-tabs-scroll::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 28px;
+  height: calc(100% - 6px);
+  pointer-events: none;
+  background: linear-gradient(to left, var(--color-card) 0%, transparent 100%);
+}
+
+.sidebar-area-tabs {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.35rem;
+  overflow-x: auto;
+  padding-bottom: 0.35rem;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+
+.sidebar-area-tabs::-webkit-scrollbar {
+  height: 4px;
+}
+
+.sidebar-area-tabs::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.sidebar-area-tab {
+  flex-shrink: 0;
+  padding: 0.35rem 0.65rem;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 8px;
+  background: var(--color-bg);
+  font-family: inherit;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.sidebar-area-tab:hover {
+  border-color: #2563eb;
+  color: #2563eb;
+}
+
+.sidebar-area-tab.active {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #fff;
+}
+
+.sidebar-area-summary {
+  margin: 0 0 0.5rem;
+  font-size: 0.72rem;
+  line-height: 1.45;
+  color: var(--color-text-muted);
+}
+
+.sidebar-area-counter {
+  margin: 0 0 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.sidebar-area-stats {
+  margin-bottom: 0.75rem;
+}
+
 /* 사이드바 — 거래 유형 필터 */
 .transactions-section-head {
   display: flex;
@@ -1143,11 +1224,16 @@ body.map-page .sidebar-panel {
 }
 
 .marker-mid {
-  background: #f59e0b;
+  background: #ea580c;
 }
 
 .marker-high {
   background: #ef4444;
+}
+
+.marker-jeonse {
+  background: #ffc107;
+  color: #1f2937;
 }
 
 .marker-none {
@@ -1176,11 +1262,15 @@ body.map-page .sidebar-panel {
 }
 
 .marker-dot.marker-mid {
-  background: #f59e0b;
+  background: #ea580c;
 }
 
 .marker-dot.marker-high {
   background: #ef4444;
+}
+
+.marker-dot.marker-jeonse {
+  background: #ffc107;
 }
 
 .marker-dot.marker-none {
@@ -1236,11 +1326,15 @@ body.map-page .sidebar-panel {
 }
 
 .dot-mid {
-  background: #f59e0b;
+  background: #ea580c;
 }
 
 .dot-high {
   background: #ef4444;
+}
+
+.dot-jeonse {
+  background: #ffc107;
 }
 
 .dot-none {

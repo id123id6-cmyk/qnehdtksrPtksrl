@@ -1,0 +1,1297 @@
+{
+  "generatedAt": "2026-06-24T00:59:02.007Z",
+  "complexes": [
+    {
+      "key": "geumho",
+      "label": "평택 고덕국제신도시금호어울림",
+      "apartment": {
+        "id": "6399a9e3-ffb8-4e44-9711-af6bfd1db91a",
+        "name": "고덕국제신도시금호어울림",
+        "dong": "고덕동",
+        "sigungu_code": "41220"
+      },
+      "totalGroups": 5,
+      "uniqueExact": 3,
+      "uniqueInt": 1,
+      "unique1f": 2,
+      "unique2f": 3,
+      "maemaeGroups": 3,
+      "maemaeUnique1f": 2,
+      "intBucketDetail": [
+        {
+          "area_int": 60,
+          "groups_1f": 2,
+          "values_1f": [
+            59.9,
+            60
+          ]
+        }
+      ],
+      "sidebarTabs": {
+        "all": 1,
+        "int": 2,
+        "dec1": 3,
+        "dec2": 4
+      },
+      "grouped": [
+        {
+          "exclu_use_ar": 59.92,
+          "area_int": 60,
+          "area_1f": 59.9,
+          "area_2f": 59.92,
+          "deal_type": "매매",
+          "count": 2,
+          "avg_price": 37850,
+          "first_deal": "2026-05-10",
+          "last_deal": "2026-06-14"
+        },
+        {
+          "exclu_use_ar": 59.97,
+          "area_int": 60,
+          "area_1f": 60,
+          "area_2f": 59.97,
+          "deal_type": "매매",
+          "count": 17,
+          "avg_price": 38224,
+          "first_deal": "2025-06-05",
+          "last_deal": "2026-04-18"
+        },
+        {
+          "exclu_use_ar": 59.97,
+          "area_int": 60,
+          "area_1f": 60,
+          "area_2f": 59.97,
+          "deal_type": "전세",
+          "count": 17,
+          "avg_price": 22744,
+          "first_deal": "2025-06-04",
+          "last_deal": "2026-04-19"
+        },
+        {
+          "exclu_use_ar": 59.98,
+          "area_int": 60,
+          "area_1f": 60,
+          "area_2f": 59.98,
+          "deal_type": "매매",
+          "count": 83,
+          "avg_price": 37753,
+          "first_deal": "2025-06-10",
+          "last_deal": "2026-06-17"
+        },
+        {
+          "exclu_use_ar": 59.98,
+          "area_int": 60,
+          "area_1f": 60,
+          "area_2f": 59.98,
+          "deal_type": "전세",
+          "count": 86,
+          "avg_price": 22392,
+          "first_deal": "2025-06-01",
+          "last_deal": "2026-06-16"
+        }
+      ]
+    },
+    {
+      "key": "jamsil-els",
+      "label": "송파 잠실엘스",
+      "apartment": {
+        "id": "3abb6516-adab-4d86-aa85-fac0bdd2a260",
+        "name": "잠실엘스",
+        "dong": "잠실동",
+        "sigungu_code": "11710"
+      },
+      "totalGroups": 10,
+      "uniqueExact": 5,
+      "uniqueInt": 3,
+      "unique1f": 5,
+      "unique2f": 5,
+      "maemaeGroups": 5,
+      "maemaeUnique1f": 5,
+      "intBucketDetail": [
+        {
+          "area_int": 60,
+          "groups_1f": 1,
+          "values_1f": [
+            60
+          ]
+        },
+        {
+          "area_int": 85,
+          "groups_1f": 3,
+          "values_1f": [
+            84.8,
+            84.9,
+            85
+          ]
+        },
+        {
+          "area_int": 120,
+          "groups_1f": 1,
+          "values_1f": [
+            119.9
+          ]
+        }
+      ],
+      "sidebarTabs": {
+        "all": 1,
+        "int": 4,
+        "dec1": 6,
+        "dec2": 6
+      },
+      "grouped": [
+        {
+          "exclu_use_ar": 59.96,
+          "area_int": 60,
+          "area_1f": 60,
+          "area_2f": 59.96,
+          "deal_type": "매매",
+          "count": 49,
+          "avg_price": 285867,
+          "first_deal": "2025-06-09",
+          "last_deal": "2026-05-22"
+        },
+        {
+          "exclu_use_ar": 59.96,
+          "area_int": 60,
+          "area_1f": 60,
+          "area_2f": 59.96,
+          "deal_type": "전세",
+          "count": 124,
+          "avg_price": 98504,
+          "first_deal": "2025-06-06",
+          "last_deal": "2026-06-12"
+        },
+        {
+          "exclu_use_ar": 84.8,
+          "area_int": 85,
+          "area_1f": 84.8,
+          "area_2f": 84.8,
+          "deal_type": "매매",
+          "count": 89,
+          "avg_price": 327234,
+          "first_deal": "2025-06-04",
+          "last_deal": "2026-05-26"
+        },
+        {
+          "exclu_use_ar": 84.8,
+          "area_int": 85,
+          "area_1f": 84.8,
+          "area_2f": 84.8,
+          "deal_type": "전세",
+          "count": 219,
+          "avg_price": 118374,
+          "first_deal": "2025-06-12",
+          "last_deal": "2026-06-18"
+        },
+        {
+          "exclu_use_ar": 84.88,
+          "area_int": 85,
+          "area_1f": 84.9,
+          "area_2f": 84.88,
+          "deal_type": "매매",
+          "count": 12,
+          "avg_price": 334000,
+          "first_deal": "2025-06-02",
+          "last_deal": "2026-04-08"
+        },
+        {
+          "exclu_use_ar": 84.88,
+          "area_int": 85,
+          "area_1f": 84.9,
+          "area_2f": 84.88,
+          "deal_type": "전세",
+          "count": 57,
+          "avg_price": 115978,
+          "first_deal": "2025-06-03",
+          "last_deal": "2026-06-03"
+        },
+        {
+          "exclu_use_ar": 84.97,
+          "area_int": 85,
+          "area_1f": 85,
+          "area_2f": 84.97,
+          "deal_type": "매매",
+          "count": 15,
+          "avg_price": 323767,
+          "first_deal": "2025-06-17",
+          "last_deal": "2026-05-06"
+        },
+        {
+          "exclu_use_ar": 84.97,
+          "area_int": 85,
+          "area_1f": 85,
+          "area_2f": 84.97,
+          "deal_type": "전세",
+          "count": 52,
+          "avg_price": 121332,
+          "first_deal": "2025-06-09",
+          "last_deal": "2026-06-15"
+        },
+        {
+          "exclu_use_ar": 119.93,
+          "area_int": 120,
+          "area_1f": 119.9,
+          "area_2f": 119.93,
+          "deal_type": "매매",
+          "count": 12,
+          "avg_price": 423583,
+          "first_deal": "2025-07-03",
+          "last_deal": "2026-05-15"
+        },
+        {
+          "exclu_use_ar": 119.93,
+          "area_int": 120,
+          "area_1f": 119.9,
+          "area_2f": 119.93,
+          "deal_type": "전세",
+          "count": 35,
+          "avg_price": 168841,
+          "first_deal": "2025-06-12",
+          "last_deal": "2026-05-28"
+        }
+      ]
+    },
+    {
+      "key": "raemian-daechi",
+      "label": "강남 래미안대치팰리스",
+      "apartment": {
+        "id": "676e5be3-a7af-48ca-8429-896ed5a993fe",
+        "name": "래미안대치팰리스",
+        "dong": "대치동",
+        "sigungu_code": "11680"
+      },
+      "totalGroups": 27,
+      "uniqueExact": 16,
+      "uniqueInt": 8,
+      "unique1f": 8,
+      "unique2f": 16,
+      "maemaeGroups": 14,
+      "maemaeUnique1f": 7,
+      "intBucketDetail": [
+        {
+          "area_int": 60,
+          "groups_1f": 1,
+          "values_1f": [
+            60
+          ]
+        },
+        {
+          "area_int": 85,
+          "groups_1f": 1,
+          "values_1f": [
+            85
+          ]
+        },
+        {
+          "area_int": 92,
+          "groups_1f": 1,
+          "values_1f": [
+            91.9
+          ]
+        },
+        {
+          "area_int": 93,
+          "groups_1f": 1,
+          "values_1f": [
+            93.2
+          ]
+        },
+        {
+          "area_int": 94,
+          "groups_1f": 1,
+          "values_1f": [
+            94.5
+          ]
+        },
+        {
+          "area_int": 95,
+          "groups_1f": 1,
+          "values_1f": [
+            94.5
+          ]
+        },
+        {
+          "area_int": 114,
+          "groups_1f": 2,
+          "values_1f": [
+            114.1,
+            114.2
+          ]
+        },
+        {
+          "area_int": 151,
+          "groups_1f": 1,
+          "values_1f": [
+            151.3
+          ]
+        }
+      ],
+      "sidebarTabs": {
+        "all": 1,
+        "int": 9,
+        "dec1": 9,
+        "dec2": 17
+      },
+      "grouped": [
+        {
+          "exclu_use_ar": 59.99,
+          "area_int": 60,
+          "area_1f": 60,
+          "area_2f": 59.99,
+          "deal_type": "전세",
+          "count": 2,
+          "avg_price": 128500,
+          "first_deal": "2025-12-06",
+          "last_deal": "2026-03-21"
+        },
+        {
+          "exclu_use_ar": 84.97,
+          "area_int": 85,
+          "area_1f": 85,
+          "area_2f": 84.97,
+          "deal_type": "매매",
+          "count": 6,
+          "avg_price": 404000,
+          "first_deal": "2025-10-14",
+          "last_deal": "2026-06-03"
+        },
+        {
+          "exclu_use_ar": 84.97,
+          "area_int": 85,
+          "area_1f": 85,
+          "area_2f": 84.97,
+          "deal_type": "전세",
+          "count": 13,
+          "avg_price": 177981,
+          "first_deal": "2025-07-25",
+          "last_deal": "2026-03-07"
+        },
+        {
+          "exclu_use_ar": 84.98,
+          "area_int": 85,
+          "area_1f": 85,
+          "area_2f": 84.98,
+          "deal_type": "매매",
+          "count": 5,
+          "avg_price": 438600,
+          "first_deal": "2025-06-24",
+          "last_deal": "2026-05-06"
+        },
+        {
+          "exclu_use_ar": 84.98,
+          "area_int": 85,
+          "area_1f": 85,
+          "area_2f": 84.98,
+          "deal_type": "전세",
+          "count": 11,
+          "avg_price": 184945,
+          "first_deal": "2025-09-05",
+          "last_deal": "2026-03-30"
+        },
+        {
+          "exclu_use_ar": 84.99,
+          "area_int": 85,
+          "area_1f": 85,
+          "area_2f": 84.99,
+          "deal_type": "매매",
+          "count": 3,
+          "avg_price": 416000,
+          "first_deal": "2025-06-05",
+          "last_deal": "2026-05-08"
+        },
+        {
+          "exclu_use_ar": 84.99,
+          "area_int": 85,
+          "area_1f": 85,
+          "area_2f": 84.99,
+          "deal_type": "전세",
+          "count": 9,
+          "avg_price": 172067,
+          "first_deal": "2025-06-21",
+          "last_deal": "2026-04-28"
+        },
+        {
+          "exclu_use_ar": 91.89,
+          "area_int": 92,
+          "area_1f": 91.9,
+          "area_2f": 91.89,
+          "deal_type": "매매",
+          "count": 1,
+          "avg_price": 470000,
+          "first_deal": "2025-11-05",
+          "last_deal": "2025-11-05"
+        },
+        {
+          "exclu_use_ar": 91.93,
+          "area_int": 92,
+          "area_1f": 91.9,
+          "area_2f": 91.93,
+          "deal_type": "매매",
+          "count": 2,
+          "avg_price": 440000,
+          "first_deal": "2025-06-30",
+          "last_deal": "2026-04-16"
+        },
+        {
+          "exclu_use_ar": 91.93,
+          "area_int": 92,
+          "area_1f": 91.9,
+          "area_2f": 91.93,
+          "deal_type": "전세",
+          "count": 1,
+          "avg_price": 175000,
+          "first_deal": "2026-04-16",
+          "last_deal": "2026-04-16"
+        },
+        {
+          "exclu_use_ar": 93.18,
+          "area_int": 93,
+          "area_1f": 93.2,
+          "area_2f": 93.18,
+          "deal_type": "매매",
+          "count": 1,
+          "avg_price": 425000,
+          "first_deal": "2026-04-11",
+          "last_deal": "2026-04-11"
+        },
+        {
+          "exclu_use_ar": 93.18,
+          "area_int": 93,
+          "area_1f": 93.2,
+          "area_2f": 93.18,
+          "deal_type": "전세",
+          "count": 2,
+          "avg_price": 189750,
+          "first_deal": "2025-11-19",
+          "last_deal": "2026-01-22"
+        },
+        {
+          "exclu_use_ar": 94.48,
+          "area_int": 94,
+          "area_1f": 94.5,
+          "area_2f": 94.48,
+          "deal_type": "매매",
+          "count": 1,
+          "avg_price": 505500,
+          "first_deal": "2025-06-23",
+          "last_deal": "2025-06-23"
+        },
+        {
+          "exclu_use_ar": 94.48,
+          "area_int": 94,
+          "area_1f": 94.5,
+          "area_2f": 94.48,
+          "deal_type": "전세",
+          "count": 1,
+          "avg_price": 199500,
+          "first_deal": "2026-01-14",
+          "last_deal": "2026-01-14"
+        },
+        {
+          "exclu_use_ar": 94.49,
+          "area_int": 94,
+          "area_1f": 94.5,
+          "area_2f": 94.49,
+          "deal_type": "매매",
+          "count": 3,
+          "avg_price": 510000,
+          "first_deal": "2025-06-19",
+          "last_deal": "2026-05-13"
+        },
+        {
+          "exclu_use_ar": 94.49,
+          "area_int": 94,
+          "area_1f": 94.5,
+          "area_2f": 94.49,
+          "deal_type": "전세",
+          "count": 43,
+          "avg_price": 202159,
+          "first_deal": "2025-06-21",
+          "last_deal": "2026-05-16"
+        },
+        {
+          "exclu_use_ar": 94.5,
+          "area_int": 95,
+          "area_1f": 94.5,
+          "area_2f": 94.5,
+          "deal_type": "매매",
+          "count": 1,
+          "avg_price": 520000,
+          "first_deal": "2025-11-04",
+          "last_deal": "2025-11-04"
+        },
+        {
+          "exclu_use_ar": 94.5,
+          "area_int": 95,
+          "area_1f": 94.5,
+          "area_2f": 94.5,
+          "deal_type": "전세",
+          "count": 8,
+          "avg_price": 203438,
+          "first_deal": "2025-06-18",
+          "last_deal": "2026-03-04"
+        },
+        {
+          "exclu_use_ar": 94.51,
+          "area_int": 95,
+          "area_1f": 94.5,
+          "area_2f": 94.51,
+          "deal_type": "매매",
+          "count": 2,
+          "avg_price": 515000,
+          "first_deal": "2025-07-15",
+          "last_deal": "2025-09-04"
+        },
+        {
+          "exclu_use_ar": 94.51,
+          "area_int": 95,
+          "area_1f": 94.5,
+          "area_2f": 94.51,
+          "deal_type": "전세",
+          "count": 4,
+          "avg_price": 217125,
+          "first_deal": "2025-09-19",
+          "last_deal": "2026-03-31"
+        },
+        {
+          "exclu_use_ar": 114.14,
+          "area_int": 114,
+          "area_1f": 114.1,
+          "area_2f": 114.14,
+          "deal_type": "매매",
+          "count": 2,
+          "avg_price": 605000,
+          "first_deal": "2025-10-27",
+          "last_deal": "2026-05-13"
+        },
+        {
+          "exclu_use_ar": 114.14,
+          "area_int": 114,
+          "area_1f": 114.1,
+          "area_2f": 114.14,
+          "deal_type": "전세",
+          "count": 4,
+          "avg_price": 280500,
+          "first_deal": "2025-10-27",
+          "last_deal": "2026-05-12"
+        },
+        {
+          "exclu_use_ar": 114.15,
+          "area_int": 114,
+          "area_1f": 114.2,
+          "area_2f": 114.15,
+          "deal_type": "전세",
+          "count": 10,
+          "avg_price": 276685,
+          "first_deal": "2025-07-04",
+          "last_deal": "2026-05-03"
+        },
+        {
+          "exclu_use_ar": 114.17,
+          "area_int": 114,
+          "area_1f": 114.2,
+          "area_2f": 114.17,
+          "deal_type": "매매",
+          "count": 1,
+          "avg_price": 600000,
+          "first_deal": "2026-04-09",
+          "last_deal": "2026-04-09"
+        },
+        {
+          "exclu_use_ar": 114.17,
+          "area_int": 114,
+          "area_1f": 114.2,
+          "area_2f": 114.17,
+          "deal_type": "전세",
+          "count": 3,
+          "avg_price": 269833,
+          "first_deal": "2025-06-02",
+          "last_deal": "2026-03-18"
+        },
+        {
+          "exclu_use_ar": 151.27,
+          "area_int": 151,
+          "area_1f": 151.3,
+          "area_2f": 151.27,
+          "deal_type": "매매",
+          "count": 3,
+          "avg_price": 610000,
+          "first_deal": "2025-07-04",
+          "last_deal": "2026-03-28"
+        },
+        {
+          "exclu_use_ar": 151.31,
+          "area_int": 151,
+          "area_1f": 151.3,
+          "area_2f": 151.31,
+          "deal_type": "매매",
+          "count": 6,
+          "avg_price": 625500,
+          "first_deal": "2025-06-16",
+          "last_deal": "2026-05-27"
+        }
+      ]
+    },
+    {
+      "key": "helio",
+      "label": "송파 헬리오시티",
+      "apartment": {
+        "id": "582cc460-2c72-4e3e-a468-d4ce7f3189f1",
+        "name": "헬리오시티",
+        "dong": "가락동",
+        "sigungu_code": "11710"
+      },
+      "totalGroups": 38,
+      "uniqueExact": 20,
+      "uniqueInt": 10,
+      "unique1f": 13,
+      "unique2f": 20,
+      "maemaeGroups": 18,
+      "maemaeUnique1f": 11,
+      "intBucketDetail": [
+        {
+          "area_int": 39,
+          "groups_1f": 2,
+          "values_1f": [
+            39.1,
+            39.2
+          ]
+        },
+        {
+          "area_int": 40,
+          "groups_1f": 1,
+          "values_1f": [
+            39.9
+          ]
+        },
+        {
+          "area_int": 49,
+          "groups_1f": 2,
+          "values_1f": [
+            49.2,
+            49.3
+          ]
+        },
+        {
+          "area_int": 60,
+          "groups_1f": 1,
+          "values_1f": [
+            60
+          ]
+        },
+        {
+          "area_int": 85,
+          "groups_1f": 2,
+          "values_1f": [
+            84.9,
+            85
+          ]
+        },
+        {
+          "area_int": 100,
+          "groups_1f": 1,
+          "values_1f": [
+            99.6
+          ]
+        },
+        {
+          "area_int": 110,
+          "groups_1f": 1,
+          "values_1f": [
+            110.4
+          ]
+        },
+        {
+          "area_int": 111,
+          "groups_1f": 1,
+          "values_1f": [
+            110.7
+          ]
+        },
+        {
+          "area_int": 130,
+          "groups_1f": 1,
+          "values_1f": [
+            130.1
+          ]
+        },
+        {
+          "area_int": 150,
+          "groups_1f": 1,
+          "values_1f": [
+            150.1
+          ]
+        }
+      ],
+      "sidebarTabs": {
+        "all": 1,
+        "int": 11,
+        "dec1": 14,
+        "dec2": 21
+      },
+      "grouped": [
+        {
+          "exclu_use_ar": 39.1,
+          "area_int": 39,
+          "area_1f": 39.1,
+          "area_2f": 39.1,
+          "deal_type": "매매",
+          "count": 8,
+          "avg_price": 168375,
+          "first_deal": "2025-06-13",
+          "last_deal": "2026-04-22"
+        },
+        {
+          "exclu_use_ar": 39.1,
+          "area_int": 39,
+          "area_1f": 39.1,
+          "area_2f": 39.1,
+          "deal_type": "전세",
+          "count": 60,
+          "avg_price": 64586,
+          "first_deal": "2025-06-03",
+          "last_deal": "2026-06-14"
+        },
+        {
+          "exclu_use_ar": 39.12,
+          "area_int": 39,
+          "area_1f": 39.1,
+          "area_2f": 39.12,
+          "deal_type": "매매",
+          "count": 6,
+          "avg_price": 177083,
+          "first_deal": "2025-07-12",
+          "last_deal": "2026-05-02"
+        },
+        {
+          "exclu_use_ar": 39.12,
+          "area_int": 39,
+          "area_1f": 39.1,
+          "area_2f": 39.12,
+          "deal_type": "전세",
+          "count": 13,
+          "avg_price": 68108,
+          "first_deal": "2025-06-27",
+          "last_deal": "2026-06-13"
+        },
+        {
+          "exclu_use_ar": 39.17,
+          "area_int": 39,
+          "area_1f": 39.2,
+          "area_2f": 39.17,
+          "deal_type": "전세",
+          "count": 7,
+          "avg_price": 66219,
+          "first_deal": "2025-06-07",
+          "last_deal": "2026-06-10"
+        },
+        {
+          "exclu_use_ar": 39.86,
+          "area_int": 40,
+          "area_1f": 39.9,
+          "area_2f": 39.86,
+          "deal_type": "매매",
+          "count": 2,
+          "avg_price": 148500,
+          "first_deal": "2025-07-11",
+          "last_deal": "2025-08-09"
+        },
+        {
+          "exclu_use_ar": 39.86,
+          "area_int": 40,
+          "area_1f": 39.9,
+          "area_2f": 39.86,
+          "deal_type": "전세",
+          "count": 8,
+          "avg_price": 63585,
+          "first_deal": "2025-06-11",
+          "last_deal": "2026-05-08"
+        },
+        {
+          "exclu_use_ar": 49.19,
+          "area_int": 49,
+          "area_1f": 49.2,
+          "area_2f": 49.19,
+          "deal_type": "매매",
+          "count": 1,
+          "avg_price": 210000,
+          "first_deal": "2026-05-17",
+          "last_deal": "2026-05-17"
+        },
+        {
+          "exclu_use_ar": 49.19,
+          "area_int": 49,
+          "area_1f": 49.2,
+          "area_2f": 49.19,
+          "deal_type": "전세",
+          "count": 1,
+          "avg_price": 84000,
+          "first_deal": "2026-03-08",
+          "last_deal": "2026-03-08"
+        },
+        {
+          "exclu_use_ar": 49.21,
+          "area_int": 49,
+          "area_1f": 49.2,
+          "area_2f": 49.21,
+          "deal_type": "매매",
+          "count": 4,
+          "avg_price": 232125,
+          "first_deal": "2025-11-08",
+          "last_deal": "2026-05-06"
+        },
+        {
+          "exclu_use_ar": 49.21,
+          "area_int": 49,
+          "area_1f": 49.2,
+          "area_2f": 49.21,
+          "deal_type": "전세",
+          "count": 12,
+          "avg_price": 84092,
+          "first_deal": "2025-06-26",
+          "last_deal": "2026-04-11"
+        },
+        {
+          "exclu_use_ar": 49.29,
+          "area_int": 49,
+          "area_1f": 49.3,
+          "area_2f": 49.29,
+          "deal_type": "매매",
+          "count": 4,
+          "avg_price": 223750,
+          "first_deal": "2025-09-26",
+          "last_deal": "2026-04-24"
+        },
+        {
+          "exclu_use_ar": 49.29,
+          "area_int": 49,
+          "area_1f": 49.3,
+          "area_2f": 49.29,
+          "deal_type": "전세",
+          "count": 11,
+          "avg_price": 78355,
+          "first_deal": "2025-06-10",
+          "last_deal": "2026-04-08"
+        },
+        {
+          "exclu_use_ar": 49.32,
+          "area_int": 49,
+          "area_1f": 49.3,
+          "area_2f": 49.32,
+          "deal_type": "매매",
+          "count": 2,
+          "avg_price": 217750,
+          "first_deal": "2025-06-13",
+          "last_deal": "2026-02-07"
+        },
+        {
+          "exclu_use_ar": 49.32,
+          "area_int": 49,
+          "area_1f": 49.3,
+          "area_2f": 49.32,
+          "deal_type": "전세",
+          "count": 3,
+          "avg_price": 69350,
+          "first_deal": "2025-06-04",
+          "last_deal": "2026-04-08"
+        },
+        {
+          "exclu_use_ar": 59.96,
+          "area_int": 60,
+          "area_1f": 60,
+          "area_2f": 59.96,
+          "deal_type": "매매",
+          "count": 25,
+          "avg_price": 252860,
+          "first_deal": "2025-06-17",
+          "last_deal": "2026-05-13"
+        },
+        {
+          "exclu_use_ar": 59.96,
+          "area_int": 60,
+          "area_1f": 60,
+          "area_2f": 59.96,
+          "deal_type": "전세",
+          "count": 71,
+          "avg_price": 96010,
+          "first_deal": "2025-06-10",
+          "last_deal": "2026-06-13"
+        },
+        {
+          "exclu_use_ar": 84.94,
+          "area_int": 85,
+          "area_1f": 84.9,
+          "area_2f": 84.94,
+          "deal_type": "전세",
+          "count": 3,
+          "avg_price": 108333,
+          "first_deal": "2025-07-10",
+          "last_deal": "2026-04-09"
+        },
+        {
+          "exclu_use_ar": 84.95,
+          "area_int": 85,
+          "area_1f": 85,
+          "area_2f": 84.95,
+          "deal_type": "매매",
+          "count": 24,
+          "avg_price": 284771,
+          "first_deal": "2025-06-25",
+          "last_deal": "2026-05-09"
+        },
+        {
+          "exclu_use_ar": 84.95,
+          "area_int": 85,
+          "area_1f": 85,
+          "area_2f": 84.95,
+          "deal_type": "전세",
+          "count": 68,
+          "avg_price": 114542,
+          "first_deal": "2025-06-03",
+          "last_deal": "2026-06-05"
+        },
+        {
+          "exclu_use_ar": 84.96,
+          "area_int": 85,
+          "area_1f": 85,
+          "area_2f": 84.96,
+          "deal_type": "매매",
+          "count": 4,
+          "avg_price": 289750,
+          "first_deal": "2025-10-24",
+          "last_deal": "2026-04-27"
+        },
+        {
+          "exclu_use_ar": 84.96,
+          "area_int": 85,
+          "area_1f": 85,
+          "area_2f": 84.96,
+          "deal_type": "전세",
+          "count": 20,
+          "avg_price": 113938,
+          "first_deal": "2025-06-05",
+          "last_deal": "2026-06-15"
+        },
+        {
+          "exclu_use_ar": 84.97,
+          "area_int": 85,
+          "area_1f": 85,
+          "area_2f": 84.97,
+          "deal_type": "매매",
+          "count": 4,
+          "avg_price": 292000,
+          "first_deal": "2025-06-30",
+          "last_deal": "2026-01-27"
+        },
+        {
+          "exclu_use_ar": 84.97,
+          "area_int": 85,
+          "area_1f": 85,
+          "area_2f": 84.97,
+          "deal_type": "전세",
+          "count": 10,
+          "avg_price": 111990,
+          "first_deal": "2025-06-06",
+          "last_deal": "2026-03-20"
+        },
+        {
+          "exclu_use_ar": 84.98,
+          "area_int": 85,
+          "area_1f": 85,
+          "area_2f": 84.98,
+          "deal_type": "매매",
+          "count": 42,
+          "avg_price": 279345,
+          "first_deal": "2025-06-02",
+          "last_deal": "2026-06-05"
+        },
+        {
+          "exclu_use_ar": 84.98,
+          "area_int": 85,
+          "area_1f": 85,
+          "area_2f": 84.98,
+          "deal_type": "전세",
+          "count": 147,
+          "avg_price": 113519,
+          "first_deal": "2025-06-02",
+          "last_deal": "2026-05-30"
+        },
+        {
+          "exclu_use_ar": 84.99,
+          "area_int": 85,
+          "area_1f": 85,
+          "area_2f": 84.99,
+          "deal_type": "매매",
+          "count": 43,
+          "avg_price": 279400,
+          "first_deal": "2025-06-03",
+          "last_deal": "2026-05-29"
+        },
+        {
+          "exclu_use_ar": 84.99,
+          "area_int": 85,
+          "area_1f": 85,
+          "area_2f": 84.99,
+          "deal_type": "전세",
+          "count": 119,
+          "avg_price": 112865,
+          "first_deal": "2025-06-03",
+          "last_deal": "2026-06-03"
+        },
+        {
+          "exclu_use_ar": 99.6,
+          "area_int": 100,
+          "area_1f": 99.6,
+          "area_2f": 99.6,
+          "deal_type": "매매",
+          "count": 26,
+          "avg_price": 305731,
+          "first_deal": "2025-06-30",
+          "last_deal": "2026-05-29"
+        },
+        {
+          "exclu_use_ar": 99.6,
+          "area_int": 100,
+          "area_1f": 99.6,
+          "area_2f": 99.6,
+          "deal_type": "전세",
+          "count": 41,
+          "avg_price": 137088,
+          "first_deal": "2025-06-10",
+          "last_deal": "2026-06-02"
+        },
+        {
+          "exclu_use_ar": 110.44,
+          "area_int": 110,
+          "area_1f": 110.4,
+          "area_2f": 110.44,
+          "deal_type": "매매",
+          "count": 6,
+          "avg_price": 309000,
+          "first_deal": "2025-06-02",
+          "last_deal": "2026-04-24"
+        },
+        {
+          "exclu_use_ar": 110.44,
+          "area_int": 110,
+          "area_1f": 110.4,
+          "area_2f": 110.44,
+          "deal_type": "전세",
+          "count": 18,
+          "avg_price": 145467,
+          "first_deal": "2025-06-12",
+          "last_deal": "2026-06-18"
+        },
+        {
+          "exclu_use_ar": 110.66,
+          "area_int": 111,
+          "area_1f": 110.7,
+          "area_2f": 110.66,
+          "deal_type": "매매",
+          "count": 12,
+          "avg_price": 326667,
+          "first_deal": "2025-07-02",
+          "last_deal": "2026-05-03"
+        },
+        {
+          "exclu_use_ar": 110.66,
+          "area_int": 111,
+          "area_1f": 110.7,
+          "area_2f": 110.66,
+          "deal_type": "전세",
+          "count": 28,
+          "avg_price": 148061,
+          "first_deal": "2025-06-03",
+          "last_deal": "2026-06-01"
+        },
+        {
+          "exclu_use_ar": 130.06,
+          "area_int": 130,
+          "area_1f": 130.1,
+          "area_2f": 130.06,
+          "deal_type": "매매",
+          "count": 9,
+          "avg_price": 363778,
+          "first_deal": "2025-07-15",
+          "last_deal": "2026-05-27"
+        },
+        {
+          "exclu_use_ar": 130.06,
+          "area_int": 130,
+          "area_1f": 130.1,
+          "area_2f": 130.06,
+          "deal_type": "전세",
+          "count": 10,
+          "avg_price": 170300,
+          "first_deal": "2025-06-03",
+          "last_deal": "2026-02-10"
+        },
+        {
+          "exclu_use_ar": 150.09,
+          "area_int": 150,
+          "area_1f": 150.1,
+          "area_2f": 150.09,
+          "deal_type": "매매",
+          "count": 1,
+          "avg_price": 450000,
+          "first_deal": "2026-02-09",
+          "last_deal": "2026-02-09"
+        },
+        {
+          "exclu_use_ar": 150.09,
+          "area_int": 150,
+          "area_1f": 150.1,
+          "area_2f": 150.09,
+          "deal_type": "전세",
+          "count": 1,
+          "avg_price": 250000,
+          "first_deal": "2026-06-10",
+          "last_deal": "2026-06-10"
+        }
+      ]
+    },
+    {
+      "key": "bundang",
+      "label": "분당 정자동 대형단지",
+      "apartment": {
+        "id": "45031372-e3c2-4639-aa6a-857c16201f3e",
+        "name": "한솔마을(1단지)(청구)",
+        "dong": "정자동",
+        "sigungu_code": "41135"
+      },
+      "totalGroups": 8,
+      "uniqueExact": 4,
+      "uniqueInt": 4,
+      "unique1f": 4,
+      "unique2f": 4,
+      "maemaeGroups": 4,
+      "maemaeUnique1f": 4,
+      "intBucketDetail": [
+        {
+          "area_int": 49,
+          "groups_1f": 1,
+          "values_1f": [
+            49.4
+          ]
+        },
+        {
+          "area_int": 85,
+          "groups_1f": 1,
+          "values_1f": [
+            85
+          ]
+        },
+        {
+          "area_int": 102,
+          "groups_1f": 1,
+          "values_1f": [
+            102
+          ]
+        },
+        {
+          "area_int": 135,
+          "groups_1f": 1,
+          "values_1f": [
+            135
+          ]
+        }
+      ],
+      "sidebarTabs": {
+        "all": 1,
+        "int": 5,
+        "dec1": 5,
+        "dec2": 5
+      },
+      "grouped": [
+        {
+          "exclu_use_ar": 49.35,
+          "area_int": 49,
+          "area_1f": 49.4,
+          "area_2f": 49.35,
+          "deal_type": "매매",
+          "count": 17,
+          "avg_price": 97259,
+          "first_deal": "2025-06-02",
+          "last_deal": "2026-05-08"
+        },
+        {
+          "exclu_use_ar": 49.35,
+          "area_int": 49,
+          "area_1f": 49.4,
+          "area_2f": 49.35,
+          "deal_type": "전세",
+          "count": 44,
+          "avg_price": 37827,
+          "first_deal": "2025-06-02",
+          "last_deal": "2026-06-06"
+        },
+        {
+          "exclu_use_ar": 84.97,
+          "area_int": 85,
+          "area_1f": 85,
+          "area_2f": 84.97,
+          "deal_type": "매매",
+          "count": 11,
+          "avg_price": 152636,
+          "first_deal": "2025-06-13",
+          "last_deal": "2026-03-12"
+        },
+        {
+          "exclu_use_ar": 84.97,
+          "area_int": 85,
+          "area_1f": 85,
+          "area_2f": 84.97,
+          "deal_type": "전세",
+          "count": 29,
+          "avg_price": 65202,
+          "first_deal": "2025-06-19",
+          "last_deal": "2026-06-06"
+        },
+        {
+          "exclu_use_ar": 101.99,
+          "area_int": 102,
+          "area_1f": 102,
+          "area_2f": 101.99,
+          "deal_type": "매매",
+          "count": 4,
+          "avg_price": 173750,
+          "first_deal": "2025-09-23",
+          "last_deal": "2026-05-04"
+        },
+        {
+          "exclu_use_ar": 101.99,
+          "area_int": 102,
+          "area_1f": 102,
+          "area_2f": 101.99,
+          "deal_type": "전세",
+          "count": 12,
+          "avg_price": 72238,
+          "first_deal": "2025-11-10",
+          "last_deal": "2026-04-21"
+        },
+        {
+          "exclu_use_ar": 134.95,
+          "area_int": 135,
+          "area_1f": 135,
+          "area_2f": 134.95,
+          "deal_type": "매매",
+          "count": 4,
+          "avg_price": 195500,
+          "first_deal": "2025-09-22",
+          "last_deal": "2026-05-18"
+        },
+        {
+          "exclu_use_ar": 134.95,
+          "area_int": 135,
+          "area_1f": 135,
+          "area_2f": 134.95,
+          "deal_type": "전세",
+          "count": 11,
+          "avg_price": 79447,
+          "first_deal": "2025-10-18",
+          "last_deal": "2026-04-16"
+        }
+      ]
+    }
+  ]
+}

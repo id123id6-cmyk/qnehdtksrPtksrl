@@ -1,0 +1,2039 @@
+{
+  "thresholdDeg": 0.1,
+  "total": 69,
+  "ok": 66,
+  "mismatch": 3,
+  "missingGeo": 0,
+  "mismatches": [
+    {
+      "code": "11110",
+      "name": "종로구",
+      "slug": "jongno",
+      "config": {
+        "lat": 37.5735,
+        "lng": 126.9788
+      },
+      "geoPath": "tools\\realestate-map\\data\\jongno-gu.geojson",
+      "status": "mismatch",
+      "issues": [
+        "apt↔geo 0.112°"
+      ],
+      "geoCenter": {
+        "lat": 37.65248119082207,
+        "lng": 127.079042741807
+      },
+      "geoBbox": {
+        "minLat": 37.61136014256744,
+        "maxLat": 37.693602239076704,
+        "minLng": 127.04358800895609,
+        "maxLng": 127.1144974746579
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.58095425482345,
+        "lng": 126.99237727467501,
+        "count": 107
+      },
+      "deltaAptVsGeo": 0.11236995046077602
+    },
+    {
+      "code": "11170",
+      "name": "용산구",
+      "slug": "yongsan",
+      "config": {
+        "lat": 37.5326,
+        "lng": 126.9905
+      },
+      "geoPath": "tools\\realestate-map\\data\\yongsan-gu.geojson",
+      "status": "mismatch",
+      "issues": [
+        "apt↔geo 0.122°"
+      ],
+      "geoCenter": {
+        "lat": 37.492718637064456,
+        "lng": 126.86006342425017
+      },
+      "geoBbox": {
+        "minLat": 37.47146723936323,
+        "maxLat": 37.513970034765684,
+        "minLng": 126.81480709048222,
+        "maxLng": 126.90531975801812
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.53350344760406,
+        "lng": 126.97511499806004,
+        "count": 199
+      },
+      "deltaAptVsGeo": 0.12206664330142891
+    },
+    {
+      "code": "11200",
+      "name": "성동구",
+      "slug": "seongdong",
+      "config": {
+        "lat": 37.5634,
+        "lng": 127.0367
+      },
+      "geoPath": "tools\\realestate-map\\data\\seongdong-gu.geojson",
+      "status": "mismatch",
+      "issues": [
+        "apt↔geo 0.107°"
+      ],
+      "geoCenter": {
+        "lat": 37.49489318534813,
+        "lng": 126.94624923687596
+      },
+      "geoBbox": {
+        "minLat": 37.472561363278125,
+        "maxLat": 37.51722500741813,
+        "minLng": 126.90531975801812,
+        "maxLng": 126.9871787157338
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.55274595135404,
+        "lng": 127.03631872639222,
+        "count": 171
+      },
+      "deltaAptVsGeo": 0.1070488462163667
+    }
+  ],
+  "rows": [
+    {
+      "code": "11110",
+      "name": "종로구",
+      "slug": "jongno",
+      "config": {
+        "lat": 37.5735,
+        "lng": 126.9788
+      },
+      "geoPath": "tools\\realestate-map\\data\\jongno-gu.geojson",
+      "status": "mismatch",
+      "issues": [
+        "apt↔geo 0.112°"
+      ],
+      "geoCenter": {
+        "lat": 37.65248119082207,
+        "lng": 127.079042741807
+      },
+      "geoBbox": {
+        "minLat": 37.61136014256744,
+        "maxLat": 37.693602239076704,
+        "minLng": 127.04358800895609,
+        "maxLng": 127.1144974746579
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.58095425482345,
+        "lng": 126.99237727467501,
+        "count": 107
+      },
+      "deltaAptVsGeo": 0.11236995046077602
+    },
+    {
+      "code": "11140",
+      "name": "중구",
+      "slug": "jung",
+      "config": {
+        "lat": 37.5641,
+        "lng": 126.9979
+      },
+      "geoPath": "tools\\realestate-map\\data\\jung-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.557380432666946,
+        "lng": 126.91277289528679
+      },
+      "geoBbox": {
+        "minLat": 37.526617542453366,
+        "maxLat": 37.588143322880526,
+        "minLng": 126.85950389772532,
+        "maxLng": 126.96604189284825
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.56021004469349,
+        "lng": 127.00367302981677,
+        "count": 105
+      },
+      "deltaAptVsGeo": 0.09094416507829509
+    },
+    {
+      "code": "11170",
+      "name": "용산구",
+      "slug": "yongsan",
+      "config": {
+        "lat": 37.5326,
+        "lng": 126.9905
+      },
+      "geoPath": "tools\\realestate-map\\data\\yongsan-gu.geojson",
+      "status": "mismatch",
+      "issues": [
+        "apt↔geo 0.122°"
+      ],
+      "geoCenter": {
+        "lat": 37.492718637064456,
+        "lng": 126.86006342425017
+      },
+      "geoBbox": {
+        "minLat": 37.47146723936323,
+        "maxLat": 37.513970034765684,
+        "minLng": 126.81480709048222,
+        "maxLng": 126.90531975801812
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.53350344760406,
+        "lng": 126.97511499806004,
+        "count": 199
+      },
+      "deltaAptVsGeo": 0.12206664330142891
+    },
+    {
+      "code": "11200",
+      "name": "성동구",
+      "slug": "seongdong",
+      "config": {
+        "lat": 37.5634,
+        "lng": 127.0367
+      },
+      "geoPath": "tools\\realestate-map\\data\\seongdong-gu.geojson",
+      "status": "mismatch",
+      "issues": [
+        "apt↔geo 0.107°"
+      ],
+      "geoCenter": {
+        "lat": 37.49489318534813,
+        "lng": 126.94624923687596
+      },
+      "geoBbox": {
+        "minLat": 37.472561363278125,
+        "maxLat": 37.51722500741813,
+        "minLng": 126.90531975801812,
+        "maxLng": 126.9871787157338
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.55274595135404,
+        "lng": 127.03631872639222,
+        "count": 171
+      },
+      "deltaAptVsGeo": 0.1070488462163667
+    },
+    {
+      "code": "11215",
+      "name": "광진구",
+      "slug": "gwangjin",
+      "config": {
+        "lat": 37.5384,
+        "lng": 127.0822
+      },
+      "geoPath": "tools\\realestate-map\\data\\gwangjin-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.54576818521889,
+        "lng": 127.08734151484819
+      },
+      "geoBbox": {
+        "minLat": 37.52077294752823,
+        "maxLat": 37.57076342290955,
+        "minLng": 127.05867359288398,
+        "maxLng": 127.11600943681239
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.54282261577904,
+        "lng": 127.08477923317227,
+        "count": 220
+      },
+      "deltaAptVsGeo": 0.003904057723926643
+    },
+    {
+      "code": "11230",
+      "name": "동대문구",
+      "slug": "dongdaemun",
+      "config": {
+        "lat": 37.5744,
+        "lng": 127.0396
+      },
+      "geoPath": "tools\\realestate-map\\data\\dongdaemun-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.495924320128466,
+        "lng": 127.06919256346944
+      },
+      "geoBbox": {
+        "minLat": 37.45578434878651,
+        "maxLat": 37.536064291470424,
+        "minLng": 127.01397119667513,
+        "maxLng": 127.12441393026374
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.57634134070945,
+        "lng": 127.05948965243294,
+        "count": 290
+      },
+      "deltaAptVsGeo": 0.08100026963970024
+    },
+    {
+      "code": "11260",
+      "name": "중랑구",
+      "slug": "jungnang",
+      "config": {
+        "lat": 37.6063,
+        "lng": 127.0925
+      },
+      "geoPath": "tools\\realestate-map\\data\\jungnang-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.59240236635568,
+        "lng": 127.09600487687317
+      },
+      "geoBbox": {
+        "minLat": 37.566762290300666,
+        "maxLat": 37.61804244241069,
+        "minLng": 127.07152840437725,
+        "maxLng": 127.12048134936907
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.59842869336794,
+        "lng": 127.08830561591053,
+        "count": 243
+      },
+      "deltaAptVsGeo": 0.009777281658496074
+    },
+    {
+      "code": "11290",
+      "name": "성북구",
+      "slug": "seongbuk",
+      "config": {
+        "lat": 37.5894,
+        "lng": 127.0167
+      },
+      "geoPath": "tools\\realestate-map\\data\\seongbuk-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.60451128766722,
+        "lng": 127.02550123870412
+      },
+      "geoBbox": {
+        "minLat": 37.57524616245249,
+        "maxLat": 37.63377641288196,
+        "minLng": 126.977175406416,
+        "maxLng": 127.07382707099227
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.60247114278699,
+        "lng": 127.02517392971808,
+        "count": 184
+      },
+      "deltaAptVsGeo": 0.002066233845596139
+    },
+    {
+      "code": "11305",
+      "name": "강북구",
+      "slug": "gangbuk",
+      "config": {
+        "lat": 37.6396,
+        "lng": 127.0257
+      },
+      "geoPath": "tools\\realestate-map\\data\\gangbuk-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.64431606191877,
+        "lng": 127.01691950167064
+      },
+      "geoBbox": {
+        "minLat": 37.60634705009134,
+        "maxLat": 37.68228507374621,
+        "minLng": 126.9817452676551,
+        "maxLng": 127.05209373568619
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.63200283817585,
+        "lng": 127.02608258934613,
+        "count": 115
+      },
+      "deltaAptVsGeo": 0.015348539171268155
+    },
+    {
+      "code": "11320",
+      "name": "도봉구",
+      "slug": "dobong",
+      "config": {
+        "lat": 37.6688,
+        "lng": 127.0471
+      },
+      "geoPath": "tools\\realestate-map\\data\\dobong-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.6635393653731,
+        "lng": 127.03409015073815
+      },
+      "geoBbox": {
+        "minLat": 37.62848931298715,
+        "maxLat": 37.698589417759045,
+        "minLng": 127.01017954927539,
+        "maxLng": 127.05800075220091
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.65711909360261,
+        "lng": 127.03750891260773,
+        "count": 176
+      },
+      "deltaAptVsGeo": 0.007273776345738662
+    },
+    {
+      "code": "11350",
+      "name": "노원구",
+      "slug": "nowon",
+      "config": {
+        "lat": 37.6543,
+        "lng": 127.0568
+      },
+      "geoPath": "tools\\realestate-map\\data\\nowon-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.65248119082207,
+        "lng": 127.079042741807
+      },
+      "geoBbox": {
+        "minLat": 37.61136014256744,
+        "maxLat": 37.693602239076704,
+        "minLng": 127.04358800895609,
+        "maxLng": 127.1144974746579
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.643757831389124,
+        "lng": 127.06883018181529,
+        "count": 298
+      },
+      "deltaAptVsGeo": 0.01343106032228233
+    },
+    {
+      "code": "11380",
+      "name": "은평구",
+      "slug": "eunpyeong",
+      "config": {
+        "lat": 37.6027,
+        "lng": 126.9291
+      },
+      "geoPath": "tools\\realestate-map\\data\\eunpyeong-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.614634845933985,
+        "lng": 126.92910963030154
+      },
+      "geoBbox": {
+        "minLat": 37.573123712282076,
+        "maxLat": 37.656145979585894,
+        "minLng": 126.88433284773288,
+        "maxLng": 126.9738864128702
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.60716158076534,
+        "lng": 126.91885351781947,
+        "count": 430
+      },
+      "deltaAptVsGeo": 0.012690056561169
+    },
+    {
+      "code": "11410",
+      "name": "서대문구",
+      "slug": "seodaemun",
+      "config": {
+        "lat": 37.5791,
+        "lng": 126.9368
+      },
+      "geoPath": "tools\\realestate-map\\data\\seodaemun-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.57869846554929,
+        "lng": 126.93769657263756
+      },
+      "geoBbox": {
+        "minLat": 37.552310003728124,
+        "maxLat": 37.60508692737045,
+        "minLng": 126.90370105002282,
+        "maxLng": 126.97169209525231
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.577843994738245,
+        "lng": 126.93925520425431,
+        "count": 253
+      },
+      "deltaAptVsGeo": 0.0017774849883029473
+    },
+    {
+      "code": "11440",
+      "name": "마포구",
+      "slug": "mapo",
+      "config": {
+        "lat": 37.5663,
+        "lng": 126.9019
+      },
+      "geoPath": "tools\\realestate-map\\data\\mapo-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.557380432666946,
+        "lng": 126.91277289528679
+      },
+      "geoBbox": {
+        "minLat": 37.526617542453366,
+        "maxLat": 37.588143322880526,
+        "minLng": 126.85950389772532,
+        "maxLng": 126.96604189284825
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.55438200067747,
+        "lng": 126.92392560653681,
+        "count": 296
+      },
+      "deltaAptVsGeo": 0.011548747231705545
+    },
+    {
+      "code": "11470",
+      "name": "양천구",
+      "slug": "yangcheon",
+      "config": {
+        "lat": 37.517,
+        "lng": 126.8665
+      },
+      "geoPath": "tools\\realestate-map\\data\\yangcheon-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.524123145891636,
+        "lng": 126.85875840886743
+      },
+      "geoBbox": {
+        "minLat": 37.49965438083505,
+        "maxLat": 37.54859191094823,
+        "minLng": 126.82389942108053,
+        "maxLng": 126.89361739665432
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.526948418552074,
+        "lng": 126.85357925149896,
+        "count": 403
+      },
+      "deltaAptVsGeo": 0.0058996471634526265
+    },
+    {
+      "code": "11500",
+      "name": "강서구",
+      "slug": "gangseo",
+      "config": {
+        "lat": 37.5509,
+        "lng": 126.8495
+      },
+      "geoPath": "tools\\realestate-map\\data\\gangseo-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.56279718952193,
+        "lng": 126.82942564443596
+      },
+      "geoBbox": {
+        "minLat": 37.52373707805596,
+        "maxLat": 37.601857300987895,
+        "minLng": 126.76700465024426,
+        "maxLng": 126.89184663862764
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.55048627380651,
+        "lng": 126.84306982120277,
+        "count": 554
+      },
+      "deltaAptVsGeo": 0.018377219740653754
+    },
+    {
+      "code": "11530",
+      "name": "구로구",
+      "slug": "guro",
+      "config": {
+        "lat": 37.4954,
+        "lng": 126.8874
+      },
+      "geoPath": "tools\\realestate-map\\data\\guro-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.492718637064456,
+        "lng": 126.86006342425017
+      },
+      "geoBbox": {
+        "minLat": 37.47146723936323,
+        "maxLat": 37.513970034765684,
+        "minLng": 126.81480709048222,
+        "maxLng": 126.90531975801812
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.493413814270696,
+        "lng": 126.87160620786393,
+        "count": 394
+      },
+      "deltaAptVsGeo": 0.011563698582297258
+    },
+    {
+      "code": "11545",
+      "name": "금천구",
+      "slug": "geumcheon",
+      "config": {
+        "lat": 37.4565,
+        "lng": 126.8955
+      },
+      "geoPath": "tools\\realestate-map\\data\\geumcheon-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.45739625586435,
+        "lng": 126.90319084419177
+      },
+      "geoBbox": {
+        "minLat": 37.43100963341445,
+        "maxLat": 37.48378287831426,
+        "minLng": 126.87553760781829,
+        "maxLng": 126.93084408056525
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.463362280141375,
+        "lng": 126.90025150906686,
+        "count": 129
+      },
+      "deltaAptVsGeo": 0.006650799700075828
+    },
+    {
+      "code": "11560",
+      "name": "영등포구",
+      "slug": "yeongdeungpo",
+      "config": {
+        "lat": 37.5263,
+        "lng": 126.8962
+      },
+      "geoPath": "tools\\realestate-map\\data\\yeongdeungpo-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.5147774253757,
+        "lng": 126.9170319632601
+      },
+      "geoBbox": {
+        "minLat": 37.48218087575429,
+        "maxLat": 37.547373974997114,
+        "minLng": 126.88156402353862,
+        "maxLng": 126.95249990298159
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.51717519527842,
+        "lng": 126.9049624836893,
+        "count": 268
+      },
+      "deltaAptVsGeo": 0.012305349959115242
+    },
+    {
+      "code": "11590",
+      "name": "동작구",
+      "slug": "dongjak",
+      "config": {
+        "lat": 37.5124,
+        "lng": 126.9393
+      },
+      "geoPath": "tools\\realestate-map\\data\\dongjak-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.49489318534813,
+        "lng": 126.94624923687596
+      },
+      "geoBbox": {
+        "minLat": 37.472561363278125,
+        "maxLat": 37.51722500741813,
+        "minLng": 126.90531975801812,
+        "maxLng": 126.9871787157338
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.49724040525407,
+        "lng": 126.94785703260118,
+        "count": 212
+      },
+      "deltaAptVsGeo": 0.0028450744069106917
+    },
+    {
+      "code": "11620",
+      "name": "관악구",
+      "slug": "gwanak",
+      "config": {
+        "lat": 37.4784,
+        "lng": 126.9516
+      },
+      "geoPath": "tools\\realestate-map\\data\\gwanak-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.46266780314721,
+        "lng": 126.9461408366268
+      },
+      "geoBbox": {
+        "minLat": 37.43315139671158,
+        "maxLat": 37.49218420958284,
+        "minLng": 126.90156094129895,
+        "maxLng": 126.99072073195462
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.4783556333934,
+        "lng": 126.94683951107577,
+        "count": 251
+      },
+      "deltaAptVsGeo": 0.015703380649363337
+    },
+    {
+      "code": "11650",
+      "name": "서초구",
+      "slug": "seocho",
+      "config": {
+        "lat": 37.4837,
+        "lng": 127.0324
+      },
+      "geoPath": "tools\\realestate-map\\data\\seocho-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.47539459056922,
+        "lng": 127.04033283617416
+      },
+      "geoBbox": {
+        "minLat": 37.42574929824175,
+        "maxLat": 37.52503988289669,
+        "minLng": 126.98223807916081,
+        "maxLng": 127.09842759318751
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.48948809069132,
+        "lng": 127.01059079173034,
+        "count": 661
+      },
+      "deltaAptVsGeo": 0.032912246252568715
+    },
+    {
+      "code": "11680",
+      "name": "강남구",
+      "slug": "gangnam",
+      "config": {
+        "lat": 37.5172,
+        "lng": 127.0473
+      },
+      "geoPath": "tools\\realestate-map\\data\\gangnam-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.495924320128466,
+        "lng": 127.06919256346944
+      },
+      "geoBbox": {
+        "minLat": 37.45578434878651,
+        "maxLat": 37.536064291470424,
+        "minLng": 127.01397119667513,
+        "maxLng": 127.12441393026374
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.50567630396892,
+        "lng": 127.04886810492827,
+        "count": 740
+      },
+      "deltaAptVsGeo": 0.02254295463811489
+    },
+    {
+      "code": "11710",
+      "name": "송파구",
+      "slug": "songpa",
+      "config": {
+        "lat": 37.5145,
+        "lng": 127.1059
+      },
+      "geoPath": "tools\\realestate-map\\data\\songpa-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.50153720559772,
+        "lng": 127.11604933857015
+      },
+      "geoBbox": {
+        "minLat": 37.46240445587048,
+        "maxLat": 37.540669955324965,
+        "minLng": 127.06860425556381,
+        "maxLng": 127.1634944215765
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.502361321796386,
+        "lng": 127.12330861679835,
+        "count": 428
+      },
+      "deltaAptVsGeo": 0.0073059077398625535
+    },
+    {
+      "code": "11740",
+      "name": "강동구",
+      "slug": "gangdong",
+      "config": {
+        "lat": 37.5301,
+        "lng": 127.1238
+      },
+      "geoPath": "tools\\realestate-map\\data\\gangdong-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.54603534421011,
+        "lng": 127.1485551047795
+      },
+      "geoBbox": {
+        "minLat": 37.51415680680291,
+        "maxLat": 37.57791388161732,
+        "minLng": 127.1116764203608,
+        "maxLng": 127.18543378919821
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.54039185695994,
+        "lng": 127.13905555975668,
+        "count": 458
+      },
+      "deltaAptVsGeo": 0.011049448130263803
+    },
+    {
+      "code": "41111",
+      "name": "수원시 장안구",
+      "slug": "suwon-jangan",
+      "config": {
+        "lat": 37.31674994597005,
+        "lng": 126.99005748289224
+      },
+      "geoPath": "tools\\realestate-map\\data\\gyeonggi\\suwon-jangan-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.32081491135047,
+        "lng": 126.98745802247763
+      },
+      "geoBbox": {
+        "minLat": 37.30313613820339,
+        "maxLat": 37.33849368449755,
+        "minLng": 126.96692202659356,
+        "maxLng": 127.0079940183617
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.29959184388662,
+        "lng": 126.99732801242286,
+        "count": 164
+      },
+      "deltaAptVsGeo": 0.023405881613263135
+    },
+    {
+      "code": "41113",
+      "name": "수원시 권선구",
+      "slug": "suwon-gwonseon",
+      "config": {
+        "lat": 37.259690985743475,
+        "lng": 127.0045571013574
+      },
+      "geoPath": "tools\\realestate-map\\data\\gyeonggi\\suwon-gwonseon-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.26059004649177,
+        "lng": 127.0051668612543
+      },
+      "geoBbox": {
+        "minLat": 37.2535324743878,
+        "maxLat": 37.267647618595745,
+        "minLng": 126.99814055934043,
+        "maxLng": 127.01219316316816
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.263416051726146,
+        "lng": 126.98771850319312,
+        "count": 203
+      },
+      "deltaAptVsGeo": 0.0176757320814623
+    },
+    {
+      "code": "41115",
+      "name": "수원시 팔달구",
+      "slug": "suwon-paldal",
+      "config": {
+        "lat": 37.27969514670358,
+        "lng": 127.02673163998347
+      },
+      "geoPath": "tools\\realestate-map\\data\\gyeonggi\\suwon-paldal-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.28238869705956,
+        "lng": 127.02496889937314
+      },
+      "geoBbox": {
+        "minLat": 37.275261153883754,
+        "maxLat": 37.28951624023536,
+        "minLng": 127.01879177020693,
+        "maxLng": 127.03114602853935
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.27558669849107,
+        "lng": 127.01930080959782,
+        "count": 124
+      },
+      "deltaAptVsGeo": 0.008854062696116391
+    },
+    {
+      "code": "41117",
+      "name": "수원시 영통구",
+      "slug": "suwon-yeongtong",
+      "config": {
+        "lat": 37.27137841939929,
+        "lng": 127.03995725401143
+      },
+      "geoPath": "tools\\realestate-map\\data\\gyeonggi\\suwon-yeongtong-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.27057531816456,
+        "lng": 127.04139017327205
+      },
+      "geoBbox": {
+        "minLat": 37.265283700093846,
+        "maxLat": 37.275866936235275,
+        "minLng": 127.0347941758409,
+        "maxLng": 127.04798617070318
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.26201181186265,
+        "lng": 127.05824475458897,
+        "count": 154
+      },
+      "deltaAptVsGeo": 0.01890530485211892
+    },
+    {
+      "code": "41131",
+      "name": "성남시 수정구",
+      "slug": "seongnam-sujeong",
+      "config": {
+        "lat": 37.44029382992726,
+        "lng": 127.14063537945182
+      },
+      "geoPath": "tools\\realestate-map\\data\\gyeonggi\\seongnam-sujeong-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.44077259194534,
+        "lng": 127.14035701451655
+      },
+      "geoBbox": {
+        "minLat": 37.43741952480635,
+        "maxLat": 37.44412565908433,
+        "minLng": 127.13613305393076,
+        "maxLng": 127.14458097510234
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.448681485552,
+        "lng": 127.13944311465713,
+        "count": 101
+      },
+      "deltaAptVsGeo": 0.007961520648377768
+    },
+    {
+      "code": "41133",
+      "name": "성남시 중원구",
+      "slug": "seongnam-jungwon",
+      "config": {
+        "lat": 37.43049564194357,
+        "lng": 127.132570725168
+      },
+      "geoPath": "tools\\realestate-map\\data\\gyeonggi\\seongnam-jungwon-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.43109030638553,
+        "lng": 127.133207296913
+      },
+      "geoBbox": {
+        "minLat": 37.422637070589445,
+        "maxLat": 37.43954354218162,
+        "minLng": 127.11793021493745,
+        "maxLng": 127.14848437888855
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.43519307701302,
+        "lng": 127.14901345907232,
+        "count": 105
+      },
+      "deltaAptVsGeo": 0.016329956798123463
+    },
+    {
+      "code": "41135",
+      "name": "성남시 분당구",
+      "slug": "seongnam-bundang",
+      "config": {
+        "lat": 37.37108918486816,
+        "lng": 127.14570638411843
+      },
+      "geoPath": "tools\\realestate-map\\data\\gyeonggi\\seongnam-bundang-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.369146581221706,
+        "lng": 127.14325128993649
+      },
+      "geoBbox": {
+        "minLat": 37.35938863911604,
+        "maxLat": 37.37890452332737,
+        "minLng": 127.12562448369782,
+        "maxLng": 127.16087809617515
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.377888638088955,
+        "lng": 127.11408495414844,
+        "count": 201
+      },
+      "deltaAptVsGeo": 0.03044829554460117
+    },
+    {
+      "code": "41150",
+      "name": "의정부시",
+      "slug": "uijeongbu-si",
+      "config": {
+        "lat": 37.74757233859925,
+        "lng": 127.04755487045469
+      },
+      "geoPath": "tools\\realestate-map\\data\\gyeonggi\\uijeongbu-si-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.73334598550977,
+        "lng": 127.07399302473885
+      },
+      "geoBbox": {
+        "minLat": 37.687021624314454,
+        "maxLat": 37.779670346705096,
+        "minLng": 127.00127950905909,
+        "maxLng": 127.14670654041863
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.73654554390024,
+        "lng": 127.06017028252343,
+        "count": 288
+      },
+      "deltaAptVsGeo": 0.014188212581157149
+    },
+    {
+      "code": "41171",
+      "name": "안양시 만안구",
+      "slug": "anyang-manan",
+      "config": {
+        "lat": 37.39985749280954,
+        "lng": 126.9240626812296
+      },
+      "geoPath": "tools\\realestate-map\\data\\gyeonggi\\anyang-manan-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.399383466942425,
+        "lng": 126.92566930301777
+      },
+      "geoBbox": {
+        "minLat": 37.39422692581972,
+        "maxLat": 37.40454000806513,
+        "minLng": 126.91987546681882,
+        "maxLng": 126.9314631392167
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.399878606296966,
+        "lng": 126.9186211215368,
+        "count": 191
+      },
+      "deltaAptVsGeo": 0.007065552007386151
+    },
+    {
+      "code": "41173",
+      "name": "안양시 동안구",
+      "slug": "anyang-dongan",
+      "config": {
+        "lat": 37.404509539889546,
+        "lng": 126.93564372024369
+      },
+      "geoPath": "tools\\realestate-map\\data\\gyeonggi\\anyang-dongan-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.40642222210043,
+        "lng": 126.93427153017876
+      },
+      "geoBbox": {
+        "minLat": 37.397423011014595,
+        "maxLat": 37.41542143318627,
+        "minLng": 126.92564176734331,
+        "maxLng": 126.94290129301422
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.388357651534776,
+        "lng": 126.95667782923884,
+        "count": 211
+      },
+      "deltaAptVsGeo": 0.028781434072875905
+    },
+    {
+      "code": "41192",
+      "name": "부천시 원미구",
+      "slug": "bucheon-wonmi",
+      "config": {
+        "lat": 37.5036,
+        "lng": 126.787
+      },
+      "geoPath": "tools\\realestate-map\\data\\gyeonggi\\bucheon-wonmi-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.49123977016022,
+        "lng": 126.78557753897562
+      },
+      "geoBbox": {
+        "minLat": 37.48286145148421,
+        "maxLat": 37.49961808883622,
+        "minLng": 126.77036075210066,
+        "maxLng": 126.80079432585056
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.49660810034549,
+        "lng": 126.78078003285957,
+        "count": 319
+      },
+      "deltaAptVsGeo": 0.007199655124490688
+    },
+    {
+      "code": "41194",
+      "name": "부천시 소사구",
+      "slug": "bucheon-sosa",
+      "config": {
+        "lat": 37.4759,
+        "lng": 126.7928
+      },
+      "geoPath": "tools\\realestate-map\\data\\gyeonggi\\bucheon-sosa-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.49123977016022,
+        "lng": 126.78557753897562
+      },
+      "geoBbox": {
+        "minLat": 37.48286145148421,
+        "maxLat": 37.49961808883622,
+        "minLng": 126.77036075210066,
+        "maxLng": 126.80079432585056
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.47978665193266,
+        "lng": 126.79426436995952,
+        "count": 224
+      },
+      "deltaAptVsGeo": 0.014374802596116811
+    },
+    {
+      "code": "41196",
+      "name": "부천시 오정구",
+      "slug": "bucheon-ojeong",
+      "config": {
+        "lat": 37.5267,
+        "lng": 126.7894
+      },
+      "geoPath": "tools\\realestate-map\\data\\gyeonggi\\bucheon-ojeong-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.49123977016022,
+        "lng": 126.78557753897562
+      },
+      "geoBbox": {
+        "minLat": 37.48286145148421,
+        "maxLat": 37.49961808883622,
+        "minLng": 126.77036075210066,
+        "maxLng": 126.80079432585056
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.52424477204676,
+        "lng": 126.8035363407011,
+        "count": 221
+      },
+      "deltaAptVsGeo": 0.03757457529960297
+    },
+    {
+      "code": "41210",
+      "name": "광명시",
+      "slug": "gwangmyeong-si",
+      "config": {
+        "lat": 37.48816449749147,
+        "lng": 126.86226148363987
+      },
+      "geoPath": "tools\\realestate-map\\data\\gyeonggi\\gwangmyeong-si-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.44830904030211,
+        "lng": 126.86323211363377
+      },
+      "geoBbox": {
+        "minLat": 37.40151426752884,
+        "maxLat": 37.49510381307537,
+        "minLng": 126.82597323840619,
+        "maxLng": 126.90049098886135
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.46231446948053,
+        "lng": 126.87037727912372,
+        "count": 107
+      },
+      "deltaAptVsGeo": 0.015722768088049406
+    },
+    {
+      "code": "41220",
+      "name": "평택시",
+      "slug": "pyeongtaek-si",
+      "config": {
+        "lat": 36.967289017812824,
+        "lng": 127.0527510697506
+      },
+      "geoPath": "tools\\realestate-map\\data\\gyeonggi\\pyeongtaek-si-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.02454036162774,
+        "lng": 126.96571355789618
+      },
+      "geoBbox": {
+        "minLat": 36.90446425365603,
+        "maxLat": 37.14461646959946,
+        "minLng": 126.77751112452437,
+        "maxLng": 127.153915991268
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.02306246834504,
+        "lng": 127.04443252261247,
+        "count": 357
+      },
+      "deltaAptVsGeo": 0.0787328366982874
+    },
+    {
+      "code": "41250",
+      "name": "동두천시",
+      "slug": "dongducheon-si",
+      "config": {
+        "lat": 37.909585326968816,
+        "lng": 127.06805922122362
+      },
+      "geoPath": "tools\\realestate-map\\data\\gyeonggi\\dongducheon-si-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.92059510979828,
+        "lng": 127.08177671505248
+      },
+      "geoBbox": {
+        "minLat": 37.85985148862908,
+        "maxLat": 37.98133873096747,
+        "minLng": 127.00790110245758,
+        "maxLng": 127.1556523276474
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.90023750284493,
+        "lng": 127.05784851352949,
+        "count": 73
+      },
+      "deltaAptVsGeo": 0.03141641273270811
+    },
+    {
+      "code": "41271",
+      "name": "안산시 상록구",
+      "slug": "ansan-sangnok",
+      "config": {
+        "lat": 37.31347148907666,
+        "lng": 126.87051953585146
+      },
+      "geoPath": "tools\\realestate-map\\data\\gyeonggi\\ansan-sangnok-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.311622778300816,
+        "lng": 126.86879532459844
+      },
+      "geoBbox": {
+        "minLat": 37.30238393482108,
+        "maxLat": 37.32086162178055,
+        "minLng": 126.85578267734739,
+        "maxLng": 126.88180797184947
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.31548140468952,
+        "lng": 126.86260157358487,
+        "count": 82
+      },
+      "deltaAptVsGeo": 0.0072973659100872956
+    },
+    {
+      "code": "41273",
+      "name": "안산시 단원구",
+      "slug": "ansan-danwon",
+      "config": {
+        "lat": 37.340527778933804,
+        "lng": 126.8296833547554
+      },
+      "geoPath": "tools\\realestate-map\\data\\gyeonggi\\ansan-danwon-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.33917415706553,
+        "lng": 126.82921686563122
+      },
+      "geoBbox": {
+        "minLat": 37.32944694469139,
+        "maxLat": 37.348901369439666,
+        "minLng": 126.81660485806626,
+        "maxLng": 126.8418288731962
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.32583090107455,
+        "lng": 126.81408706354041,
+        "count": 77
+      },
+      "deltaAptVsGeo": 0.02017308582611528
+    },
+    {
+      "code": "41281",
+      "name": "고양시 덕양구",
+      "slug": "goyang-deogyang",
+      "config": {
+        "lat": 37.659787355570565,
+        "lng": 126.82631253044268
+      },
+      "geoPath": "tools\\realestate-map\\data\\gyeonggi\\goyang-deogyang-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.66188520186766,
+        "lng": 126.82828105115789
+      },
+      "geoBbox": {
+        "minLat": 37.644394192140645,
+        "maxLat": 37.67937621159467,
+        "minLng": 126.81082410193467,
+        "maxLng": 126.84573800038112
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.64219567830359,
+        "lng": 126.85044457771603,
+        "count": 243
+      },
+      "deltaAptVsGeo": 0.02964623496624647
+    },
+    {
+      "code": "41285",
+      "name": "고양시 일산동구",
+      "slug": "goyang-ilsandong",
+      "config": {
+        "lat": 37.678271136674795,
+        "lng": 126.81525459488473
+      },
+      "geoPath": "tools\\realestate-map\\data\\gyeonggi\\goyang-ilsandong-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.67689204616741,
+        "lng": 126.81597906912769
+      },
+      "geoBbox": {
+        "minLat": 37.65950808500977,
+        "maxLat": 37.69427600732505,
+        "minLng": 126.79843822464264,
+        "maxLng": 126.83351991361275
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.66686288690449,
+        "lng": 126.79044666347912,
+        "count": 106
+      },
+      "deltaAptVsGeo": 0.027431510598661314
+    },
+    {
+      "code": "41287",
+      "name": "고양시 일산서구",
+      "slug": "goyang-ilsanseo",
+      "config": {
+        "lat": 37.68958998931242,
+        "lng": 126.76717541115624
+      },
+      "geoPath": "tools\\realestate-map\\data\\gyeonggi\\goyang-ilsanseo-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.68766631268769,
+        "lng": 126.76808436676072
+      },
+      "geoBbox": {
+        "minLat": 37.682793722750034,
+        "maxLat": 37.692538902625344,
+        "minLng": 126.76104776143089,
+        "maxLng": 126.77512097209055
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.68253183780763,
+        "lng": 126.76072067880372,
+        "count": 166
+      },
+      "deltaAptVsGeo": 0.0089770113413075
+    },
+    {
+      "code": "41290",
+      "name": "과천시",
+      "slug": "gwacheon-si",
+      "config": {
+        "lat": 37.43623574867206,
+        "lng": 126.97536823091565
+      },
+      "geoPath": "tools\\realestate-map\\data\\gyeonggi\\gwacheon-si-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.43396710624947,
+        "lng": 127.00439668090686
+      },
+      "geoBbox": {
+        "minLat": 37.400674863707884,
+        "maxLat": 37.467259348791046,
+        "minLng": 126.96132631409651,
+        "maxLng": 127.04746704771722
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.42225783395016,
+        "lng": 126.99034221490783,
+        "count": 23
+      },
+      "deltaAptVsGeo": 0.018293033436186212
+    },
+    {
+      "code": "41310",
+      "name": "구리시",
+      "slug": "guri-si",
+      "config": {
+        "lat": 37.62909745886601,
+        "lng": 127.1134768792304
+      },
+      "geoPath": "tools\\realestate-map\\data\\gyeonggi\\guri-si-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.60237958508682,
+        "lng": 127.13525622155015
+      },
+      "geoBbox": {
+        "minLat": 37.55845873405385,
+        "maxLat": 37.6463004361198,
+        "minLng": 127.09975048588927,
+        "maxLng": 127.17076195721104
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.60096999182501,
+        "lng": 127.1381752964769,
+        "count": 179
+      },
+      "deltaAptVsGeo": 0.00324159707424195
+    },
+    {
+      "code": "41360",
+      "name": "남양주시",
+      "slug": "namyangju-si",
+      "config": {
+        "lat": 37.59386252133532,
+        "lng": 127.2568303278814
+      },
+      "geoPath": "tools\\realestate-map\\data\\gyeonggi\\namyangju-si-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.6436858057332,
+        "lng": 127.23021425759246
+      },
+      "geoBbox": {
+        "minLat": 37.5069213187222,
+        "maxLat": 37.780450292744206,
+        "minLng": 127.0812307912556,
+        "maxLng": 127.37919772392932
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.65346598643136,
+        "lng": 127.2035455592662,
+        "count": 366
+      },
+      "deltaAptVsGeo": 0.028405481951654498
+    },
+    {
+      "code": "41370",
+      "name": "오산시",
+      "slug": "osan-si",
+      "config": {
+        "lat": 37.151677346516834,
+        "lng": 127.08465485080302
+      },
+      "geoPath": "tools\\realestate-map\\data\\gyeonggi\\osan-si-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.16289390826201,
+        "lng": 127.0493995612012
+      },
+      "geoBbox": {
+        "minLat": 37.12537011084859,
+        "maxLat": 37.20041770567543,
+        "minLng": 126.9951525204159,
+        "maxLng": 127.10364660198648
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.153055752177046,
+        "lng": 127.0651723351718,
+        "count": 133
+      },
+      "deltaAptVsGeo": 0.01858950547700389
+    },
+    {
+      "code": "41390",
+      "name": "시흥시",
+      "slug": "siheung-si",
+      "config": {
+        "lat": 37.45345289785208,
+        "lng": 126.79704947484886
+      },
+      "geoPath": "tools\\realestate-map\\data\\gyeonggi\\siheung-si-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.390043183885524,
+        "lng": 126.77648821044917
+      },
+      "geoBbox": {
+        "minLat": 37.30751608020175,
+        "maxLat": 37.47257028756929,
+        "minLng": 126.67106449501567,
+        "maxLng": 126.88191192588266
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.39304262789167,
+        "lng": 126.78234525912242,
+        "count": 313
+      },
+      "deltaAptVsGeo": 0.006580401470031834
+    },
+    {
+      "code": "41410",
+      "name": "군포시",
+      "slug": "gunpo-si",
+      "config": {
+        "lat": 37.35378659147275,
+        "lng": 126.95109600226543
+      },
+      "geoPath": "tools\\realestate-map\\data\\gyeonggi\\gunpo-si-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.3421362101121,
+        "lng": 126.91755518287201
+      },
+      "geoBbox": {
+        "minLat": 37.30514565861524,
+        "maxLat": 37.37912676160896,
+        "minLng": 126.87274531624193,
+        "maxLng": 126.96236504950208
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.35314813948886,
+        "lng": 126.9398253761731,
+        "count": 204
+      },
+      "deltaAptVsGeo": 0.02484399521548197
+    },
+    {
+      "code": "41430",
+      "name": "의왕시",
+      "slug": "uiwang-si",
+      "config": {
+        "lat": 37.343682196504574,
+        "lng": 126.99239391948787
+      },
+      "geoPath": "tools\\realestate-map\\data\\gyeonggi\\uiwang-si-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.3581403903148,
+        "lng": 126.98825357954235
+      },
+      "geoBbox": {
+        "minLat": 37.30064712026998,
+        "maxLat": 37.415633660359624,
+        "minLng": 126.92945485413472,
+        "maxLng": 127.04705230494996
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.35635898031565,
+        "lng": 126.97255668081023,
+        "count": 104
+      },
+      "deltaAptVsGeo": 0.015797659680832615
+    },
+    {
+      "code": "41450",
+      "name": "하남시",
+      "slug": "hanam-si",
+      "config": {
+        "lat": 37.509178356869214,
+        "lng": 127.24399869439088
+      },
+      "geoPath": "tools\\realestate-map\\data\\gyeonggi\\hanam-si-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.53052120959073,
+        "lng": 127.21377746039515
+      },
+      "geoBbox": {
+        "minLat": 37.469097701086106,
+        "maxLat": 37.59194471809535,
+        "minLng": 127.13997196562046,
+        "maxLng": 127.28758295516984
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.53676588313811,
+        "lng": 127.19044599221911,
+        "count": 120
+      },
+      "deltaAptVsGeo": 0.024152709060535023
+    },
+    {
+      "code": "41461",
+      "name": "용인시 처인구",
+      "slug": "yongin-cheoin",
+      "config": {
+        "lat": 37.29231303960745,
+        "lng": 127.21640043939485
+      },
+      "geoPath": "tools\\realestate-map\\data\\gyeonggi\\yongin-cheoin-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.293396506331995,
+        "lng": 127.22592089330375
+      },
+      "geoBbox": {
+        "minLat": 37.25966399596514,
+        "maxLat": 37.32712901669885,
+        "minLng": 127.1701465709023,
+        "maxLng": 127.2816952157052
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.243271431755225,
+        "lng": 127.21722530755589,
+        "count": 166
+      },
+      "deltaAptVsGeo": 0.05087372910279954
+    },
+    {
+      "code": "41463",
+      "name": "용인시 기흥구",
+      "slug": "yongin-giheung",
+      "config": {
+        "lat": 37.274562261930726,
+        "lng": 127.12190009537106
+      },
+      "geoPath": "tools\\realestate-map\\data\\gyeonggi\\yongin-giheung-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.276894967207895,
+        "lng": 127.12225577614583
+      },
+      "geoBbox": {
+        "minLat": 37.26468206059749,
+        "maxLat": 37.28910787381831,
+        "minLng": 127.10914846637814,
+        "maxLng": 127.13536308591351
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.27722838959579,
+        "lng": 127.11885781910863,
+        "count": 242
+      },
+      "deltaAptVsGeo": 0.00341427627989647
+    },
+    {
+      "code": "41465",
+      "name": "용인시 수지구",
+      "slug": "yongin-suji",
+      "config": {
+        "lat": 37.32834468501771,
+        "lng": 127.09250985891627
+      },
+      "geoPath": "tools\\realestate-map\\data\\gyeonggi\\yongin-suji-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.32734333515418,
+        "lng": 127.09298133671624
+      },
+      "geoBbox": {
+        "minLat": 37.320947834827706,
+        "maxLat": 37.33373883548065,
+        "minLng": 127.0813975949817,
+        "maxLng": 127.10456507845076
+      },
+      "deltaConfigVsGeo": null,
+      "aptCenter": {
+        "lat": 37.323470697710306,
+        "lng": 127.0951628356487,
+        "count": 256
+      },
+      "deltaAptVsGeo": 0.00444480127385151
+    },
+    {
+      "code": "41480",
+      "name": "파주시",
+      "slug": "paju-si",
+      "config": {
+        "lat": 37.868010234262805,
+        "lng": 126.79143042896891
+      },
+      "geoPath": "tools\\realestate-map\\data\\gyeonggi\\paju-si-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.84690001249659,
+        "lng": 126.83819358114357
+      },
+      "geoBbox": {
+        "minLat": 37.68911255616649,
+        "maxLat": 38.00468746882668,
+        "minLng": 126.65934293965918,
+        "maxLng": 127.01704422262794
+      },
+      "deltaConfigVsGeo": null
+    },
+    {
+      "code": "41500",
+      "name": "이천시",
+      "slug": "icheon-si",
+      "config": {
+        "lat": 37.140206277982884,
+        "lng": 127.59634152837083
+      },
+      "geoPath": "tools\\realestate-map\\data\\gyeonggi\\icheon-si-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.2022329872774,
+        "lng": 127.48435324364635
+      },
+      "geoBbox": {
+        "minLat": 37.042950020990205,
+        "maxLat": 37.36151595356459,
+        "minLng": 127.3308723539218,
+        "maxLng": 127.6378341333709
+      },
+      "deltaConfigVsGeo": null
+    },
+    {
+      "code": "41550",
+      "name": "안성시",
+      "slug": "anseong-si",
+      "config": {
+        "lat": 36.994357088486744,
+        "lng": 127.16956923799393
+      },
+      "geoPath": "tools\\realestate-map\\data\\gyeonggi\\anseong-si-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.02471206090296,
+        "lng": 127.31045688763523
+      },
+      "geoBbox": {
+        "minLat": 36.89353353381547,
+        "maxLat": 37.155890587990434,
+        "minLng": 127.10231002118495,
+        "maxLng": 127.5186037540855
+      },
+      "deltaConfigVsGeo": null
+    },
+    {
+      "code": "41570",
+      "name": "김포시",
+      "slug": "gimpo-si",
+      "config": {
+        "lat": 37.690781270629884,
+        "lng": 126.60124940821926
+      },
+      "geoPath": "tools\\realestate-map\\data\\gyeonggi\\gimpo-si-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.686128733878995,
+        "lng": 126.65974995528903
+      },
+      "geoBbox": {
+        "minLat": 37.57957178878135,
+        "maxLat": 37.79268567897664,
+        "minLng": 126.51456397746584,
+        "maxLng": 126.80493593311222
+      },
+      "deltaConfigVsGeo": null
+    },
+    {
+      "code": "41590",
+      "name": "화성시",
+      "slug": "hwaseong-si",
+      "config": {
+        "lat": 37.200530615762155,
+        "lng": 126.94240050369204
+      },
+      "geoPath": "tools\\realestate-map\\data\\gyeonggi\\hwaseong-si-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 0,
+        "lng": 0
+      },
+      "geoBbox": {
+        "minLat": 999,
+        "maxLat": -999,
+        "minLng": 999,
+        "maxLng": -999
+      },
+      "deltaConfigVsGeo": null
+    },
+    {
+      "code": "41610",
+      "name": "광주시",
+      "slug": "gwangju-si",
+      "config": {
+        "lat": 37.35723855636358,
+        "lng": 127.21555254511546
+      },
+      "geoPath": "tools\\realestate-map\\data\\gyeonggi\\gwangju-si-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.40071156916833,
+        "lng": 127.28888115510321
+      },
+      "geoBbox": {
+        "minLat": 37.26567678923101,
+        "maxLat": 37.53574634910565,
+        "minLng": 127.13173657886057,
+        "maxLng": 127.44602573134584
+      },
+      "deltaConfigVsGeo": null
+    },
+    {
+      "code": "41630",
+      "name": "양주시",
+      "slug": "yangju-si",
+      "config": {
+        "lat": 37.79102266487566,
+        "lng": 126.98423304640463
+      },
+      "geoPath": "tools\\realestate-map\\data\\gyeonggi\\yangju-si-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.80536899236959,
+        "lng": 127.0121975676276
+      },
+      "geoBbox": {
+        "minLat": 37.66870371869898,
+        "maxLat": 37.942034266040196,
+        "minLng": 126.90230760650456,
+        "maxLng": 127.12208752875064
+      },
+      "deltaConfigVsGeo": null
+    },
+    {
+      "code": "41650",
+      "name": "포천시",
+      "slug": "pocheon-si",
+      "config": {
+        "lat": 37.792218873296285,
+        "lng": 127.15427675517714
+      },
+      "geoPath": "tools\\realestate-map\\data\\gyeonggi\\pocheon-si-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.97088879586454,
+        "lng": 127.26867696621719
+      },
+      "geoBbox": {
+        "minLat": 37.752922559245185,
+        "maxLat": 38.188855032483886,
+        "minLng": 127.09037069554275,
+        "maxLng": 127.44698323689164
+      },
+      "deltaConfigVsGeo": null
+    },
+    {
+      "code": "41670",
+      "name": "여주시",
+      "slug": "yeoju-si",
+      "config": {
+        "lat": 37.20658984759881,
+        "lng": 127.58289090225641
+      },
+      "geoPath": "tools\\realestate-map\\data\\gyeonggi\\yeoju-si-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.28741641033692,
+        "lng": 127.58339186533942
+      },
+      "geoBbox": {
+        "minLat": 37.1350228062018,
+        "maxLat": 37.43981001447203,
+        "minLng": 127.39821366260345,
+        "maxLng": 127.7685700680754
+      },
+      "deltaConfigVsGeo": null
+    },
+    {
+      "code": "41800",
+      "name": "연천군",
+      "slug": "yeoncheon-gun",
+      "config": {
+        "lat": 38.101246461779276,
+        "lng": 127.10993204543787
+      },
+      "geoPath": "tools\\realestate-map\\data\\gyeonggi\\yeoncheon-gun-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 38.109691830763936,
+        "lng": 126.97008455686691
+      },
+      "geoBbox": {
+        "minLat": 37.9273457342003,
+        "maxLat": 38.29203792732757,
+        "minLng": 126.74791496944646,
+        "maxLng": 127.19225414428735
+      },
+      "deltaConfigVsGeo": null
+    },
+    {
+      "code": "41820",
+      "name": "가평군",
+      "slug": "gapyeong-gun",
+      "config": {
+        "lat": 37.822296646087146,
+        "lng": 127.52523226394275
+      },
+      "geoPath": "tools\\realestate-map\\data\\gyeonggi\\gapyeong-gun-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.81140880805072,
+        "lng": 127.44212738436141
+      },
+      "geoBbox": {
+        "minLat": 37.57183557233189,
+        "maxLat": 38.05098204376955,
+        "minLng": 127.266523837898,
+        "maxLng": 127.6177309308248
+      },
+      "deltaConfigVsGeo": null
+    },
+    {
+      "code": "41830",
+      "name": "양평군",
+      "slug": "yangpyeong-gun",
+      "config": {
+        "lat": 37.490005874248666,
+        "lng": 127.52028964796288
+      },
+      "geoPath": "tools\\realestate-map\\data\\gyeonggi\\yangpyeong-gun-gu.geojson",
+      "status": "ok",
+      "issues": [],
+      "geoCenter": {
+        "lat": 37.51929426181025,
+        "lng": 127.57711957117337
+      },
+      "geoBbox": {
+        "minLat": 37.36704394037488,
+        "maxLat": 37.67154458324563,
+        "minLng": 127.30477029470445,
+        "maxLng": 127.84946884764227
+      },
+      "deltaConfigVsGeo": null
+    }
+  ]
+}

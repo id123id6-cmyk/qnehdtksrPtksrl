@@ -1,0 +1,136 @@
+{
+  "generatedAt": "2026-06-23T23:59:35.557Z",
+  "national": {
+    "total": 13408,
+    "before": {
+      "sale": 4728,
+      "none": 8680
+    },
+    "after": {
+      "sale": 4728,
+      "jeonse": 804,
+      "none": 7876
+    },
+    "jeonseNew": 804,
+    "noneReduced": 804
+  },
+  "godeokGrayShift": [
+    {
+      "id": "0484daa9-9cab-4345-8a91-053a8b819fa7",
+      "before": "none",
+      "after": "jeonse"
+    },
+    {
+      "id": "efb8555c-e7fb-4f77-ab11-ebd86630f427",
+      "before": "none",
+      "after": "none"
+    },
+    {
+      "id": "3a54480a-7691-4341-92d0-fca37e3c640a",
+      "before": "none",
+      "after": "jeonse"
+    },
+    {
+      "id": "994204be-e631-44ee-894a-f5102dd43eac",
+      "before": "none",
+      "after": "none"
+    },
+    {
+      "id": "5bb1f8d8-ea75-493a-9f51-3c729d8ad610",
+      "before": "none",
+      "after": "none"
+    }
+  ],
+  "ui": {
+    "consoleErrors": [],
+    "regions": [
+      {
+        "slug": "pyeongtaek-godeok",
+        "code": "41220",
+        "query": "고덕국제신도시금호어울림",
+        "expectSale": true,
+        "errors": [],
+        "checks": {
+          "selectedClass": "marker-pill marker-low size-md marker-selected",
+          "selectedText": "고덕국제 24평 3.8억",
+          "badges": [
+            "매매",
+            "전세",
+            "전세"
+          ],
+          "legendJeonse": true,
+          "ok": true
+        }
+      },
+      {
+        "slug": "pyeongtaek-dietre",
+        "code": "41220",
+        "query": "디에트르리비에르",
+        "expectJeonse": true,
+        "errors": [],
+        "checks": {
+          "selectedClass": "marker-pill marker-jeonse size-md marker-selected",
+          "selectedText": "평택고덕 34평 전세 0.3억",
+          "badges": [
+            "전세"
+          ],
+          "legendJeonse": true,
+          "ok": true
+        }
+      },
+      {
+        "slug": "gangnam",
+        "code": "11680",
+        "query": "래미안대치",
+        "errors": [],
+        "checks": {
+          "selectedClass": "marker-pill marker-high size-md marker-selected",
+          "selectedText": "래미안 34평 50.3억",
+          "badges": [
+            "매매",
+            "매매",
+            "전세"
+          ],
+          "legendJeonse": true,
+          "ok": true
+        }
+      },
+      {
+        "slug": "songpa",
+        "code": "11710",
+        "query": "잠실엘스",
+        "errors": [],
+        "checks": {
+          "selectedClass": "marker-pill marker-high size-md marker-selected",
+          "selectedText": "잠실엘스 34평 32.4억",
+          "badges": [
+            "전세",
+            "전세",
+            "전세"
+          ],
+          "legendJeonse": true,
+          "ok": true
+        }
+      },
+      {
+        "slug": "bundang",
+        "code": "41135",
+        "query": "분당",
+        "errors": [],
+        "checks": {
+          "selectedClass": "marker-pill marker-low size-md marker-selected",
+          "selectedText": "센트럴 34평 9.2억",
+          "badges": [
+            "매매",
+            "매매",
+            "전세"
+          ],
+          "legendJeonse": true,
+          "ok": true
+        }
+      }
+    ]
+  },
+  "screenshotsDir": "C:\\Users\\2606\\Desktop\\커서\\260608 부동산 계산기\\screenshots\\jeonse-marker-verify",
+  "allOk": true
+}

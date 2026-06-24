@@ -127,7 +127,11 @@
 
   let sidebarTxFilter = "all";
 
+  let sidebarAreaTab = "all";
+
   let cachedSidebarTransactions = [];
+
+  let cachedAreaTypes = null;
 
   let refreshMarkersTimer = null;
 
@@ -411,16 +415,45 @@
 
 
 
+  function ensureAreaCategoriesForDistrict(apartments, lawdCode) {
+    if (!apartments?.length) {
+      window.__areaCategoriesReady = true;
+      return Promise.resolve();
+    }
+
+    const hasMeta = apartments.some(
+      (a) => Array.isArray(a.areaGroupMeta) && a.areaGroupMeta.length
+    );
+    if (hasMeta) {
+      window.__areaCategoriesReady = true;
+      return Promise.resolve();
+    }
+
+    if (!window.RealEstateMapData?.attachAreaCategories) {
+      window.__areaCategoriesReady = true;
+      return Promise.resolve();
+    }
+
+    window.__areaCategoriesReady = false;
+
+    return window.RealEstateMapData.attachAreaCategories(supabase, apartments)
+      .then(() => {
+        districtCache[lawdCode] = apartments;
+        window.__areaCategoriesReady = true;
+        if (lawdCode === sigunguCode) {
+          if (filterBar) filterBar.updateApartments(apartments, { silent: true });
+          refreshMapMarkers();
+        }
+      })
+      .catch((err) => {
+        console.warn("[평형] 로드 실패:", err);
+        window.__areaCategoriesReady = true;
+      });
+  }
+
   function startAreaCategoriesBackground() {
     if (!districtSelected || !sigunguCode) return;
-    if (!window.RealEstateMapData?.attachAreaCategories) return;
-
-    window.RealEstateMapData.attachAreaCategories(supabase, apartments)
-      .then(() => {
-        districtCache[sigunguCode] = apartments;
-        if (filterBar) filterBar.updateApartments(apartments, { silent: true });
-      })
-      .catch((err) => console.warn("[평형] 백그라운드 로드 실패:", err));
+    ensureAreaCategoriesForDistrict(apartments, sigunguCode);
   }
 
   function startSearchIndexBackground() {
@@ -943,6 +976,8 @@
             .catch((err) => console.warn("[전월세] 카운트 로드 실패:", err));
         }
 
+        await ensureAreaCategoriesForDistrict(apartments, lawdCode);
+
       } else {
 
         apartments = await window.RealEstateMapData.loadDistrictForMap(
@@ -955,14 +990,7 @@
 
         districtCache[lawdCode] = apartments;
 
-        window.RealEstateMapData.attachAreaCategories(supabase, apartments)
-          .then(() => {
-            districtCache[lawdCode] = apartments;
-            if (lawdCode === sigunguCode && filterBar) {
-              filterBar.updateApartments(apartments, { silent: true });
-            }
-          })
-          .catch((err) => console.warn("[평형] 로드 실패:", err));
+        await ensureAreaCategoriesForDistrict(apartments, lawdCode);
 
       }
 
@@ -1602,11 +1630,29 @@
 
     sidebarTxFilter = "all";
 
-    const transactions = await fetchRecentTransactions(apt.id);
+    sidebarAreaTab = "all";
+
+    const t0 = performance.now();
+
+    const [transactions, priceStats, areaTypes] = await Promise.all([
+      fetchSidebarTransactions(apt.id),
+      fetchPriceStats(apt.id),
+      window.RealEstateMapData?.fetchApartmentAreaTypes
+        ? window.RealEstateMapData.fetchApartmentAreaTypes(supabase, apt.id)
+        : Promise.resolve(null),
+    ]);
+
+    console.log(
+      `[sidebar] load ${apt.name}: ${Math.round(performance.now() - t0)}ms`
+    );
 
     cachedSidebarTransactions = transactions;
 
-    const priceStats = await fetchPriceStats(apt.id);
+    cachedAreaTypes = areaTypes;
+
+    if (areaTypes) {
+      applyAreaMetaToApartmentRecord(apt, areaTypes);
+    }
 
     enrichApartmentFromSelection(apt, priceStats);
 
@@ -1632,15 +1678,23 @@
 
       window.RealEstatePriceChart.initChart(supabase, apt.id, "all", {
 
+        areaGroups: areaTypes?.groups || [],
+
         onFilterChange: (filtered) => {
 
-          const area = window.RealEstatePriceChart?.getCurrentArea?.();
+          updateRecentTransactionsTable(
 
-          if (area && area !== "all") {
+            filterSidebarTransactions(filtered, sidebarTxFilter)
 
-            updateRecentTransactionsTable(filtered.slice(0, 3));
+          );
 
-          }
+        },
+
+        onAreaTabChange: (area) => {
+
+          sidebarAreaTab = area || "all";
+
+          refreshSidebarAreaView(apt, priceStats);
 
         },
 
@@ -1747,34 +1801,52 @@
 
 
 
-  async function fetchRecentTransactions(apartmentId) {
+  function applyAreaMetaToApartmentRecord(apt, areaTypes) {
+    if (!apt || !areaTypes) return;
+    apt.areaGroupMeta = areaTypes.groups;
+    apt.areaSqmBands = areaTypes.areaSqmBands;
+    apt.areaCategories = areaTypes.areaSqmBands;
+    apt.dominantArea = areaTypes.dominantArea;
+    apt.dominantAreaGroup = areaTypes.dominantAreaGroup;
+    const P = window.RealEstateMapPyeong;
+    apt.dominantPyeong =
+      areaTypes.dominantArea != null
+        ? P?.resolve?.(areaTypes.dominantArea)?.pyeong ?? null
+        : apt.dominantPyeong;
+  }
 
-    const { data, error } = await supabase
+  async function fetchSidebarTransactions(apartmentId) {
+    const AT = window.RealEstateMapAreaTypes;
+    const cutoffStr = AT?.getCutoffDateStr?.();
+    const rows = [];
+    let from = 0;
+    const pageSize = 1000;
 
-      .from("transactions")
+    while (true) {
+      let query = supabase
+        .from("transactions")
+        .select(
+          "deal_amount, deal_year, deal_month, deal_day, deal_date, exclu_use_ar, floor, deal_type, rent_deposit, monthly_rent"
+        )
+        .eq("apartment_id", apartmentId)
+        .in("deal_type", ["매매", "전세"])
+        .order("deal_date", { ascending: false });
 
-      .select(
-        "deal_amount, deal_year, deal_month, deal_day, deal_date, exclu_use_ar, floor, deal_type, rent_deposit, monthly_rent"
-      )
+      if (cutoffStr) query = query.gte("deal_date", cutoffStr);
 
-      .eq("apartment_id", apartmentId)
+      const { data, error } = await query.range(from, from + pageSize - 1);
 
-      .order("deal_date", { ascending: false })
-
-      .limit(20);
-
-
-
-    if (error) {
-
-      console.error(error);
-
-      return [];
-
+      if (error) {
+        console.error(error);
+        return [];
+      }
+      if (!data?.length) break;
+      rows.push(...data);
+      if (data.length < pageSize) break;
+      from += data.length;
     }
 
-    return data || [];
-
+    return rows;
   }
 
 
@@ -1873,10 +1945,95 @@
 
   function filterSidebarTransactions(transactions, filter) {
 
-    if (filter === "all") return transactions.slice(0, 3);
+    const AT = window.RealEstateMapAreaTypes;
 
-    return transactions.filter((tx) => tx.deal_type === filter).slice(0, 3);
+    let list = transactions || [];
 
+    if (sidebarAreaTab && sidebarAreaTab !== "all" && AT?.filterTransactionsByAreaGroup) {
+
+      list = AT.filterTransactionsByAreaGroup(
+        list,
+        sidebarAreaTab,
+        cachedAreaTypes?.groups
+      );
+
+    }
+
+    if (filter === "all") return list.slice(0, 3);
+
+    return list.filter((tx) => tx.deal_type === filter).slice(0, 3);
+
+  }
+
+  function getAreaTabStats(areaTab) {
+    const AT = window.RealEstateMapAreaTypes;
+    const groups = cachedAreaTypes?.groups || [];
+    if (!groups.length) return null;
+
+    if (!areaTab || areaTab === "all") {
+      return {
+        label: "전체",
+        totalCount: groups.reduce((s, g) => s + g.totalCount, 0),
+        maemae: null,
+        jeonse: null,
+        summary: AT?.summarizeAllGroups?.(groups) || "",
+      };
+    }
+
+    const group = groups.find((g) => String(g.areaGroup) === String(areaTab));
+    if (!group) return null;
+
+    const maemae = group.byDealType?.매매;
+    const jeonse = group.byDealType?.전세;
+
+    return {
+      label: AT?.formatAreaTabLabel?.(group.areaGroup, true) || `${group.areaGroup}㎡`,
+      totalCount: group.totalCount,
+      maemae,
+      jeonse,
+      areaGroup: group.areaGroup,
+    };
+  }
+
+  function refreshSidebarAreaView(apt, priceStats) {
+    const stats = getAreaTabStats(sidebarAreaTab);
+    const summaryEl = document.getElementById("sidebar-area-summary");
+    const counterEl = document.getElementById("sidebar-area-counter");
+    const statsGrid = document.getElementById("sidebar-area-stats");
+
+    if (summaryEl && stats?.summary && sidebarAreaTab === "all") {
+      summaryEl.textContent = stats.summary;
+      summaryEl.hidden = false;
+    } else if (summaryEl) {
+      summaryEl.hidden = sidebarAreaTab !== "all";
+    }
+
+    if (counterEl && stats) {
+      counterEl.textContent = `이 평형 거래 ${stats.totalCount.toLocaleString()}건`;
+    }
+
+    if (statsGrid && stats && sidebarAreaTab !== "all") {
+      const maemaeText = stats.maemae?.avg_price
+        ? formatAmount(stats.maemae.avg_price)
+        : "-";
+      const jeonseText = stats.jeonse?.avg_price
+        ? formatAmount(stats.jeonse.avg_price)
+        : "-";
+      statsGrid.innerHTML = `
+        <div class="apt-meta-item"><span>매매 평균</span><strong>${escapeHtml(maemaeText)}</strong></div>
+        <div class="apt-meta-item"><span>매매 최고</span><strong>${escapeHtml(stats.maemae?.max_price ? formatAmount(stats.maemae.max_price) : "-")}</strong></div>
+        <div class="apt-meta-item"><span>매매 최저</span><strong>${escapeHtml(stats.maemae?.min_price ? formatAmount(stats.maemae.min_price) : "-")}</strong></div>
+        <div class="apt-meta-item"><span>전세 평균</span><strong>${escapeHtml(jeonseText)}</strong></div>`;
+      statsGrid.hidden = false;
+    } else if (statsGrid) {
+      statsGrid.hidden = true;
+    }
+
+    updateRecentTransactionsTable(
+
+      filterSidebarTransactions(cachedSidebarTransactions, sidebarTxFilter)
+
+    );
   }
 
 
@@ -2037,6 +2194,10 @@
 
     const pyeongSummary = getAptPyeongSummary(apt, cachedSidebarTransactions.length ? cachedSidebarTransactions : transactions);
 
+    const areaStats = getAreaTabStats(sidebarAreaTab);
+
+    const areaSummary = getAreaTabStats("all");
+
     const txRows = transactions.length
 
       ? transactions.map((tx) => buildTransactionRowHtml(tx)).join("")
@@ -2062,6 +2223,18 @@
         <strong class="sidebar-selected-name">${escapeHtml(apt.name)}</strong>
 
       </div>
+
+      <div class="sidebar-area-tabs-scroll" id="sidebar-area-tabs-wrap">
+
+        <div class="sidebar-area-tabs" id="sidebar-area-tabs" role="tablist" aria-label="면적 선택"></div>
+
+      </div>
+
+      <p class="sidebar-area-summary" id="sidebar-area-summary"${areaSummary?.summary ? "" : " hidden"}>${escapeHtml(areaSummary?.summary || "")}</p>
+
+      <p class="sidebar-area-counter" id="sidebar-area-counter">${areaStats ? `이 평형 거래 ${areaStats.totalCount.toLocaleString()}건` : ""}</p>
+
+      <div class="apt-meta-grid sidebar-area-stats" id="sidebar-area-stats" hidden></div>
 
       <div class="apt-info-card">
 
@@ -2163,6 +2336,19 @@
 
     `;
 
+    if (window.RealEstatePriceChart?.setSidebarAreaTabs) {
+      window.RealEstatePriceChart.setSidebarAreaTabs(
+        cachedAreaTypes?.groups || [],
+        sidebarAreaTab,
+        (area) => {
+          sidebarAreaTab = area || "all";
+          refreshSidebarAreaView(apt, priceStats);
+        }
+      );
+    } else {
+      refreshSidebarAreaView(apt, priceStats);
+    }
+
   }
 
 
@@ -2173,7 +2359,11 @@
 
     sidebarTxFilter = "all";
 
+    sidebarAreaTab = "all";
+
     cachedSidebarTransactions = [];
+
+    cachedAreaTypes = null;
 
     if (markerLayer?.setSelectedApartment) {
 
@@ -2355,6 +2545,8 @@
     },
 
     focusApartment,
+
+    selectApartment,
 
     DISTRICTS,
 
