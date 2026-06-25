@@ -35,12 +35,25 @@
     return s.endsWith(".0") ? `${Math.round(n)}` : s;
   }
 
-  function formatAreaTabLabel(areaGroup, withPyeong) {
-    const sqm = `${formatAreaSqm(areaGroup, 1)}㎡`;
-    if (!withPyeong) return sqm;
+  function formatAreaTabLabel(areaGroup) {
+    return `${formatAreaSqm(areaGroup, 1)}㎡`;
+  }
+
+  function dominantPyeongFromMeta(meta) {
     const P = global.RealEstateMapPyeong;
-    const pyeong = P?.resolve?.(areaGroup)?.pyeong;
-    return pyeong != null ? `${sqm} (${pyeong}평)` : sqm;
+    if (!meta || !P) return null;
+    const key = meta.dominantAreaGroup ?? meta.dominantArea;
+    if (key == null) return null;
+    const r = P.resolve(key);
+    return P.pyeongFromSupply(r.supplySqm);
+  }
+
+  function formatApartmentAreaSummary(apt) {
+    const P = global.RealEstateMapPyeong;
+    if (!apt || !P) return null;
+    const excl = apt.dominantArea ?? apt.dominantAreaGroup;
+    if (excl == null) return null;
+    return P.formatAreaDisplay(excl);
   }
 
   function sqmToFilterBand(exclSqm) {
@@ -275,25 +288,23 @@
 
   function formatMarkerAreaLabel(apt, activeBandId) {
     const groups = apt.areaGroupMeta;
-    let areaGroup = apt.dominantAreaGroup;
     let areaAvg = apt.dominantArea;
 
     if (activeBandId && activeBandId !== "all" && groups?.length) {
       const picked = pickDominantGroupForBand(groups, activeBandId);
       if (picked) {
-        areaGroup = picked.areaGroup;
         areaAvg = picked.area_avg;
       } else {
         return "";
       }
     }
 
-    if (areaGroup == null && areaAvg == null) {
-      const p = apt.dominantPyeong ?? apt.jeonseDominantPyeong;
-      return p != null ? `${p}평` : "";
+    if (areaAvg == null) {
+      areaAvg = apt.dominantAreaGroup;
     }
+    if (areaAvg == null) return "";
 
-    const sqm = formatAreaSqm(areaGroup ?? areaAvg, 0);
+    const sqm = formatAreaSqm(areaAvg, 2);
     return sqm ? `${sqm}㎡` : "";
   }
 
@@ -301,15 +312,12 @@
     const name = apt.name || "";
     const areaAvg = apt.dominantArea;
     const excl = areaAvg != null ? formatAreaSqm(areaAvg, 2) : null;
-    const P = global.RealEstateMapPyeong;
-    const pyeong = areaAvg != null ? P?.resolve?.(areaAvg)?.pyeong : apt.dominantPyeong;
     const price = global.RealEstateMapMarker?.formatPrice?.(apt.avgPrice1Y);
     const count = apt.tradeCount1Y ?? 0;
 
     if (price) {
       const parts = [];
-      if (excl) parts.push(`전용 ${excl}㎡`);
-      if (pyeong) parts.push(`${pyeong}평`);
+      if (excl) parts.push(`${excl}㎡`);
       parts.push(`매매 ${price}`);
       if (count) parts.push(`${count}건`);
       return `${name} — ${parts.join(" · ")}`;
@@ -352,5 +360,7 @@
     formatMarkerAreaLabel,
     formatMarkerTooltip,
     summarizeAllGroups,
+    dominantPyeongFromMeta,
+    formatApartmentAreaSummary,
   };
 })(window);

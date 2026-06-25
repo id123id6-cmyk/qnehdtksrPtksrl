@@ -1,5 +1,5 @@
 /**
- * 단지별 매매 가격 변화 차트 (Chart.js) — 평형대 필터 + 5년 X축
+ * 단지별 매매 가격 변화 차트 (Chart.js) — 면적대 필터 + 5년 X축
  */
 (function (global) {
   "use strict";
@@ -280,7 +280,7 @@
       const areaLabel =
         currentArea === "all"
           ? ""
-          : ` (${AT()?.formatAreaTabLabel?.(Number(currentArea), true) || currentArea})`;
+          : ` (${AT()?.formatAreaTabLabel?.(Number(currentArea)) || currentArea})`;
       showChartMessage(
         `선택한 조건의 거래가 없습니다${areaLabel}`,
         "다른 면적 또는 기간을 선택해 보세요."
@@ -333,7 +333,7 @@
 
     for (const group of currentAreaGroups) {
       const key = String(group.areaGroup);
-      const label = AT()?.formatAreaTabLabel(group.areaGroup, true) || `${key}㎡`;
+      const label = AT()?.formatAreaTabLabel(group.areaGroup) || `${key}㎡`;
       const active = key === String(currentArea) ? " active" : "";
       buttons.push(
         `<button type="button" class="area-tab${active}" data-area="${key}">${label}</button>`
@@ -383,7 +383,7 @@
 
     for (const group of currentAreaGroups) {
       const key = String(group.areaGroup);
-      const label = AT()?.formatAreaTabLabel(group.areaGroup, true) || `${key}㎡`;
+      const label = AT()?.formatAreaTabLabel(group.areaGroup) || `${key}㎡`;
       const active = key === String(currentArea) ? " active" : "";
       buttons.push(
         `<button type="button" class="sidebar-area-tab${active}" data-area="${key}">${label}</button>`

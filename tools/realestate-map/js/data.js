@@ -29,9 +29,14 @@
     apt.areaGroupMeta = meta.groups;
     apt.dominantArea = meta.dominantArea;
     apt.dominantAreaGroup = meta.dominantAreaGroup;
-    const P = global.RealEstateMapPyeong;
+    const AT = getAreaTypesApi();
     apt.dominantPyeong =
-      meta.dominantArea != null ? P?.resolve?.(meta.dominantArea)?.pyeong ?? null : null;
+      AT?.dominantPyeongFromMeta?.(meta) ??
+      (meta.dominantAreaGroup != null
+        ? global.RealEstateMapPyeong?.pyeongFromSupply?.(
+            global.RealEstateMapPyeong.resolve(meta.dominantAreaGroup).supplySqm
+          )
+        : null);
     if (apt.dominantPyeong == null && apt.jeonseDominantPyeong != null) {
       apt.dominantPyeong = apt.jeonseDominantPyeong;
     }

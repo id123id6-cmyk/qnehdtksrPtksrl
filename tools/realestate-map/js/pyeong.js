@@ -1,13 +1,13 @@
 /**
- * 전용면적(㎡) → 공급면적 기준 표준 평형 (Phase 1 추정 매핑)
- * Phase 2: apartment_area_types 조회 시 resolve()가 정밀값 우선
+ * 전용면적(㎡) → 면적 타입 추정 (내부 그룹·필터용)
+ * UI 표시는 formatAreaDisplay 등 ㎡ 전용 함수 사용
  */
 (function (global) {
   "use strict";
 
   const SQM_PER_PYEONG = 3.3058;
 
-  /** 전용면적 구간 → 공급면적·시장 평형 라벨 (한국 표준 아파트) */
+  /** 전용면적 구간 → 내부 타입 매핑 */
   const STANDARD_TYPES = [
     { exclMin: 0, exclMax: 33, supplySqm: 43, pyeong: 13 },
     { exclMin: 33, exclMax: 40, supplySqm: 51, pyeong: 16 },
@@ -22,11 +22,11 @@
   ];
 
   const PYEONG_BANDS = [
-    { id: "band10", label: "10평대", min: 0, max: 19 },
-    { id: "band20", label: "20평대", min: 20, max: 29 },
-    { id: "band30", label: "30평대", min: 30, max: 39 },
-    { id: "band40", label: "40평대", min: 40, max: 49 },
-    { id: "band50", label: "50평대+", min: 50, max: Infinity },
+    { id: "band10", label: "40㎡ 미만", min: 0, max: 19 },
+    { id: "band20", label: "40-60㎡", min: 20, max: 29 },
+    { id: "band30", label: "60-85㎡", min: 30, max: 39 },
+    { id: "band40", label: "85-102㎡", min: 40, max: 49 },
+    { id: "band50", label: "102㎡+", min: 50, max: Infinity },
   ];
 
   const ESTIMATE_RATIO = 1.323;
@@ -115,38 +115,69 @@
     };
   }
 
-  /** 공급면적 기준 평형 숫자 */
+  /** @deprecated 내부 필터용 — UI에 표시하지 말 것 */
   function toPyeong(exclSqm, override) {
     return resolve(exclSqm, override).pyeong;
   }
 
-  function formatShort(exclSqm, override) {
-    const r = resolve(exclSqm, override);
-    if (r.pyeong == null) return "-";
-    return `${r.pyeong}평`;
+  /** @deprecated 내부용 */
+  function pyeongFromSupply(supplySqm) {
+    const s = Number(supplySqm);
+    if (!Number.isFinite(s) || s <= 0) return null;
+    return Math.round(s / SQM_PER_PYEONG);
   }
 
-  function formatDetail(exclSqm, override) {
-    const r = resolve(exclSqm, override);
-    if (r.pyeong == null) return "-";
-    return `${r.pyeong}평 (전용 ${formatSqm(r.exclSqm)}㎡)`;
+  function resolveForDisplay(exclSqm, areaGroupKey) {
+    const lookup =
+      areaGroupKey != null && Number.isFinite(Number(areaGroupKey))
+        ? Number(areaGroupKey)
+        : Number(exclSqm);
+    return resolve(lookup);
   }
 
-  function formatChartTooltip(exclSqm, amountText, override) {
-    const r = resolve(exclSqm, override);
-    if (r.pyeong == null) return amountText || "";
-    return `${formatSqm(r.exclSqm)}㎡ · ${r.pyeong}평형 · ${amountText || ""}`;
+  /**
+   * UI 카드·요약용 — DB 전용면적
+   * @param {number} exclSqm 전용면적
+   */
+  function formatAreaDisplay(exclSqm) {
+    const excl = Number(exclSqm);
+    if (!Number.isFinite(excl)) return "-";
+    return `전용 ${formatSqm(excl)}㎡`;
   }
 
-  function formatTableCells(exclSqm, override) {
-    const r = resolve(exclSqm, override);
+  /** 테이블·마커 등 간단 표기 — 전용면적 ㎡만 */
+  function formatExclSqm(exclSqm) {
+    const excl = Number(exclSqm);
+    if (!Number.isFinite(excl)) return "-";
+    return `${formatSqm(excl)}㎡`;
+  }
+
+  /** @deprecated formatAreaDisplay 사용 */
+  function formatApartmentCard(exclSqm) {
+    return formatAreaDisplay(exclSqm);
+  }
+
+  function formatShort(exclSqm) {
+    return formatExclSqm(exclSqm);
+  }
+
+  function formatDetail(exclSqm) {
+    return formatAreaDisplay(exclSqm);
+  }
+
+  function formatChartTooltip(exclSqm, amountText) {
+    const areaPart = formatAreaDisplay(exclSqm);
+    if (!areaPart || areaPart === "-") return amountText || "";
+    return amountText ? `${areaPart} · ${amountText}` : areaPart;
+  }
+
+  function formatTableCells(exclSqm) {
     return {
-      pyeong: r.pyeong != null ? `${r.pyeong}평` : "-",
-      excl: r.exclSqm != null ? `${formatSqm(r.exclSqm)}㎡` : "-",
+      area: formatExclSqm(exclSqm),
     };
   }
 
-  /** 지도 필터용 평형대 band id */
+  /** 지도 필터용 면적대 band id */
   function sqmToCategory(exclSqm) {
     return resolve(exclSqm).band;
   }
@@ -196,6 +227,11 @@
     STANDARD_TYPES,
     PYEONG_BANDS,
     resolve,
+    pyeongFromSupply,
+    resolveForDisplay,
+    formatAreaDisplay,
+    formatExclSqm,
+    formatApartmentCard,
     toPyeong,
     formatShort,
     formatDetail,

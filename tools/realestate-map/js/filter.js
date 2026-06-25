@@ -1,5 +1,5 @@
 /**
- * 지도 마커 필터 바 (가격/평형/연식/거래량)
+ * 지도 마커 필터 바 (가격/면적/연식/거래량)
  */
 (function (global) {
   "use strict";
@@ -141,7 +141,7 @@
 
   const FILTER_TYPE_NAMES = {
     price: "가격",
-    area: "평형",
+    area: "면적",
     age: "연식",
     volume: "거래량",
   };

@@ -1808,11 +1808,9 @@
     apt.areaCategories = areaTypes.areaSqmBands;
     apt.dominantArea = areaTypes.dominantArea;
     apt.dominantAreaGroup = areaTypes.dominantAreaGroup;
-    const P = window.RealEstateMapPyeong;
+    const AT = window.RealEstateMapAreaTypes;
     apt.dominantPyeong =
-      areaTypes.dominantArea != null
-        ? P?.resolve?.(areaTypes.dominantArea)?.pyeong ?? null
-        : apt.dominantPyeong;
+      AT?.dominantPyeongFromMeta?.(areaTypes) ?? apt.dominantPyeong;
   }
 
   async function fetchSidebarTransactions(apartmentId) {
@@ -1852,23 +1850,33 @@
 
 
   function formatAreaCells(tx) {
-    if (!tx.exclu_use_ar) return { pyeong: "-", excl: "-" };
+    if (!tx.exclu_use_ar) return { area: "-" };
     const P = window.RealEstateMapPyeong;
-    if (P?.formatTableCells) return P.formatTableCells(tx.exclu_use_ar);
-    return { pyeong: "-", excl: `${tx.exclu_use_ar}㎡` };
+    const AT = window.RealEstateMapAreaTypes;
+    if (P?.formatTableCells) {
+      return P.formatTableCells(tx.exclu_use_ar);
+    }
+    return { area: `${tx.exclu_use_ar}㎡` };
   }
 
-  function getAptPyeongSummary(apt, transactions) {
+  function getAptAreaSummary(apt, transactions) {
+    const AT = window.RealEstateMapAreaTypes;
+    if (AT?.formatApartmentAreaSummary) {
+      const fromMeta = AT.formatApartmentAreaSummary(apt);
+      if (fromMeta) return fromMeta;
+    }
+
     const P = window.RealEstateMapPyeong;
     if (!P) return null;
+
     const dom = P.dominantFromTransactions(transactions);
-    if (dom?.exclSqm != null) return P.formatDetail(dom.exclSqm);
-    if (apt.dominantPyeong != null && transactions.length) {
-      const sample = transactions.find(
-        (t) => P.toPyeong(t.exclu_use_ar) === apt.dominantPyeong
-      );
-      if (sample?.exclu_use_ar) return P.formatDetail(sample.exclu_use_ar);
-      return `${apt.dominantPyeong}평`;
+    if (dom?.exclSqm != null) {
+      return P.formatAreaDisplay(dom.exclSqm);
+    }
+
+    const excl = apt.dominantArea ?? apt.dominantAreaGroup;
+    if (excl != null) {
+      return P.formatAreaDisplay(excl);
     }
     return null;
   }
@@ -1987,7 +1995,7 @@
     const jeonse = group.byDealType?.전세;
 
     return {
-      label: AT?.formatAreaTabLabel?.(group.areaGroup, true) || `${group.areaGroup}㎡`,
+      label: AT?.formatAreaTabLabel?.(group.areaGroup) || `${group.areaGroup}㎡`,
       totalCount: group.totalCount,
       maemae,
       jeonse,
@@ -2048,8 +2056,7 @@
           <tr>
             <td>${formatTxDate(tx)}</td>
             <td>${dealTypeBadgeHtml(tx.deal_type)}</td>
-            <td>${areaCells.pyeong}</td>
-            <td>${areaCells.excl}</td>
+            <td>${areaCells.area}</td>
             <td>${floorText}</td>
             <td class="amount">${formatTxAmountText(tx)}</td>
           </tr>`;
@@ -2070,7 +2077,7 @@
 
       tbody.innerHTML =
 
-        '<tr><td colspan="6" class="transactions-empty">해당 유형의 최근 거래가 없습니다.</td></tr>';
+        '<tr><td colspan="5" class="transactions-empty">해당 유형의 최근 거래가 없습니다.</td></tr>';
 
       return;
 
@@ -2192,7 +2199,7 @@
 
 
 
-    const pyeongSummary = getAptPyeongSummary(apt, cachedSidebarTransactions.length ? cachedSidebarTransactions : transactions);
+    const aptAreaSummary = getAptAreaSummary(apt, cachedSidebarTransactions.length ? cachedSidebarTransactions : transactions);
 
     const areaStats = getAreaTabStats(sidebarAreaTab);
 
@@ -2242,7 +2249,7 @@
 
         <p class="apt-address">${escapeHtml(formatAddress(apt))}</p>
 
-        ${pyeongSummary ? `<p class="apt-pyeong-summary">${escapeHtml(pyeongSummary)}</p>` : ""}
+        ${aptAreaSummary ? `<p class="apt-pyeong-summary">${escapeHtml(aptAreaSummary)}</p>` : ""}
 
         <div class="apt-meta-grid">
 
@@ -2312,9 +2319,7 @@
 
                     <th>유형</th>
 
-                    <th>평형</th>
-
-                    <th>전용면적</th>
+                    <th>면적</th>
 
                     <th>층</th>
 

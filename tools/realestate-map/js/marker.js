@@ -58,15 +58,19 @@
     return CATEGORIES.none;
   }
 
-  function getPyeongLabel(apt) {
+  function getAreaLabel(apt) {
     const AT = global.RealEstateMapAreaTypes;
     const activeBand = global.RealEstateMapFilter?.getActiveAreaFilter?.();
     if (AT?.formatMarkerAreaLabel) {
       const label = AT.formatMarkerAreaLabel(apt, activeBand);
       if (label) return label;
     }
-    const p = apt.dominantPyeong ?? apt.jeonseDominantPyeong;
-    return p != null ? `${p}평` : "";
+    const excl = apt.dominantArea ?? apt.dominantAreaGroup;
+    if (excl != null) {
+      const sqm = AT?.formatAreaSqm?.(excl, 2);
+      return sqm ? `${sqm}㎡` : "";
+    }
+    return "";
   }
 
   function getMarkerPriceText(apt) {
@@ -127,7 +131,7 @@
 
   function getMarkerLabel(apt, zoomLevel) {
     const price = getMarkerPriceText(apt);
-    const pyeong = getPyeongLabel(apt);
+    const pyeong = getAreaLabel(apt);
     const mode = getMarkerMode(zoomLevel);
     if (mode === "brand") {
       const name = shortenAptName(apt.name);
@@ -161,7 +165,7 @@
     const category = getMarkerCategory(apt);
     const catLabel = category.label;
     const price = getMarkerPriceText(apt);
-    const pyeong = getPyeongLabel(apt);
+    const pyeong = getAreaLabel(apt);
     const mode = getMarkerMode(zoomLevel);
     const id = escapeHtml(apt.id);
     const tooltip = escapeHtml(getMarkerTooltip(apt));
