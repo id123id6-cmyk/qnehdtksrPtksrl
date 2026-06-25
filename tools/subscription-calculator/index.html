@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y7SC73P9JW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-Y7SC73P9JW', {
+    'page_title': document.title,
+    'page_path': window.location.pathname
+  });
+</script>
+
+<!-- Microsoft Clarity -->
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "xbdrgqw1pj");
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-adsense-account" content="ca-pub-8232968272801958">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8232968272801958" crossorigin="anonymous"></script>
+
+  <title>청약 가점 계산기 - 무주택기간·부양가족·청약통장 가점 자동 계산 | 승박</title>
+  <meta name="description" content="주택청약 가점을 정확하게 계산해드립니다. 무주택 기간, 부양가족 수, 청약통장 가입기간을 입력하면 즉시 가점(최대 84점) 확인. 무료, 가입 없음.">
+  <meta name="keywords" content="청약가점계산기, 청약가점, 주택청약가점, 무주택기간, 부양가족, 청약통장가점">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://seungbak.com/tools/subscription-calculator/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://seungbak.com/tools/subscription-calculator/">
+  <meta property="og:title" content="청약 가점 계산기 | 승박">
+  <meta property="og:description" content="무주택 기간·부양가족·청약통장 가입기간으로 청약 가점(최대 84점)을 즉시 계산하세요.">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:site_name" content="승박">
+
+  <link rel="icon" href="/favicon.ico">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "청약 가점 계산기",
+    "description": "주택청약 가점을 정확하게 계산해드립니다. 무주택 기간, 부양가족 수, 청약통장 가입기간을 입력하면 즉시 가점(최대 84점) 확인.",
+    "url": "https://seungbak.com/tools/subscription-calculator/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" },
+    "author": { "@type": "Person", "name": "승박" }
+  }
+  </script>
+</head>
+<body class="sub-page">
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo"><a href="/">승박</a></div>
+      <nav class="main-nav">
+        <a href="/">홈</a>
+        <a href="/tools/" class="active" aria-current="page">도구</a>
+        <a href="/blog/">블로그</a>
+        <a href="/about.html">소개</a>
+        <a href="/contact.html">문의</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-badges" aria-label="서비스 특징">
+          <span class="trust-badge trust-badge-accent">🆓 완전 무료</span>
+          <span class="trust-badge">📊 최대 84점</span>
+          <span class="trust-badge">⚡ 즉시 계산</span>
+        </div>
+        <h1>
+          청약 가점 계산기<br>
+          <span class="hero-highlight">무주택·부양가족·청약통장 가점 한 번에</span>
+        </h1>
+        <p class="hero-subtitle">입력 즉시 총 가점과 항목별 점수를 확인하세요</p>
+        <div class="hero-cta">
+          <a href="#calculator" class="btn-primary hero-cta-btn">바로 계산하기 ↓</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="calculator">
+      <div class="container">
+        <div class="calc-layout">
+          <div class="calc-panel">
+            <div class="card form-card income-form-card">
+              <h2>1. 무주택 기간 <span class="input-hint">(최대 32점)</span></h2>
+              <p class="input-hint" style="margin-bottom: 1rem;">
+                만 30세부터 산정 · 만 30세 이전 결혼 시 결혼일부터 계산
+              </p>
+
+              <div class="mode-toggle" role="group" aria-label="무주택 기간 입력 방식">
+                <button type="button" id="mode-birth" class="active" aria-pressed="true">생년월일만</button>
+                <button type="button" id="mode-marriage" aria-pressed="false">결혼일 포함</button>
+              </div>
+
+              <div class="input-group">
+                <label for="birth-date">생년월일 *</label>
+                <input type="date" id="birth-date" class="input-field" aria-describedby="homeless-preview homeless-detail">
+              </div>
+
+              <div id="marriage-wrap" class="input-group" hidden>
+                <label for="marriage-date">결혼일 (만 30세 이전 혼인 시)</label>
+                <input type="date" id="marriage-date" class="input-field">
+              </div>
+
+              <p id="homeless-preview" class="field-preview" aria-live="polite">생년월일을 입력하면 자동 계산됩니다</p>
+              <p id="homeless-detail" class="field-detail"></p>
+            </div>
+
+            <div class="card form-card income-form-card" style="margin-top: 1.25rem;">
+              <h2>2. 부양가족 수 <span class="input-hint">(최대 35점)</span></h2>
+              <p class="input-hint" style="margin-bottom: 0.5rem;">본인 제외 · 배우자·직계존속(동거)·직계비속</p>
+
+              <div class="checkbox-row">
+                <input type="checkbox" id="spouse" name="spouse">
+                <label for="spouse">배우자 있음</label>
+              </div>
+
+              <div class="children-row">
+                <label for="children">자녀 수</label>
+                <input type="number" id="children" class="input-field" min="0" max="10" value="0" inputmode="numeric" aria-describedby="dependents-preview">
+              </div>
+
+              <div class="checkbox-row">
+                <input type="checkbox" id="parents" name="parents">
+                <label for="parents">직계존속(부모) 동거</label>
+              </div>
+
+              <p id="dependents-preview" class="field-preview" aria-live="polite">부양가족 0명 → 5점</p>
+            </div>
+
+            <div class="card form-card income-form-card" style="margin-top: 1.25rem;">
+              <h2>3. 청약통장 가입기간 <span class="input-hint">(최대 17점)</span></h2>
+
+              <div class="checkbox-row">
+                <input type="checkbox" id="has-subscription" name="has-subscription" checked>
+                <label for="has-subscription">주택청약종합저축 가입 중</label>
+              </div>
+
+              <div id="subscription-wrap" class="input-group">
+                <label for="subscription-join">가입일</label>
+                <input type="date" id="subscription-join" class="input-field" aria-describedby="subscription-preview subscription-detail">
+              </div>
+
+              <p id="subscription-preview" class="field-preview" aria-live="polite">가입일을 선택하세요</p>
+              <p id="subscription-detail" class="field-detail"></p>
+            </div>
+          </div>
+
+          <div class="calc-panel result-card">
+            <div class="card form-card" id="result-region" role="region" aria-label="청약 가점 결과">
+              <h2 class="section-title">📊 가점 결과</h2>
+
+              <div class="total-score-wrap">
+                <p class="total-score-label">총 청약 가점</p>
+                <p class="total-score-value" aria-hidden="true">
+                  <span id="total-score">00</span><span> / <span id="total-max">84</span>점</span>
+                </p>
+              </div>
+
+              <div class="score-bars" aria-label="항목별 점수">
+                <div class="score-bar-item">
+                  <span class="score-bar-label">무주택</span>
+                  <div class="score-bar-track" role="progressbar" aria-valuemin="0" aria-valuemax="32" aria-label="무주택 기간 점수">
+                    <div class="score-bar-fill" id="bar-homeless" style="width:0%"></div>
+                  </div>
+                  <span class="score-bar-points" id="score-homeless">0점</span>
+                </div>
+                <div class="score-bar-item">
+                  <span class="score-bar-label">부양가족</span>
+                  <div class="score-bar-track" role="progressbar" aria-valuemin="0" aria-valuemax="35" aria-label="부양가족 점수">
+                    <div class="score-bar-fill score-bar-fill--deps" id="bar-dependents" style="width:0%"></div>
+                  </div>
+                  <span class="score-bar-points" id="score-dependents">5점</span>
+                </div>
+                <div class="score-bar-item">
+                  <span class="score-bar-label">청약통장</span>
+                  <div class="score-bar-track" role="progressbar" aria-valuemin="0" aria-valuemax="17" aria-label="청약통장 가입기간 점수">
+                    <div class="score-bar-fill score-bar-fill--sub" id="bar-subscription" style="width:0%"></div>
+                  </div>
+                  <span class="score-bar-points" id="score-subscription">0점</span>
+                </div>
+              </div>
+
+              <div id="analysis-box" class="analysis-box analysis-box--low" aria-live="polite">
+                <p class="analysis-title">청약 가점 더 쌓기 필요</p>
+                <p class="analysis-desc">무주택 기간·부양가족·청약통장 납입을 늘리면 가점을 올릴 수 있어요.</p>
+              </div>
+
+              <div class="tip-box">
+                <h3>💡 가점 올리는 팁</h3>
+                <ul>
+                  <li>무주택 기간은 만 30세(또는 조기 혼인 시 결혼일)부터 쌓입니다.</li>
+                  <li>청약통장은 가입만 해도 점수가 오르고, 15년 이상이면 17점 만점입니다.</li>
+                  <li>부모님 동거 시 직계존속 1명으로 인정됩니다.</li>
+                  <li>가점과 별도로 청약통장 납입 횟수·순위 요건도 확인하세요.</li>
+                </ul>
+              </div>
+
+              <div class="tool-cta-grid">
+                <a href="/tools/realestate-map/" class="tool-cta-link">🗺️ 실거래가 지도로 청약 지역 보기</a>
+                <a href="/tools/dday-calculator/" class="tool-cta-link tool-cta-link--outline">📅 D-day 계산기로 청약 일정 관리</a>
+                <a href="/blog/post-20.html" class="tool-cta-link tool-cta-link--outline">📖 청약통장 가이드 보기</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="card form-card">
+          <h2 class="section-title">가점 산정 기준 안내</h2>
+          <p class="input-hint" style="margin-bottom: 1rem;">
+            본 계산기는 주택청약 가점 일반공급 기준(무주택 32점 + 부양가족 35점 + 청약통장 17점)을 반영합니다.
+            특별공급·지역별 세부 규정은 청약 공고문을 확인하세요.
+          </p>
+          <ul class="input-hint" style="line-height: 1.7; padding-left: 1.2rem;">
+            <li>무주택 기간: 만 30세 도달일 또는 만 30세 이전 혼인 시 혼인신고일부터</li>
+            <li>부양가족: 배우자, 동거 직계존속 1세대, 직계비속(자녀)</li>
+            <li>청약통장: 가입일부터 현재까지의 기간으로 산정</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col footer-brand">
+        <p class="footer-logo">승박</p>
+        <p class="footer-tagline">평범한 직장인의 두 번째 월급 만들기</p>
+        <p class="footer-owner">운영자: <strong>승박</strong></p>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">바로가기</p>
+        <ul class="footer-nav">
+          <li><a href="/">홈</a></li>
+          <li><a href="/tools/">도구</a></li>
+          <li><a href="/blog/">블로그</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">정책</p>
+        <ul class="footer-nav">
+          <li><a href="/privacy.html">개인정보처리방침</a></li>
+          <li><a href="/disclaimer.html">면책조항</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p class="footer-copy">&copy; <span id="current-year"></span> 승박. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("current-year").textContent = new Date().getFullYear();
+  </script>
+  <script type="module" src="calculator.js"></script>
+</body>
+</html>
