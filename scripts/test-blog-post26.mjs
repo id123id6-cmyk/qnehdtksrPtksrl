@@ -99,7 +99,7 @@ async function main() {
     homeChecks.firstBlog === "/blog/post-26.html" &&
     homeChecks.has26 &&
     homeChecks.statPosts === "26" &&
-    homeChecks.cardCount === 3 &&
+    homeChecks.cardCount === 6 &&
     sitemapOk &&
     headDiffZero &&
     errors.length === 0;

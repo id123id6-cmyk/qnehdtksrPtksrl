@@ -1,6 +1,6 @@
 /**
- * post-25 검증
- * 실행: node scripts/test-blog-post25.mjs
+ * post-28 검증
+ * 실행: node scripts/test-blog-post28.mjs
  */
 import { chromium } from "playwright";
 import { mkdir } from "node:fs/promises";
@@ -8,7 +8,7 @@ import { readFileSync } from "node:fs";
 import { execSync } from "node:child_process";
 
 const BASE = "http://localhost:8765";
-const OUT = "screenshots/blog-post25";
+const OUT = "screenshots/blog-post28";
 
 async function main() {
   await mkdir(OUT, { recursive: true });
@@ -21,7 +21,7 @@ async function main() {
   page.on("pageerror", (e) => errors.push(e.message));
 
   await page.setViewportSize({ width: 1440, height: 900 });
-  await page.goto(`${BASE}/blog/post-25.html`, { waitUntil: "domcontentloaded" });
+  await page.goto(`${BASE}/blog/post-28.html`, { waitUntil: "domcontentloaded" });
   await page.waitForSelector("h1");
 
   await page.evaluate(async () => {
@@ -44,37 +44,36 @@ async function main() {
       alt: i.getAttribute("alt"),
       ok: i.complete && i.naturalWidth > 0,
     })),
-    ctaSub: !!document.querySelector('a[href="/tools/subscription-calculator/"]'),
     ctaMap: !!document.querySelector('a[href="/tools/realestate-map/"]'),
+    ctaPost27: !!document.querySelector('a[href="post-27.html"]'),
+    ctaPost25: !!document.querySelector('a[href="post-25.html"]'),
     ctaPost26: !!document.querySelector('a[href="post-26.html"]'),
-    ctaPost21: !!document.querySelector('a[href="post-21.html"]'),
     tables: document.querySelectorAll(".post-table").length,
     faq: document.body.innerText.includes("Q1."),
-    dateOk: document.querySelector('time[datetime="2026-07-02"]') !== null,
+    dateOk: document.querySelector('time[datetime="2026-07-03"]') !== null,
   }));
 
   await page.goto(`${BASE}/blog/`, { waitUntil: "domcontentloaded" });
   const blogIndexChecks = await page.evaluate(() => ({
     first: document.querySelector("#blog-grid a.blog-card")?.getAttribute("href"),
-    has25: !!document.querySelector('a[href="post-25.html"]'),
+    has28: !!document.querySelector('a[href="post-28.html"]'),
   }));
 
   await page.goto(`${BASE}/`, { waitUntil: "domcontentloaded" });
   const homeChecks = await page.evaluate(() => ({
     firstBlog: document.querySelector(".blog-preview-section .blog-grid a.blog-card")?.getAttribute("href"),
-    has25: !!document.querySelector('.blog-preview-section a[href="/blog/post-25.html"]'),
+    has28: !!document.querySelector('.blog-preview-section a[href="/blog/post-28.html"]'),
     statPosts: document.getElementById("stat-posts")?.textContent,
     cardCount: document.querySelectorAll(".blog-preview-section .blog-grid a.blog-card").length,
   }));
 
   const sitemap = readFileSync("sitemap.xml", "utf8");
   const sitemapOk =
-    sitemap.includes("post-25.html") && sitemap.includes("2026-07-02");
+    sitemap.includes("post-28.html") && sitemap.includes("2026-07-03");
 
   let headDiffZero = false;
   try {
-    const diff = execSync('git diff index.html', { encoding: "utf8" });
-    headDiffZero = !diff.includes("<head>") && !diff.match(/^\+.*<meta/m);
+    const diff = execSync("git diff index.html", { encoding: "utf8" });
     const headOnly = diff.split("@@").filter((chunk) => chunk.includes("<head>"));
     headDiffZero = headOnly.length === 0;
   } catch {
@@ -88,18 +87,18 @@ async function main() {
     charCount <= 7800 &&
     checks.images.length === 3 &&
     checks.images.every((i) => i.alt && i.ok) &&
-    checks.ctaSub &&
     checks.ctaMap &&
+    checks.ctaPost27 &&
+    checks.ctaPost25 &&
     checks.ctaPost26 &&
-    checks.ctaPost21 &&
-    checks.tables >= 4 &&
+    checks.tables >= 3 &&
     checks.faq &&
     checks.dateOk &&
-    blogIndexChecks.first === "post-25.html" &&
-    blogIndexChecks.has25 &&
-    homeChecks.firstBlog === "/blog/post-25.html" &&
-    homeChecks.has25 &&
-    homeChecks.statPosts === "25" &&
+    blogIndexChecks.first === "post-28.html" &&
+    blogIndexChecks.has28 &&
+    homeChecks.firstBlog === "/blog/post-28.html" &&
+    homeChecks.has28 &&
+    homeChecks.statPosts === "28" &&
     homeChecks.cardCount === 6 &&
     sitemapOk &&
     headDiffZero &&
