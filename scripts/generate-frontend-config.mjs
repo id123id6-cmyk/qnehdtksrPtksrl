@@ -12,6 +12,7 @@ loadEnv();
 requireEnv([
   "NEXT_PUBLIC_SUPABASE_URL",
   "NEXT_PUBLIC_SUPABASE_KEY",
+  "KAKAO_REST_KEY",
 ]);
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -54,10 +55,12 @@ const config = {
   supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
   supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_KEY,
   kakaoJsKey: kakao.key,
+  kakaoRestKey: process.env.KAKAO_REST_KEY,
 };
 
 const content = `// 자동 생성 — scripts/generate-frontend-config.mjs
 // 카카오맵 키 출처: ${kakao.source}
+// 카카오 REST 키 출처: KAKAO_REST_KEY
 window.REALESTATE_MAP_CONFIG = ${JSON.stringify(config, null, 2)};
 `;
 

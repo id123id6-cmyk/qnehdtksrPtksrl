@@ -1,0 +1,35 @@
+{
+  "results": [
+    {
+      "url": "/tools/",
+      "expected": "도구",
+      "actual": "도구",
+      "color": "rgb(251, 191, 36)",
+      "goldOk": true
+    },
+    {
+      "url": "/blog/",
+      "expected": "블로그",
+      "actual": "블로그",
+      "color": "rgb(251, 191, 36)",
+      "goldOk": true
+    },
+    {
+      "url": "/about.html",
+      "expected": "소개",
+      "actual": "소개",
+      "color": "rgb(251, 191, 36)",
+      "goldOk": true
+    },
+    {
+      "url": "/tools/realestate-map/",
+      "expected": "지도",
+      "actual": "지도",
+      "color": "rgb(245, 239, 224)",
+      "goldOk": true,
+      "note": "map uses hr-nav (separate from theme-nav)"
+    }
+  ],
+  "consoleErrors": [],
+  "pass": true
+}

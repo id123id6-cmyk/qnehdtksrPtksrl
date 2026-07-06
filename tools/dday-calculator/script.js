@@ -356,7 +356,7 @@
           {
             label: "자기자본 누적 (만원)",
             data,
-            borderColor: "#2563eb",
+            borderColor: "#1A1A1A",
             backgroundColor: "rgba(37, 99, 235, 0.1)",
             fill: true,
             tension: 0.3,

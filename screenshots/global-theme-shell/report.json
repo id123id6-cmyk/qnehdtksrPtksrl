@@ -1,0 +1,107 @@
+{
+  "results": [
+    {
+      "page": "blog/index.html",
+      "nav": true,
+      "footer": true,
+      "active": "블로그",
+      "expectedActive": "블로그",
+      "consoleErrors": [],
+      "headOk": true
+    },
+    {
+      "page": "tools/subscription-calculator/index.html",
+      "nav": true,
+      "footer": true,
+      "active": "도구",
+      "expectedActive": "도구",
+      "consoleErrors": [],
+      "headOk": true
+    },
+    {
+      "page": "tools/salary-calculator/index.html",
+      "nav": true,
+      "footer": true,
+      "active": "도구",
+      "expectedActive": "도구",
+      "consoleErrors": [],
+      "headOk": true
+    },
+    {
+      "page": "tools/apt-calculator/index.html",
+      "nav": true,
+      "footer": true,
+      "active": "도구",
+      "expectedActive": "도구",
+      "consoleErrors": [],
+      "headOk": true
+    },
+    {
+      "page": "tools/income-calculator/index.html",
+      "nav": true,
+      "footer": true,
+      "active": "도구",
+      "expectedActive": "도구",
+      "consoleErrors": [],
+      "headOk": true
+    },
+    {
+      "page": "tools/dday-calculator/index.html",
+      "nav": true,
+      "footer": true,
+      "active": "도구",
+      "expectedActive": "도구",
+      "consoleErrors": [],
+      "headOk": true
+    },
+    {
+      "page": "about.html",
+      "nav": true,
+      "footer": true,
+      "active": "소개",
+      "expectedActive": "소개",
+      "consoleErrors": [],
+      "headOk": true
+    },
+    {
+      "page": "contact.html",
+      "nav": true,
+      "footer": true,
+      "active": null,
+      "expectedActive": null,
+      "consoleErrors": [],
+      "headOk": true
+    },
+    {
+      "page": "privacy.html",
+      "nav": true,
+      "footer": true,
+      "active": null,
+      "expectedActive": null,
+      "consoleErrors": [],
+      "headOk": true
+    },
+    {
+      "page": "disclaimer.html",
+      "nav": true,
+      "footer": true,
+      "active": null,
+      "expectedActive": null,
+      "consoleErrors": [],
+      "headOk": true
+    },
+    {
+      "page": "terms.html",
+      "nav": true,
+      "footer": true,
+      "active": null,
+      "expectedActive": null,
+      "consoleErrors": [],
+      "headOk": true
+    }
+  ],
+  "totalConsoleErrors": 0,
+  "consoleErrors": [],
+  "globalThemeCssLines": 476,
+  "pass": true
+}

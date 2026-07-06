@@ -1,0 +1,26 @@
+{
+  "scriptCounts": {
+    "toolbar": 1,
+    "welcome": 1,
+    "region": 1
+  },
+  "sidoOpen": true,
+  "afterGyeonggi": {
+    "label": "경기도",
+    "level": 10,
+    "center": {
+      "lat": 37.271733510857686,
+      "lng": 127.00396870508882
+    }
+  },
+  "afterBundang": {
+    "code": "41135",
+    "gu": "성남시 분당구",
+    "level": 7
+  },
+  "consoleErrors": [],
+  "consoleWarnings": [
+    "[test] intentional warning probe"
+  ],
+  "headOk": true
+}

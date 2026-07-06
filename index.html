@@ -46,325 +46,262 @@
   <link rel="icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/main-redesign.css">
 </head>
-<body>
-  <!--
-    📊 통계 뱃지 업데이트 가이드:
-    - 도구 추가 시: id="stat-tools" 값 변경
-    - 블로그 글 추가 시: id="stat-posts" 값 변경
-    - 홈 최근 블로그: 카드 6개 유지 (신규 최상단, 7번째 제거)
-    - 현재: 도구 7개, 글 20편
-  -->
-  <header class="site-header">
-    <div class="container header-inner">
-      <div class="logo"><a href="/">승박</a></div>
-      <nav class="main-nav">
-        <a href="/" class="active" aria-current="page">홈</a>
+<body class="home-redesign">
+  <header class="hr-header">
+    <div class="hr-container hr-header-inner">
+      <a href="/" class="hr-logo" aria-label="seungbak.com 홈">seungbak.com</a>
+      <nav class="hr-nav" aria-label="주요 메뉴">
+        <a href="/tools/realestate-map/">지도</a>
         <a href="/tools/">도구</a>
         <a href="/blog/">블로그</a>
         <a href="/about.html">소개</a>
-        <a href="/contact.html">문의</a>
       </nav>
+      <button type="button" class="hr-menu-toggle" id="hr-menu-toggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="hr-nav-mobile">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
+    <nav class="hr-nav-mobile" id="hr-nav-mobile" aria-label="모바일 메뉴" hidden>
+      <a href="/tools/realestate-map/">지도</a>
+      <a href="/tools/">도구</a>
+      <a href="/blog/">블로그</a>
+      <a href="/about.html">소개</a>
+    </nav>
   </header>
 
   <main>
-    <section class="hero-wrapper">
-      <div class="container hero-split">
-        <div class="hero-left hero-inner">
-          <h1>
-            👋 안녕하세요, 승박입니다<br>
-            <span class="hero-highlight">평범한 직장인의 두 번째 월급 만들기</span>
-          </h1>
-          <p class="hero-subtitle">비전공자 월급쟁이의 사이드 프로젝트 실험실</p>
-
-          <div class="hero-badges-grid" aria-label="서비스 특징">
-            <span class="badge-success">✅ 1인 운영</span>
-            <span class="badge-feature">🤖 AI로 만든 사이트</span>
-            <span class="badge-free">🆓 완전 무료</span>
-            <a href="/tools/" class="stat-badge badge-link">🛠️ 도구 <strong id="stat-tools">7</strong>개</a>
-            <a href="/blog/" class="stat-badge badge-link">📝 글 <strong id="stat-posts">28</strong>편</a>
-            <span class="stat-badge">⚡ 매일 업데이트</span>
-          </div>
-
-          <div class="hero-cta">
-            <a href="/tools/" class="btn-primary hero-cta-btn">도구 둘러보기</a>
-            <a href="/blog/" class="btn-outline hero-cta-btn">블로그 보기</a>
-          </div>
-        </div>
-
-        <div class="hero-right">
-          <p class="hero-right-label">🏆 대표 도구</p>
-          <a href="/tools/realestate-map/" class="tool-hero-card">
-            <span class="tool-hero-badge">🏆 대표 도구</span>
-            <span class="tool-hero-icon" aria-hidden="true">🗺️</span>
-            <h2 class="tool-hero-title">서울 부동산 실거래가 지도</h2>
-            <p class="tool-hero-desc">
-              서울·경기 13,412개 단지 실거래가 + 내 집 마련까지 D-Day 계산
-            </p>
-            <div class="tool-hero-stats" aria-label="지도 통계">
-              <div class="tool-hero-stat">
-                <strong>57구역</strong>
-                <span>서울·경기</span>
-              </div>
-              <div class="tool-hero-stat">
-                <strong>13,412개</strong>
-                <span>단지</span>
-              </div>
-              <div class="tool-hero-stat">
-                <strong>47만건</strong>
-                <span>실거래</span>
-              </div>
-            </div>
-            <span class="tool-hero-cta">지도 보러가기 →</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section tools-section">
-      <div class="container">
-        <div class="tools-other">
-          <div class="section-header">
-            <h2 class="section-title">📊 그 외 도구</h2>
-            <p class="section-subtitle">직장인의 고민을 해결하는 작은 계산기들</p>
-          </div>
-
-          <div class="tools-grid tools-grid--other">
-          <a href="/tools/subscription-calculator/" class="tool-card">
-            <span class="tool-card-new badge-new">⭐ NEW</span>
-            <span class="tool-card-icon" aria-hidden="true">🏠</span>
-            <h3 class="tool-card-title">청약 가점 계산기</h3>
-            <p class="tool-card-desc">
-              무주택 기간·부양가족·청약통장 가점을 한 번에 자동 계산 (최대 84점)
-            </p>
-            <span class="tool-card-link">바로 사용하기 →</span>
-          </a>
-
-          <a href="/tools/dday-calculator/" class="tool-card">
-            <span class="tool-card-new badge-new">⭐ NEW</span>
-            <span class="tool-card-icon" aria-hidden="true">📅</span>
-            <h3 class="tool-card-title">아파트 D-day 계산기</h3>
-            <p class="tool-card-desc">
-              언제 살 수 있을까? 자산·저축·대출을 반영해 매수 가능 시점을 계산
-            </p>
-            <span class="tool-card-link">바로 사용하기 →</span>
-          </a>
-
-          <a href="/tools/severance-calculator/" class="tool-card">
-            <span class="tool-card-new badge-new">⭐ NEW</span>
-            <span class="tool-card-icon" aria-hidden="true">👋</span>
-            <h3 class="tool-card-title">퇴직금 계산기</h3>
-            <p class="tool-card-desc">
-              입사일·퇴사일·급여만 입력하면 퇴직금과 실수령액을 30초 만에!
-            </p>
-            <span class="tool-card-link">바로 사용하기 →</span>
-          </a>
-
-          <a href="/tools/apt-calculator/" class="tool-card">
-            <span class="tool-card-icon" aria-hidden="true">🏢</span>
-            <h3 class="tool-card-title">내 연봉 아파트 계산기</h3>
-            <p class="tool-card-desc">
-              2026년 최신 LTV·DSR 규제 반영. 내 연봉으로 어느 동네 아파트까지 살 수 있는지 30초 만에 확인
-            </p>
-            <span class="tool-card-link">바로 사용하기 →</span>
-          </a>
-
-          <a href="/tools/salary-calculator/" class="tool-card">
-            <span class="tool-card-icon" aria-hidden="true">💵</span>
-            <h3 class="tool-card-title">아파트 가격 필요 연봉 계산기</h3>
-            <p class="tool-card-desc">
-              원하는 아파트를 매수하려면 연봉이 얼마나 필요할까? DSR 기준 필요 연봉 즉시 계산
-            </p>
-            <span class="tool-card-link">바로 사용하기 →</span>
-          </a>
-
-          <a href="/tools/income-calculator/" class="tool-card">
-            <span class="tool-card-icon" aria-hidden="true">💰</span>
-            <h3 class="tool-card-title">연봉 실수령액 계산기</h3>
-            <p class="tool-card-desc">
-              2026년 최신 4대보험·소득세 반영. 연봉만 입력하면 월 실수령액 즉시 계산
-            </p>
-            <span class="tool-card-link">바로 사용하기 →</span>
-          </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section blog-preview-section">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">📰 최근 블로그</h2>
-          <p class="section-subtitle">사이드 프로젝트 일지, AI 도구 활용법, 직장인 부업 이야기</p>
-        </div>
-
-        <div class="blog-grid">
-          <a href="/blog/post-28.html" class="blog-card has-thumbnail">
-            <div class="blog-card-thumbnail">
-              <img src="/blog/images/post-28/property-tax-hero.png" alt="2026 종합부동산세 완벽 정리 (과세 대상·세율·계산·1주택 공제)" loading="lazy">
-            </div>
-            <div class="blog-card-content">
-              <span class="blog-category-badge blog-category-badge--real-estate">💰 부동산 세금</span>
-              <h3 class="blog-card-title">2026 종합부동산세 완벽 정리 (과세 대상·세율·계산·1주택 공제)</h3>
-              <p class="blog-card-excerpt">종부세 12억 공제·세율·부부공동명의, 2026 실전 계산.</p>
-              <div class="blog-card-meta">
-                <time class="blog-card-date" datetime="2026-07-03">2026-07-03</time>
-                <span class="blog-card-readtime">16분 읽기</span>
-              </div>
-            </div>
-          </a>
-
-          <a href="/blog/post-27.html" class="blog-card has-thumbnail">
-            <div class="blog-card-thumbnail">
-              <img src="/blog/images/post-27/capital-gains-hero.png" alt="2026 양도소득세 비과세 요건 완벽 정리 (1가구 1주택·실거주·보유기간)" loading="lazy">
-            </div>
-            <div class="blog-card-content">
-              <span class="blog-category-badge blog-category-badge--real-estate">💰 부동산 세금</span>
-              <h3 class="blog-card-title">2026 양도소득세 비과세 요건 완벽 정리 (1가구 1주택·실거주·보유기간)</h3>
-              <p class="blog-card-excerpt">1가구 1주택·12억 비과세·실거주 요건, 2026 최신 정리.</p>
-              <div class="blog-card-meta">
-                <time class="blog-card-date" datetime="2026-07-03">2026-07-03</time>
-                <span class="blog-card-readtime">16분 읽기</span>
-              </div>
-            </div>
-          </a>
-
-          <a href="/blog/post-26.html" class="blog-card has-thumbnail">
-            <div class="blog-card-thumbnail">
-              <img src="/blog/images/post-26/first-time-hero.png" alt="2026 생애최초 취득세 감면 완벽 정리 (200만원 혜택·자격·신청법)" loading="lazy">
-            </div>
-            <div class="blog-card-content">
-              <span class="blog-category-badge blog-category-badge--real-estate">💰 부동산 세금</span>
-              <h3 class="blog-card-title">2026 생애최초 취득세 감면 완벽 정리 (200만원 혜택·자격·신청법)</h3>
-              <p class="blog-card-excerpt">첫 집 취득세 200만원 감면, 2026 자격·위택스 신청법 총정리.</p>
-              <div class="blog-card-meta">
-                <time class="blog-card-date" datetime="2026-07-02">2026-07-02</time>
-                <span class="blog-card-readtime">15분 읽기</span>
-              </div>
-            </div>
-          </a>
-
-          <a href="/blog/post-25.html" class="blog-card has-thumbnail">
-            <div class="blog-card-thumbnail">
-              <img src="/blog/images/post-25/tax-guide-hero.png" alt="2026 취득세·등록세 완벽 계산 가이드 (세율·감면·실전 예시)" loading="lazy">
-            </div>
-            <div class="blog-card-content">
-              <span class="blog-category-badge blog-category-badge--real-estate">💰 부동산 세금</span>
-              <h3 class="blog-card-title">2026 취득세·등록세 완벽 계산 가이드 (세율·감면·실전 예시)</h3>
-              <p class="blog-card-excerpt">취득세·등록세 세율·감면·7억 시뮬레이션, 잔금 전 필수 정리.</p>
-              <div class="blog-card-meta">
-                <time class="blog-card-date" datetime="2026-07-02">2026-07-02</time>
-                <span class="blog-card-readtime">16분 읽기</span>
-              </div>
-            </div>
-          </a>
-
-          <a href="/blog/post-24.html" class="blog-card has-thumbnail">
-            <div class="blog-card-thumbnail">
-              <img src="/blog/images/post-24/newlywed-hero.png" alt="2026 신혼부부 특별공급 vs 신혼희망타운 완벽 비교 (자격·물량·가점·전략)" loading="lazy">
-            </div>
-            <div class="blog-card-content">
-              <span class="blog-category-badge blog-category-badge--real-estate">🏠 청약·부동산</span>
-              <h3 class="blog-card-title">2026 신혼부부 특별공급 vs 신혼희망타운 완벽 비교 (자격·물량·가점·전략)</h3>
-              <p class="blog-card-excerpt">신혼특공 vs 신희타, 자격·가점·분양가 비교와 맞춤 전략 총정리.</p>
-              <div class="blog-card-meta">
-                <time class="blog-card-date" datetime="2026-07-01">2026-07-01</time>
-                <span class="blog-card-readtime">15분 읽기</span>
-              </div>
-            </div>
-          </a>
-
-          <a href="/blog/post-23.html" class="blog-card has-thumbnail">
-            <div class="blog-card-thumbnail">
-              <img src="/blog/images/post-23/policy-2026-hero.png" alt="2026년 7월 시행 부동산 정책 총정리 (스트레스 DSR 3단계·규제·공급 완벽 정리)" loading="lazy">
-            </div>
-            <div class="blog-card-content">
-              <span class="blog-category-badge blog-category-badge--real-estate">📋 부동산 정책</span>
-              <h3 class="blog-card-title">2026년 7월 시행 부동산 정책 총정리 (스트레스 DSR 3단계·규제·공급 완벽 정리)</h3>
-              <p class="blog-card-excerpt">7월 스트레스 DSR 3단계·청년월세 연장·세제·공급, 월급쟁이 필수 정리.</p>
-              <div class="blog-card-meta">
-                <time class="blog-card-date" datetime="2026-07-01">2026-07-01</time>
-                <span class="blog-card-readtime">14분 읽기</span>
-              </div>
-            </div>
-          </a>
-
-        </div>
-
-        <div class="blog-section-footer">
-          <a href="/blog/" class="btn-outline">전체 글 보기 →</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section about-preview">
-      <div class="container">
-        <div class="card page-card about-preview-card">
-          <h2 class="section-title">👤 승박은 누구?</h2>
-          <p>
-            평범한 직장인이자 비전공자입니다.
-            AI 도구를 활용해 직장인이 정말 필요로 하는 작은 서비스들을 만들어 공유합니다.
-            첫 번째 프로젝트는 부동산 계산기, 다음은 무엇이 될까요?
+    <section class="hr-hero" aria-labelledby="hero-title">
+      <div class="hr-container">
+        <div class="hr-hero-inner">
+          <h1 class="hr-hero-title" id="hero-title">부동산 정보를 한 곳에서</h1>
+          <p class="hr-hero-sub">실거래가 지도부터 청약 계산기까지, 7개 무료 도구</p>
+          <p class="hr-hero-desc">
+            회원가입 없이 바로 사용할 수 있습니다.<br>
+            국토부 실거래가 기반의 신뢰할 수 있는 데이터를 제공합니다.
           </p>
-          <a href="/about.html" class="btn-outline about-preview-btn">더 알아보기 →</a>
+          <div class="hr-hero-cta">
+            <a href="/tools/realestate-map/" class="hr-btn hr-btn-primary">실거래가 지도 보기</a>
+            <a href="/tools/" class="hr-btn hr-btn-outline">전체 도구 보기</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hr-map-banner" aria-labelledby="map-banner-title">
+      <div class="hr-container">
+        <div class="hr-map-grid">
+          <div class="hr-map-text">
+            <span class="hr-label">MAIN TOOL</span>
+            <h2 class="hr-map-title" id="map-banner-title">실거래가 지도</h2>
+            <p class="hr-map-sub">전국 아파트 실거래가를 지도에서 확인</p>
+            <ul class="hr-checklist">
+              <li>국토교통부 실거래가 데이터</li>
+              <li>시·군·구 단위 필터링</li>
+              <li>면적별 시세 비교</li>
+            </ul>
+            <a href="/tools/realestate-map/" class="hr-btn hr-btn-dark">지도 열기 →</a>
+          </div>
+          <div class="hr-map-image">
+            <img src="/images/main/map-preview.png" alt="seungbak.com 실거래가 지도 미리보기" width="1200" height="800" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hr-tools" aria-labelledby="tools-title">
+      <div class="hr-container">
+        <div class="hr-section-head">
+          <h2 class="hr-section-title" id="tools-title">무료 부동산 도구</h2>
+          <p class="hr-section-sub">필요한 계산을 한번에</p>
+        </div>
+        <div class="hr-tools-grid">
+          <a href="/tools/realestate-map/" class="hr-tool-card">
+            <span class="hr-tool-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s7-4.5 7-11a7 7 0 1 0-14 0c0 6.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            </span>
+            <div class="hr-tool-text">
+              <h3 class="hr-tool-title">실거래가 지도</h3>
+              <p class="hr-tool-desc">전국 아파트 실거래가 시세</p>
+            </div>
+          </a>
+          <a href="/tools/subscription-calculator/" class="hr-tool-card">
+            <span class="hr-tool-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 10.5L12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-9.5z"/></svg>
+            </span>
+            <div class="hr-tool-text">
+              <h3 class="hr-tool-title">청약 가점 계산기</h3>
+              <p class="hr-tool-desc">84점 만점 자동 계산</p>
+            </div>
+          </a>
+          <a href="/tools/income-calculator/" class="hr-tool-card">
+            <span class="hr-tool-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M7 15h2M11 15h2"/></svg>
+            </span>
+            <div class="hr-tool-text">
+              <h3 class="hr-tool-title">월급 실수령액 계산기</h3>
+              <p class="hr-tool-desc">세후 급여 계산</p>
+            </div>
+          </a>
+          <a href="/tools/apt-calculator/" class="hr-tool-card">
+            <span class="hr-tool-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20V8l8-5 8 5v12"/><path d="M9 20v-6h6v6M9 10h6"/></svg>
+            </span>
+            <div class="hr-tool-text">
+              <h3 class="hr-tool-title">아파트 계산기</h3>
+              <p class="hr-tool-desc">매매·전세 비용 계산</p>
+            </div>
+          </a>
+          <a href="/tools/salary-calculator/" class="hr-tool-card">
+            <span class="hr-tool-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16v16H4z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+            </span>
+            <div class="hr-tool-text">
+              <h3 class="hr-tool-title">필요 연봉 계산기</h3>
+              <p class="hr-tool-desc">아파트 가격별 필요 연봉</p>
+            </div>
+          </a>
+          <a href="/tools/dday-calculator/" class="hr-tool-card">
+            <span class="hr-tool-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            </span>
+            <div class="hr-tool-text">
+              <h3 class="hr-tool-title">D-day 계산기</h3>
+              <p class="hr-tool-desc">청약·계약일 카운트</p>
+            </div>
+          </a>
+          <a href="/tools/severance-calculator/" class="hr-tool-card">
+            <span class="hr-tool-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg>
+            </span>
+            <div class="hr-tool-text">
+              <h3 class="hr-tool-title">퇴직금 계산기</h3>
+              <p class="hr-tool-desc">퇴직금·실수령액 계산</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="hr-blog" aria-labelledby="blog-title">
+      <div class="hr-container">
+        <div class="hr-section-head">
+          <h2 class="hr-section-title" id="blog-title">최신 블로그</h2>
+          <p class="hr-section-sub">부동산 실전 정보 매일 업데이트</p>
+        </div>
+        <div class="hr-blog-grid">
+          <a href="/blog/post-30.html" class="hr-blog-card">
+            <div class="hr-blog-thumb">
+              <img src="/blog/images/post-30/jeonse-safety-hero.png" alt="2026 전세사기 예방 완벽 체크리스트" loading="lazy">
+            </div>
+            <div class="hr-blog-body">
+              <span class="hr-blog-tag">부동산 실전</span>
+              <h3 class="hr-blog-title">2026 전세사기 예방 완벽 체크리스트 (계약 전·중·후 단계별 필수 확인사항)</h3>
+              <p class="hr-blog-excerpt">전세사기 5대 유형·등기부·HUG, 계약 전후 필수 체크.</p>
+              <time class="hr-blog-date" datetime="2026-07-06">2026-07-06</time>
+            </div>
+          </a>
+          <a href="/blog/post-29.html" class="hr-blog-card">
+            <div class="hr-blog-thumb">
+              <img src="/blog/images/post-29/map-guide-hero.png" alt="실거래가 지도 200% 활용법" loading="lazy">
+            </div>
+            <div class="hr-blog-body">
+              <span class="hr-blog-tag">도구 활용법</span>
+              <h3 class="hr-blog-title">실거래가 지도 200% 활용법 (전국 아파트 시세 한눈에·seungbak.com 오리지널 가이드)</h3>
+              <p class="hr-blog-excerpt">전국 아파트 실거래가, 5분 시세 파악·매수·전세 활용법.</p>
+              <time class="hr-blog-date" datetime="2026-07-06">2026-07-06</time>
+            </div>
+          </a>
+          <a href="/blog/post-28.html" class="hr-blog-card">
+            <div class="hr-blog-thumb">
+              <img src="/blog/images/post-28/property-tax-hero.png" alt="2026 종합부동산세 완벽 정리" loading="lazy">
+            </div>
+            <div class="hr-blog-body">
+              <span class="hr-blog-tag">부동산 세금</span>
+              <h3 class="hr-blog-title">2026 종합부동산세 완벽 정리 (과세 대상·세율·계산·1주택 공제)</h3>
+              <p class="hr-blog-excerpt">종부세 12억 공제·세율·부부공동명의, 2026 실전 계산.</p>
+              <time class="hr-blog-date" datetime="2026-07-03">2026-07-03</time>
+            </div>
+          </a>
+        </div>
+        <div class="hr-section-footer">
+          <a href="/blog/" class="hr-btn hr-btn-dark">블로그 전체 보기 →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="hr-about" aria-labelledby="about-title">
+      <div class="hr-container">
+        <div class="hr-about-inner">
+          <h2 class="hr-section-title" id="about-title">seungbak.com 소개</h2>
+          <p class="hr-about-text">
+            seungbak.com은 부동산 관련 계산과 정보 조회를 한곳에서
+            할 수 있도록 만든 무료 웹사이트입니다.
+            실거래가 지도, 청약 가점 계산기, 연봉 실수령액 계산기 등
+            7개의 실용 도구와 부동산 실전 블로그를 제공합니다.
+          </p>
+          <a href="/about.html" class="hr-btn hr-btn-dark">자세히 보기 →</a>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div class="footer-col footer-brand">
-        <p class="footer-logo">승박</p>
-        <p class="footer-tagline">평범한 직장인의 두 번째 월급 만들기</p>
-        <p class="footer-owner">운영자: <strong>승박</strong></p>
+  <footer class="hr-footer">
+    <div class="hr-container">
+      <div class="hr-footer-grid">
+        <div>
+          <p class="hr-footer-logo">seungbak.com</p>
+          <p class="hr-footer-desc">부동산 실거래가 지도와 무료 계산 도구를 제공합니다.</p>
+        </div>
+        <div>
+          <p class="hr-footer-title">링크</p>
+          <ul class="hr-footer-nav">
+            <li><a href="/about.html">소개</a></li>
+            <li><a href="/contact.html">문의</a></li>
+            <li><a href="/privacy.html">개인정보처리방침</a></li>
+            <li><a href="/terms.html">이용약관</a></li>
+            <li><a href="/disclaimer.html">면책조항</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="hr-footer-title">연락처</p>
+          <ul class="hr-footer-nav">
+            <li><a href="https://instagram.com/seungbak.tools" rel="noopener noreferrer" target="_blank">Instagram @seungbak.tools</a></li>
+            <li><a href="mailto:id123id6@gmail.com">id123id6@gmail.com</a></li>
+          </ul>
+        </div>
       </div>
-      <div class="footer-col">
-        <p class="footer-col-title">바로가기</p>
-        <ul class="footer-nav">
-          <li><a href="/">홈</a></li>
-          <li><a href="/tools/">도구</a></li>
-          <li><a href="/blog/">블로그</a></li>
-          <li><a href="/about.html">소개</a></li>
-          <li><a href="/contact.html">문의</a></li>
-        </ul>
+      <div class="hr-footer-bottom">
+        <p class="hr-footer-copy">&copy; <span id="current-year"></span> seungbak.com. All rights reserved.</p>
       </div>
-      <div class="footer-col">
-        <p class="footer-col-title">정책</p>
-        <ul class="footer-nav">
-          <li><a href="/privacy.html">개인정보처리방침</a></li>
-          <li><a href="/terms.html">이용약관</a></li>
-          <li><a href="/disclaimer.html">면책조항</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <p class="footer-col-title">함께해요</p>
-        <ul class="footer-nav">
-          <li><a href="mailto:id123id6@gmail.com">이메일</a></li>
-          <li class="footer-coming-soon">유튜브 (준비 중)</li>
-        </ul>
-      </div>
-    </div>
-    <div class="container footer-bottom">
-      <p class="footer-copy">&copy; <span id="current-year"></span> 승박. All rights reserved.</p>
     </div>
   </footer>
 
   <script>
     (function () {
-      var el = document.getElementById("current-year");
-      if (el) el.textContent = new Date().getFullYear();
+      var yearEl = document.getElementById("current-year");
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-      document.querySelectorAll(".badge-link").forEach(function (badge) {
-        badge.addEventListener("click", function () {
-          if (typeof gtag === "undefined") return;
-          gtag("event", "badge_click", {
-            badge_label: badge.textContent.trim(),
-            destination: badge.href,
+      var toggle = document.getElementById("hr-menu-toggle");
+      var mobileNav = document.getElementById("hr-nav-mobile");
+      if (toggle && mobileNav) {
+        toggle.addEventListener("click", function () {
+          var open = mobileNav.classList.toggle("is-open");
+          toggle.setAttribute("aria-expanded", open ? "true" : "false");
+          toggle.setAttribute("aria-label", open ? "메뉴 닫기" : "메뉴 열기");
+          mobileNav.hidden = !open;
+        });
+        mobileNav.querySelectorAll("a").forEach(function (link) {
+          link.addEventListener("click", function () {
+            mobileNav.classList.remove("is-open");
+            mobileNav.hidden = true;
+            toggle.setAttribute("aria-expanded", "false");
+            toggle.setAttribute("aria-label", "메뉴 열기");
           });
         });
-      });
+      }
     })();
   </script>
 </body>

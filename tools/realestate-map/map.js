@@ -26,7 +26,6 @@
     ["마포구", "11440"],
     ["분당구", "41135"],
     ["일산서구", "41287"],
-    ["영통구", "41117"],
     ["용산구", "11170"],
     ["성동구", "11200"],
     ["영등포구", "11560"],
@@ -87,11 +86,21 @@
 
     emptyState: document.getElementById("map-empty-state"),
 
+    emptyBackdrop: document.getElementById("map-empty-backdrop"),
+
+    emptyClose: document.getElementById("map-empty-close"),
+
     popularGrid: document.getElementById("popular-regions-grid"),
 
     helpBtn: document.getElementById("map-help-btn"),
 
     filterBar: document.getElementById("map-filter-bar"),
+
+    toolbar: document.getElementById("map-toolbar"),
+
+    layerToggles: document.getElementById("map-layer-toggles"),
+
+    radiusFab: document.getElementById("map-radius-fab"),
 
     legend: document.getElementById("map-legend"),
 
@@ -106,6 +115,12 @@
   let markerLayer;
 
   let filterBar;
+
+  let infraLayer;
+
+  let subwayLineLayer;
+
+  let radiusTool;
 
   let regionSelector;
 
@@ -155,6 +170,8 @@
 
       setupMapUi();
 
+      initMapTools();
+
       bindEmptyStateUi();
 
       if (districtSelected) {
@@ -165,11 +182,17 @@
 
       } else {
 
-        showMapEmptyState();
+        showMapControls();
+
+        if (window.RealEstateMapWelcome?.shouldAutoShowOnLoad?.() !== false) {
+
+          showMapEmptyState({ silent: true });
+
+        }
+
+        if (els.helpBtn) els.helpBtn.hidden = false;
 
         showRegionSelectHint();
-
-        hideMapControls();
 
         showInitialEmptySidebar();
 
@@ -546,6 +569,8 @@
 
     initMapFilter(true);
 
+    initMapToolbar();
+
     if (!uiBound) {
 
       bindSearch();
@@ -567,6 +592,22 @@
       showInitialEmptySidebar();
 
     }
+
+  }
+
+
+
+  function dismissWelcomePopup() {
+
+    const dismissEl = document.getElementById("map-help-dismiss");
+
+    if (dismissEl?.checked) {
+
+      window.RealEstateMapWelcome?.setDontShowAgain?.(true);
+
+    }
+
+    hideMapEmptyState();
 
   }
 
@@ -628,11 +669,33 @@
 
           selectPopularRegion(code);
 
+          dismissWelcomePopup();
+
         });
 
       });
 
     }
+
+    els.emptyClose?.addEventListener("click", (e) => {
+
+      e.stopPropagation();
+
+      dismissWelcomePopup();
+
+    });
+
+    els.emptyBackdrop?.addEventListener("click", () => {
+
+      dismissWelcomePopup();
+
+    });
+
+    els.emptyState?.querySelector(".map-empty-state-card")?.addEventListener("click", (e) => {
+
+      e.stopPropagation();
+
+    });
 
     els.helpBtn?.addEventListener("click", () => {
 
@@ -724,7 +787,7 @@
 
   function hideMapControls() {
 
-    els.filterBar?.classList.add("map-controls-hidden");
+    els.toolbar?.classList.add("map-controls-hidden");
 
     els.legend?.classList.add("map-controls-hidden");
 
@@ -742,7 +805,7 @@
 
   function showMapControls() {
 
-    els.filterBar?.classList.remove("map-controls-hidden");
+    els.toolbar?.classList.remove("map-controls-hidden");
 
     els.legend?.classList.remove("map-controls-hidden");
 
@@ -775,6 +838,71 @@
       </div>
 
     `;
+
+  }
+
+
+
+  function syncRadiusButtons(active) {
+    [document.getElementById("radius-tool-btn"), els.radiusFab].filter(Boolean).forEach((btn) => {
+      btn.classList.toggle("active", active);
+      btn.setAttribute("aria-pressed", active ? "true" : "false");
+    });
+  }
+
+  function initMapToolbar() {
+    if (window.RealEstateMapToolbar?.init) {
+      window.RealEstateMapToolbar.init();
+    }
+  }
+
+  function initMapTools() {
+
+    if (!map) return;
+
+    if (window.RealEstateMapSubwayLines?.SubwayLineLayer) {
+      subwayLineLayer = new window.RealEstateMapSubwayLines.SubwayLineLayer(map);
+    }
+
+    if (window.RealEstateMapInfra?.InfraIconLayer && els.layerToggles) {
+
+      infraLayer = new window.RealEstateMapInfra.InfraIconLayer(map, {
+
+        onApartmentToggle: (visible) => {
+
+          if (markerLayer?.setVisible) markerLayer.setVisible(visible);
+
+        },
+
+        subwayLineLayer,
+
+      });
+
+      if (window.RealEstateMapRadius?.RadiusTool) {
+        radiusTool = new window.RealEstateMapRadius.RadiusTool(map);
+        window.__mapRadiusTool = radiusTool;
+        const origDeactivate = radiusTool.deactivate.bind(radiusTool);
+        radiusTool.deactivate = () => {
+          origDeactivate();
+          syncRadiusButtons(false);
+        };
+        const origActivate = radiusTool.activate.bind(radiusTool);
+        radiusTool.activate = () => {
+          origActivate();
+          syncRadiusButtons(true);
+        };
+      }
+
+      infraLayer.init(els.layerToggles, {
+        onRadiusClick: () => {
+          if (radiusTool) radiusTool.toggle();
+        },
+      });
+
+      if (radiusTool && els.radiusFab) {
+        els.radiusFab.addEventListener("click", () => radiusTool.toggle());
+      }
+    }
 
   }
 
@@ -1108,6 +1236,12 @@
 
       return;
 
+    }
+
+    if (regionSelector) {
+      regionSelector.map = map;
+      window.RealEstateMapRegion.DistrictRegionSelector._instance = regionSelector;
+      return;
     }
 
 
@@ -1605,6 +1739,12 @@
   async function selectApartment(apt) {
 
     apt = resolveApartmentRecord(apt);
+
+    if (window.RealEstateMapAptMeta?.enrichApartmentMeta) {
+
+      apt = window.RealEstateMapAptMeta.enrichApartmentMeta(apt);
+
+    }
 
     if (window.RealEstateMapSidebar?.isMobile?.()) {
 
@@ -2175,6 +2315,13 @@
   function renderSidebar(apt, transactions, priceStats) {
 
     const buildYear = apt.build_year ? `${apt.build_year}년` : "-";
+
+    const ageShort = window.RealEstateMapMarker?.getBuildingAgeShort?.(apt) || "";
+
+    const householdShort = window.RealEstateMapMarker?.getHouseholdShort?.(apt) || "";
+
+    const buildMeta = [ageShort && `${ageShort} (${buildYear})`, householdShort].filter(Boolean).join(" · ") || buildYear;
+
     const ddayPriceMan = getDdayPriceMan(apt, priceStats);
 
     const avgLabel =
@@ -2245,7 +2392,13 @@
 
       <div class="apt-info-card">
 
-        <h2>${escapeHtml(apt.name)}</h2>
+        <div class="apt-info-header">
+
+          <h2>${escapeHtml(apt.name)}</h2>
+
+        </div>
+
+        <div class="apt-info-body">
 
         <p class="apt-address">${escapeHtml(formatAddress(apt))}</p>
 
@@ -2263,9 +2416,9 @@
 
           <div class="apt-meta-item">
 
-            <span>준공년도</span>
+            <span>준공 · 세대</span>
 
-            <strong>${escapeHtml(buildYear)}</strong>
+            <strong>${escapeHtml(buildMeta)}</strong>
 
           </div>
 
@@ -2276,6 +2429,8 @@
             <strong>${apt.latitude != null && apt.longitude != null ? `${apt.latitude.toFixed(4)}, ${apt.longitude.toFixed(4)}` : "-"}</strong>
 
           </div>
+
+        </div>
 
         </div>
 
@@ -2339,6 +2494,8 @@
 
       </section>
 
+      ${window.RealEstateMapNearbySchools?.getSectionShellHtml?.() || ""}
+
     `;
 
     if (window.RealEstatePriceChart?.setSidebarAreaTabs) {
@@ -2352,6 +2509,10 @@
       );
     } else {
       refreshSidebarAreaView(apt, priceStats);
+    }
+
+    if (window.RealEstateMapNearbySchools?.loadIntoSidebar) {
+      window.RealEstateMapNearbySchools.loadIntoSidebar(apt, map);
     }
 
   }
@@ -2548,6 +2709,10 @@
       const c = map?.getCenter?.();
       return c ? { lat: c.getLat(), lng: c.getLng() } : null;
     },
+
+    getMap: () => map,
+
+    getMarkerLayer: () => markerLayer,
 
     focusApartment,
 

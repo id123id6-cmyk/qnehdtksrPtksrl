@@ -43,21 +43,32 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
   <link rel="stylesheet" href="../../styles.css">
   <link rel="stylesheet" href="map.css">
+  <link rel="stylesheet" href="nav.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
 </head>
 <body class="map-page">
-  <header class="site-header">
-    <div class="container header-inner">
-      <div class="logo"><a href="/">승박</a></div>
-      <nav class="main-nav">
-        <a href="/">홈</a>
-        <a href="/tools/" class="active" aria-current="page">도구</a>
+  <header class="hr-header">
+    <div class="hr-container hr-header-inner">
+      <a href="/" class="hr-logo" aria-label="seungbak.com 홈">seungbak.com</a>
+      <nav class="hr-nav" aria-label="주요 메뉴">
+        <a href="/tools/realestate-map/" class="is-active" aria-current="page">지도</a>
+        <a href="/tools/">도구</a>
         <a href="/blog/">블로그</a>
         <a href="/about.html">소개</a>
-        <a href="/contact.html">문의</a>
       </nav>
+      <button type="button" class="hr-menu-toggle" id="hr-menu-toggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="hr-nav-mobile">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
+    <nav class="hr-nav-mobile" id="hr-nav-mobile" aria-label="모바일 메뉴" hidden>
+      <a href="/tools/realestate-map/" class="is-active" aria-current="page">지도</a>
+      <a href="/tools/">도구</a>
+      <a href="/blog/">블로그</a>
+      <a href="/about.html">소개</a>
+    </nav>
   </header>
 
   <div class="map-page-shell">
@@ -68,30 +79,56 @@
   <div class="map-layout" id="map-layout">
     <section class="map-panel" aria-label="부동산 실거래가 지도">
       <h1 class="sr-only">서울·경기 부동산 실거래가 지도</h1>
+
+      <div class="map-toolbar map-controls-hidden" id="map-toolbar">
+        <div class="map-toolbar-scroll">
+          <div class="toolbar-group toolbar-group--region">
+            <button type="button" class="map-pill map-pill--icon" id="toolbar-menu-btn" aria-label="메뉴">≡</button>
+            <button type="button" class="map-pill map-pill--icon" id="toolbar-search-btn" aria-label="검색">
+              <span aria-hidden="true">🔍</span><span class="map-pill-text">검색</span>
+            </button>
+            <div class="region-selector" id="region-selector" aria-label="지역 선택"></div>
+          </div>
+          <span class="toolbar-vdivider" aria-hidden="true"></span>
+          <div class="toolbar-group toolbar-group--filter map-filter-bar" id="map-filter-bar" aria-label="단지 필터"></div>
+          <span class="toolbar-vdivider" aria-hidden="true"></span>
+          <div class="toolbar-group toolbar-group--layers" id="map-layer-toggles" aria-label="지도 레이어"></div>
+        </div>
+      </div>
+
+      <div class="map-canvas-wrap">
       <div id="map-loading" class="map-loading">지도 데이터를 불러오는 중...</div>
       <div id="map" role="application" aria-label="카카오맵"></div>
 
       <div id="map-empty-state" class="map-empty-state" hidden aria-live="polite">
-        <div class="map-empty-state-card">
-          <div class="map-empty-state-icon" aria-hidden="true">🗺️</div>
-          <h2 class="map-empty-state-title">어디부터 살펴볼까요?</h2>
+        <div class="map-empty-state-backdrop" id="map-empty-backdrop" aria-hidden="true"></div>
+        <div class="map-empty-state-card" role="dialog" aria-modal="true" aria-labelledby="map-empty-title">
+          <h2 class="map-empty-state-title" id="map-empty-title">👋 승박이 지도 사용법</h2>
+          <ol class="map-help-steps">
+            <li>1️⃣ 상단에서 시도 → 시군구 → 동 선택</li>
+            <li>2️⃣ 지도에서 마커 클릭하면 상세정보 확인</li>
+            <li>3️⃣ 지하철·초등·중등 토글로 인프라 확인</li>
+          </ol>
           <div class="map-empty-state-stats" aria-label="서비스 통계">
             <div class="map-empty-stat"><strong>13,400+</strong><span>단지</span></div>
             <div class="map-empty-stat"><strong>47만+</strong><span>거래</span></div>
-            <div class="map-empty-stat"><strong>2개</strong><span>지역</span></div>
+            <div class="map-empty-stat"><strong>전국</strong><span>지역</span></div>
           </div>
-          <p class="map-empty-state-guide">💡 상단에서 시·도와 시·군·구를 선택하면 지도에 표시됩니다</p>
-          <hr class="map-empty-state-divider">
-          <p class="map-empty-state-section-label">🔥 인기 지역</p>
+          <p class="map-empty-state-section-label">🔥 인기 지역 바로가기</p>
           <div class="map-empty-popular-grid" id="popular-regions-grid"></div>
+          <div class="map-help-footer">
+            <label class="map-help-dismiss-label">
+              <input type="checkbox" id="map-help-dismiss" />
+              다시 보지 않기
+            </label>
+            <button type="button" class="map-help-close-btn" id="map-empty-close">닫기</button>
+          </div>
         </div>
       </div>
 
-      <button type="button" class="map-help-btn" id="map-help-btn" hidden aria-label="도움말 보기">ⓘ 도움말</button>
+      <button type="button" class="map-help-btn" id="map-help-btn" aria-label="도움말 보기">ⓘ 도움말</button>
 
       <p class="map-status-chip" id="marker-count" aria-live="polite">단지 로딩 중...</p>
-      <div class="region-selector" id="region-selector" aria-label="지역 선택"></div>
-      <div class="map-filter-bar" id="map-filter-bar" aria-label="단지 필터"></div>
       <div class="map-legend" id="map-legend">
         <button type="button" class="map-legend-toggle" aria-expanded="true" aria-controls="map-legend">
           범례
@@ -118,6 +155,11 @@
       <button type="button" class="mobile-search-fab" id="mobileSearchFab" aria-label="단지 검색">
         <span aria-hidden="true">🔍</span>
       </button>
+
+      <button type="button" class="map-radius-fab" id="map-radius-fab" aria-label="반경 재기" title="초등학교 배정 반경 확인 (통상 800m)&#10;지하철역 도보 반경 확인 (통상 500m)">
+        <span aria-hidden="true">📏</span>
+      </button>
+      </div>
     </section>
 
     <aside class="sidebar-panel" id="sidebar-panel" aria-label="단지 정보">
@@ -220,18 +262,44 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
   <script src="js/pyeong.js"></script>
   <script src="js/area-types.js"></script>
-  <script src="js/data.js"></script>
   <script src="js/districts.js"></script>
-  <script src="js/filter.js"></script>
   <script src="js/region.js"></script>
   <script src="js/marker.js"></script>
   <script src="js/chart.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/filter.js"></script>
+  <script src="js/apt-meta.js"></script>
+  <script src="js/infra-icons.js"></script>
+  <script src="js/subway-lines.js"></script>
+  <script src="js/radius-tool.js"></script>
   <script src="js/sidebar.js"></script>
+  <script src="js/nearby-schools.js"></script>
+  <script src="js/map-toolbar.js"></script>
+  <script src="js/map-welcome.js"></script>
   <script src="map.js"></script>
   <script>
     (function () {
       var el = document.getElementById("current-year");
       if (el) el.textContent = new Date().getFullYear();
+
+      var toggle = document.getElementById("hr-menu-toggle");
+      var mobileNav = document.getElementById("hr-nav-mobile");
+      if (toggle && mobileNav) {
+        toggle.addEventListener("click", function () {
+          var open = mobileNav.classList.toggle("is-open");
+          toggle.setAttribute("aria-expanded", open ? "true" : "false");
+          toggle.setAttribute("aria-label", open ? "메뉴 닫기" : "메뉴 열기");
+          mobileNav.hidden = !open;
+        });
+        mobileNav.querySelectorAll("a").forEach(function (link) {
+          link.addEventListener("click", function () {
+            mobileNav.classList.remove("is-open");
+            mobileNav.hidden = true;
+            toggle.setAttribute("aria-expanded", "false");
+            toggle.setAttribute("aria-label", "메뉴 열기");
+          });
+        });
+      }
     })();
   </script>
 </body>

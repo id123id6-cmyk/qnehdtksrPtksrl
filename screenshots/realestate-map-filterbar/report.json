@@ -1,0 +1,21 @@
+{
+  "computed": {
+    "sidoBg": "rgb(250, 245, 232)",
+    "sidoColor": "rgb(26, 26, 26)",
+    "sidoBorder": "rgb(26, 26, 26)"
+  },
+  "consoleErrors": [],
+  "headOk": true,
+  "blueGrepHits": [],
+  "mapCssExplicitBlue": [],
+  "blueRemainingCount": 0,
+  "screenshots": [
+    "01-initial-welcome-filterbar.png",
+    "02-welcome-popular-buttons.png",
+    "03-filterbar-closeup.png",
+    "04-sido-dropdown-open.png",
+    "05-gu-dropdown-open.png",
+    "06-filters-selected.png",
+    "07-mobile-375.png"
+  ]
+}

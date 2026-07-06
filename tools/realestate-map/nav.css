@@ -1,0 +1,131 @@
+/**
+ * 지도 페이지 상단 네비게이션 — 메인(index.html + main-redesign.css)과 동일
+ * body.map-page 전용 (main-redesign.css는 home-redesign 스코프라 재사용 불가)
+ */
+
+body.map-page {
+  --hr-beige: #f5efe0;
+  --hr-dark: #1a1a1a;
+  --hr-beige-muted: #d4c9b0;
+}
+
+body.map-page .hr-header {
+  background: var(--hr-dark);
+  color: var(--hr-beige);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  flex-shrink: 0;
+}
+
+body.map-page .hr-container {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+body.map-page .hr-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 64px;
+}
+
+body.map-page .hr-logo {
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--hr-beige);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+body.map-page .hr-nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+body.map-page .hr-nav a {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--hr-beige);
+  text-decoration: none;
+  transition: opacity 0.2s;
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
+}
+
+body.map-page .hr-nav a:hover {
+  opacity: 0.75;
+}
+
+body.map-page .hr-nav a.is-active,
+body.map-page .hr-nav a[aria-current="page"] {
+  font-weight: 600;
+  opacity: 1;
+  border-bottom-color: var(--hr-beige);
+}
+
+body.map-page .hr-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  color: var(--hr-beige);
+}
+
+body.map-page .hr-menu-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--hr-beige);
+  margin: 5px 0;
+  border-radius: 1px;
+}
+
+body.map-page .hr-nav-mobile {
+  display: none;
+  position: fixed;
+  inset: 0;
+  top: 64px;
+  background: var(--hr-dark);
+  z-index: 999;
+  padding: 24px;
+  flex-direction: column;
+  gap: 8px;
+}
+
+body.map-page .hr-nav-mobile.is-open {
+  display: flex;
+}
+
+body.map-page .hr-nav-mobile a {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: var(--hr-beige);
+  text-decoration: none;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(245, 239, 224, 0.12);
+}
+
+body.map-page .hr-nav-mobile a.is-active,
+body.map-page .hr-nav-mobile a[aria-current="page"] {
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  body.map-page .hr-container {
+    padding: 0 20px;
+  }
+
+  body.map-page .hr-nav {
+    display: none;
+  }
+
+  body.map-page .hr-menu-toggle {
+    display: block;
+  }
+}

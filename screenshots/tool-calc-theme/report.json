@@ -1,0 +1,49 @@
+{
+  "results": [
+    {
+      "page": "/tools/subscription-calculator/",
+      "styled": true,
+      "calcOk": true,
+      "consoleErrors": [],
+      "headOk": true
+    },
+    {
+      "page": "/tools/income-calculator/",
+      "styled": true,
+      "calcOk": true,
+      "consoleErrors": [],
+      "headOk": true
+    },
+    {
+      "page": "/tools/salary-calculator/",
+      "styled": true,
+      "calcOk": true,
+      "consoleErrors": [],
+      "headOk": true
+    },
+    {
+      "page": "/tools/apt-calculator/",
+      "styled": true,
+      "calcOk": true,
+      "consoleErrors": [],
+      "headOk": true
+    },
+    {
+      "page": "/tools/dday-calculator/",
+      "styled": true,
+      "calcOk": true,
+      "consoleErrors": [],
+      "headOk": true
+    }
+  ],
+  "blueGrepHits": [],
+  "blueRemaining": 0,
+  "globalThemeCssLines": {
+    "before": 882,
+    "after": 1324,
+    "added": 442
+  },
+  "totalConsoleErrors": 0,
+  "consoleErrors": [],
+  "pass": true
+}

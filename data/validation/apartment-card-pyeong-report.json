@@ -1,0 +1,112 @@
+{
+  "unit": {
+    "cardOld": "24평 (전용 59.98㎡)",
+    "cardNew": "29평 (전용 59.98㎡)",
+    "tabPyeong": 29,
+    "pass": true
+  },
+  "geumho": {
+    "tabLabel": "60㎡ (29평)",
+    "summary": "29평 (전용 59.98㎡)",
+    "tabPyeong": "29",
+    "cardPyeong": "29",
+    "dominantAreaGroup": "60"
+  },
+  "geumhoPass": true,
+  "samples": [
+    {
+      "name": "역삼동칼라",
+      "code": "11680",
+      "error": "page.evaluate: Error: apartment not found: 30fcce54-d38a-48ed-8ac8-7c34ea256616\n    at eval (eval at evaluate (:303:30), <anonymous>:5:21)\n    at UtilityScript.evaluate (<anonymous>:305:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+    },
+    {
+      "name": "은마",
+      "code": "11680",
+      "tabLabel": "76.8㎡ (34평)",
+      "summary": "34평 (전용 76.79㎡)",
+      "tabPyeong": "34",
+      "cardPyeong": "34",
+      "dominantAreaGroup": "76.8",
+      "match": true
+    },
+    {
+      "name": "상지리츠빌",
+      "code": "11680",
+      "tabLabel": "161.1㎡ (60평)",
+      "summary": "60평 (전용 161.07㎡)",
+      "tabPyeong": "60",
+      "cardPyeong": "60",
+      "dominantAreaGroup": "161.1",
+      "match": true
+    },
+    {
+      "name": "도곡3차아이파크",
+      "code": "11680",
+      "tabLabel": "187.2㎡ (60평)",
+      "summary": "60평 (전용 176.8㎡)",
+      "tabPyeong": "60",
+      "cardPyeong": "60",
+      "dominantAreaGroup": "187.2",
+      "match": true
+    },
+    {
+      "name": "현대1차101동~106동",
+      "code": "11680",
+      "tabLabel": "177.2㎡ (60평)",
+      "summary": "60평 (전용 177.15㎡)",
+      "tabPyeong": "60",
+      "cardPyeong": "60",
+      "dominantAreaGroup": "177.2",
+      "match": true
+    },
+    {
+      "name": "현대썬앤빌테헤란",
+      "code": "11680",
+      "tabLabel": "35.6㎡ (15평)",
+      "summary": "15평 (전용 36.02㎡)",
+      "tabPyeong": "15",
+      "cardPyeong": "15",
+      "dominantAreaGroup": "35.6",
+      "match": true
+    },
+    {
+      "name": "현대넥서스A동",
+      "code": "11680",
+      "tabLabel": "242.5㎡ (60평)",
+      "summary": "60평 (전용 242.48㎡)",
+      "tabPyeong": "60",
+      "cardPyeong": "60",
+      "dominantAreaGroup": "242.5",
+      "match": true
+    },
+    {
+      "name": "갤러리아트",
+      "code": "11680",
+      "tabLabel": "99.6㎡ (40평)",
+      "summary": "40평 (전용 93.17㎡)",
+      "tabPyeong": "40",
+      "cardPyeong": "40",
+      "dominantAreaGroup": "99.6",
+      "match": true
+    },
+    {
+      "name": "현대5차(71,72동)",
+      "code": "11680",
+      "tabLabel": "82.2㎡ (34평)",
+      "summary": "34평 (전용 82.23㎡)",
+      "tabPyeong": "34",
+      "cardPyeong": "34",
+      "dominantAreaGroup": "82.2",
+      "match": true
+    },
+    {
+      "name": "상지리츠빌카일룸3차",
+      "code": "11680",
+      "error": "page.waitForSelector: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('.apt-pyeong-summary') to be visible\n"
+    }
+  ],
+  "samplePass": true,
+  "errors": [],
+  "pass": true,
+  "screenshots": "C:\\Users\\2606\\Desktop\\커서\\260608 부동산 계산기\\screenshots\\apartment-card-pyeong"
+}

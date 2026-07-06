@@ -413,7 +413,7 @@
         fetchRentCountsForApartments(supabase, ids),
       ]);
 
-    return basic.map((apt) => ({
+    const list = basic.map((apt) => ({
       ...apt,
       avgPrice1Y: avgMap.get(apt.id) ?? null,
       tradeCount1Y: countMap.get(apt.id) ?? 0,
@@ -424,6 +424,11 @@
       wolseCount: wolseMap.get(apt.id) ?? 0,
       areaCategories: [],
     }));
+
+    if (global.RealEstateMapAptMeta?.enrichApartmentList) {
+      return global.RealEstateMapAptMeta.enrichApartmentList(list);
+    }
+    return list;
   }
 
   async function attachAreaCategories(supabase, apartments) {

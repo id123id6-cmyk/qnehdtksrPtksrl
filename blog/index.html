@@ -51,20 +51,20 @@
   <link rel="icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
   <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../css/global-theme.css">
 </head>
-<body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <div class="logo"><a href="/">승박</a></div>
-      <nav class="main-nav">
-        <a href="/">홈</a>
-        <a href="/tools/">도구</a>
-        <a href="/blog/" class="active" aria-current="page">블로그</a>
-        <a href="/about.html">소개</a>
-        <a href="/contact.html">문의</a>
-      </nav>
+<body class="theme-blog-page">
+  <nav class="theme-nav">
+  <div class="theme-nav-inner">
+    <a href="/" class="theme-nav-logo">seungbak.com</a>
+    <div class="theme-nav-menu">
+      <a href="/tools/realestate-map/" class="theme-nav-item">지도</a>
+      <a href="/#tools" class="theme-nav-item">도구</a>
+      <a href="/blog/" class="theme-nav-item is-active" aria-current="page">블로그</a>
+      <a href="/about.html" class="theme-nav-item">소개</a>
     </div>
-  </header>
+  </div>
+</nav>
 
   <main>
     <section class="hero">
@@ -93,6 +93,36 @@
         </div>
 
         <div class="blog-grid" id="blog-grid">
+          <a href="post-30.html" class="blog-card fade-in has-thumbnail" data-category="real-estate">
+          <div class="blog-card-thumbnail">
+            <img src="images/post-30/jeonse-safety-hero.png" alt="2026 전세사기 예방 완벽 체크리스트 (계약 전·중·후 단계별 필수 확인사항)" loading="lazy">
+          </div>
+            <div class="blog-card-content">
+              <span class="blog-category-badge blog-card-category blog-category-badge--real-estate">🏠 부동산 실전</span>
+              <h3 class="blog-card-title">2026 전세사기 예방 완벽 체크리스트 (계약 전·중·후 단계별 필수 확인사항)</h3>
+              <p class="blog-card-excerpt">전세사기 5대 유형·등기부·HUG 보증, 계약 전후 체크리스트!</p>
+              <div class="blog-card-meta">
+                <time class="blog-card-date" datetime="2026-07-06">2026-07-06</time>
+                <span class="blog-card-readtime">16분 읽기</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="post-29.html" class="blog-card fade-in has-thumbnail" data-category="guide">
+          <div class="blog-card-thumbnail">
+            <img src="images/post-29/map-guide-hero.png" alt="실거래가 지도 200% 활용법 (전국 아파트 시세 한눈에·seungbak.com 오리지널 가이드)" loading="lazy">
+          </div>
+            <div class="blog-card-content">
+              <span class="blog-category-badge blog-card-category blog-category-badge--guide">🛠️ 도구 활용법</span>
+              <h3 class="blog-card-title">실거래가 지도 200% 활용법 (전국 아파트 시세 한눈에·seungbak.com 오리지널 가이드)</h3>
+              <p class="blog-card-excerpt">전국 아파트 실거래가 지도, 5분 시세 파악·상황별 활용 전략!</p>
+              <div class="blog-card-meta">
+                <time class="blog-card-date" datetime="2026-07-06">2026-07-06</time>
+                <span class="blog-card-readtime">15분 읽기</span>
+              </div>
+            </div>
+          </a>
+
           <a href="post-28.html" class="blog-card fade-in has-thumbnail" data-category="real-estate">
           <div class="blog-card-thumbnail">
             <img src="images/post-28/property-tax-hero.png" alt="2026 종합부동산세 완벽 정리 (과세 대상·세율·계산·1주택 공제)" loading="lazy">
@@ -500,42 +530,44 @@
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div class="footer-col footer-brand">
-        <p class="footer-logo">승박</p>
-        <p class="footer-tagline">평범한 직장인의 두 번째 월급 만들기</p>
-        <p class="footer-owner">운영자: <strong>승박</strong></p>
-      </div>
-      <div class="footer-col">
-        <p class="footer-col-title">바로가기</p>
-        <ul class="footer-nav">
-          <li><a href="/">홈</a></li>
-          <li><a href="/tools/">도구</a></li>
-          <li><a href="/blog/">블로그</a></li>
-          <li><a href="/about.html">소개</a></li>
-          <li><a href="/contact.html">문의</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <p class="footer-col-title">정책</p>
-        <ul class="footer-nav">
-          <li><a href="/privacy.html">개인정보처리방침</a></li>
-          <li><a href="/disclaimer.html">면책조항</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <p class="footer-col-title">함께해요</p>
-        <ul class="footer-nav">
-          <li><a href="mailto:id123id6@gmail.com">이메일</a></li>
-          <li class="footer-coming-soon">유튜브 (준비 중)</li>
-        </ul>
+  <footer class="theme-footer">
+  <div class="theme-footer-inner">
+    <div class="theme-footer-brand">
+      <div class="theme-footer-logo">seungbak.com</div>
+      <div class="theme-footer-desc">
+        부동산 정보를 한 곳에서, 7개 무료 도구
       </div>
     </div>
-    <div class="container footer-bottom">
-      <p class="footer-copy">&copy; <span id="current-year"></span> 승박. All rights reserved.</p>
+    <div class="theme-footer-links">
+      <div class="theme-footer-col">
+        <div class="theme-footer-title">도구</div>
+        <a href="/tools/realestate-map/" class="theme-link">실거래가 지도</a>
+        <a href="/tools/subscription-calculator/" class="theme-link">청약 가점 계산기</a>
+        <a href="/tools/income-calculator/" class="theme-link">월급 계산기</a>
+      </div>
+      <div class="theme-footer-col">
+        <div class="theme-footer-title">정보</div>
+        <a href="/blog/" class="theme-link">블로그</a>
+        <a href="/about.html" class="theme-link">소개</a>
+        <a href="/contact.html" class="theme-link">문의</a>
+      </div>
+      <div class="theme-footer-col">
+        <div class="theme-footer-title">정책</div>
+        <a href="/privacy.html" class="theme-link">개인정보처리방침</a>
+        <a href="/terms.html" class="theme-link">이용약관</a>
+        <a href="/disclaimer.html" class="theme-link">면책조항</a>
+      </div>
     </div>
-  </footer>
+    <div class="theme-footer-bottom">
+      <div>© 2026 seungbak.com. All rights reserved.</div>
+      <div>
+        <a href="https://www.instagram.com/seungbak.tools/" target="_blank" rel="noopener" class="theme-link">@seungbak.tools</a>
+        ·
+        <a href="mailto:id123id6@gmail.com" class="theme-link">id123id6@gmail.com</a>
+      </div>
+    </div>
+  </div>
+</footer>
 
   <script>
     (function () {

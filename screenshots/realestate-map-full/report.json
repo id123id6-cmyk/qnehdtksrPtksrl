@@ -1,0 +1,53 @@
+{
+  "scriptList": [
+    "config.js",
+    "pyeong.js",
+    "area-types.js",
+    "districts.js",
+    "region.js",
+    "marker.js",
+    "chart.js",
+    "data.js",
+    "filter.js",
+    "apt-meta.js",
+    "infra-icons.js",
+    "subway-lines.js",
+    "radius-tool.js",
+    "sidebar.js",
+    "map-toolbar.js",
+    "map-welcome.js",
+    "map.js"
+  ],
+  "scriptCounts": {
+    "toolbar": 1,
+    "welcome": 1
+  },
+  "popupVisible": true,
+  "sidoOpen": true,
+  "sidoCount": 17,
+  "guCount": 16,
+  "afterBusan": {
+    "label": "부산광역시",
+    "center": {
+      "lat": 35.17764251667898,
+      "lng": 129.0721608953883
+    },
+    "lat": 35.17764251667898
+  },
+  "afterHaeundae": {
+    "code": "26350",
+    "gu": "해운대구",
+    "center": {
+      "lat": 35.16221099593953,
+      "lng": 129.16306863833506
+    },
+    "count": "0개 단지"
+  },
+  "afterSongpaPopup": {
+    "popupHidden": true,
+    "code": "11710"
+  },
+  "consoleErrors": [],
+  "consoleWarnings": 1,
+  "headOk": true
+}

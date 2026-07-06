@@ -40,13 +40,13 @@
 }
 
 .mode-toggle button.active {
-  border-color: var(--color-primary, #2563eb);
-  background: #eff6ff;
-  color: var(--color-primary, #2563eb);
+  border-color: var(--color-dark);
+  background: #FAF5E8;
+  color: var(--color-dark);
 }
 
 .mode-toggle button:focus-visible {
-  outline: 3px solid #93c5fd;
+  outline: 3px solid rgba(26,26,26,0.2);
   outline-offset: 2px;
 }
 
@@ -54,7 +54,7 @@
   margin-top: 8px;
   font-size: 14px;
   font-weight: 600;
-  color: var(--color-primary, #2563eb);
+  color: var(--color-dark);
 }
 
 .field-detail {
@@ -78,7 +78,7 @@
 .checkbox-row input[type="checkbox"] {
   width: 20px;
   height: 20px;
-  accent-color: var(--color-primary, #2563eb);
+  accent-color: var(--color-dark);
   cursor: pointer;
 }
 
@@ -114,7 +114,7 @@
 .total-score-wrap {
   text-align: center;
   padding: 28px 20px;
-  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  background: linear-gradient(135deg, #FAF5E8 0%, #FAF5E8 100%);
   border-radius: 16px;
   margin-bottom: 24px;
 }
@@ -128,7 +128,7 @@
 .total-score-value {
   font-size: 56px;
   font-weight: 800;
-  color: var(--color-primary, #2563eb);
+  color: var(--color-dark);
   line-height: 1.1;
   font-variant-numeric: tabular-nums;
 }
@@ -169,7 +169,7 @@
 .score-bar-fill {
   height: 100%;
   border-radius: 999px;
-  background: linear-gradient(90deg, #2563eb, #3b82f6);
+  background: linear-gradient(90deg, #1A1A1A, #1A1A1A);
   transition: width 0.35s ease;
   min-width: 0;
 }
@@ -179,7 +179,7 @@
 }
 
 .score-bar-fill--sub {
-  background: linear-gradient(90deg, #7c3aed, #8b5cf6);
+  background: linear-gradient(90deg, #1A1A1A, #666666);
 }
 
 .score-bar-points {
@@ -208,8 +208,8 @@
 }
 
 .analysis-box--mid-high {
-  background: #eff6ff;
-  border-color: #bfdbfe;
+  background: #FAF5E8;
+  border-color: #E5DFD0;
 }
 
 .analysis-box--high {
@@ -242,7 +242,7 @@
 .tip-box h3 {
   font-size: 16px;
   margin-bottom: 10px;
-  color: #1e40af;
+  color: #1A1A1A;
 }
 
 .tip-box ul {
@@ -269,7 +269,7 @@
   gap: 12px;
   padding: 14px 18px;
   border-radius: 12px;
-  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  background: linear-gradient(135deg, #1A1A1A, #333333);
   color: #fff;
   text-decoration: none;
   font-weight: 600;
@@ -279,23 +279,23 @@
 
 .tool-cta-link:hover {
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
+  box-shadow: 0 6px 20px rgba(26,26,26,0.12);
   color: #fff;
 }
 
 .tool-cta-link:focus-visible {
-  outline: 3px solid #93c5fd;
+  outline: 3px solid rgba(26,26,26,0.2);
   outline-offset: 2px;
 }
 
 .tool-cta-link--outline {
   background: #fff;
-  color: var(--color-primary, #2563eb);
-  border: 2px solid #bfdbfe;
+  color: var(--color-dark);
+  border: 2px solid #E5DFD0;
 }
 
 .tool-cta-link--outline:hover {
-  background: #eff6ff;
+  background: #FAF5E8;
   box-shadow: none;
 }
 

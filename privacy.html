@@ -34,107 +34,36 @@
   <link rel="icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/global-theme.css">
 </head>
-<body>
-  <style>
-    .privacy-hero {
-      background: linear-gradient(160deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
-      color: #fff;
-      padding: 48px 0 40px;
-      text-align: center;
-    }
-    .privacy-hero h1 { margin: 0 0 16px; font-size: clamp(1.6rem, 4vw, 2rem); color: #fff; }
-    .privacy-dates {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-      font-size: 0.9rem;
-      color: #c4b5fd;
-    }
-    .privacy-dates span {
-      padding: 6px 14px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.15);
-    }
-    .legal-content .legal-card h2 {
-      margin-top: 32px;
-      padding-top: 8px;
-      border-top: 1px solid #e2e8f0;
-      font-size: 1.2rem;
-      color: #1e293b;
-    }
-    .legal-content .legal-card h2:first-of-type { border-top: none; margin-top: 0; }
-    .legal-content .legal-card h3 {
-      font-size: 1.05rem;
-      color: #4338ca;
-      margin: 20px 0 10px;
-    }
-    .privacy-box {
-      margin: 16px 0;
-      padding: 18px 20px;
-      border-radius: 12px;
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      line-height: 1.6;
-    }
-    .privacy-box strong { color: #0f172a; }
-    .privacy-table-wrap { overflow-x: auto; margin: 16px 0; }
-    .privacy-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.92rem;
-    }
-    .privacy-table th,
-    .privacy-table td {
-      padding: 12px 14px;
-      border: 1px solid #e2e8f0;
-      text-align: left;
-      vertical-align: top;
-      line-height: 1.5;
-    }
-    .privacy-table th { background: #f1f5f9; font-weight: 700; }
-    .legal-content a { color: #2563eb; word-break: break-all; }
-    .legal-intro { line-height: 1.7; color: #334155; }
-    .legal-agency-list { list-style: none; padding: 0; margin: 12px 0; }
-    .legal-agency-list li {
-      padding: 12px 14px;
-      margin-bottom: 8px;
-      border-radius: 10px;
-      background: #faf5ff;
-      border-left: 4px solid #A855F7;
-      line-height: 1.55;
-    }
-  </style>
-  <header class="site-header">
-    <div class="container header-inner">
-      <div class="logo"><a href="/">승박</a></div>
-      <nav class="main-nav">
-        <a href="/">홈</a>
-        <a href="/tools/">도구</a>
-        <a href="/blog/">블로그</a>
-        <a href="/about.html">소개</a>
-        <a href="/contact.html">문의</a>
-      </nav>
+<body class="theme-policy-page">
+<nav class="theme-nav">
+  <div class="theme-nav-inner">
+    <a href="/" class="theme-nav-logo">seungbak.com</a>
+    <div class="theme-nav-menu">
+      <a href="/tools/realestate-map/" class="theme-nav-item">지도</a>
+      <a href="/#tools" class="theme-nav-item">도구</a>
+      <a href="/blog/" class="theme-nav-item">블로그</a>
+      <a href="/about.html" class="theme-nav-item">소개</a>
     </div>
-  </header>
+  </div>
+</nav>
 
   <main>
-    <section class="privacy-hero" aria-labelledby="privacy-title">
-      <div class="container">
-        <h1 id="privacy-title">개인정보 처리방침</h1>
-        <div class="privacy-dates">
+    <section class="theme-page-hero" aria-labelledby="privacy-title">
+      <div class="theme-page-container">
+        <h1 class="theme-h1" id="privacy-title">개인정보 처리방침</h1>
+        <div class="theme-date-badges">
           <span>최종 개정일: 2026-07-02</span>
           <span>시행일: 2026-07-02</span>
         </div>
       </div>
     </section>
 
-    <section class="section">
-      <div class="container legal-content">
-        <article class="card legal-card">
-          <p class="legal-intro">
+    <section class="theme-section theme-section--white">
+      <div class="theme-page-container theme-prose">
+        <article class="theme-callout theme-prose">
+          <p class="theme-body">
             <strong>seungbak.com</strong>(이하 "본 사이트")은 이용자의 개인정보를 소중히 여기며,
             「개인정보 보호법」 등 관련 법령을 준수합니다.
             본 개인정보 처리방침은 본 사이트가 어떤 정보를 수집·이용·보관·파기하는지 안내합니다.
@@ -142,8 +71,8 @@
             방침이 변경되는 경우 본 페이지를 통해 사전에 공지하며, 변경 내용과 시행일을 명시합니다.
           </p>
 
-          <h2>제1조 수집하는 개인정보 항목</h2>
-          <h3>자동 수집 정보</h3>
+          <h2 class="theme-h2">제1조 수집하는 개인정보 항목</h2>
+          <h3 class="theme-h3">자동 수집 정보</h3>
           <p>본 사이트 방문 시 아래 정보가 자동으로 수집될 수 있습니다.</p>
           <ul>
             <li>IP 주소, 쿠키, 접속 시간, 브라우저·운영체제 정보</li>
@@ -151,8 +80,8 @@
             <li><strong>Google AdSense</strong> 광고 서비스 관련 정보(광고 노출·클릭, 관심 기반 광고 쿠키 등)</li>
             <li><strong>Microsoft Clarity</strong> 사용자 행동 분석 정보(클릭·스크롤 등 비식별 행동 데이터)</li>
           </ul>
-          <h3>이용자 제공 정보</h3>
-          <div class="privacy-box">
+          <h3 class="theme-h3">이용자 제공 정보</h3>
+          <div class="theme-callout">
             <p>
               <strong>문의 시:</strong> 이메일로 문의하실 경우, 발신 이메일 주소 및 문의 내용이 수집됩니다.<br>
               <strong>계산기 입력값:</strong> 연소득·대출 조건 등은 <strong>브라우저에서만 처리</strong>되며 서버에 저장하지 않습니다.<br>
@@ -160,7 +89,7 @@
             </p>
           </div>
 
-          <h2>제2조 개인정보 수집 및 이용 목적</h2>
+          <h2 class="theme-h2">제2조 개인정보 수집 및 이용 목적</h2>
           <p>수집된 정보는 다음 목적에 한하여 이용합니다.</p>
           <ul>
             <li>부동산 계산기·블로그 등 <strong>서비스 제공 및 품질 개선</strong></li>
@@ -170,7 +99,7 @@
             <li>부정 이용 방지 및 사이트 보안 유지</li>
           </ul>
 
-          <h2>제3조 개인정보 보유 및 이용 기간</h2>
+          <h2 class="theme-h2">제3조 개인정보 보유 및 이용 기간</h2>
           <ul>
             <li><strong>문의 이메일:</strong> 답변 완료 후 <strong>1년</strong> 보관 후 파기 (분쟁 대비)</li>
             <li><strong>접속 로그·분석 데이터:</strong> Google Analytics 정책에 따라 최대 <strong>26개월</strong> 보관</li>
@@ -179,7 +108,7 @@
           </ul>
           <p>보유 기간이 경과하거나 처리 목적이 달성된 경우 지체 없이 파기합니다. 전자적 파일은 복구 불가능한 방법으로 삭제합니다.</p>
 
-          <h2>제4조 개인정보 제3자 제공</h2>
+          <h2 class="theme-h2">제4조 개인정보 제3자 제공</h2>
           <p>본 사이트는 원칙적으로 이용자의 개인정보를 <strong>제3자에게 제공하지 않습니다.</strong> 다만 다음의 경우는 예외입니다.</p>
           <ul>
             <li>① 이용자가 사전에 <strong>동의</strong>한 경우</li>
@@ -188,10 +117,10 @@
             <li>④ 긴급한 생명·신체·재산 보호를 위해 필요한 경우(법령 허용 범위)</li>
           </ul>
 
-          <h2>제5조 개인정보 처리 위탁</h2>
+          <h2 class="theme-h2">제5조 개인정보 처리 위탁</h2>
           <p>서비스 운영을 위해 아래 업체에 개인정보 처리 업무를 위탁할 수 있습니다.</p>
-          <div class="privacy-table-wrap">
-            <table class="privacy-table">
+          <div class="theme-table-wrap">
+            <table class="theme-table">
               <thead>
                 <tr>
                   <th scope="col">수탁 업체</th>
@@ -222,7 +151,7 @@
             </table>
           </div>
 
-          <h2>제6조 쿠키(Cookie) 사용</h2>
+          <h2 class="theme-h2">제6조 쿠키(Cookie) 사용</h2>
           <p>
             쿠키는 웹사이트가 이용자 브라우저에 저장하는 작은 텍스트 파일입니다.
             본 사이트는 이용자 편의 제공, 방문 통계 수집, 광고 개인화를 위해 쿠키를 사용할 수 있습니다.
@@ -231,7 +160,7 @@
             <a href="https://www.aboutads.info/" target="_blank" rel="noopener noreferrer">www.aboutads.info</a>에서
             제3자 맞춤형 광고를 일괄 거부할 수도 있습니다.
           </p>
-          <h3>쿠키 거부 방법</h3>
+          <h3 class="theme-h3">쿠키 거부 방법</h3>
           <p>브라우저 설정에서 쿠키 저장을 거부·삭제할 수 있습니다. 쿠키를 거부할 경우 일부 서비스 이용이 제한될 수 있습니다.</p>
           <ul>
             <li><strong>Chrome:</strong> 설정 → 개인정보 및 보안 → 쿠키 및 기타 사이트 데이터</li>
@@ -239,7 +168,7 @@
             <li><strong>Edge:</strong> 설정 → 쿠키 및 사이트 권한</li>
           </ul>
 
-          <h2>제7조 이용자의 권리</h2>
+          <h2 class="theme-h2">제7조 이용자의 권리</h2>
           <p>이용자는 개인정보 보호법에 따라 다음 권리를 행사할 수 있습니다.</p>
           <ul>
             <li>개인정보 <strong>열람</strong> 요구</li>
@@ -253,7 +182,7 @@
             EU·영국 등 해외 이용자는 GDPR에 따른 권리(이동권·처리 제한 등)도 동일 이메일로 요청 가능합니다.
           </p>
 
-          <h2>제8조 개인정보 보호 조치</h2>
+          <h2 class="theme-h2">제8조 개인정보 보호 조치</h2>
           <p>본 사이트는 개인정보 보호를 위해 다음 조치를 시행합니다.</p>
           <ul>
             <li><strong>관리적 조치:</strong> 개인정보 접근 권한 최소화, 정기적 점검</li>
@@ -263,8 +192,8 @@
           <p>개인정보 유출 등 사고 발생 시 관련 법령에 따라 이용자에게 지체 없이 통지하고 필요한 조치를 취합니다.
             이용자는 의심스러운 접근이나 오류를 발견하시면 즉시 운영자에게 알려 주시기 바랍니다.</p>
 
-          <h2>제9조 개인정보 보호 책임자</h2>
-          <div class="privacy-box">
+          <h2 class="theme-h2">제9조 개인정보 보호 책임자</h2>
+          <div class="theme-callout">
             <p>
               <strong>개인정보 보호 책임자:</strong> 승박<br>
               <strong>연락처:</strong> <a href="mailto:id123id6@gmail.com">id123id6@gmail.com</a><br>
@@ -272,16 +201,16 @@
             </p>
           </div>
 
-          <h2>제10조 개인정보 처리방침 변경</h2>
+          <h2 class="theme-h2">제10조 개인정보 처리방침 변경</h2>
           <p>
             본 방침은 법령·서비스·광고 정책 변경에 따라 수정될 수 있습니다.
             변경 시 본 페이지 상단에 <strong>최소 7일 전</strong> 공지하며, 중요한 변경은 <strong>30일 전</strong> 사전 안내합니다.
             현재 시행일: <strong>2026-07-02</strong>
           </p>
 
-          <h2>관련 기관 안내</h2>
+          <h2 class="theme-h2">관련 기관 안내</h2>
           <p>개인정보 침해 신고·상담이 필요하신 경우 아래 기관에 문의하실 수 있습니다.</p>
-          <ul class="legal-agency-list">
+          <ul class="theme-agency-list">
             <li><strong>개인정보보호위원회</strong> — <a href="https://www.privacy.go.kr" target="_blank" rel="noopener noreferrer">privacy.go.kr</a> / 국번없이 <strong>182</strong></li>
             <li><strong>개인정보 침해신고센터</strong> — <a href="https://privacy.kisa.or.kr" target="_blank" rel="noopener noreferrer">privacy.kisa.or.kr</a> / 국번없이 <strong>118</strong></li>
             <li><strong>대검찰청 사이버수사과</strong> — <a href="https://www.spo.go.kr" target="_blank" rel="noopener noreferrer">spo.go.kr</a> / 국번없이 <strong>1301</strong></li>
@@ -296,42 +225,44 @@
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div class="footer-col footer-brand">
-        <p class="footer-logo">승박</p>
-        <p class="footer-tagline">평범한 직장인의 두 번째 월급 만들기</p>
-        <p class="footer-owner">운영자: <strong>승박</strong></p>
-      </div>
-      <div class="footer-col">
-        <p class="footer-col-title">바로가기</p>
-        <ul class="footer-nav">
-          <li><a href="/">홈</a></li>
-          <li><a href="/tools/">도구</a></li>
-          <li><a href="/blog/">블로그</a></li>
-          <li><a href="/about.html">소개</a></li>
-          <li><a href="/contact.html">문의</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <p class="footer-col-title">정책</p>
-        <ul class="footer-nav">
-          <li><a href="/privacy.html">개인정보처리방침</a></li>
-          <li><a href="/disclaimer.html">면책조항</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <p class="footer-col-title">함께해요</p>
-        <ul class="footer-nav">
-          <li><a href="mailto:id123id6@gmail.com">이메일</a></li>
-          <li class="footer-coming-soon">유튜브 (준비 중)</li>
-        </ul>
+  <footer class="theme-footer">
+  <div class="theme-footer-inner">
+    <div class="theme-footer-brand">
+      <div class="theme-footer-logo">seungbak.com</div>
+      <div class="theme-footer-desc">
+        부동산 정보를 한 곳에서, 7개 무료 도구
       </div>
     </div>
-    <div class="container footer-bottom">
-      <p class="footer-copy">&copy; <span id="current-year"></span> 승박. All rights reserved.</p>
+    <div class="theme-footer-links">
+      <div class="theme-footer-col">
+        <div class="theme-footer-title">도구</div>
+        <a href="/tools/realestate-map/" class="theme-link">실거래가 지도</a>
+        <a href="/tools/subscription-calculator/" class="theme-link">청약 가점 계산기</a>
+        <a href="/tools/income-calculator/" class="theme-link">월급 계산기</a>
+      </div>
+      <div class="theme-footer-col">
+        <div class="theme-footer-title">정보</div>
+        <a href="/blog/" class="theme-link">블로그</a>
+        <a href="/about.html" class="theme-link">소개</a>
+        <a href="/contact.html" class="theme-link">문의</a>
+      </div>
+      <div class="theme-footer-col">
+        <div class="theme-footer-title">정책</div>
+        <a href="/privacy.html" class="theme-link">개인정보처리방침</a>
+        <a href="/terms.html" class="theme-link">이용약관</a>
+        <a href="/disclaimer.html" class="theme-link">면책조항</a>
+      </div>
     </div>
-  </footer>
+    <div class="theme-footer-bottom">
+      <div>© 2026 seungbak.com. All rights reserved.</div>
+      <div>
+        <a href="https://www.instagram.com/seungbak.tools/" target="_blank" rel="noopener" class="theme-link">@seungbak.tools</a>
+        ·
+        <a href="mailto:id123id6@gmail.com" class="theme-link">id123id6@gmail.com</a>
+      </div>
+    </div>
+  </div>
+</footer>
 
   <script>
     (function () {

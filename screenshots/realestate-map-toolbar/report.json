@@ -1,0 +1,12 @@
+{
+  "head": {
+    "ga": true,
+    "clarity": true,
+    "adsense": true
+  },
+  "consoleErrors": [],
+  "screenshots": [
+    "desktop-1440.png",
+    "mobile-375.png"
+  ]
+}

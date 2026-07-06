@@ -1,0 +1,18 @@
+{
+  "headOk": true,
+  "firstVisit": {
+    "popupVisible": true,
+    "toolbarVisible": true,
+    "toolbarZ": "1000",
+    "popupZ": "900"
+  },
+  "revisit": {
+    "popupHidden": true,
+    "toolbarVisible": true
+  },
+  "closed": {
+    "popupHidden": true,
+    "visited": "true"
+  },
+  "consoleErrors": []
+}

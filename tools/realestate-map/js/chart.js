@@ -239,20 +239,22 @@
               year: "yyyy",
             },
           },
-          grid: { color: "rgba(0,0,0,0.06)" },
+          grid: { color: "#E5DFD0" },
           ticks: {
             maxRotation: 0,
             autoSkip: true,
             maxTicksLimit: period === "1y" ? 12 : 10,
             font: { size: 11 },
+            color: "#666666",
           },
         },
         y: {
           beginAtZero: false,
-          title: { display: true, text: "거래가 (만원)", font: { size: 11 } },
-          grid: { color: "rgba(0,0,0,0.06)" },
+          title: { display: true, text: "거래가 (만원)", font: { size: 11 }, color: "#666666" },
+          grid: { color: "#E5DFD0" },
           ticks: {
             font: { size: 11 },
+            color: "#666666",
             callback(value) {
               return formatAmount(value);
             },
@@ -306,10 +308,13 @@
           {
             label: "월평균 거래가",
             data: monthlyData,
-            borderColor: "#2563eb",
-            backgroundColor: "rgba(37, 99, 235, 0.08)",
+            borderColor: "#1A1A1A",
+            backgroundColor: "rgba(26, 26, 26, 0.06)",
             pointRadius,
             pointHoverRadius: pointRadius + 2,
+            pointBackgroundColor: "#1A1A1A",
+            pointBorderColor: "#FFFFFF",
+            pointBorderWidth: 2,
             borderWidth: 2,
             tension: 0.25,
             fill: true,

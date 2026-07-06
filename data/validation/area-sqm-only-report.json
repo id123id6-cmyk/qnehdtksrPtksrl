@@ -1,0 +1,358 @@
+{
+  "grepHits": [],
+  "grepPass": true,
+  "gonggeupHits": [],
+  "gonggeupPass": true,
+  "unit": {
+    "card": "전용 59.98㎡",
+    "table": "59.98㎡",
+    "tab": "60㎡",
+    "pass": true
+  },
+  "complexes": [
+    {
+      "key": "geumho",
+      "code": "41220",
+      "aptId": "6399a9e3-ffb8-4e44-9711-af6bfd1db91a",
+      "label": "평택 금호어울림",
+      "aptName": "평택 금호어울림",
+      "forbiddenPyeong": [],
+      "hasGonggeup": false,
+      "tabs": [
+        "전체",
+        "60㎡"
+      ],
+      "summary": "전용 59.98㎡",
+      "tableHeaders": [
+        "거래일",
+        "유형",
+        "면적",
+        "층",
+        "금액"
+      ],
+      "tableCells": [
+        "59.98㎡",
+        "59.98㎡",
+        "59.92㎡"
+      ],
+      "markerLabels": [],
+      "hasAreaHeader": true,
+      "hasPyeongHeader": false,
+      "pass": true
+    },
+    {
+      "key": "eunma",
+      "code": "11680",
+      "aptId": "948c0f63-4f00-46a4-8632-ec8c465b3d1c",
+      "label": "서울 강남 은마아파트",
+      "aptName": "서울 강남 은마아파트",
+      "forbiddenPyeong": [],
+      "hasGonggeup": false,
+      "tabs": [
+        "전체",
+        "76.8㎡",
+        "84.4㎡"
+      ],
+      "summary": "전용 76.79㎡",
+      "tableHeaders": [
+        "거래일",
+        "유형",
+        "면적",
+        "층",
+        "금액"
+      ],
+      "tableCells": [
+        "76.79㎡",
+        "84.43㎡",
+        "84.43㎡"
+      ],
+      "markerLabels": [],
+      "hasAreaHeader": true,
+      "hasPyeongHeader": false,
+      "pass": true
+    },
+    {
+      "key": "helio",
+      "code": "11710",
+      "aptId": "582cc460-2c72-4e3e-a468-d4ce7f3189f1",
+      "label": "서울 송파 헬리오시티",
+      "aptName": "서울 송파 헬리오시티",
+      "forbiddenPyeong": [],
+      "hasGonggeup": false,
+      "tabs": [
+        "전체",
+        "39.1㎡",
+        "39.2㎡",
+        "39.9㎡",
+        "49.2㎡",
+        "49.3㎡",
+        "60㎡",
+        "84.9㎡",
+        "85㎡",
+        "99.6㎡",
+        "110.4㎡",
+        "110.7㎡",
+        "130.1㎡"
+      ],
+      "summary": "전용 84.98㎡",
+      "tableHeaders": [
+        "거래일",
+        "유형",
+        "면적",
+        "층",
+        "금액"
+      ],
+      "tableCells": [
+        "84.98㎡",
+        "84.99㎡",
+        "99.6㎡"
+      ],
+      "markerLabels": [],
+      "hasAreaHeader": true,
+      "hasPyeongHeader": false,
+      "pass": true
+    },
+    {
+      "key": "bundang",
+      "code": "41135",
+      "aptId": "45031372-e3c2-4639-aa6a-857c16201f3e",
+      "label": "경기 분당 시범단지",
+      "aptName": "경기 분당 시범단지",
+      "forbiddenPyeong": [],
+      "hasGonggeup": false,
+      "tabs": [
+        "전체",
+        "49.4㎡",
+        "85㎡",
+        "102㎡",
+        "135㎡"
+      ],
+      "summary": "전용 49.35㎡",
+      "tableHeaders": [
+        "거래일",
+        "유형",
+        "면적",
+        "층",
+        "금액"
+      ],
+      "tableCells": [
+        "134.95㎡",
+        "49.35㎡",
+        "101.99㎡"
+      ],
+      "markerLabels": [],
+      "hasAreaHeader": true,
+      "hasPyeongHeader": false,
+      "pass": true
+    },
+    {
+      "key": "jamsil",
+      "code": "11710",
+      "aptId": "3abb6516-adab-4d86-aa85-fac0bdd2a260",
+      "label": "서울 송파 잠실엘스",
+      "aptName": "서울 송파 잠실엘스",
+      "forbiddenPyeong": [],
+      "hasGonggeup": false,
+      "tabs": [
+        "전체",
+        "60㎡",
+        "84.8㎡",
+        "84.9㎡",
+        "85㎡",
+        "119.9㎡"
+      ],
+      "summary": "전용 84.8㎡",
+      "tableHeaders": [
+        "거래일",
+        "유형",
+        "면적",
+        "층",
+        "금액"
+      ],
+      "tableCells": [
+        "84.8㎡",
+        "84.8㎡",
+        "59.96㎡"
+      ],
+      "markerLabels": [],
+      "hasAreaHeader": true,
+      "hasPyeongHeader": false,
+      "pass": true
+    },
+    {
+      "key": "raemian",
+      "code": "11680",
+      "aptId": "676e5be3-a7af-48ca-8429-896ed5a993fe",
+      "label": "서울 강남 래미안대치팰리스",
+      "aptName": "서울 강남 래미안대치팰리스",
+      "forbiddenPyeong": [],
+      "hasGonggeup": false,
+      "tabs": [
+        "전체",
+        "85㎡",
+        "91.9㎡",
+        "93.2㎡",
+        "94.5㎡",
+        "114.1㎡",
+        "114.2㎡",
+        "151.3㎡"
+      ],
+      "summary": "전용 94.49㎡",
+      "tableHeaders": [
+        "거래일",
+        "유형",
+        "면적",
+        "층",
+        "금액"
+      ],
+      "tableCells": [
+        "84.97㎡",
+        "151.31㎡",
+        "114.14㎡"
+      ],
+      "markerLabels": [],
+      "hasAreaHeader": true,
+      "hasPyeongHeader": false,
+      "pass": true
+    },
+    {
+      "key": "hansol",
+      "code": "41135",
+      "aptId": "45031372-e3c2-4639-aa6a-857c16201f3e",
+      "label": "경기 분당 한솔마을",
+      "aptName": "경기 분당 한솔마을",
+      "forbiddenPyeong": [],
+      "hasGonggeup": false,
+      "tabs": [
+        "전체",
+        "49.4㎡",
+        "85㎡",
+        "102㎡",
+        "135㎡"
+      ],
+      "summary": "전용 49.35㎡",
+      "tableHeaders": [
+        "거래일",
+        "유형",
+        "면적",
+        "층",
+        "금액"
+      ],
+      "tableCells": [
+        "134.95㎡",
+        "49.35㎡",
+        "101.99㎡"
+      ],
+      "markerLabels": [],
+      "hasAreaHeader": true,
+      "hasPyeongHeader": false,
+      "pass": true
+    },
+    {
+      "key": "pyeongtaek2",
+      "code": "41220",
+      "namePattern": "금호",
+      "label": "평택 금호(추가)",
+      "aptId": "8b4e273c-d60e-4409-8cff-febea85265c2",
+      "aptName": "평택용이금호어울림1단지",
+      "forbiddenPyeong": [],
+      "hasGonggeup": false,
+      "tabs": [
+        "전체",
+        "67.2㎡",
+        "67.6㎡",
+        "85㎡"
+      ],
+      "summary": "전용 85㎡",
+      "tableHeaders": [
+        "거래일",
+        "유형",
+        "면적",
+        "층",
+        "금액"
+      ],
+      "tableCells": [
+        "84.98㎡",
+        "85㎡",
+        "67.19㎡"
+      ],
+      "markerLabels": [],
+      "hasAreaHeader": true,
+      "hasPyeongHeader": false,
+      "pass": true
+    },
+    {
+      "key": "gangnam",
+      "code": "11680",
+      "namePattern": "개포",
+      "label": "서울 강남 개포",
+      "aptId": "8196e19c-8167-464a-874b-1cd9597d1648",
+      "aptName": "개포주공7단지",
+      "forbiddenPyeong": [],
+      "hasGonggeup": false,
+      "tabs": [
+        "전체",
+        "53.5㎡",
+        "60.8㎡",
+        "73.3㎡",
+        "83.7㎡"
+      ],
+      "summary": "전용 73.26㎡",
+      "tableHeaders": [
+        "거래일",
+        "유형",
+        "면적",
+        "층",
+        "금액"
+      ],
+      "tableCells": [
+        "60.76㎡",
+        "73.26㎡",
+        "53.46㎡"
+      ],
+      "markerLabels": [],
+      "hasAreaHeader": true,
+      "hasPyeongHeader": false,
+      "pass": true
+    },
+    {
+      "key": "songpa",
+      "code": "11710",
+      "namePattern": "리센츠",
+      "label": "서울 송파 리센츠",
+      "aptId": "0a26ed9c-89f7-4dbc-992e-c329453d9cd9",
+      "aptName": "리센츠",
+      "forbiddenPyeong": [],
+      "hasGonggeup": false,
+      "tabs": [
+        "전체",
+        "27.7㎡",
+        "60㎡",
+        "85㎡",
+        "98.6㎡",
+        "124.2㎡"
+      ],
+      "summary": "전용 84.99㎡",
+      "tableHeaders": [
+        "거래일",
+        "유형",
+        "면적",
+        "층",
+        "금액"
+      ],
+      "tableCells": [
+        "98.55㎡",
+        "84.99㎡",
+        "84.99㎡"
+      ],
+      "markerLabels": [],
+      "hasAreaHeader": true,
+      "hasPyeongHeader": false,
+      "pass": true
+    }
+  ],
+  "complexesPass": true,
+  "errors": [],
+  "screenshots": "C:\\Users\\2606\\Desktop\\커서\\260608 부동산 계산기\\screenshots\\area-sqm-only",
+  "pass": true
+}

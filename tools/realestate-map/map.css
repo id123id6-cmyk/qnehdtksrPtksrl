@@ -2,7 +2,7 @@
 
 /* === 풀스크린 지도 레이아웃 === */
 :root {
-  --map-header-h: 56px;
+  --map-header-h: 64px;
   --map-sidebar-w: 360px;
 }
 
@@ -21,17 +21,10 @@ body.map-page {
   overflow: hidden;
 }
 
-body.map-page .site-header {
+body.map-page .hr-header {
   flex-shrink: 0;
   position: relative;
   z-index: 200;
-}
-
-body.map-page .site-header .header-inner {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  min-height: var(--map-header-h);
-  box-sizing: border-box;
 }
 
 body.map-page .map-page-shell {
@@ -115,6 +108,20 @@ body.map-page .map-panel {
   height: 100%;
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.map-canvas-wrap {
+  flex: 1 1 auto;
+  position: relative;
+  min-height: 0;
+  overflow: hidden;
+}
+
+body.map-page .map-canvas-wrap #map {
+  position: absolute;
+  inset: 0;
 }
 
 .map-panel {
@@ -214,9 +221,9 @@ body.map-page .sidebar-panel {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: #2563eb;
-  color: #fff;
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+  background: #1a1a1a;
+  color: #f5efe0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   align-items: center;
   justify-content: center;
   font-size: 20px;
@@ -287,17 +294,26 @@ body.map-page .sidebar-panel {
   display: none;
 }
 
-/* Empty State — 지역 선택 전 안내 */
+/* Empty State — 지역 선택 전 안내 (필터바 아래) */
 .map-empty-state {
   position: absolute;
   inset: 0;
-  z-index: 8;
+  z-index: 900;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  padding: 88px 16px 24px;
+  padding: 80px 16px 24px;
   pointer-events: none;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.35s ease;
+}
+
+.map-empty-state-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 890;
+  background: rgba(0, 0, 0, 0.3);
+  pointer-events: auto;
+  cursor: pointer;
 }
 
 .map-empty-state[hidden] {
@@ -309,16 +325,109 @@ body.map-page .sidebar-panel {
   pointer-events: none;
 }
 
+.map-empty-state.is-hiding .map-empty-state-backdrop {
+  pointer-events: none;
+}
+
 .map-empty-state-card {
+  position: relative;
+  z-index: 900;
   pointer-events: auto;
-  width: min(420px, 100%);
-  padding: 28px 24px 22px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.94);
-  border: 1px solid rgba(226, 232, 240, 0.95);
-  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.12);
-  backdrop-filter: blur(8px);
+  width: 420px;
+  max-width: calc(100% - 32px);
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 24px 22px 20px;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid #e5dfd0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
   text-align: center;
+}
+
+.map-help-steps {
+  margin: 0 0 16px;
+  padding: 0 0 0 1.1rem;
+  text-align: left;
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: #374151;
+}
+
+.map-help-steps li {
+  margin-bottom: 6px;
+}
+
+.map-help-steps li:last-child {
+  margin-bottom: 0;
+}
+
+.map-help-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid #e5dfd0;
+}
+
+.map-help-dismiss-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: #666666;
+  cursor: pointer;
+  user-select: none;
+}
+
+.map-help-dismiss-label input {
+  width: 16px;
+  height: 16px;
+  accent-color: #1a1a1a;
+}
+
+.map-help-close-btn {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 8px;
+  background: #1a1a1a;
+  color: #f5efe0;
+  font-size: 0.88rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.map-help-close-btn:hover {
+  background: #333333;
+}
+
+.map-empty-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 36px;
+  height: 36px;
+  border: 1px solid #e5dfd0;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #1a1a1a;
+  font-size: 22px;
+  line-height: 1;
+  font-weight: 400;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: background 0.15s ease;
+}
+
+.map-empty-close:hover {
+  background: #f5efe0;
 }
 
 .map-empty-state-icon {
@@ -331,7 +440,7 @@ body.map-page .sidebar-panel {
   margin: 0 0 16px;
   font-size: 1.25rem;
   font-weight: 800;
-  color: #0f172a;
+  color: #1a1a1a;
   letter-spacing: -0.03em;
 }
 
@@ -344,16 +453,16 @@ body.map-page .sidebar-panel {
 
 .map-empty-stat {
   padding: 10px 6px;
-  border-radius: 12px;
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #faf5e8;
+  border: 1px solid #e5dfd0;
 }
 
 .map-empty-stat strong {
   display: block;
   font-size: 1rem;
-  font-weight: 800;
-  color: #2563eb;
+  font-weight: 700;
+  color: #1a1a1a;
   line-height: 1.2;
 }
 
@@ -361,20 +470,20 @@ body.map-page .sidebar-panel {
   display: block;
   margin-top: 2px;
   font-size: 0.72rem;
-  color: #64748b;
+  color: #666666;
   font-weight: 600;
 }
 
 .map-empty-state-guide {
   margin: 0 0 14px;
   font-size: 0.85rem;
-  color: #475569;
+  color: #666666;
   line-height: 1.5;
 }
 
 .map-empty-state-divider {
   border: none;
-  border-top: 1px solid #e2e8f0;
+  border-top: 1px solid #e5dfd0;
   margin: 0 0 14px;
 }
 
@@ -382,7 +491,7 @@ body.map-page .sidebar-panel {
   margin: 0 0 10px;
   font-size: 0.85rem;
   font-weight: 700;
-  color: #334155;
+  color: #1a1a1a;
   text-align: left;
 }
 
@@ -393,31 +502,35 @@ body.map-page .sidebar-panel {
 }
 
 .map-empty-popular-btn {
-  padding: 10px 8px;
-  border-radius: 10px;
-  border: 1px solid #dbeafe;
-  background: #fff;
-  color: #1d4ed8;
-  font-size: 0.82rem;
-  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  padding: 0 8px;
+  border-radius: 8px;
+  border: 1px solid #e5dfd0;
+  background: #ffffff;
+  color: #1a1a1a;
+  font-size: 13px;
+  font-weight: 500;
   font-family: inherit;
   cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
 }
 
 .map-empty-popular-btn:hover:not(:disabled) {
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
-  background: #eff6ff;
+  background: #faf5e8;
+  border-color: #1a1a1a;
 }
 
 .map-empty-popular-btn:disabled,
 .map-empty-popular-btn.is-coming-soon {
   opacity: 0.55;
   cursor: not-allowed;
-  border-color: #e2e8f0;
-  color: #64748b;
-  background: #f8fafc;
+  border-color: #e5dfd0;
+  color: #666666;
+  background: #faf5e8;
 }
 
 .map-empty-popular-btn small {
@@ -425,7 +538,7 @@ body.map-page .sidebar-panel {
   margin-top: 2px;
   font-size: 0.65rem;
   font-weight: 600;
-  color: #94a3b8;
+  color: #666666;
 }
 
 .map-help-btn {
@@ -433,22 +546,23 @@ body.map-page .sidebar-panel {
   top: 16px;
   right: 16px;
   z-index: 1001;
-  padding: 7px 12px;
-  border-radius: 999px;
-  border: 1px solid #e2e8f0;
-  background: rgba(255, 255, 255, 0.95);
-  color: #475569;
-  font-size: 0.8rem;
-  font-weight: 700;
-  font-family: inherit;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 16px;
+  border: 1px solid #e5dfd0;
+  background: #ffffff;
+  color: #1a1a1a;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: Pretendard, -apple-system, sans-serif;
   cursor: pointer;
-  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.08);
-  transition: background 0.15s ease, transform 0.15s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: background 0.15s ease, border-color 0.15s ease;
 }
 
 .map-help-btn:hover {
-  background: #fff;
-  transform: translateY(-1px);
+  background: #faf5e8;
+  border-color: #1a1a1a;
 }
 
 .map-help-btn[hidden] {
@@ -464,13 +578,13 @@ body.map-page .sidebar-panel {
   margin: 0;
   padding: 12px 20px;
   border-radius: 8px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: #fff;
+  background: #1a1a1a;
+  color: #f5efe0;
   font-size: 0.95rem;
   font-weight: 600;
   white-space: nowrap;
   pointer-events: none;
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   animation: regionHintFadeIn 0.5s ease-out;
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
@@ -507,8 +621,8 @@ body.map-page .sidebar-panel {
 }
 
 @keyframes regionGuPulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.45); }
-  50% { box-shadow: 0 0 0 10px rgba(37, 99, 235, 0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(26, 26, 26, 0.45); }
+  50% { box-shadow: 0 0 0 10px rgba(26, 26, 26, 0); }
 }
 
 .region-gu-btn.region-pulse {
@@ -544,8 +658,8 @@ body.map-page .sidebar-panel {
 
 .sidebar-search input:focus {
   outline: none;
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px var(--color-primary-soft);
+  border-color: #1a1a1a;
+  box-shadow: 0 0 0 2px rgba(26, 26, 26, 0.12);
 }
 
 .search-index-hint {
@@ -588,7 +702,7 @@ body.map-page .sidebar-panel {
 
 .search-result-item:hover,
 .search-result-item:focus {
-  background: var(--color-primary-muted);
+  background: #faf5e8;
   outline: none;
 }
 
@@ -606,7 +720,7 @@ body.map-page .sidebar-panel {
 
 .search-result-item.is-current-district .search-result-name {
   font-weight: 700;
-  color: #1d4ed8;
+  color: #1a1a1a;
 }
 
 .search-result-badge {
@@ -615,16 +729,22 @@ body.map-page .sidebar-panel {
   padding: 1px 6px;
   font-size: 0.65rem;
   font-weight: 600;
-  color: #1d4ed8;
-  background: #eff6ff;
+  color: #1a1a1a;
+  background: #f5efe0;
   border-radius: 4px;
   vertical-align: middle;
+}
+
+.sidebar-panel .search-result-item:hover,
+.sidebar-panel .search-result-item:focus {
+  background: #faf5e8;
 }
 
 .sidebar-content {
   flex: 1;
   overflow-y: auto;
-  padding: 1rem;
+  padding: 0;
+  background: #ffffff;
 }
 
 .sidebar-content::-webkit-scrollbar {
@@ -645,42 +765,55 @@ body.map-page .sidebar-panel {
 }
 
 .apt-info-card {
-  background: var(--color-bg);
-  border: 1px solid var(--color-border-subtle);
-  border-radius: 12px;
-  padding: 1rem;
-  margin-bottom: 1rem;
+  background: #ffffff;
+  border: none;
+  border-bottom: 1px solid #e5dfd0;
+  border-radius: 0;
+  padding: 0;
+  margin-bottom: 0;
+  overflow: hidden;
+}
+
+.apt-info-header {
+  background: var(--map-dark);
+  padding: 12px 14px;
 }
 
 .apt-info-card h2 {
-  margin: 0 0 0.35rem;
-  font-size: 1.1rem;
-  color: var(--color-text);
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--map-beige);
+  font-weight: 700;
+}
+
+.apt-info-body {
+  padding: 16px 20px;
 }
 
 .apt-info-card .apt-address {
   margin: 0 0 0.35rem;
   font-size: 0.85rem;
-  color: var(--color-text-muted);
+  color: var(--map-sub);
 }
 
 .apt-info-card .apt-pyeong-summary {
   margin: 0 0 0.75rem;
   font-size: 0.95rem;
   font-weight: 600;
-  color: var(--color-primary, #2563eb);
+  color: #1a1a1a;
 }
 
 .dday-link-box {
   margin: 12px 0 1rem;
   padding: 12px 14px;
   border-radius: 8px;
-  background: linear-gradient(135deg, #f3e8ff 0%, #e0e7ff 100%);
+  background: #faf5e8;
+  border: 1px solid #e5dfd0;
 }
 
 .dday-link-text {
   font-size: 13px;
-  color: #6b21a8;
+  color: #1a1a1a;
   margin-bottom: 8px;
   font-weight: 600;
 }
@@ -688,8 +821,8 @@ body.map-page .sidebar-panel {
 .dday-link-btn {
   display: inline-flex;
   align-items: center;
-  background: #7c3aed;
-  color: #fff;
+  background: #1a1a1a;
+  color: #f5efe0;
   padding: 8px 14px;
   border-radius: 6px;
   font-size: 13px;
@@ -699,8 +832,8 @@ body.map-page .sidebar-panel {
 }
 
 .dday-link-btn:hover {
-  background: #6d28d9;
-  color: #fff;
+  background: #333333;
+  color: #f5efe0;
 }
 
 .apt-meta-grid {
@@ -727,10 +860,16 @@ body.map-page .sidebar-panel {
   font-size: 0.9rem;
 }
 
+.transactions-section {
+  padding: 16px 20px;
+  background: #ffffff;
+}
+
 .transactions-section h3 {
   margin: 0 0 0.75rem;
-  font-size: 0.95rem;
-  color: var(--color-text);
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a1a;
 }
 
 .transactions-table {
@@ -754,22 +893,23 @@ body.map-page .sidebar-panel {
 
 .transactions-table td.amount {
   font-weight: 700;
-  color: var(--color-primary);
+  color: #1a1a1a;
   white-space: nowrap;
   font-size: 0.75rem;
 }
 
 /* 선택된 단지 마커 강조 */
+.marker-card.marker-selected,
 .marker-pill.marker-selected {
-  transform: scale(1.15);
-  border: 3px solid var(--color-primary, #2563eb);
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.35), 0 4px 12px rgba(0, 0, 0, 0.25);
+  transform: scale(1.12);
+  border: 2px solid var(--map-dark);
+  box-shadow: 0 4px 14px rgba(26, 26, 26, 0.2);
   z-index: 1001;
 }
 
 .marker-dot.marker-selected {
   transform: scale(1.35);
-  box-shadow: 0 0 0 3px var(--color-primary, #2563eb), 0 2px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 0 3px var(--map-dark), 0 2px 6px rgba(0, 0, 0, 0.3);
   z-index: 1001;
 }
 
@@ -785,19 +925,19 @@ body.map-page .sidebar-panel {
   align-items: center;
   gap: 0.35rem;
   flex-wrap: wrap;
-  padding: 0.65rem 0.75rem;
-  margin-bottom: 0.75rem;
-  background: linear-gradient(135deg, rgba(37, 99, 235, 0.12), rgba(59, 130, 246, 0.08));
-  border: 1px solid rgba(37, 99, 235, 0.35);
-  border-radius: 10px;
+  padding: 12px 20px;
+  margin-bottom: 0;
+  background: #faf5e8;
+  border: none;
+  border-bottom: 1px solid #e5dfd0;
+  border-radius: 0;
   cursor: pointer;
-  transition: background 0.15s, box-shadow 0.15s;
+  transition: background 0.15s;
 }
 
 .sidebar-selected-banner:hover,
 .sidebar-selected-banner:focus {
-  background: linear-gradient(135deg, rgba(37, 99, 235, 0.18), rgba(59, 130, 246, 0.12));
-  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.15);
+  background: #f5efe0;
   outline: none;
 }
 
@@ -807,21 +947,104 @@ body.map-page .sidebar-panel {
 }
 
 .sidebar-selected-label {
-  font-size: 0.8rem;
-  color: var(--color-text-muted);
+  font-size: 12px;
+  color: #666666;
 }
 
 .sidebar-selected-name {
-  font-size: 0.88rem;
-  color: var(--color-primary);
+  font-size: 13px;
+  color: #1a1a1a;
   font-weight: 700;
+}
+
+/* 사이드바 — 가까운 초등학교 */
+.nearby-schools-section {
+  padding: 16px 20px;
+  background: #ffffff;
+  border-top: 1px solid #e5dfd0;
+}
+
+.nearby-schools-title {
+  margin: 0 0 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.nearby-schools-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.nearby-school-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  width: 100%;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 8px;
+  background: #faf5e8;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  transition: background 0.15s ease;
+}
+
+.nearby-school-card:hover {
+  background: #f5efe0;
+}
+
+.nearby-school-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1a1a1a;
+  line-height: 1.35;
+}
+
+.nearby-school-distance {
+  font-size: 12px;
+  color: #666666;
+}
+
+.nearby-schools-status {
+  margin: 0;
+  font-size: 13px;
+  color: #666666;
+}
+
+.nearby-schools-disclaimer {
+  margin: 10px 0 0;
+  font-size: 11px;
+  font-style: italic;
+  color: #999999;
+  line-height: 1.45;
+}
+
+.school-highlight-marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #1a1a1a;
+  border: 2px solid #f5efe0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  font-size: 18px;
+  line-height: 1;
+  transform: translateY(-4px);
 }
 
 /* 사이드바 — 면적 타입 탭 (가로 스크롤) */
 .sidebar-area-tabs-scroll {
   position: relative;
-  margin: 0.65rem 0 0.5rem;
+  margin: 0;
+  padding: 12px 20px 8px;
   overflow: hidden;
+  border-bottom: 1px solid #e5dfd0;
 }
 
 .sidebar-area-tabs-scroll::after {
@@ -858,26 +1081,27 @@ body.map-page .sidebar-panel {
 .sidebar-area-tab {
   flex-shrink: 0;
   padding: 0.35rem 0.65rem;
-  border: 1px solid var(--color-border-subtle);
+  border: 1px solid #e5dfd0;
   border-radius: 8px;
-  background: var(--color-bg);
+  background: #ffffff;
   font-family: inherit;
   font-size: 0.72rem;
   font-weight: 600;
-  color: var(--color-text-muted);
+  color: #666666;
   cursor: pointer;
   white-space: nowrap;
 }
 
 .sidebar-area-tab:hover {
-  border-color: #2563eb;
-  color: #2563eb;
+  border-color: #1a1a1a;
+  color: #1a1a1a;
+  background: #faf5e8;
 }
 
 .sidebar-area-tab.active {
-  background: #2563eb;
-  border-color: #2563eb;
-  color: #fff;
+  background: #1a1a1a;
+  border-color: #1a1a1a;
+  color: #f5efe0;
 }
 
 .sidebar-area-summary {
@@ -921,23 +1145,24 @@ body.map-page .sidebar-panel {
   padding: 0.2rem 0.55rem;
   font-size: 0.72rem;
   font-weight: 600;
-  border: 1px solid var(--color-border-subtle);
+  border: 1px solid #e5dfd0;
   border-radius: 999px;
-  background: var(--color-bg);
-  color: var(--color-text-muted);
+  background: #ffffff;
+  color: #666666;
   cursor: pointer;
   transition: background 0.15s, color 0.15s, border-color 0.15s;
 }
 
 .sidebar-tx-filter-btn:hover {
-  border-color: var(--color-primary);
-  color: var(--color-primary);
+  border-color: #1a1a1a;
+  color: #1a1a1a;
+  background: #faf5e8;
 }
 
 .sidebar-tx-filter-btn.active {
-  background: var(--color-primary);
-  border-color: var(--color-primary);
-  color: #fff;
+  background: #1a1a1a;
+  border-color: #1a1a1a;
+  color: #f5efe0;
 }
 
 /* 거래 유형 배지 */
@@ -952,13 +1177,14 @@ body.map-page .sidebar-panel {
 }
 
 .tx-badge-sale {
-  background: rgba(37, 99, 235, 0.15);
-  color: #1d4ed8;
+  background: #1a1a1a;
+  color: #f5efe0;
 }
 
 .tx-badge-jeonse {
-  background: rgba(16, 185, 129, 0.15);
-  color: #047857;
+  background: #f5efe0;
+  color: #1a1a1a;
+  border: 1px solid #e5dfd0;
 }
 
 .tx-badge-wolse {
@@ -973,18 +1199,19 @@ body.map-page .sidebar-panel {
 
 /* 가격 변화 차트 */
 .chart-section {
-  background: var(--color-card);
-  border: 1px solid var(--color-border-subtle);
+  background: #ffffff;
+  border: 1px solid #e5dfd0;
   border-radius: 12px;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+  padding: 16px 20px;
+  margin: 0 0 0;
+  box-shadow: none;
 }
 
 .chart-section h3 {
   margin: 0 0 0.75rem;
-  font-size: 0.95rem;
-  color: var(--color-text);
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a1a;
 }
 
 .chart-controls {
@@ -1028,39 +1255,41 @@ body.map-page .sidebar-panel {
 }
 
 .area-tab:hover {
-  border-color: #2563eb;
-  color: #2563eb;
+  border-color: #1a1a1a;
+  color: #1a1a1a;
+  background: #faf5e8;
 }
 
 .area-tab.active {
-  background: #2563eb;
-  border-color: #2563eb;
-  color: #fff;
+  background: #1a1a1a;
+  border-color: #1a1a1a;
+  color: #f5efe0;
 }
 
 .period-btn {
   flex: 1;
   padding: 0.4rem 0.5rem;
-  border: 1px solid var(--color-border-subtle);
+  border: 1px solid #e5dfd0;
   border-radius: 8px;
-  background: var(--color-bg);
+  background: #ffffff;
   font-family: inherit;
   font-size: 0.8rem;
   font-weight: 600;
-  color: var(--color-text-muted);
+  color: #666666;
   cursor: pointer;
   transition: background 0.15s, border-color 0.15s, color 0.15s;
 }
 
 .period-btn:hover {
-  border-color: #2563eb;
-  color: #2563eb;
+  border-color: #1a1a1a;
+  color: #1a1a1a;
+  background: #faf5e8;
 }
 
 .period-btn.active {
-  background: #2563eb;
-  border-color: #2563eb;
-  color: #fff;
+  background: #1a1a1a;
+  border-color: #1a1a1a;
+  color: #f5efe0;
 }
 
 .chart-hint {
@@ -1101,8 +1330,8 @@ body.map-page .sidebar-panel {
 .chart-spinner {
   width: 28px;
   height: 28px;
-  border: 3px solid var(--color-border-subtle);
-  border-top-color: #2563eb;
+  border: 3px solid #e5dfd0;
+  border-top-color: #1a1a1a;
   border-radius: 50%;
   animation: chart-spin 0.7s linear infinite;
 }
@@ -1120,7 +1349,7 @@ body.map-page .sidebar-panel {
 }
 
 .stat-item {
-  background: #f3f4f6;
+  background: #faf5e8;
   border-radius: 8px;
   padding: 0.55rem 0.5rem;
   text-align: center;
@@ -1129,7 +1358,7 @@ body.map-page .sidebar-panel {
 .stat-label {
   display: block;
   font-size: 0.7rem;
-  color: var(--color-text-muted);
+  color: #666666;
   margin-bottom: 0.2rem;
 }
 
@@ -1137,20 +1366,14 @@ body.map-page .sidebar-panel {
   display: block;
   font-size: 0.85rem;
   font-weight: 700;
-  color: var(--color-text);
+  color: #1a1a1a;
   word-break: keep-all;
 }
 
-.stat-max .stat-value {
-  color: #dc2626;
-}
-
-.stat-min .stat-value {
-  color: #16a34a;
-}
-
+.stat-max .stat-value,
+.stat-min .stat-value,
 .stat-avg .stat-value {
-  color: #2563eb;
+  color: #1a1a1a;
 }
 
 .sidebar-actions {
@@ -1158,8 +1381,19 @@ body.map-page .sidebar-panel {
   border-top: 1px solid var(--color-border-subtle);
 }
 
-.sidebar-actions .btn-primary {
+body.map-page .sidebar-actions .btn-primary {
   width: 100%;
+  background: #1a1a1a;
+  color: #f5efe0;
+  border: none;
+  border-radius: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  font-weight: 600;
+}
+
+body.map-page .sidebar-actions .btn-primary:hover:not(:disabled) {
+  background: #333333;
+  color: #f5efe0;
 }
 
 .sidebar-actions .btn-primary:disabled {
@@ -1283,10 +1517,11 @@ body.map-page .sidebar-panel {
   left: 12px;
   bottom: 12px;
   z-index: 20;
-  background: #fff;
-  border-radius: 10px;
+  background: #ffffff;
+  border: 1px solid #e5dfd0;
+  border-radius: 8px;
   padding: 0.75rem 1rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   font-size: 0.75rem;
   min-width: 130px;
 }
@@ -1295,7 +1530,7 @@ body.map-page .sidebar-panel {
   margin: 0 0 0.5rem;
   font-size: 0.8rem;
   font-weight: 700;
-  color: var(--color-text);
+  color: #1a1a1a;
 }
 
 .map-legend-toggle {
@@ -1306,8 +1541,9 @@ body.map-page .sidebar-panel {
   display: flex;
   align-items: center;
   gap: 0.45rem;
-  margin-bottom: 0.3rem;
-  color: var(--color-text-muted);
+  margin-bottom: 0.25rem;
+  font-size: 0.72rem;
+  color: #1a1a1a;
 }
 
 .legend-item:last-child {
@@ -1341,22 +1577,186 @@ body.map-page .sidebar-panel {
   background: #9ca3af;
 }
 
-/* 지역 선택 — 상단 중앙 */
-.region-selector {
-  position: absolute;
-  top: 16px;
-  left: 50%;
-  transform: translateX(-50%);
+/* === 시세통 스타일 통합 툴바 === */
+.map-toolbar {
+  position: sticky;
+  top: 0;
   z-index: 1000;
-  background: #fff;
-  border-radius: 24px;
-  padding: 10px 20px;
+  flex-shrink: 0;
+  background: #ffffff;
+  border-bottom: 1px solid #e5dfd0;
+  padding: 12px 16px;
+}
+
+.map-toolbar-scroll {
   display: flex;
   align-items: center;
-  gap: 8px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  gap: 0;
+  overflow-x: auto;
+  overflow-y: visible;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.toolbar-group--region {
+  overflow: visible;
+  position: relative;
+  z-index: 2;
+}
+
+.map-toolbar-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.toolbar-group-inner {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.toolbar-vdivider {
+  display: block;
+  width: 1px;
+  height: 20px;
+  background: #e5dfd0;
+  margin: 0 8px;
+  flex-shrink: 0;
+}
+
+.map-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 32px;
+  padding: 0 12px;
+  border: 1px solid #e5dfd0;
+  border-radius: 16px;
+  background: #ffffff;
+  color: #1a1a1a;
+  font-family: Pretendard, -apple-system, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background 0.15s, color 0.15s, border-color 0.15s, box-shadow 0.15s;
+}
+
+.map-pill:hover {
+  background: #faf5e8;
+  border-color: #1a1a1a;
+}
+
+.map-pill.active {
+  background: #1a1a1a;
+  color: #f5efe0;
+  border-color: transparent;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  font-weight: 600;
+}
+
+.map-pill--icon {
+  min-width: 32px;
+  padding: 0 10px;
+}
+
+.map-pill--dropdown .dropdown-arrow,
+.filter-btn .filter-arrow {
+  font-size: 9px;
+  opacity: 1;
+  margin-left: 2px;
+  color: #666666;
+}
+
+.area-pill-segment {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.area-segment-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #555555;
+  margin-right: 2px;
+  flex-shrink: 0;
+}
+
+.layer-toggle-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.layer-toggle .layer-icon {
   font-size: 14px;
-  max-width: min(560px, calc(100% - 32px));
+  line-height: 1;
+}
+
+.layer-toggle .layer-label {
+  font-size: 13px;
+}
+
+.map-radius-fab {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  z-index: 1001;
+  width: 48px;
+  height: 48px;
+  border: 1px solid #e5dfd0;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #1a1a1a;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+}
+
+.map-radius-fab:hover {
+  background: #f5efe0;
+}
+
+.map-radius-fab.active {
+  background: #1a1a1a;
+  color: #f5efe0;
+  border-color: transparent;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+}
+
+/* 지역 선택 — 툴바 내 인라인 */
+.region-selector {
+  position: static;
+  top: auto;
+  left: auto;
+  transform: none;
+  z-index: auto;
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: none;
+  font-size: 13px;
+  max-width: none;
   overflow: visible;
   white-space: nowrap;
 }
@@ -1384,8 +1784,8 @@ body.map-page .sidebar-panel {
 }
 
 .region-item--gu:hover {
-  color: #2563eb;
-  background: #eff6ff;
+  color: #1a1a1a;
+  background: #faf5e8;
 }
 
 .region-divider {
@@ -1399,25 +1799,20 @@ body.map-page .sidebar-panel {
 
 .region-dropdown-btn {
   position: relative;
-  background: none;
-  border: none;
-  color: #1f2937;
-  font-weight: 600;
+  font-weight: 500;
   cursor: pointer;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 4px;
-  padding: 4px 8px;
-  border-radius: 6px;
-  transition: background 0.15s, color 0.15s;
   font-family: inherit;
-  font-size: 14px;
+  font-size: 13px;
   white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
 }
 
 .region-dropdown-btn:hover {
-  background: #eff6ff;
-  color: #2563eb;
+  background: #f5efe0;
+  color: #1a1a1a;
 }
 
 .region-gu-btn {
@@ -1431,15 +1826,17 @@ body.map-page .sidebar-panel {
 }
 
 .region-dropdown-btn.region-btn-hint {
-  color: #2563eb;
-  background: rgba(37, 99, 235, 0.08);
-  border: 1px solid rgba(37, 99, 235, 0.35);
+  color: #1a1a1a;
+  background: #ffffff;
+  border: 1px solid #e5dfd0;
+  font-weight: 500;
   animation: regionBtnHintFadeIn 0.4s ease-out;
 }
 
 .region-dropdown-btn.region-btn-hint:hover {
-  background: rgba(37, 99, 235, 0.12);
-  color: #2563eb;
+  background: #f5efe0;
+  color: #1a1a1a;
+  border-color: #1a1a1a;
 }
 
 @keyframes regionBtnHintFadeIn {
@@ -1452,22 +1849,22 @@ body.map-page .sidebar-panel {
 }
 
   .region-dropdown-menu {
-    position: absolute;
-    top: calc(100% + 8px);
-    left: 50%;
+    position: fixed;
+    top: auto;
+    left: auto;
     right: auto;
-    transform: translateX(-50%);
-    background: #fff;
+    transform: none;
+    background: #ffffff;
     border-radius: 8px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
     min-width: 160px;
-    max-height: 320px;
-  overflow-y: auto;
-  overflow-x: hidden;
-  padding: 6px 0;
-  z-index: 9999;
-  border: 1px solid #e5e7eb;
-}
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 6px 0;
+    z-index: 9999;
+    border: 1px solid #e5dfd0;
+  }
 
 .region-dropdown-menu[hidden] {
   display: none;
@@ -1485,12 +1882,12 @@ body.map-page .sidebar-panel {
 .dong-item {
   display: block;
   width: 100%;
-  padding: 10px 16px;
+  padding: 8px 16px;
   border: none;
-  background: transparent;
+  background: #ffffff;
   cursor: pointer;
-  font-size: 14px;
-  color: #374151;
+  font-size: 13px;
+  color: #1a1a1a;
   transition: background 0.15s;
   text-align: left;
   font-family: inherit;
@@ -1498,26 +1895,273 @@ body.map-page .sidebar-panel {
 }
 
 .dong-item:hover {
-  background: #f3f4f6;
+  background: #faf5e8;
 }
 
 .dong-item.active {
-  background: #eff6ff;
-  color: #2563eb;
+  background: #1a1a1a;
+  color: #f5efe0;
   font-weight: 600;
 }
 
-/* 지도 필터 바 — 좌측 상단 */
-.map-filter-bar {
+/* 지도 UI — Beige + Dark Gray 팔레트 */
+:root {
+  --map-beige: #F5EFE0;
+  --map-dark: #1A1A1A;
+  --map-sub: #555555;
+  --map-border: #E5DFD0;
+  --map-card: #FFFFFF;
+}
+
+.map-controls-stack {
   position: absolute;
   top: 16px;
   left: 16px;
   z-index: 1001;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
-  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   max-width: calc(100% - 32px);
+}
+
+.map-controls-stack.map-controls-hidden {
+  display: none;
+}
+
+.map-infra-bar {
+  background: var(--map-beige);
+  border: 1px solid var(--map-border);
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(26, 26, 26, 0.08);
+  padding: 6px 8px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.map-infra-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.infra-toggle-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  min-width: max-content;
+}
+
+.infra-toggle {
+  padding: 7px 12px;
+  border: 1px solid var(--map-border);
+  border-radius: 20px;
+  background: var(--map-card);
+  color: var(--map-dark);
+  font-size: 13px;
+  font-weight: 500;
+  font-family: Pretendard, -apple-system, sans-serif;
+  cursor: pointer;
+  transition: all 0.15s;
+  flex-shrink: 0;
+}
+
+.infra-toggle:hover {
+  border-color: var(--map-dark);
+}
+
+.infra-toggle.active {
+  background: var(--map-dark);
+  border-color: var(--map-dark);
+  color: var(--map-beige);
+  font-weight: 600;
+}
+
+.infra-pin {
+  position: relative;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+  pointer-events: auto;
+}
+
+.infra-pin--subway {
+  background: var(--map-dark);
+  border: 2px solid var(--map-dark);
+}
+
+.infra-pin--subway .infra-pin-icon {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--line-color, #00A84D);
+}
+
+.infra-pin--elementary {
+  background: #C8E6C9;
+  border: 1px solid #A5D6A7;
+}
+
+.infra-pin--elementary .infra-pin-icon::before {
+  content: "🏫";
+  font-size: 12px;
+  line-height: 1;
+}
+
+.infra-pin--middle {
+  background: #BBDEFB;
+  border: 1px solid #90CAF9;
+}
+
+.infra-pin--middle .infra-pin-icon::before {
+  content: "🏛";
+  font-size: 12px;
+  line-height: 1;
+}
+
+.infra-popup {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--map-card);
+  border: 1px solid var(--map-border);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 11px;
+  color: var(--map-dark);
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  pointer-events: none;
+}
+
+.infra-popup strong {
+  font-weight: 700;
+}
+
+.infra-popup span {
+  color: var(--map-sub);
+  font-size: 10px;
+}
+
+.radius-distance-label {
+  background: var(--map-card);
+  border: 1px solid var(--map-border);
+  color: var(--map-dark);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  font-family: Pretendard, -apple-system, sans-serif;
+  white-space: nowrap;
+}
+
+/* 3줄 마커 카드 */
+.marker-card {
+  display: flex;
+  align-items: stretch;
+  background: var(--map-card);
+  border: 1px solid var(--map-border);
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(26, 26, 26, 0.1);
+  cursor: pointer;
+  font-family: Pretendard, -apple-system, sans-serif;
+  overflow: hidden;
+  transition: transform 0.15s, box-shadow 0.15s;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  pointer-events: auto;
+  position: relative;
+  z-index: 10;
+}
+
+.marker-card-accent {
+  width: 3px;
+  flex-shrink: 0;
+}
+
+.marker-accent-low { background: #10b981; }
+.marker-accent-mid { background: #ea580c; }
+.marker-accent-high { background: #ef4444; }
+.marker-accent-jeonse { background: #ffc107; }
+.marker-accent-none { background: #9ca3af; }
+
+.marker-card-body {
+  padding: 4px 8px;
+  min-width: 0;
+}
+
+.marker-card-line1 {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--map-dark);
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 140px;
+}
+
+.marker-card-line2 {
+  font-size: 9px;
+  color: var(--map-sub);
+  line-height: 1.3;
+  margin-top: 1px;
+}
+
+.marker-card-line3 {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--map-dark);
+  line-height: 1.3;
+  margin-top: 2px;
+}
+
+.marker-card--compact .marker-card-line1 {
+  font-size: 10px;
+}
+
+.marker-card--compact .marker-card-line3 {
+  font-size: 9px;
+  margin-top: 1px;
+}
+
+.marker-card:hover,
+.marker-card:focus {
+  transform: scale(1.05);
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(26, 26, 26, 0.15);
+  outline: none;
+}
+
+.marker-card.marker-selected {
+  transform: scale(1.12);
+  border: 2px solid var(--map-dark);
+  box-shadow: 0 4px 14px rgba(26, 26, 26, 0.2);
+  z-index: 1001;
+}
+
+/* 지도 필터 — 툴바 내 인라인 */
+.map-filter-bar {
+  position: static;
+  top: auto;
+  left: auto;
+  z-index: auto;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  max-width: none;
   overflow: visible;
 }
 
@@ -1551,42 +2195,8 @@ body.map-page .sidebar-panel {
 }
 
 .filter-btn {
-  padding: 8px 14px;
-  border: 1px solid #e5e7eb;
-  border-radius: 20px;
-  background: #fff;
-  font-size: 14px;
-  font-weight: 500;
-  color: #374151;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  transition: all 0.15s;
-  min-width: 80px;
-  justify-content: center;
-  font-family: inherit;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
-.filter-btn:hover {
-  border-color: #2563eb;
-  color: #2563eb;
-  background: #f8faff;
-}
-
-.filter-btn.default {
-  background: #fff;
-  color: #374151;
-  border-color: #e5e7eb;
-}
-
-.filter-btn.active {
-  background: #2563eb;
-  border-color: #2563eb;
-  color: #fff;
-  font-weight: 600;
+  /* map-pill 기반 — 추가 오버라이드 없음 */
+  min-width: auto;
 }
 
 .filter-btn.active .filter-arrow {
@@ -1594,7 +2204,15 @@ body.map-page .sidebar-panel {
 }
 
 .filter-btn.is-open {
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.25);
+  background: #1a1a1a;
+  color: #f5efe0;
+  border-color: #1a1a1a;
+  box-shadow: none;
+  font-weight: 600;
+}
+
+.filter-btn.is-open .filter-arrow {
+  color: #f5efe0;
 }
 
 .filter-arrow {
@@ -1644,7 +2262,7 @@ body.map-page .sidebar-panel {
 }
 
 .filter-result-count strong {
-  color: #2563eb;
+  color: #1a1a1a;
   font-weight: 700;
 }
 
@@ -1653,18 +2271,18 @@ body.map-page .sidebar-panel {
   top: auto;
   left: auto;
   right: auto;
-  background: #fff;
+  background: #ffffff;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   padding: 4px 0;
   min-width: 180px;
   width: max-content;
-  max-height: 320px;
+  max-height: 300px;
   height: auto;
   overflow-y: auto;
   overflow-x: hidden;
   z-index: 9999;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e5dfd0;
 }
 
 .filter-dropdown::-webkit-scrollbar {
@@ -1687,28 +2305,138 @@ body.map-page .sidebar-panel {
 
 .filter-option {
   display: block;
-  padding: 10px 14px;
+  padding: 8px 16px;
   border: none;
-  background: transparent;
+  background: #ffffff;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 13px;
   text-align: left;
   font-family: inherit;
   transition: background 0.15s;
-  color: #374151;
+  color: #1a1a1a;
   white-space: nowrap;
   line-height: 1.35;
   box-sizing: border-box;
 }
 
 .filter-option:hover {
-  background: #f3f4f6;
+  background: #faf5e8;
+  color: #1a1a1a;
 }
 
 .filter-option.selected {
-  background: #eff6ff;
-  color: #2563eb;
+  background: #1a1a1a;
+  color: #f5efe0;
   font-weight: 600;
+}
+
+/* 툴바 드롭다운·필터 — styles.css .filter-btn 파란색 오버라이드 */
+body.map-page .map-toolbar .map-pill,
+body.map-page .map-toolbar .filter-btn,
+body.map-page .map-toolbar .region-dropdown-btn {
+  height: 32px;
+  padding: 0 12px;
+  border: 1px solid #e5dfd0;
+  border-radius: 16px;
+  background: #ffffff;
+  color: #1a1a1a;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+body.map-page .map-toolbar .map-pill:hover,
+body.map-page .map-toolbar .filter-btn:hover,
+body.map-page .map-toolbar .region-dropdown-btn:hover {
+  background: #f5efe0;
+  border-color: #1a1a1a;
+  color: #1a1a1a;
+}
+
+body.map-page .map-toolbar .filter-btn.default:hover,
+body.map-page .map-toolbar .region-dropdown-btn.region-btn-hint:hover {
+  background: #f5efe0;
+  border-color: #1a1a1a;
+  color: #1a1a1a;
+}
+
+body.map-page .map-toolbar .region-dropdown-btn.is-filled:not([aria-expanded="true"]) {
+  background: #faf5e8;
+  border-color: #1a1a1a;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+body.map-page .map-toolbar .region-dropdown-btn.is-filled:not([aria-expanded="true"]):hover {
+  background: #f5efe0;
+  border-color: #1a1a1a;
+  color: #1a1a1a;
+}
+
+body.map-page .map-toolbar .filter-btn.active:not(.is-open) {
+  background: #1a1a1a;
+  color: #f5efe0;
+  border-color: #1a1a1a;
+  font-weight: 600;
+}
+
+body.map-page .map-toolbar .filter-btn.active:not(.is-open):hover {
+  background: #333333;
+  color: #f5efe0;
+  border-color: #333333;
+}
+
+body.map-page .map-toolbar .filter-btn.default:not(.is-open) {
+  background: #ffffff;
+  color: #1a1a1a;
+  border-color: #e5dfd0;
+  font-weight: 500;
+}
+
+body.map-page .map-toolbar .filter-btn.is-open,
+body.map-page .map-toolbar .region-dropdown-btn[aria-expanded="true"] {
+  background: #1a1a1a;
+  color: #f5efe0;
+  border-color: #1a1a1a;
+  box-shadow: none;
+  font-weight: 600;
+}
+
+body.map-page .map-toolbar .filter-btn.is-open:hover,
+body.map-page .map-toolbar .region-dropdown-btn[aria-expanded="true"]:hover {
+  background: #1a1a1a;
+  color: #f5efe0;
+  border-color: #1a1a1a;
+}
+
+body.map-page .map-toolbar .filter-btn.is-open .filter-arrow,
+body.map-page .map-toolbar .filter-btn.active:not(.is-open) .filter-arrow,
+body.map-page .map-toolbar .region-dropdown-btn[aria-expanded="true"] .dropdown-arrow {
+  color: #f5efe0;
+}
+
+body.map-page .map-toolbar .map-pill--dropdown .dropdown-arrow,
+body.map-page .map-toolbar .filter-btn .filter-arrow {
+  color: #666666;
+}
+
+body.map-page .map-toolbar .layer-toggle.map-pill.active {
+  background: #1a1a1a;
+  color: #f5efe0;
+  border-color: transparent;
+}
+
+body.map-page .map-toolbar .layer-toggle.map-pill.active:hover {
+  background: #333333;
+  color: #f5efe0;
+}
+
+body.map-page .map-toolbar .region-dropdown-menu {
+  background: #ffffff;
+  border: 1px solid #e5dfd0;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  max-height: 300px;
 }
 
 /* 거래 유형 탭 */
@@ -1721,25 +2449,26 @@ body.map-page .sidebar-panel {
 .deal-tab {
   flex: 1;
   padding: 0.45rem 0.3rem;
-  border: 1px solid var(--color-border-subtle);
-  background: var(--color-bg);
+  border: 1px solid #e5dfd0;
+  background: #ffffff;
   border-radius: 6px;
   cursor: pointer;
   font-size: 0.8rem;
   font-weight: 600;
-  color: var(--color-text-muted);
+  color: #666666;
   transition: all 0.15s ease;
 }
 
 .deal-tab:hover {
-  border-color: #2563eb;
-  color: #2563eb;
+  border-color: #1a1a1a;
+  color: #1a1a1a;
+  background: #faf5e8;
 }
 
 .deal-tab.active {
-  background: #2563eb;
-  color: #fff;
-  border-color: #2563eb;
+  background: #1a1a1a;
+  color: #f5efe0;
+  border-color: #1a1a1a;
 }
 
 @media (min-width: 769px) and (max-width: 1280px) {
@@ -1843,19 +2572,16 @@ body.map-page .sidebar-panel {
     transition: bottom 0.3s ease;
   }
 
-  /* 지역 선택 — 좌측 상단 컴팩트 */
+  /* 지역 선택 — 툴바 내 인라인 (모바일) */
   .region-selector {
-    position: fixed;
-    top: var(--map-mobile-chrome-top);
-    left: 8px;
-    right: auto;
+    position: static;
     transform: none;
-    padding: 6px 10px;
+    padding: 0;
     font-size: 12px;
-    border-radius: 18px;
-    max-width: var(--map-mobile-region-w);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    z-index: 1001;
+    border-radius: 0;
+    max-width: none;
+    box-shadow: none;
+    z-index: auto;
     gap: 4px;
   }
 
@@ -1873,57 +2599,57 @@ body.map-page .sidebar-panel {
     padding: 2px 4px;
   }
 
-  /* 필터 바 — 한 줄 가로 스크롤 */
-  .map-filter-bar {
-    position: fixed;
-    top: var(--map-mobile-chrome-top);
-    left: calc(8px + var(--map-mobile-region-w) + 6px);
-    right: 8px;
-    max-width: none;
-    padding: 4px 6px;
-    border-radius: 18px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
-    z-index: 1000;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x proximity;
+  /* 툴바 — 모바일 가로 스크롤 */
+  .map-toolbar {
+    padding: 8px 10px;
   }
 
-  .map-filter-bar::-webkit-scrollbar {
+  .map-pill {
+    height: 30px;
+    padding: 0 10px;
+    font-size: 12px;
+  }
+
+  .map-pill-text,
+  .layer-toggle .layer-label {
     display: none;
+  }
+
+  .map-pill--icon .map-pill-text {
+    display: none;
+  }
+
+  .area-segment-label {
+    font-size: 11px;
+  }
+
+  .toolbar-vdivider {
+    margin: 0 6px;
+  }
+
+  .region-selector {
+    gap: 4px;
+  }
+
+  .region-dropdown-btn {
+    font-size: 12px;
+  }
+
+  .map-radius-fab {
+    right: 12px;
+    bottom: 72px;
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
   }
 
   .filter-group {
     min-width: max-content;
     gap: 4px;
-    scroll-snap-align: start;
   }
 
   .filter-btn {
     font-size: 12px;
-    padding: 6px 10px;
-    min-width: auto;
-    border-radius: 16px;
-    flex-shrink: 0;
-    scroll-snap-align: start;
-  }
-
-  .filter-reset-btn {
-    padding: 6px 8px;
-    font-size: 12px;
-    flex-shrink: 0;
-  }
-
-  .filter-result-count {
-    font-size: 11px;
-    padding: 5px 8px;
-    flex-shrink: 0;
-  }
-
-  .filter-arrow {
-    font-size: 9px;
   }
 
   /* 범례 — 컴팩트 + 접기 */
@@ -1993,6 +2719,23 @@ body.map-page .sidebar-panel {
     font-size: 10px;
   }
 
+  .marker-card-line1 {
+    font-size: 9px;
+    max-width: 100px;
+  }
+
+  .marker-card-line2 {
+    font-size: 8px;
+  }
+
+  .marker-card-line3 {
+    font-size: 8px;
+  }
+
+  .marker-card-body {
+    padding: 3px 6px;
+  }
+
   .sidebar-content {
     padding-bottom: 1rem;
   }
@@ -2003,8 +2746,9 @@ body.map-page .sidebar-panel {
   }
 
   .map-empty-state-card {
+    width: min(400px, 100%);
     padding: 20px 16px 16px;
-    border-radius: 16px;
+    border-radius: 12px;
   }
 
   .map-empty-state-title {

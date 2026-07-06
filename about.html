@@ -33,315 +33,154 @@
   <link rel="icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/global-theme.css">
 </head>
-<body>
-  <style>
-    .about-hero {
-      background: linear-gradient(160deg, #0a0a0a 0%, #1a1030 55%, #0a0a0a 100%);
-      color: #fff;
-      padding: 56px 0 64px;
-      text-align: center;
-    }
-    .about-hero-inner { max-width: 720px; margin: 0 auto; }
-    .about-profile-wrap {
-      width: 160px;
-      height: 160px;
-      margin: 0 auto 24px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 4px solid #A855F7;
-      box-shadow: 0 0 0 6px rgba(251, 191, 36, 0.25), 0 12px 40px rgba(168, 85, 247, 0.35);
-    }
-    .about-profile-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .about-hero h1 {
-      font-size: clamp(1.75rem, 4vw, 2.25rem);
-      margin: 0 0 12px;
-      color: #fff;
-    }
-    .about-hero-sub {
-      font-size: 1.125rem;
-      color: #FBBF24;
-      font-weight: 700;
-      margin: 0 0 16px;
-    }
-    .about-hero-tagline {
-      font-size: 1rem;
-      color: #d4d4d8;
-      margin: 0;
-      line-height: 1.6;
-    }
-    .about-slogan {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 8px 18px;
-      border-radius: 999px;
-      background: rgba(168, 85, 247, 0.2);
-      border: 1px solid rgba(168, 85, 247, 0.5);
-      color: #e9d5ff;
-      font-size: 0.95rem;
-      font-weight: 600;
-    }
-    .about-section .page-card { margin-bottom: 24px; }
-    .about-section h2 { margin-top: 0; }
-    .about-section h3 {
-      font-size: 1.125rem;
-      color: #7c3aed;
-      margin: 24px 0 12px;
-    }
-    .about-pain-list {
-      list-style: none;
-      padding: 0;
-      margin: 16px 0;
-    }
-    .about-pain-list li {
-      padding: 14px 16px;
-      margin-bottom: 10px;
-      border-radius: 12px;
-      background: #faf5ff;
-      border-left: 4px solid #A855F7;
-      line-height: 1.55;
-    }
-    .about-tools-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 12px;
-      margin: 16px 0;
-      padding: 0;
-      list-style: none;
-    }
-    .about-tools-grid li {
-      padding: 14px 16px;
-      border-radius: 12px;
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      line-height: 1.5;
-      font-size: 0.95rem;
-    }
-    .about-tools-grid a { color: #2563eb; text-decoration: none; font-weight: 600; }
-    .about-tools-grid a:hover { text-decoration: underline; }
-    .about-promise-list {
-      list-style: none;
-      padding: 0;
-      margin: 16px 0;
-    }
-    .about-promise-list li {
-      padding: 10px 0 10px 28px;
-      position: relative;
-      line-height: 1.55;
-    }
-    .about-promise-list li::before {
-      content: "✓";
-      position: absolute;
-      left: 0;
-      color: #16a34a;
-      font-weight: 800;
-    }
-    .about-contact-list {
-      list-style: none;
-      padding: 0;
-      margin: 16px 0;
-    }
-    .about-contact-list li { margin-bottom: 10px; line-height: 1.55; }
-    .about-contact-list a { color: #2563eb; }
-    .about-cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 24px;
-    }
-    .about-cta-row .btn-primary,
-    .about-cta-row .btn-outline {
-      flex: 1 1 160px;
-      text-align: center;
-      justify-content: center;
-    }
-    @media (min-width: 640px) {
-      .about-profile-wrap { width: 200px; height: 200px; }
-    }
-  </style>
-  <header class="site-header">
-    <div class="container header-inner">
-      <div class="logo"><a href="/">승박</a></div>
-      <nav class="main-nav">
-        <a href="/">홈</a>
-        <a href="/tools/">도구</a>
-        <a href="/blog/">블로그</a>
-        <a href="/about.html" class="active" aria-current="page">소개</a>
-        <a href="/contact.html">문의</a>
-      </nav>
+<body class="theme-about-page">
+<nav class="theme-nav">
+  <div class="theme-nav-inner">
+    <a href="/" class="theme-nav-logo">seungbak.com</a>
+    <div class="theme-nav-menu">
+      <a href="/tools/realestate-map/" class="theme-nav-item">지도</a>
+      <a href="/tools/" class="theme-nav-item">도구</a>
+      <a href="/blog/" class="theme-nav-item">블로그</a>
+      <a href="/about.html" class="theme-nav-item is-active" aria-current="page">소개</a>
     </div>
-  </header>
+  </div>
+</nav>
 
   <main>
-    <section class="about-hero" aria-labelledby="about-hero-title">
-      <div class="container about-hero-inner">
-        <div class="about-profile-wrap">
-          <img src="/images/about/wizard-profile.png" alt="승박 마법사 캐릭터 프로필" width="500" height="500" loading="eager">
-        </div>
-        <h1 id="about-hero-title">안녕하세요, 승박입니다</h1>
-        <p class="about-hero-sub">월급쟁이의 부동산 보물지도</p>
-        <p class="about-hero-tagline">
-          복잡한 부동산 정보를 누구나 무료로 쓸 수 있는 도구와 글로 정리하는 사이트입니다.
-          청약·대출·시세·정책까지, 월급쟁이가 내집마련을 준비할 때 필요한 것을 한곳에 모았습니다.
+    <section class="theme-page-hero" aria-labelledby="about-hero-title">
+      <div class="theme-page-container">
+        <h1 class="theme-h1" id="about-hero-title">월급쟁이의 부동산 공부, 도구로 만들다</h1>
+        <p class="theme-page-hero-tagline">
+          생산관리 일하며 부동산 공부하는 승박이가 만든 무료 부동산 도구 모음
         </p>
-        <span class="about-slogan">✨ 보물은 가까이 있다</span>
       </div>
     </section>
 
-    <section class="section about-section">
-      <div class="container">
-        <div class="card page-card">
-          <h2 class="section-title">저는 이런 사람입니다</h2>
-          <p>
-            안녕하세요, <strong>승박</strong>입니다.
-            특별한 부동산 전문가가 아니라, 내집마련을 준비하며 부동산을 공부해 온 <strong>일반인</strong>입니다.
-            청약 가점은 어디서 따지는지, DSR은 왜 갑자기 줄어드는지, 실거래가는 어느 사이트를 봐야 하는지 —
-            공부할수록 정보는 여기저기 흩어져 있고, 계산은 복잡하고, 용어는 낯설기만 했습니다.
-          </p>
-          <p>
-            “분명 필요한 건데, 왜 이렇게 어렵지?” 그 질문에서 <strong>seungbak.com</strong>을 직접 만들기 시작했습니다.
-            직장·회사 이야기보다, <strong>월급쟁이가 실제로 겪는 고민</strong>을 기준으로 도구와 글을 쌓아가고 있습니다.
-            청약 통장 납입 회차를 세다가 헷갈리거나, 무주택 기간이 언제부터인지 찾다가 시간을 쓰는 경험 —
-            그런 순간마다 “내가 쓰고 싶은 사이트가 없다”는 생각이 들었습니다.
-            어려운 내용도 최대한 쉽게 풀어 쓰는 것이 이 사이트의 방향입니다.
-          </p>
+    <section class="theme-section theme-section--beige">
+      <div class="theme-page-container theme-prose">
+        <h2 class="theme-h2">왜 이 사이트를 만들었나요?</h2>
+        <p>
+          부동산 공부를 시작하고 나서 계산기 하나 찾는데 광고가 너무 많더라고요.
+          청약 가점은 어디서 따지는지, DSR은 왜 갑자기 줄어드는지, 실거래가는 어느 사이트를 봐야 하는지 —
+          필요한 정보는 분명한데 찾기가 어렵고 계산은 복잡했습니다.
+        </p>
+        <p>
+          그래서 직접 만들었습니다. 회원가입 없이, 광고 방해 없이, 필요한 정보만.
+          월급쟁이가 월급쟁이를 위해 만든 도구입니다.
+        </p>
+        <p>
+          부동산 공부하시는 분들께 조금이나마 도움이 되길 바랍니다.
+          계산 결과는 참고용이며, 최종 판단은 반드시 공식 기관·금융사 안내를 따르셔야 합니다.
+        </p>
+      </div>
+    </section>
+
+    <section class="theme-section theme-section--white">
+      <div class="theme-page-container">
+        <h2 class="theme-h2 theme-about-section-title">무료로 제공하는 도구들</h2>
+        <div class="theme-card-grid theme-about-tools-grid">
+          <a href="/tools/realestate-map/" class="theme-card theme-about-tool-card">
+            <span class="theme-about-tool-icon" aria-hidden="true">🗺️</span>
+            <h3 class="theme-h3">실거래가 지도</h3>
+            <p class="theme-body-sm">전국 아파트 실거래가를 지도에서 확인</p>
+          </a>
+          <a href="/tools/subscription-calculator/" class="theme-card theme-about-tool-card">
+            <span class="theme-about-tool-icon" aria-hidden="true">🎯</span>
+            <h3 class="theme-h3">청약 가점 계산기</h3>
+            <p class="theme-body-sm">청약 가점 자동 계산</p>
+          </a>
+          <a href="/tools/income-calculator/" class="theme-card theme-about-tool-card">
+            <span class="theme-about-tool-icon" aria-hidden="true">💰</span>
+            <h3 class="theme-h3">월급 실수령액 계산기</h3>
+            <p class="theme-body-sm">세후 월급 계산</p>
+          </a>
+          <a href="/tools/apt-calculator/" class="theme-card theme-about-tool-card">
+            <span class="theme-about-tool-icon" aria-hidden="true">🏢</span>
+            <h3 class="theme-h3">아파트 매매/전세 계산기</h3>
+            <p class="theme-body-sm">대출 이자·취득세 포함</p>
+          </a>
+          <a href="/tools/salary-calculator/" class="theme-card theme-about-tool-card">
+            <span class="theme-about-tool-icon" aria-hidden="true">💵</span>
+            <h3 class="theme-h3">필요 연봉 계산기</h3>
+            <p class="theme-body-sm">아파트 구매 필요 연봉</p>
+          </a>
+          <a href="/tools/dday-calculator/" class="theme-card theme-about-tool-card">
+            <span class="theme-about-tool-icon" aria-hidden="true">📅</span>
+            <h3 class="theme-h3">D-day 계산기</h3>
+            <p class="theme-body-sm">청약·잔금일 카운트다운</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="theme-section theme-section--beige theme-about-contact">
+      <div class="theme-page-container theme-prose">
+        <h2 class="theme-h2">제안·문의 환영합니다</h2>
+        <p>
+          도구 개선 아이디어, 오류 제보, 글 요청 등 어떤 의견이든 환영합니다.
+          사이트는 승박이 1인으로 기획·개발·운영하며, 피드백이 다음 기능의 우선순위가 됩니다.
+        </p>
+
+        <div class="theme-email-box">
+          <p>📧 이메일 (가장 빠른 소통)</p>
+          <a href="mailto:id123id6@gmail.com?subject=%5Bseungbak.com%5D%20%EB%AC%B8%EC%9D%98">id123id6@gmail.com</a>
+          <p class="theme-body-sm">클릭하면 메일 앱이 열립니다 · 제목에 [seungbak.com] 문의가 자동 입력됩니다</p>
         </div>
 
-        <div class="card page-card">
-          <h2 class="section-title">왜 seungbak.com 인가요?</h2>
-          <p>부동산 공부를 시작하며 느낀 불편함은 크게 세 가지였습니다.</p>
-          <ul class="about-pain-list">
-            <li><strong>① 정보가 여기저기 흩어져 있어요</strong> — 청약, 대출, 세금, 정책이 각각 다른 사이트에 흩어져 있어 한눈에 보기 어렵습니다.</li>
-            <li><strong>② 계산은 왜 이렇게 복잡할까요</strong> — LTV, DTI, DSR, 스트레스 DSR… 숫자를 대입해 보기 전까지 감이 오지 않습니다.</li>
-            <li><strong>③ 진짜 필요한 도구는 유료거나 어려워요</strong> — 실무에 가까운 기능은 비용이 들거나, 사용법을 익히기까지 시간이 많이 듭니다.</li>
-          </ul>
-          <p>
-            이 문제를 해결하기 위해 <strong>무료 웹 도구</strong>와 <strong>실용 블로그</strong>를 함께 운영하는 프로젝트로 자리 잡았습니다.
-            “누구나 회원가입 없이, 바로 써 볼 수 있어야 한다”는 원칙은 지금도 변하지 않습니다.
-            계산 결과는 참고용이며, 최종 판단은 반드시 공식 기관·금융사 안내를 따르셔야 합니다.
-            그럼에도 <strong>미리 감을 잡는 것</strong>만으로도 청약·대출 준비가 훨씬 수월해집니다.
-            <em>보물은 가까이 있다</em> — 멀리 있는 정보가 아니라, 내 상황에 맞게 정리된 도구와 글이 곧 보물지도라고 믿습니다.
-          </p>
-        </div>
+        <p class="theme-body-sm">
+          짧은 소식은
+          <a href="https://www.instagram.com/seungbak.tools/" target="_blank" rel="noopener noreferrer">인스타그램 @seungbak.tools</a>
+          에서도 공유합니다.
+        </p>
 
-        <div class="card page-card">
-          <h2 class="section-title">사이트에서 제공하는 것</h2>
-          <h3>부동산 도구 7종 (모두 무료)</h3>
-          <ul class="about-tools-grid">
-            <li>🏠 <a href="/tools/subscription-calculator/">청약 가점 계산기</a> — 84점 만점 자동 계산</li>
-            <li>🗺️ <a href="/tools/realestate-map/">전국 실거래가 지도</a> — 아파트 시세를 지도에서 확인</li>
-            <li>💰 <a href="/tools/apt-calculator/">아파트 대출 계산기</a> — LTV·DSR 반영, 내 연봉 기준 매수 가능가</li>
-            <li>📊 <a href="/tools/income-calculator/">월급 실수령액 계산기</a> — 4대보험·세금 반영</li>
-            <li>💵 <a href="/tools/salary-calculator/">소득 계산기</a> — 원하는 아파트에 필요한 연봉 역산</li>
-            <li>📅 <a href="/tools/dday-calculator/">D-day 계산기</a> — 내집마련 목표일 역산</li>
-            <li>🏠 청약 통장 관리 <span style="color:#64748b;">(개발 예정)</span></li>
-          </ul>
-          <h3>부동산 정보 블로그</h3>
-          <p>
-            청약, 대출, 세금, 정책 등 <strong>월급쟁이 관점</strong>의 실용 정보를 정리합니다.
-            공식 자료와 고시를 바탕으로 하되, 어려운 용어는 풀어서 설명합니다.
-            신규 글을 꾸준히 올리며, 정책 변화가 있을 때 빠르게 반영하려고 합니다.
-            스트레스 DSR, 신혼특공, 청년월세지원처럼 시기가 중요한 주제는
-            <strong>날짜·숫자·사례</strong>를 함께 적어 바로 실행할 수 있게 구성합니다.
-            블로그 전체 목록은 <a href="/blog/">블로그 페이지</a>에서 보실 수 있습니다.
-          </p>
-        </div>
-
-        <div class="card page-card">
-          <h2 class="section-title">사이트 운영 원칙</h2>
-          <h3>3가지 약속</h3>
-          <ul class="about-promise-list">
-            <li><strong>100% 무료</strong> — 회원가입 없이 바로 사용할 수 있습니다.</li>
-            <li><strong>정확한 정보</strong> — 청약홈, 한국부동산원, 금융위 등 공식 자료를 참고하며 지속 업데이트합니다.</li>
-            <li><strong>쉬운 설명</strong> — DSR, 가점, 특별공급 같은 용어도 처음 보는 분이 이해할 수 있게 씁니다.</li>
-          </ul>
-          <h3>광고에 대해</h3>
-          <p>
-            사이트 운영·서버 비용 유지를 위해 <strong>Google AdSense</strong> 등 광고가 표시될 수 있습니다.
-            광고는 콘텐츠와 무관하게 자동 게재되며, 특정 상품이나 금융 상품을 추천하지 않습니다.
-            광고 클릭 여부와 관계없이 모든 도구는 동일하게 무료로 이용하실 수 있습니다.
-            계산기에 입력하신 값은 브라우저 안에서만 처리되며, 서버에 별도 저장하지 않습니다.
-            자세한 내용은 <a href="/privacy.html">개인정보처리방침</a>과 <a href="/disclaimer.html">면책조항</a>을 참고해 주세요.
-          </p>
-        </div>
-
-        <div class="card page-card">
-          <h2 class="section-title">앞으로의 계획</h2>
-          <p>
-            청약 통장 관리 등 <strong>도구를 더 추가</strong>하고, 2026년 하반기 부동산 정책 변화를
-            블로그와 계산기에 <strong>실시간에 가깝게 반영</strong>할 예정입니다.
-            실거래가 지도는 수도권을 넘어 <strong>더 많은 지역</strong>으로 확대하는 작업도 진행 중입니다.
-            글로 익히기 어려운 주제는 <strong>유튜브 영상</strong>으로도 풀어 드릴 준비를 하고 있으며,
-            짧은 팁과 일정은 <strong>인스타그램</strong>에서도 공유합니다.
-            방문해 주시는 분들의 피드백이 다음 기능의 우선순위가 됩니다.
-          </p>
-        </div>
-
-        <div class="card page-card">
-          <h2 class="section-title">함께해요</h2>
-          <h3>소통 창구</h3>
-          <ul class="about-contact-list">
-            <li>📧 이메일: <a href="mailto:id123id6@gmail.com">id123id6@gmail.com</a></li>
-            <li>📸 인스타그램: <a href="https://www.instagram.com/seungbak.tools/" rel="noopener noreferrer" target="_blank">@seungbak.tools</a></li>
-            <li>💬 오류 제보, 개선 아이디어, 글 요청 — 언제나 환영합니다. 빠른 답변을 위해 이메일 제목에 문의 유형을 적어 주시면 큰 도움이 됩니다.</li>
-          </ul>
-          <p>
-            사이트는 <strong>승박</strong>이 1인으로 기획·개발·운영합니다.
-            콘텐츠 오류, 계산기 개선, 다뤄 줬으면 하는 주제가 있으면 편하게 연락 주세요.
-            이메일로 보내 주시면 검토 후 가능한 범위에서 반영하겠습니다.
-            문의는 <a href="/contact.html">문의 페이지</a>를 이용하셔도 됩니다.
-          </p>
-          <div class="about-cta-row">
-            <a href="/tools/" class="btn-primary">도구 사용하러 가기</a>
-            <a href="/blog/" class="btn-outline">블로그 보러 가기</a>
-            <a href="/contact.html" class="btn-outline">문의하기</a>
-          </div>
+        <div class="theme-cta-row">
+          <a href="/contact.html" class="theme-btn-primary">문의하기</a>
+          <a href="/tools/" class="theme-btn-secondary">도구 사용하러 가기</a>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div class="footer-col footer-brand">
-        <p class="footer-logo">승박</p>
-        <p class="footer-tagline">평범한 직장인의 두 번째 월급 만들기</p>
-        <p class="footer-owner">운영자: <strong>승박</strong></p>
-      </div>
-      <div class="footer-col">
-        <p class="footer-col-title">바로가기</p>
-        <ul class="footer-nav">
-          <li><a href="/">홈</a></li>
-          <li><a href="/tools/">도구</a></li>
-          <li><a href="/blog/">블로그</a></li>
-          <li><a href="/about.html">소개</a></li>
-          <li><a href="/contact.html">문의</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <p class="footer-col-title">정책</p>
-        <ul class="footer-nav">
-          <li><a href="/privacy.html">개인정보처리방침</a></li>
-          <li><a href="/disclaimer.html">면책조항</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <p class="footer-col-title">함께해요</p>
-        <ul class="footer-nav">
-          <li><a href="mailto:id123id6@gmail.com">이메일</a></li>
-          <li class="footer-coming-soon">유튜브 (준비 중)</li>
-        </ul>
+  <footer class="theme-footer">
+  <div class="theme-footer-inner">
+    <div class="theme-footer-brand">
+      <div class="theme-footer-logo">seungbak.com</div>
+      <div class="theme-footer-desc">
+        부동산 정보를 한 곳에서, 7개 무료 도구
       </div>
     </div>
-    <div class="container footer-bottom">
-      <p class="footer-copy">&copy; <span id="current-year"></span> 승박. All rights reserved.</p>
+    <div class="theme-footer-links">
+      <div class="theme-footer-col">
+        <div class="theme-footer-title">도구</div>
+        <a href="/tools/realestate-map/" class="theme-link">실거래가 지도</a>
+        <a href="/tools/subscription-calculator/" class="theme-link">청약 가점 계산기</a>
+        <a href="/tools/income-calculator/" class="theme-link">월급 계산기</a>
+      </div>
+      <div class="theme-footer-col">
+        <div class="theme-footer-title">정보</div>
+        <a href="/blog/" class="theme-link">블로그</a>
+        <a href="/about.html" class="theme-link">소개</a>
+        <a href="/contact.html" class="theme-link">문의</a>
+      </div>
+      <div class="theme-footer-col">
+        <div class="theme-footer-title">정책</div>
+        <a href="/privacy.html" class="theme-link">개인정보처리방침</a>
+        <a href="/terms.html" class="theme-link">이용약관</a>
+        <a href="/disclaimer.html" class="theme-link">면책조항</a>
+      </div>
     </div>
-  </footer>
+    <div class="theme-footer-bottom">
+      <div>© 2026 seungbak.com. All rights reserved.</div>
+      <div>
+        <a href="https://www.instagram.com/seungbak.tools/" target="_blank" rel="noopener" class="theme-link">@seungbak.tools</a>
+        ·
+        <a href="mailto:id123id6@gmail.com" class="theme-link">id123id6@gmail.com</a>
+      </div>
+    </div>
+  </div>
+</footer>
 
   <script>
     (function () {
@@ -351,4 +190,4 @@
   </script>
 </body>
 </html>
-
+

@@ -48,6 +48,7 @@
   <link rel="icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
   <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../css/global-theme.css">
 
   <script type="application/ld+json">
   {
@@ -77,28 +78,28 @@
       margin: 28px 0;
       padding: 24px 26px;
       border-radius: 16px;
-      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      background: var(--color-dark);
       color: #fff;
       text-align: center;
       transition: transform 0.2s, box-shadow 0.2s;
     }
     .post-article .cta-box:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(37, 99, 235, 0.35);
+      box-shadow: 0 8px 24px rgba(26, 26, 26, 0.35);
     }
     .post-article .cta-box .cta-icon { font-size: 32px; margin-bottom: 8px; }
     .post-article .cta-box h3 { margin: 0 0 8px; font-size: 20px; color: #fff; }
-    .post-article .cta-box p { margin: 0 0 16px; font-size: 15px; color: #dbeafe; }
+    .post-article .cta-box p { margin: 0 0 16px; font-size: 15px; color: #FAF5E8; }
     .post-article .cta-box .cta-button {
       display: inline-block;
       padding: 12px 24px;
       background: #fff;
-      color: #2563eb;
+      color: #1A1A1A;
       font-weight: 700;
       border-radius: 10px;
       text-decoration: none;
     }
-    .post-article .cta-box .cta-button:hover { background: #eff6ff; }
+    .post-article .cta-box .cta-button:hover { background: #FAF5E8; }
     .post-article .post-tip-box {
       margin: 24px 0;
       padding: 20px 22px;
@@ -129,12 +130,12 @@
     }
     .post-article .post-highlight-num strong { font-size: 22px; color: #15803d; }
     .post-breadcrumb { font-size: 14px; color: var(--color-text-muted); margin-bottom: 16px; }
-    .post-breadcrumb a { color: var(--color-primary); text-decoration: none; }
+    .post-breadcrumb a { color: var(--color-dark); text-decoration: none; }
     .post-breadcrumb a:hover { text-decoration: underline; }
-    .post-table .star { color: #7c3aed; font-weight: 700; }
+    .post-table .star { color: #1A1A1A; font-weight: 700; }
   </style>
 </head>
-<body>
+<body class="theme-blog-post">
   <header class="site-header">
     <div class="container header-inner">
       <div class="logo"><a href="/">승박</a></div>

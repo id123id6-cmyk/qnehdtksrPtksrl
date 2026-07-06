@@ -4,11 +4,56 @@
 (function (global) {
   "use strict";
 
-  const DISTRICT_FLY_LEVEL = 3;
+  const DISTRICT_FLY_LEVEL = 8;
+
+  const MAP_ZOOM = {
+    sido: 10,
+    sigungu: 8,
+    dong: 6,
+  };
+
+  const SIDO_VIEWS = {
+    seoul: { lat: 37.5665, lng: 126.978, zoom: MAP_ZOOM.sido },
+    busan: { lat: 35.1796, lng: 129.0756, zoom: MAP_ZOOM.sido },
+    daegu: { lat: 35.8714, lng: 128.6014, zoom: MAP_ZOOM.sido },
+    incheon: { lat: 37.4563, lng: 126.7052, zoom: MAP_ZOOM.sido },
+    gwangju: { lat: 35.1595, lng: 126.8526, zoom: MAP_ZOOM.sido },
+    daejeon: { lat: 36.3504, lng: 127.3845, zoom: MAP_ZOOM.sido },
+    ulsan: { lat: 35.5384, lng: 129.3114, zoom: MAP_ZOOM.sido },
+    sejong: { lat: 36.4801, lng: 127.289, zoom: MAP_ZOOM.sido },
+    gyeonggi: { lat: 37.275, lng: 127.009, zoom: MAP_ZOOM.sido },
+    gangwon: { lat: 37.8228, lng: 128.1555, zoom: MAP_ZOOM.sido },
+    chungbuk: { lat: 36.8, lng: 127.7, zoom: MAP_ZOOM.sido },
+    chungnam: { lat: 36.5184, lng: 126.8, zoom: MAP_ZOOM.sido },
+    jeonbuk: { lat: 35.7175, lng: 127.153, zoom: MAP_ZOOM.sido },
+    jeonnam: { lat: 34.8679, lng: 126.991, zoom: MAP_ZOOM.sido },
+    gyeongbuk: { lat: 36.4919, lng: 128.8889, zoom: MAP_ZOOM.sido },
+    gyeongnam: { lat: 35.4606, lng: 128.2132, zoom: MAP_ZOOM.sido },
+    jeju: { lat: 33.4996, lng: 126.5312, zoom: MAP_ZOOM.sido },
+  };
+
+  function getSidoView(sidoId) {
+    return SIDO_VIEWS[sidoId] || SIDO_VIEWS.seoul;
+  }
 
   const SIDO_OPTIONS = [
     { id: "seoul", name: "서울특별시" },
+    { id: "busan", name: "부산광역시" },
+    { id: "daegu", name: "대구광역시" },
+    { id: "incheon", name: "인천광역시" },
+    { id: "gwangju", name: "광주광역시" },
+    { id: "daejeon", name: "대전광역시" },
+    { id: "ulsan", name: "울산광역시" },
+    { id: "sejong", name: "세종특별자치시" },
     { id: "gyeonggi", name: "경기도" },
+    { id: "gangwon", name: "강원특별자치도" },
+    { id: "chungbuk", name: "충청북도" },
+    { id: "chungnam", name: "충청남도" },
+    { id: "jeonbuk", name: "전북특별자치도" },
+    { id: "jeonnam", name: "전라남도" },
+    { id: "gyeongbuk", name: "경상북도" },
+    { id: "gyeongnam", name: "경상남도" },
+    { id: "jeju", name: "제주특별자치도" },
   ];
 
   /** MOLIT 미수집 구역 — 드롭다운·지도에서 숨김 (데이터 적재 후 isReady: true로 전환) */
@@ -102,15 +147,40 @@
     "41830": { name: "양평군", slug: "yangpyeong-gun", lat: 37.490005874248666, lng: 127.52028964796288, zoom: 5, sido: "gyeonggi", isReady: false },
   };
 
+  const BUSAN_DISTRICTS = {
+    "26110": { name: "중구", slug: "busan-jung", lat: 35.1064, lng: 129.0324, zoom: 5, sido: "busan" },
+    "26140": { name: "서구", slug: "busan-seo", lat: 35.0975, lng: 129.0244, zoom: 5, sido: "busan" },
+    "26170": { name: "동구", slug: "busan-dong", lat: 35.1293, lng: 129.0454, zoom: 5, sido: "busan" },
+    "26200": { name: "영도구", slug: "busan-yeongdo", lat: 35.0917, lng: 129.0678, zoom: 5, sido: "busan" },
+    "26230": { name: "부산진구", slug: "busan-busanjin", lat: 35.1629, lng: 129.0532, zoom: 5, sido: "busan" },
+    "26260": { name: "동래구", slug: "busan-dongnae", lat: 35.2045, lng: 129.0780, zoom: 5, sido: "busan" },
+    "26290": { name: "남구", slug: "busan-nam", lat: 35.1366, lng: 129.0847, zoom: 5, sido: "busan" },
+    "26320": { name: "북구", slug: "busan-buk", lat: 35.1972, lng: 128.9905, zoom: 5, sido: "busan" },
+    "26350": { name: "해운대구", slug: "busan-haeundae", lat: 35.1631, lng: 129.1635, zoom: 5, sido: "busan" },
+    "26380": { name: "사하구", slug: "busan-saha", lat: 35.1046, lng: 128.9743, zoom: 5, sido: "busan" },
+    "26410": { name: "금정구", slug: "busan-geumjeong", lat: 35.2431, lng: 129.0921, zoom: 5, sido: "busan" },
+    "26440": { name: "강서구", slug: "busan-gangseo", lat: 35.2122, lng: 128.9805, zoom: 5, sido: "busan" },
+    "26470": { name: "연제구", slug: "busan-yeonje", lat: 35.1762, lng: 129.0799, zoom: 5, sido: "busan" },
+    "26500": { name: "수영구", slug: "busan-suyeong", lat: 35.1456, lng: 129.1133, zoom: 5, sido: "busan" },
+    "26530": { name: "사상구", slug: "busan-sasang", lat: 35.1527, lng: 128.9912, zoom: 5, sido: "busan" },
+    "26710": { name: "기장군", slug: "busan-gijang", lat: 35.2446, lng: 129.2223, zoom: 5, sido: "busan" },
+  };
+
+  const SIDO_DISTRICT_MAP = {
+    seoul: SEOUL_DISTRICTS,
+    gyeonggi: GYEONGGI_DISTRICTS,
+    busan: BUSAN_DISTRICTS,
+  };
+
   function getDistrictsBySido(sidoId, options = {}) {
     const readyOnly = options.readyOnly !== false;
-    const map = sidoId === "gyeonggi" ? GYEONGGI_DISTRICTS : SEOUL_DISTRICTS;
+    const map = SIDO_DISTRICT_MAP[sidoId] || {};
     return readyOnly ? filterReadyDistricts(map) : map;
   }
 
   function getAllDistricts(options = {}) {
     const readyOnly = options.readyOnly !== false;
-    const all = { ...SEOUL_DISTRICTS, ...GYEONGGI_DISTRICTS };
+    const all = { ...SEOUL_DISTRICTS, ...GYEONGGI_DISTRICTS, ...BUSAN_DISTRICTS };
     return readyOnly ? filterReadyDistricts(all) : all;
   }
 
@@ -141,7 +211,8 @@
   }
 
   function getGeoUrls(slug, sido) {
-    const base = sido === "gyeonggi" ? "data/gyeonggi" : "data";
+    const base =
+      sido === "gyeonggi" ? "data/gyeonggi" : sido === "busan" ? "data/busan" : "data";
     return {
       dong: `${base}/${slug}-dong.geojson`,
       gu: `${base}/${slug}-gu.geojson`,
@@ -152,8 +223,12 @@
     SIDO_OPTIONS,
     SEOUL_DISTRICTS,
     GYEONGGI_DISTRICTS,
+    BUSAN_DISTRICTS,
     NOT_READY_CODES,
     DISTRICT_FLY_LEVEL,
+    MAP_ZOOM,
+    SIDO_VIEWS,
+    getSidoView,
     isDistrictReady,
     isDistrictCodeReady,
     getDistrictsBySido,

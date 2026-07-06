@@ -1,0 +1,62 @@
+{
+  "headCheck": {
+    "ga": true,
+    "clarity": true,
+    "adsense": true,
+    "headLines": 46
+  },
+  "checks": {
+    "marker": {
+      "cardCount": 740,
+      "fullCount": 740,
+      "dotCount": 0,
+      "eunmaHasMeta": true,
+      "eunmaText": "<div class=\"marker-card marker-card--full marker-high marker-selected\" data-apt-id=\"948c0f63-4f00-46a4-8632-ec8c465b3d1c",
+      "stats": {
+        "visibleCount": 740,
+        "totalCount": 740,
+        "lastRenderMs": 11,
+        "total": 740,
+        "brandMatchRate": "41.4%",
+        "mode": "full"
+      },
+      "hidden": false,
+      "overlayCount": 740
+    },
+    "pyeongtaek": {
+      "lines": {
+        "line1": "고덕국제신도시금호어울림",
+        "line2": "3y · 357세대",
+        "line3": "3.8억"
+      },
+      "hasThreeLines": true,
+      "htmlSnippet": "<div class=\"marker-card marker-card--full marker-low\" data-apt-id=\"6399a9e3-ffb8-4e44-9711-af6bfd1db91a\" role=\"button\" t"
+    },
+    "radius": {
+      "btnExists": true,
+      "hasCircle": true,
+      "hasLabel": true,
+      "haversineOk": true,
+      "circleApi": "function"
+    },
+    "infra": {
+      "subwayPins": 0,
+      "infraBarBg": "rgb(245, 239, 224)",
+      "filterBarExists": true
+    },
+    "ui": {
+      "filterBg": "rgb(245, 239, 224)",
+      "hasControlsStack": true,
+      "activeFilterDark": false
+    }
+  },
+  "consoleErrors": [],
+  "screenshots": [
+    "desktop-marker-gangnam.png",
+    "desktop-marker-pyeongtaek.png",
+    "desktop-radius.png",
+    "desktop-infra-subway.png",
+    "mobile-controls.png"
+  ],
+  "pass": true
+}

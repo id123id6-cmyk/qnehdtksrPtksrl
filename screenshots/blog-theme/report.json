@@ -1,0 +1,296 @@
+{
+  "index": {
+    "file": "blog/index.html",
+    "styled": true,
+    "cardsOk": true,
+    "consoleErrors": [],
+    "headOk": true
+  },
+  "posts": [
+    {
+      "file": "post-1.html",
+      "styled": true,
+      "blueRemoved": true,
+      "textOk": true,
+      "consoleErrors": [],
+      "headOk": true,
+      "seoOk": true
+    },
+    {
+      "file": "post-2.html",
+      "styled": true,
+      "blueRemoved": true,
+      "textOk": true,
+      "consoleErrors": [],
+      "headOk": true,
+      "seoOk": true
+    },
+    {
+      "file": "post-3.html",
+      "styled": true,
+      "blueRemoved": true,
+      "textOk": true,
+      "consoleErrors": [],
+      "headOk": true,
+      "seoOk": true
+    },
+    {
+      "file": "post-4.html",
+      "styled": true,
+      "blueRemoved": true,
+      "textOk": true,
+      "consoleErrors": [],
+      "headOk": true,
+      "seoOk": true
+    },
+    {
+      "file": "post-5.html",
+      "styled": true,
+      "blueRemoved": true,
+      "textOk": true,
+      "consoleErrors": [],
+      "headOk": true,
+      "seoOk": true
+    },
+    {
+      "file": "post-6.html",
+      "styled": true,
+      "blueRemoved": true,
+      "textOk": true,
+      "consoleErrors": [],
+      "headOk": true,
+      "seoOk": true
+    },
+    {
+      "file": "post-7.html",
+      "styled": true,
+      "blueRemoved": true,
+      "textOk": true,
+      "consoleErrors": [],
+      "headOk": true,
+      "seoOk": true
+    },
+    {
+      "file": "post-8.html",
+      "styled": true,
+      "blueRemoved": true,
+      "textOk": true,
+      "consoleErrors": [],
+      "headOk": true,
+      "seoOk": true
+    },
+    {
+      "file": "post-9.html",
+      "styled": true,
+      "blueRemoved": true,
+      "textOk": true,
+      "consoleErrors": [],
+      "headOk": true,
+      "seoOk": true
+    },
+    {
+      "file": "post-10.html",
+      "styled": true,
+      "blueRemoved": true,
+      "textOk": true,
+      "consoleErrors": [],
+      "headOk": true,
+      "seoOk": true
+    },
+    {
+      "file": "post-11.html",
+      "styled": true,
+      "blueRemoved": true,
+      "textOk": true,
+      "consoleErrors": [],
+      "headOk": true,
+      "seoOk": true
+    },
+    {
+      "file": "post-12.html",
+      "styled": true,
+      "blueRemoved": true,
+      "textOk": true,
+      "consoleErrors": [],
+      "headOk": true,
+      "seoOk": true
+    },
+    {
+      "file": "post-13.html",
+      "styled": true,
+      "blueRemoved": true,
+      "textOk": true,
+      "consoleErrors": [],
+      "headOk": true,
+      "seoOk": true
+    },
+    {
+      "file": "post-14.html",
+      "styled": true,
+      "blueRemoved": true,
+      "textOk": true,
+      "consoleErrors": [],
+      "headOk": true,
+      "seoOk": true
+    },
+    {
+      "file": "post-15.html",
+      "styled": true,
+      "blueRemoved": true,
+      "textOk": true,
+      "consoleErrors": [],
+      "headOk": true,
+      "seoOk": true
+    },
+    {
+      "file": "post-16.html",
+      "styled": true,
+      "blueRemoved": true,
+      "textOk": true,
+      "consoleErrors": [],
+      "headOk": true,
+      "seoOk": true
+    },
+    {
+      "file": "post-17.html",
+      "styled": true,
+      "blueRemoved": true,
+      "textOk": true,
+      "consoleErrors": [],
+      "headOk": true,
+      "seoOk": true
+    },
+    {
+      "file": "post-18.html",
+      "styled": true,
+      "blueRemoved": true,
+      "textOk": true,
+      "consoleErrors": [],
+      "headOk": true,
+      "seoOk": true
+    },
+    {
+      "file": "post-19.html",
+      "styled": true,
+      "blueRemoved": true,
+      "textOk": true,
+      "consoleErrors": [],
+      "headOk": true,
+      "seoOk": true
+    },
+    {
+      "file": "post-20.html",
+      "styled": true,
+      "blueRemoved": true,
+      "textOk": true,
+      "consoleErrors": [],
+      "headOk": true,
+      "seoOk": true
+    },
+    {
+      "file": "post-21.html",
+      "styled": true,
+      "blueRemoved": true,
+      "textOk": true,
+      "consoleErrors": [],
+      "headOk": true,
+      "seoOk": true
+    },
+    {
+      "file": "post-22.html",
+      "styled": true,
+      "blueRemoved": true,
+      "textOk": true,
+      "consoleErrors": [],
+      "headOk": true,
+      "seoOk": true
+    },
+    {
+      "file": "post-23.html",
+      "styled": true,
+      "blueRemoved": true,
+      "textOk": true,
+      "consoleErrors": [],
+      "headOk": true,
+      "seoOk": true
+    },
+    {
+      "file": "post-24.html",
+      "styled": true,
+      "blueRemoved": true,
+      "textOk": true,
+      "consoleErrors": [],
+      "headOk": true,
+      "seoOk": true
+    },
+    {
+      "file": "post-25.html",
+      "styled": true,
+      "blueRemoved": true,
+      "textOk": true,
+      "consoleErrors": [],
+      "headOk": true,
+      "seoOk": true
+    },
+    {
+      "file": "post-26.html",
+      "styled": true,
+      "blueRemoved": true,
+      "textOk": true,
+      "consoleErrors": [],
+      "headOk": true,
+      "seoOk": true
+    },
+    {
+      "file": "post-27.html",
+      "styled": true,
+      "blueRemoved": true,
+      "textOk": true,
+      "consoleErrors": [],
+      "headOk": true,
+      "seoOk": true
+    },
+    {
+      "file": "post-28.html",
+      "styled": true,
+      "blueRemoved": true,
+      "textOk": true,
+      "consoleErrors": [],
+      "headOk": true,
+      "seoOk": true
+    },
+    {
+      "file": "post-29.html",
+      "styled": true,
+      "blueRemoved": true,
+      "textOk": true,
+      "consoleErrors": [],
+      "headOk": true,
+      "seoOk": true
+    },
+    {
+      "file": "post-30.html",
+      "styled": true,
+      "blueRemoved": true,
+      "textOk": true,
+      "consoleErrors": [],
+      "headOk": true,
+      "seoOk": true
+    }
+  ],
+  "summary": {
+    "indexOk": true,
+    "postsOk": true,
+    "textIntegrity": "30/30",
+    "blueRemaining": 0,
+    "blueHits": [],
+    "globalThemeCssLines": {
+      "before": 1328,
+      "after": 1917,
+      "added": 589
+    },
+    "totalConsoleErrors": 0,
+    "consoleErrors": []
+  },
+  "pass": true
+}

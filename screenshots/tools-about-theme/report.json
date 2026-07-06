@@ -1,0 +1,32 @@
+{
+  "results": [
+    {
+      "file": "tools/index.html",
+      "bodyClass": true,
+      "headScriptsOk": true,
+      "blueInFile": false,
+      "navActive": "도구"
+    },
+    {
+      "file": "about.html",
+      "bodyClass": true,
+      "headScriptsOk": true,
+      "blueInFile": false,
+      "navActive": "소개"
+    }
+  ],
+  "blueHits": [],
+  "blueRemaining": 0,
+  "globalThemeCssLines": {
+    "before": 1917,
+    "after": 2159,
+    "added": 242
+  },
+  "consoleErrors": [],
+  "totalConsoleErrors": 0,
+  "navActive": {
+    "tools": "도구",
+    "about": "소개"
+  },
+  "pass": true
+}

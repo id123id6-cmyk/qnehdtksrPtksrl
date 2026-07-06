@@ -1,0 +1,17 @@
+{
+  "headOk": true,
+  "afterSeoul": {
+    "level": 10,
+    "center": {
+      "lat": 37.56236355637907,
+      "lng": 126.97500901273119
+    },
+    "hint": "시·군·구를 선택하세요"
+  },
+  "afterSongpa": {
+    "code": "11710",
+    "level": 7,
+    "count": "428개 단지"
+  },
+  "consoleErrors": []
+}

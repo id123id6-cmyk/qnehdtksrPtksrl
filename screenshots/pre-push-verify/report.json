@@ -1,0 +1,35 @@
+{
+  "local": {
+    "pass": true,
+    "failed": [],
+    "totalErrors": 0,
+    "errors": []
+  },
+  "prod": {
+    "pass": false,
+    "failed": [
+      {
+        "page": "/blog/post-30.html",
+        "errors": [
+          "Failed to load resource: the server responded with a status of 404 ()",
+          "HEAD_INTEGRITY_FAIL"
+        ],
+        "ok": false
+      }
+    ],
+    "totalErrors": 2,
+    "errors": [
+      "[prod/blog/post-30.html] Failed to load resource: the server responded with a status of 404 ()",
+      "[prod/blog/post-30.html] HEAD_INTEGRITY_FAIL"
+    ]
+  },
+  "headMarkers": [
+    "G-Y7SC73P9JW",
+    "ca-pub-8232968272801958",
+    "clarity.ms"
+  ],
+  "gitignore": {
+    "envLocal": true,
+    "configJs": true
+  }
+}

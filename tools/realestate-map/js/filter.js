@@ -82,6 +82,16 @@
 
   function matchAreaFilter(apt, filter) {
     if (filter === "all") return true;
+
+    const quick = AREA_QUICK_RANGES[filter];
+    if (quick) {
+      const [min, max] = quick;
+      const dom = apt.dominantArea ?? apt.dominantAreaGroup;
+      if (dom != null && dom >= min && dom <= max) return true;
+      const meta = apt.areaGroupMeta || [];
+      return meta.some((g) => g.areaGroup >= min && g.areaGroup <= max);
+    }
+
     const bands = apt.areaSqmBands || apt.areaCategories || [];
     return bands.includes(filter);
   }
@@ -143,7 +153,20 @@
     price: "가격",
     area: "면적",
     age: "연식",
-    volume: "거래량",
+    volume: "거래일",
+  };
+
+  const AREA_QUICK_PILLS = [
+    { value: "all", label: "전체" },
+    { value: "sqm59", label: "59㎡" },
+    { value: "sqm72", label: "72㎡" },
+    { value: "sqm84", label: "84㎡" },
+  ];
+
+  const AREA_QUICK_RANGES = {
+    sqm59: [58.5, 60.5],
+    sqm72: [71, 74],
+    sqm84: [83, 86],
   };
 
   const VALUE_SHORT_LABELS = {
@@ -215,17 +238,25 @@
     }
 
     renderBar() {
-      const chipButtons = ["price", "area", "age", "volume"]
+      const dropdownTypes = ["price", "age", "volume"];
+      const chipButtons = dropdownTypes
         .map(
           (type) => `
         <div class="filter-chip-wrap" data-filter-wrap="${type}">
-          <button type="button" class="filter-btn default" data-filter="${type}" aria-expanded="false" id="filter-btn-${type}">
+          <button type="button" class="map-pill filter-btn default" data-filter="${type}" aria-expanded="false" id="filter-btn-${type}">
             <span class="filter-btn-label" id="filter-${type}-label">${this.getTypeName(type)}</span>
             <span class="filter-arrow">▼</span>
           </button>
         </div>`
         )
         .join("");
+
+      const areaPills = AREA_QUICK_PILLS.map(
+        (pill) => `
+        <button type="button" class="map-pill area-pill" data-area-pill="${pill.value}">
+          ${pill.label}
+        </button>`
+      ).join("");
 
       const dropdowns = ["price", "area", "age", "volume"]
         .map(
@@ -244,11 +275,11 @@
         .join("");
 
       this.barEl.innerHTML = `
-        <div class="filter-group">
+        <div class="toolbar-group-inner filter-group">
           ${chipButtons}
-          <button type="button" class="filter-reset-btn" id="filterReset">초기화</button>
-          <div class="filter-result-count" aria-live="polite">
-            <strong id="filtered-count">0</strong> / <span id="total-count">0</span> 단지
+          <div class="area-pill-segment" role="group" aria-label="면적 빠른 선택">
+            <span class="area-segment-label">면적</span>
+            ${areaPills}
           </div>
         </div>
         <div class="filter-dropdown-layer" aria-hidden="true">${dropdowns}</div>`;
@@ -273,6 +304,13 @@
           const type = opt.dataset.filterType;
           const value = opt.dataset.filterValue;
           this.setFilter(type, value);
+        });
+      });
+
+      this.barEl.querySelectorAll("[data-area-pill]").forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          this.setFilter("area", btn.dataset.areaPill);
         });
       });
 
@@ -396,7 +434,7 @@
         const btn = this.barEl.querySelector(`[data-filter="${type}"]`);
         const value = filterState[type];
 
-        if (labelEl) {
+        if (labelEl && type !== "area") {
           labelEl.textContent = getButtonDisplayLabel(type, value);
         }
         if (btn) {
@@ -411,6 +449,13 @@
             opt.classList.toggle("selected", opt.dataset.filterValue === value);
           });
       }
+
+      this.barEl.querySelectorAll("[data-area-pill]").forEach((pill) => {
+        const val = pill.dataset.areaPill;
+        const isActive = filterState.area === val;
+        pill.classList.toggle("active", isActive);
+        pill.classList.toggle("default", !isActive);
+      });
     }
 
     emitChange() {

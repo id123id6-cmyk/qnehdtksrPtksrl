@@ -1,0 +1,16 @@
+{
+  "checks": {
+    "aboutCta": {
+      "color": "rgb(245, 239, 224)",
+      "bg": "rgb(26, 26, 26)",
+      "fill": "rgb(245, 239, 224)"
+    },
+    "toolsHero": {
+      "titleColor": "rgb(255, 255, 255)",
+      "titleFill": "rgb(255, 255, 255)",
+      "highlightColor": "rgb(251, 191, 36)"
+    }
+  },
+  "consoleErrors": [],
+  "pass": true
+}

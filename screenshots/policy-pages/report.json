@@ -1,0 +1,74 @@
+{
+  "results": [
+    {
+      "page": "/about.html",
+      "blueRemoved": true,
+      "styled": true,
+      "consoleErrors": [],
+      "headOk": true,
+      "styles": {
+        "h1Color": "rgb(245, 239, 224)",
+        "bodyBg": "rgb(255, 255, 255)",
+        "proseSize": "15px",
+        "hasPolicyClass": true
+      }
+    },
+    {
+      "page": "/contact.html",
+      "blueRemoved": true,
+      "styled": true,
+      "consoleErrors": [],
+      "headOk": true,
+      "styles": {
+        "h1Color": "rgb(245, 239, 224)",
+        "bodyBg": "rgb(255, 255, 255)",
+        "proseSize": "15px",
+        "hasPolicyClass": true
+      }
+    },
+    {
+      "page": "/privacy.html",
+      "blueRemoved": true,
+      "styled": true,
+      "consoleErrors": [],
+      "headOk": true,
+      "styles": {
+        "h1Color": "rgb(245, 239, 224)",
+        "bodyBg": "rgb(255, 255, 255)",
+        "proseSize": "15px",
+        "hasPolicyClass": true
+      }
+    },
+    {
+      "page": "/disclaimer.html",
+      "blueRemoved": true,
+      "styled": true,
+      "consoleErrors": [],
+      "headOk": true,
+      "styles": {
+        "h1Color": "rgb(245, 239, 224)",
+        "bodyBg": "rgb(255, 255, 255)",
+        "proseSize": "15px",
+        "hasPolicyClass": true
+      }
+    },
+    {
+      "page": "/terms.html",
+      "blueRemoved": true,
+      "styled": true,
+      "consoleErrors": [],
+      "headOk": true,
+      "styles": {
+        "h1Color": "rgb(245, 239, 224)",
+        "bodyBg": "rgb(255, 255, 255)",
+        "proseSize": "15px",
+        "hasPolicyClass": true
+      }
+    }
+  ],
+  "blueGrepHits": [],
+  "blueRemaining": 0,
+  "globalThemeCssLines": 882,
+  "totalConsoleErrors": 0,
+  "pass": true
+}

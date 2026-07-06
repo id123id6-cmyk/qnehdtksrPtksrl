@@ -108,12 +108,42 @@
     return { matched, total: apartments.length };
   }
 
-  /** 줌 1~3: 브랜드+가격, 4~6: 가격만, 7~9: 점, 10+: 클러스터 */
+  const CURRENT_YEAR = new Date().getFullYear();
+
+  /** 줌 10+: 클러스터, 7~9: 도트, 4~6: 단지명+시세, 1~3: 3줄 풀카드 */
   function getMarkerMode(zoomLevel) {
     if (zoomLevel >= CLUSTER_LEVEL) return "cluster";
     if (zoomLevel >= 7) return "dot";
-    if (zoomLevel >= 4) return "price";
-    return "brand";
+    if (zoomLevel >= 4) return "compact";
+    return "full";
+  }
+
+  function getBuildingAgeShort(apt) {
+    if (!apt?.build_year) return "";
+    const age = CURRENT_YEAR - apt.build_year;
+    if (age < 0) return "";
+    return `${age}y`;
+  }
+
+  function getHouseholdShort(apt) {
+    const n = apt.household_count ?? apt.households;
+    if (n == null || n <= 0) return "";
+    return `${Number(n).toLocaleString("ko-KR")}세대`;
+  }
+
+  function getMarkerMetaLine(apt) {
+    const age = getBuildingAgeShort(apt);
+    const hh = getHouseholdShort(apt);
+    if (age && hh) return `${age} · ${hh}`;
+    return age || hh || "";
+  }
+
+  function getMarkerDisplayName(apt, mode) {
+    if (mode === "full") {
+      const name = apt.name || "";
+      return name.length > 12 ? `${name.slice(0, 11)}…` : name;
+    }
+    return shortenAptName(apt.name);
   }
 
   function isValidCoord(apt) {
@@ -131,13 +161,15 @@
 
   function getMarkerLabel(apt, zoomLevel) {
     const price = getMarkerPriceText(apt);
-    const pyeong = getAreaLabel(apt);
     const mode = getMarkerMode(zoomLevel);
-    if (mode === "brand") {
-      const name = shortenAptName(apt.name);
-      return [name, pyeong, price].filter(Boolean).join(" ");
+    if (mode === "full") {
+      return [getMarkerDisplayName(apt, mode), getMarkerMetaLine(apt), price]
+        .filter(Boolean)
+        .join(" ");
     }
-    if (mode === "price") return pyeong ? `${pyeong} ${price}` : price;
+    if (mode === "compact") {
+      return `${getMarkerDisplayName(apt, mode)} ${price}`.trim();
+    }
     return "";
   }
 
@@ -164,25 +196,38 @@
   function createMarkerContent(apt, zoomLevel, selectedId) {
     const category = getMarkerCategory(apt);
     const catLabel = category.label;
-    const price = getMarkerPriceText(apt);
-    const pyeong = getAreaLabel(apt);
+    const price = escapeHtml(getMarkerPriceText(apt));
     const mode = getMarkerMode(zoomLevel);
     const id = escapeHtml(apt.id);
     const tooltip = escapeHtml(getMarkerTooltip(apt));
     const isSelected =
       selectedId != null && String(apt.id) === String(selectedId);
     const selectedCls = isSelected ? " marker-selected" : "";
+    const name = escapeHtml(getMarkerDisplayName(apt, mode));
+    const meta = escapeHtml(getMarkerMetaLine(apt));
 
     if (mode === "dot") {
       return `<div class="marker-dot marker-${catLabel}${selectedCls}" data-apt-id="${id}" title="${tooltip}"></div>`;
     }
-    if (mode === "price") {
-      const label = pyeong ? `${pyeong} ${price}` : price;
-      return `<div class="marker-pill marker-${catLabel} size-sm${selectedCls}" data-apt-id="${id}" role="button" tabindex="0" title="${tooltip}">${label}</div>`;
+
+    if (mode === "compact") {
+      return `<div class="marker-card marker-card--compact marker-${catLabel}${selectedCls}" data-apt-id="${id}" role="button" tabindex="0" title="${tooltip}">
+        <div class="marker-card-accent marker-accent-${catLabel}"></div>
+        <div class="marker-card-body">
+          <div class="marker-card-line1">${name}</div>
+          <div class="marker-card-line3">${price}</div>
+        </div>
+      </div>`;
     }
-    const shortName = escapeHtml(shortenAptName(apt.name));
-    const label = pyeong ? `${shortName} ${pyeong} ${price}` : `${shortName} ${price}`;
-    return `<div class="marker-pill marker-${catLabel} size-md${selectedCls}" data-apt-id="${id}" role="button" tabindex="0" title="${tooltip}">${label}</div>`;
+
+    return `<div class="marker-card marker-card--full marker-${catLabel}${selectedCls}" data-apt-id="${id}" role="button" tabindex="0" title="${tooltip}">
+      <div class="marker-card-accent marker-accent-${catLabel}"></div>
+      <div class="marker-card-body">
+        <div class="marker-card-line1">${name}</div>
+        ${meta ? `<div class="marker-card-line2">${meta}</div>` : ""}
+        <div class="marker-card-line3">${price}</div>
+      </div>
+    </div>`;
   }
 
   function htmlToElement(html) {
@@ -236,9 +281,11 @@
       this.rafId = null;
       this.renderTimer = null;
       this.pendingLevel = null;
+      this.idleTimer = null;
       this._bootstrapping = false;
       this.selectedId = null;
       this.currentLevel = map.getLevel();
+      this._hidden = false;
       this.stats = {
         visibleCount: 0,
         totalCount: this.apartments.length,
@@ -300,6 +347,14 @@
           this.scheduleRender(this.map.getLevel());
         }, DEBOUNCE_MS);
       });
+
+      kakao.maps.event.addListener(this.map, "idle", () => {
+        if (this._bootstrapping) return;
+        clearTimeout(this.idleTimer);
+        this.idleTimer = setTimeout(() => {
+          this.scheduleRender(this.map.getLevel(), true);
+        }, 120);
+      });
     }
 
     bindDelegation() {
@@ -325,15 +380,33 @@
       });
     }
 
-    getVisibleApartments() {
+    getVisibleApartments(level) {
       const bounds = this.map.getBounds();
       if (!bounds) return this.apartments;
 
-      return this.apartments.filter((apt) =>
+      const sw = bounds.getSouthWest();
+      const ne = bounds.getNorthEast();
+      const degenerate =
+        !sw ||
+        !ne ||
+        (Math.abs(sw.getLat() - ne.getLat()) < 1e-8 &&
+          Math.abs(sw.getLng() - ne.getLng()) < 1e-8);
+
+      if (degenerate && level != null && level < 7) {
+        return this.apartments;
+      }
+
+      const visible = this.apartments.filter((apt) =>
         bounds.contain(
           new kakao.maps.LatLng(apt.latitude, apt.longitude)
         )
       );
+
+      if (visible.length === 0 && this.apartments.length > 0 && level != null && level < 7) {
+        return this.apartments;
+      }
+
+      return visible;
     }
 
     clearOverlays() {
@@ -453,14 +526,20 @@
       if (DEBUG) console.time("마커 렌더링");
 
       this.currentLevel = level;
-      const mode = getMarkerMode(level);
       this.clearOverlays();
+
+      if (this._hidden) {
+        this.stats.visibleCount = 0;
+        return;
+      }
+
+      const mode = getMarkerMode(level);
 
       if (mode === "cluster") {
         this.renderClusterMode();
         log(`클러스터 모드: ${this.apartments.length}/${this.apartments.length}`);
       } else {
-        const visibleApts = this.getVisibleApartments();
+        const visibleApts = this.getVisibleApartments(level);
         log(
           `화면 내 단지: ${visibleApts.length}/${this.apartments.length} (줌 ${level}, ${mode})`
         );
@@ -474,7 +553,7 @@
         줌: level,
         모드: mode,
         visible: this.stats.visibleCount,
-        DOM알약: document.querySelectorAll(".marker-pill").length,
+        DOM카드: document.querySelectorAll(".marker-card").length,
         DOM점: document.querySelectorAll(".marker-dot").length,
       });
     }
@@ -517,6 +596,11 @@
       this.scheduleRender(this.currentLevel, this._bootstrapping);
     }
 
+    setVisible(visible) {
+      this._hidden = !visible;
+      this.scheduleRender(this.currentLevel, true);
+    }
+
     getStats() {
       const brand = countBrandMatches(this.apartments);
       return {
@@ -530,6 +614,7 @@
     destroy() {
       clearTimeout(this.zoomTimer);
       clearTimeout(this.panTimer);
+      clearTimeout(this.idleTimer);
       clearTimeout(this.renderTimer);
       cancelAnimationFrame(this.rafId);
       this.clearOverlays();
@@ -545,6 +630,9 @@
     getMarkerLabel,
     getMarkerTooltip,
     getMarkerPriceText,
+    getBuildingAgeShort,
+    getHouseholdShort,
+    getMarkerMetaLine,
     createMarkerElement,
     createMarkerContent,
     countBrandMatches,

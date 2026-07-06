@@ -19,20 +19,26 @@
 
   const GU_POLYGON_STYLE = {
     strokeWeight: 3,
-    strokeColor: "#2563eb",
+    strokeColor: "#1A1A1A",
     strokeOpacity: 0.7,
     strokeStyle: "solid",
-    fillColor: "#2563eb",
+    fillColor: "#1A1A1A",
     fillOpacity: 0.05,
   };
 
   const DONG_POLYGON_STYLE = {
     strokeWeight: 3,
-    strokeColor: "#ef4444",
+    strokeColor: "#1A1A1A",
     strokeOpacity: 0.8,
     strokeStyle: "solid",
-    fillColor: "#ef4444",
-    fillOpacity: 0.15,
+    fillColor: "#F5EFE0",
+    fillOpacity: 0.25,
+  };
+
+  const MAP_ZOOM = global.RealEstateMapDistricts?.MAP_ZOOM || {
+    sido: 10,
+    sigungu: 8,
+    dong: 6,
   };
 
   const DONG_CENTERS = {
@@ -189,8 +195,7 @@
       this.map = options.map;
       this.onDongChange = options.onDongChange || (() => {});
       this.onDistrictChange = options.onDistrictChange || (() => {});
-      this.sigunguCode =
-        options.sigunguCode === undefined ? "11680" : options.sigunguCode;
+      this.sigunguCode = options.sigunguCode ?? null;
       this.sidoId =
         options.sidoId ||
         global.RealEstateMapDistricts?.getSidoForCode?.(this.sigunguCode) ||
@@ -213,6 +218,12 @@
     }
 
     init() {
+      DistrictRegionSelector._instance = this;
+      if (this._inited) {
+        this.renderUI();
+        return;
+      }
+      this._inited = true;
       this.renderUI();
       this.bindEvents();
       if (this.hasDistrictSelected()) {
@@ -247,6 +258,12 @@
       );
     }
 
+    updateDongFilledState() {
+      const dongBtn = document.getElementById("dongDropdownBtn");
+      if (!dongBtn) return;
+      dongBtn.classList.toggle("is-filled", this.selectedDong !== "all");
+    }
+
     updateSelectionHint() {
       const guBtn = document.getElementById("guDropdownBtn");
       const guLabel = document.getElementById("selectedGu");
@@ -254,12 +271,23 @@
 
       if (this.hasDistrictSelected()) {
         guBtn.classList.remove("region-btn-hint");
+        guBtn.classList.add("is-filled");
         guLabel.textContent = this.getDistrictConfig().name;
         return;
       }
 
       guBtn.classList.add("region-btn-hint");
-      guLabel.textContent = "👆 여기서 지역을 선택해주세요";
+      guBtn.classList.remove("is-filled");
+      guLabel.textContent = "시·군·구를 선택하세요";
+    }
+
+    flyToSido() {
+      const view =
+        global.RealEstateMapDistricts?.getSidoView?.(this.sidoId) ||
+        { lat: 37.5665, lng: 126.978, zoom: MAP_ZOOM.sido };
+      if (!this.map || !window.kakao?.maps) return;
+      this.map.setCenter(new kakao.maps.LatLng(view.lat, view.lng));
+      this.map.setLevel(view.zoom ?? MAP_ZOOM.sido);
     }
 
     async loadBoundaries() {
@@ -421,15 +449,23 @@
         ? this.getDistrictConfig().name
         : "구 선택";
 
+      const guBtnClass = this.hasDistrictSelected()
+        ? "map-pill map-pill--dropdown region-dropdown-btn is-filled"
+        : "map-pill map-pill--dropdown region-dropdown-btn region-btn-hint";
+
+      const dongBtnClass =
+        this.selectedDong !== "all"
+          ? "map-pill map-pill--dropdown region-dropdown-btn is-filled"
+          : "map-pill map-pill--dropdown region-dropdown-btn";
+
       const sidoItems = SIDO_OPTIONS.map(
         (s) =>
           `<button type="button" class="sido-item gu-item dong-item${this.sidoId === s.id ? " active" : ""}" data-sido="${s.id}">${s.name}</button>`
       ).join("");
 
       root.innerHTML = `
-        <span class="region-pin" aria-hidden="true">📍</span>
         <div class="region-dropdown-wrap region-sido-wrap">
-          <button type="button" class="region-dropdown-btn region-gu-btn" id="sidoDropdownBtn" aria-expanded="false">
+          <button type="button" class="map-pill map-pill--dropdown region-dropdown-btn is-filled" id="sidoDropdownBtn" aria-expanded="false">
             <span id="selectedSido">${getSidoName(this.sidoId)}</span>
             <span class="dropdown-arrow">▼</span>
           </button>
@@ -437,9 +473,8 @@
             ${sidoItems}
           </div>
         </div>
-        <span class="region-divider">›</span>
         <div class="region-dropdown-wrap region-gu-wrap">
-          <button type="button" class="region-dropdown-btn region-gu-btn" id="guDropdownBtn" aria-expanded="false">
+          <button type="button" class="${guBtnClass}" id="guDropdownBtn" aria-expanded="false">
             <span id="selectedGu">${guLabel}</span>
             <span class="dropdown-arrow">▼</span>
           </button>
@@ -447,9 +482,8 @@
             ${guItems}
           </div>
         </div>
-        <span class="region-divider">›</span>
         <div class="region-dropdown-wrap">
-          <button type="button" class="region-dropdown-btn region-gu-btn" id="dongDropdownBtn" aria-expanded="false">
+          <button type="button" class="${dongBtnClass}" id="dongDropdownBtn" aria-expanded="false">
             <span id="selectedDong">동 선택</span>
             <span class="dropdown-arrow">▼</span>
           </button>
@@ -462,65 +496,128 @@
     }
 
     bindEvents() {
-      const sidoBtn = document.getElementById("sidoDropdownBtn");
-      const sidoMenu = document.getElementById("sidoDropdownMenu");
-      const guBtn = document.getElementById("guDropdownBtn");
-      const guMenu = document.getElementById("guDropdownMenu");
-      const dongBtn = document.getElementById("dongDropdownBtn");
+      DistrictRegionSelector._instance = this;
 
-      sidoBtn?.addEventListener("click", (e) => {
-        e.stopPropagation();
-        this.toggleSidoMenu();
-      });
-
-      sidoMenu?.querySelectorAll("[data-sido]").forEach((item) => {
-        item.addEventListener("click", (e) => {
-          e.stopPropagation();
-          this.selectSido(item.dataset.sido);
-        });
-      });
-
-      guBtn?.addEventListener("click", (e) => {
-        e.stopPropagation();
-        this.toggleGuMenu();
-      });
-
-      guMenu?.querySelectorAll("[data-sigungu]").forEach((item) => {
-        item.addEventListener("click", (e) => {
-          e.stopPropagation();
-          const code = item.dataset.sigungu;
-          this.selectDistrict(code);
-        });
-      });
-
-      dongBtn?.addEventListener("click", (e) => {
-        e.stopPropagation();
-        this.toggleDongMenu();
-      });
+      if (DistrictRegionSelector._delegationBound) return;
+      DistrictRegionSelector._delegationBound = true;
 
       document.addEventListener("click", (e) => {
+        const inst = DistrictRegionSelector._instance;
+        if (!inst) return;
+
+        const dropdownBtn = e.target.closest(".region-dropdown-btn");
+        if (dropdownBtn) {
+          e.stopPropagation();
+          if (dropdownBtn.id === "sidoDropdownBtn") inst.toggleSidoMenu();
+          else if (dropdownBtn.id === "guDropdownBtn") inst.toggleGuMenu();
+          else if (dropdownBtn.id === "dongDropdownBtn") inst.toggleDongMenu();
+          return;
+        }
+
+        const sidoItem = e.target.closest("[data-sido]");
+        if (sidoItem) {
+          e.stopPropagation();
+          inst.selectSido(sidoItem.dataset.sido);
+          return;
+        }
+
+        const guItem = e.target.closest("[data-sigungu]");
+        if (guItem) {
+          e.stopPropagation();
+          inst.selectDistrict(guItem.dataset.sigungu);
+          return;
+        }
+
+        const dongItem = e.target.closest(".dong-item");
+        if (dongItem && e.target.closest("#region-selector")) {
+          e.stopPropagation();
+          inst.selectDong(dongItem.dataset.dong, dongItem.textContent.trim());
+          return;
+        }
+
         if (!e.target.closest("#region-selector")) {
-          this.closeAllMenus();
+          inst.closeAllMenus();
         }
       });
 
-      window.addEventListener("resize", () => {
-        if (this.menuOpen || this.guMenuOpen || this.sidoMenuOpen) {
-          this.logMenuPosition();
-        }
-      });
+      if (!DistrictRegionSelector._resizeBound) {
+        DistrictRegionSelector._resizeBound = true;
+        window.addEventListener("resize", () => {
+          const inst = DistrictRegionSelector._instance;
+          if (!inst) return;
+          if (inst.menuOpen) inst.positionDropdownMenu("dong");
+          if (inst.guMenuOpen) inst.positionDropdownMenu("gu");
+          if (inst.sidoMenuOpen) inst.positionDropdownMenu("sido");
+        });
+      }
+    }
+
+    positionDropdownMenu(kind) {
+      const map = {
+        sido: ["sidoDropdownBtn", "sidoDropdownMenu"],
+        gu: ["guDropdownBtn", "guDropdownMenu"],
+        dong: ["dongDropdownBtn", "dongDropdownMenu"],
+      };
+      const [btnId, menuId] = map[kind] || [];
+      const btn = document.getElementById(btnId);
+      const menu = document.getElementById(menuId);
+      if (!btn || !menu || menu.hidden) return;
+
+      menu.style.position = "fixed";
+      menu.style.zIndex = "10001";
+      menu.style.transform = "none";
+      menu.style.right = "auto";
+
+      const padding = 12;
+      const btnRect = btn.getBoundingClientRect();
+      menu.style.top = `${btnRect.bottom + 4}px`;
+      menu.style.left = `${btnRect.left}px`;
+
+      let menuRect = menu.getBoundingClientRect();
+      if (menuRect.right > window.innerWidth - padding) {
+        menu.style.left = `${window.innerWidth - menuRect.width - padding}px`;
+      }
+      menuRect = menu.getBoundingClientRect();
+      if (menuRect.left < padding) {
+        menu.style.left = `${padding}px`;
+      }
+      if (menuRect.bottom > window.innerHeight - padding) {
+        menu.style.top = `${btnRect.top - menuRect.height - 4}px`;
+      }
+    }
+
+    resetDropdownMenu(menu) {
+      if (!menu) return;
+      menu.style.position = "";
+      menu.style.top = "";
+      menu.style.left = "";
+      menu.style.right = "";
+      menu.style.transform = "";
+      menu.style.zIndex = "";
     }
 
     selectSido(sidoId) {
       if (!SIDO_OPTIONS.some((s) => s.id === sidoId)) return;
-      if (sidoId === this.sidoId) {
-        this.closeAllMenus();
-        return;
-      }
       this.closeAllMenus();
+      const sidoChanged = sidoId !== this.sidoId;
       this.sidoId = sidoId;
-      this.renderUI();
-      this.bindEvents();
+
+      if (sidoChanged) {
+        this.sigunguCode = null;
+        this.dongList = [];
+        this.selectedDong = "all";
+        this.clearGuPolygon();
+        this.clearDongOverlay();
+        this.guPaths = null;
+        this.renderUI();
+      } else {
+        const sidoLabel = document.getElementById("selectedSido");
+        if (sidoLabel) sidoLabel.textContent = getSidoName(sidoId);
+      }
+
+      this.flyToSido();
+      this.updateSelectionHint();
+
       if (typeof gtag !== "undefined") {
         gtag("event", "sido_select", { sido_name: getSidoName(sidoId) });
       }
@@ -535,7 +632,6 @@
       if (districtSido && districtSido !== this.sidoId) {
         this.sidoId = districtSido;
         this.renderUI();
-        this.bindEvents();
       }
       if (sigunguCode === this.sigunguCode) {
         this.closeAllMenus();
@@ -560,6 +656,7 @@
 
       const labelEl = document.getElementById("selectedDong");
       if (labelEl) labelEl.textContent = "동 선택";
+      this.updateDongFilledState();
 
       this.updateGuLabel();
       this.updateSelectionHint();
@@ -573,6 +670,7 @@
       this.selectedDong = "all";
       const labelEl = document.getElementById("selectedDong");
       if (labelEl) labelEl.textContent = "동 선택";
+      this.updateDongFilledState();
 
       document.querySelectorAll("#dongDropdownMenu .dong-item").forEach((el) => {
         el.classList.toggle("active", el.dataset.dong === "all");
@@ -609,7 +707,7 @@
 
       this.map.setCenter(new kakao.maps.LatLng(cfg.lat, cfg.lng));
       this.map.setLevel(
-        global.RealEstateMapDistricts?.DISTRICT_FLY_LEVEL ?? 3
+        MAP_ZOOM.sigungu
       );
     }
 
@@ -619,8 +717,7 @@
       const cfg = this.getDistrictConfig();
       if (!cfg?.lat || !cfg?.lng) return;
 
-      const targetLevel =
-        global.RealEstateMapDistricts?.DISTRICT_FLY_LEVEL ?? 3;
+      const targetLevel = MAP_ZOOM.sigungu;
       const center = new kakao.maps.LatLng(cfg.lat, cfg.lng);
       const levelOpts = { animate: true, duration };
 
@@ -642,6 +739,7 @@
       menu.hidden = false;
       this.guMenuOpen = true;
       if (btn) btn.setAttribute("aria-expanded", "true");
+      requestAnimationFrame(() => this.positionDropdownMenu("gu"));
     }
 
     toggleSidoMenu() {
@@ -657,6 +755,7 @@
       menu.hidden = false;
       this.sidoMenuOpen = true;
       if (btn) btn.setAttribute("aria-expanded", "true");
+      requestAnimationFrame(() => this.positionDropdownMenu("sido"));
     }
 
     toggleDongMenu() {
@@ -672,21 +771,20 @@
       menu.hidden = false;
       this.menuOpen = true;
       if (btn) btn.setAttribute("aria-expanded", "true");
-      requestAnimationFrame(() => this.logMenuPosition(btn, menu));
+      requestAnimationFrame(() => this.positionDropdownMenu("dong"));
     }
 
-    logMenuPosition(btn, menu) {
-      const button = btn || document.getElementById("dongDropdownBtn");
-      const dropdown = menu || document.getElementById("dongDropdownMenu");
-      if (!button || !dropdown || dropdown.hidden) return;
-      console.log("[드롭다운] 버튼 위치:", button.getBoundingClientRect());
-      console.log("[드롭다운] 메뉴 위치:", dropdown.getBoundingClientRect());
+    logMenuPosition() {
+      /* 디버그용 — 필요 시 positionDropdownMenu 좌표 확인 */
     }
 
     closeGuMenu() {
       const menu = document.getElementById("guDropdownMenu");
       const btn = document.getElementById("guDropdownBtn");
-      if (menu) menu.hidden = true;
+      if (menu) {
+        menu.hidden = true;
+        this.resetDropdownMenu(menu);
+      }
       if (btn) btn.setAttribute("aria-expanded", "false");
       this.guMenuOpen = false;
     }
@@ -694,7 +792,10 @@
     closeDongMenu() {
       const menu = document.getElementById("dongDropdownMenu");
       const btn = document.getElementById("dongDropdownBtn");
-      if (menu) menu.hidden = true;
+      if (menu) {
+        menu.hidden = true;
+        this.resetDropdownMenu(menu);
+      }
       if (btn) btn.setAttribute("aria-expanded", "false");
       this.menuOpen = false;
     }
@@ -702,7 +803,10 @@
     closeSidoMenu() {
       const menu = document.getElementById("sidoDropdownMenu");
       const btn = document.getElementById("sidoDropdownBtn");
-      if (menu) menu.hidden = true;
+      if (menu) {
+        menu.hidden = true;
+        this.resetDropdownMenu(menu);
+      }
       if (btn) btn.setAttribute("aria-expanded", "false");
       this.sidoMenuOpen = false;
     }
@@ -724,6 +828,7 @@
         el.classList.toggle("active", el.dataset.dong === dong);
       });
 
+      this.updateDongFilledState();
       this.highlightDong(dong);
       this.closeAllMenus();
       this.onDongChange(dong);
@@ -778,6 +883,9 @@
         const ne = bounds.getNorthEast();
         if (ne && Number.isFinite(ne.getLat())) {
           this.map.setBounds(bounds, 40, 40, 40, 40);
+          if (this.map.getLevel() < MAP_ZOOM.dong) {
+            this.map.setLevel(MAP_ZOOM.dong);
+          }
           return;
         }
       }
@@ -793,7 +901,7 @@
         });
         this.dongCircle.setMap(this.map);
         this.map.setCenter(pos);
-        this.map.setLevel(5);
+        this.map.setLevel(MAP_ZOOM.dong);
         return;
       }
 
