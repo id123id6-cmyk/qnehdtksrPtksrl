@@ -12,8 +12,15 @@ loadEnv();
 requireEnv([
   "NEXT_PUBLIC_SUPABASE_URL",
   "NEXT_PUBLIC_SUPABASE_KEY",
-  "KAKAO_REST_KEY",
 ]);
+
+const kakaoRestKey = process.env.KAKAO_REST_KEY || "";
+if (!kakaoRestKey) {
+  console.warn(
+    "⚠️  KAKAO_REST_KEY 가 없습니다. 지하철·학교 검색 등 REST API 기능이 제한될 수 있습니다.\n" +
+      "    Vercel: Project Settings > Environment Variables 에 KAKAO_REST_KEY 를 추가하세요."
+  );
+}
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const outPath = path.resolve(__dirname, "../tools/realestate-map/config.js");
@@ -55,7 +62,7 @@ const config = {
   supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
   supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_KEY,
   kakaoJsKey: kakao.key,
-  kakaoRestKey: process.env.KAKAO_REST_KEY,
+  kakaoRestKey: kakaoRestKey,
 };
 
 const content = `// 자동 생성 — scripts/generate-frontend-config.mjs
