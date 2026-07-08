@@ -5,7 +5,7 @@
   "use strict";
 
   const CACHE_TTL_MS = 30 * 60 * 1000;
-  const RADIUS_M = 1000;
+  const SEARCH_DIST_M = 1000;
   const MAX_SCHOOLS = 3;
   const WALK_M_PER_MIN = 80;
 
@@ -57,7 +57,7 @@
       query: "초등학교",
       x: String(lng),
       y: String(lat),
-      radius: String(RADIUS_M),
+      radius: String(SEARCH_DIST_M),
       size: "15",
     });
 
@@ -119,7 +119,7 @@
 
   function renderSchoolListHtml(schools) {
     if (!schools.length) {
-      return '<p class="nearby-schools-status">반경 1km 내 초등학교를 찾지 못했습니다.</p>';
+      return '<p class="nearby-schools-status">주변 1km 내 초등학교를 찾지 못했습니다.</p>';
     }
 
     return schools

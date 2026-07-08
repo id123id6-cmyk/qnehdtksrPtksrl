@@ -144,6 +144,11 @@ body.map-page #map {
   min-height: 520px;
 }
 
+/* 카카오맵 타일·POI 톤다운 (CustomOverlay·마커는 영향 없음) */
+#map > div:first-child {
+  filter: saturate(0.55) brightness(1.03);
+}
+
 body.map-page .sidebar-panel {
   flex: 0 0 var(--map-sidebar-w);
   width: var(--map-sidebar-w);

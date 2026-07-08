@@ -100,8 +100,6 @@
 
     layerToggles: document.getElementById("map-layer-toggles"),
 
-    radiusFab: document.getElementById("map-radius-fab"),
-
     legend: document.getElementById("map-legend"),
 
     mobileFab: document.getElementById("mobileSearchFab"),
@@ -119,8 +117,6 @@
   let infraLayer;
 
   let subwayLineLayer;
-
-  let radiusTool;
 
   let regionSelector;
 
@@ -307,6 +303,20 @@
     });
 
     map.setLevel(cfg.zoom);
+
+    [
+      kakao.maps.MapTypeId.TRAFFIC,
+      kakao.maps.MapTypeId.TRANSIT,
+      kakao.maps.MapTypeId.BICYCLE,
+      kakao.maps.MapTypeId.USE_DISTRICT,
+      kakao.maps.MapTypeId.TERRAIN,
+    ].forEach((typeId) => {
+      try {
+        map.removeOverlayMapTypeId(typeId);
+      } catch (_) {
+        /* overlay 미적용 상태 */
+      }
+    });
 
     initMapResizeHandler();
 
@@ -843,13 +853,6 @@
 
 
 
-  function syncRadiusButtons(active) {
-    [document.getElementById("radius-tool-btn"), els.radiusFab].filter(Boolean).forEach((btn) => {
-      btn.classList.toggle("active", active);
-      btn.setAttribute("aria-pressed", active ? "true" : "false");
-    });
-  }
-
   function initMapToolbar() {
     if (window.RealEstateMapToolbar?.init) {
       window.RealEstateMapToolbar.init();
@@ -878,30 +881,7 @@
 
       });
 
-      if (window.RealEstateMapRadius?.RadiusTool) {
-        radiusTool = new window.RealEstateMapRadius.RadiusTool(map);
-        window.__mapRadiusTool = radiusTool;
-        const origDeactivate = radiusTool.deactivate.bind(radiusTool);
-        radiusTool.deactivate = () => {
-          origDeactivate();
-          syncRadiusButtons(false);
-        };
-        const origActivate = radiusTool.activate.bind(radiusTool);
-        radiusTool.activate = () => {
-          origActivate();
-          syncRadiusButtons(true);
-        };
-      }
-
-      infraLayer.init(els.layerToggles, {
-        onRadiusClick: () => {
-          if (radiusTool) radiusTool.toggle();
-        },
-      });
-
-      if (radiusTool && els.radiusFab) {
-        els.radiusFab.addEventListener("click", () => radiusTool.toggle());
-      }
+      infraLayer.init(els.layerToggles);
     }
 
   }
@@ -1159,6 +1139,8 @@
         await regionSelector.changeDistrict(lawdCode, getDongList());
 
         regionSelector.fitGuBounds();
+
+        await regionSelector.refreshLabels();
 
       }
 

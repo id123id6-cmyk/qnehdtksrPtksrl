@@ -6,7 +6,7 @@
 
   const CACHE_TTL_MS = 5 * 60 * 1000;
   const DEBOUNCE_MS = 500;
-  const RADIUS_M = 3000;
+  const SEARCH_DIST_M = 3000;
   const cache = new Map();
 
   function getRestKey() {
@@ -14,8 +14,8 @@
     return cfg.kakaoRestKey || cfg.kakaoJsKey || "";
   }
 
-  function cacheKey(type, lat, lng, radius) {
-    return `${type}:${lat.toFixed(3)}:${lng.toFixed(3)}:${radius}`;
+  function cacheKey(type, lat, lng, dist) {
+    return `${type}:${lat.toFixed(3)}:${lng.toFixed(3)}:${dist}`;
   }
 
   function getCached(key) {
@@ -48,10 +48,10 @@
     return json.documents || [];
   }
 
-  async function fetchSubwayStations(center, radius = RADIUS_M) {
+  async function fetchSubwayStations(center, distM = SEARCH_DIST_M) {
     const lat = center.getLat();
     const lng = center.getLng();
-    const key = cacheKey("subway", lat, lng, radius);
+    const key = cacheKey("subway", lat, lng, distM);
     const cached = getCached(key);
     if (cached) return cached;
 
@@ -59,7 +59,7 @@
       category_group_code: "SW8",
       x: String(lng),
       y: String(lat),
-      radius: String(radius),
+      radius: String(distM),
       size: "15",
     });
 
@@ -76,11 +76,11 @@
     return data;
   }
 
-  async function fetchSchools(center, schoolType, radius = RADIUS_M) {
+  async function fetchSchools(center, schoolType, distM = SEARCH_DIST_M) {
     const lat = center.getLat();
     const lng = center.getLng();
     const query = schoolType === "elementary" ? "초등학교" : "중학교";
-    const key = cacheKey(schoolType, lat, lng, radius);
+    const key = cacheKey(schoolType, lat, lng, distM);
     const cached = getCached(key);
     if (cached) return cached;
 
@@ -88,7 +88,7 @@
       query,
       x: String(lng),
       y: String(lat),
-      radius: String(radius),
+      radius: String(distM),
       size: "15",
     });
 
@@ -187,12 +187,10 @@
       this.overlays = [];
       this.debounceTimer = null;
       this.barEl = null;
-      this.onRadiusClick = null;
     }
 
-    init(barEl, options = {}) {
+    init(barEl) {
       this.barEl = barEl;
-      this.onRadiusClick = options.onRadiusClick || null;
       if (!barEl) return;
       this.renderBar();
       this.bindMapEvents();
@@ -213,18 +211,11 @@
           <button type="button" class="map-pill layer-toggle" data-infra="subway" aria-pressed="false">
             <span class="layer-icon" aria-hidden="true">🚇</span><span class="layer-label">지하철</span>
           </button>
-          <button type="button" class="map-pill layer-toggle" data-infra="radius" id="radius-tool-btn" aria-pressed="false" title="초등학교 배정 반경 확인 (통상 800m)&#10;지하철역 도보 반경 확인 (통상 500m)">
-            <span class="layer-icon" aria-hidden="true">📏</span><span class="layer-label">반경</span>
-          </button>
         </div>`;
 
       this.barEl.querySelectorAll(".layer-toggle").forEach((btn) => {
         btn.addEventListener("click", () => {
           const type = btn.dataset.infra;
-          if (type === "radius") {
-            if (this.onRadiusClick) this.onRadiusClick(btn);
-            return;
-          }
           if (type === "apartment") {
             this.toggles.apartment = !this.toggles.apartment;
             btn.classList.toggle("active", this.toggles.apartment);
@@ -241,10 +232,6 @@
           this.refresh();
         });
       });
-    }
-
-    getRadiusButton() {
-      return this.barEl?.querySelector("#radius-tool-btn") || null;
     }
 
     bindMapEvents() {

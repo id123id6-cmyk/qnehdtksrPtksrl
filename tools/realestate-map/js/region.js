@@ -17,22 +17,30 @@
     { id: "gyeonggi", name: "경기도" },
   ];
 
-  const GU_POLYGON_STYLE = {
-    strokeWeight: 3,
-    strokeColor: "#1A1A1A",
-    strokeOpacity: 0.7,
-    strokeStyle: "solid",
-    fillColor: "#1A1A1A",
-    fillOpacity: 0.05,
-  };
+  const GU_POLYGON_STYLE =
+    global.RealEstateMapBoundary?.SIGUNGU_STYLE || {
+      strokeWeight: 1.5,
+      strokeColor: "#1A1A1A",
+      strokeOpacity: 0.35,
+      strokeStyle: "solid",
+      fillColor: "transparent",
+      fillOpacity: 0,
+    };
 
-  const DONG_POLYGON_STYLE = {
-    strokeWeight: 3,
-    strokeColor: "#1A1A1A",
-    strokeOpacity: 0.8,
-    strokeStyle: "solid",
+  const DONG_POLYGON_STYLE =
+    global.RealEstateMapBoundary?.DONG_STYLE || {
+      strokeWeight: 0.8,
+      strokeColor: "#666666",
+      strokeOpacity: 0.2,
+      fillColor: "transparent",
+      fillOpacity: 0,
+    };
+
+  const DONG_HIGHLIGHT_STYLE = {
+    ...DONG_POLYGON_STYLE,
     fillColor: "#F5EFE0",
-    fillOpacity: 0.25,
+    fillOpacity: 0.15,
+    strokeOpacity: 0.35,
   };
 
   const MAP_ZOOM = global.RealEstateMapDistricts?.MAP_ZOOM || {
@@ -86,7 +94,13 @@
     });
   }
 
-  function geoUrls(slug, sido) {
+  function geoUrls(slug, sido, code) {
+    if (code) {
+      return {
+        dong: `geojson/dong/dong-${code}.geojson`,
+        gu: `geojson/sigungu/sigungu-${code}.geojson`,
+      };
+    }
     return global.RealEstateMapDistricts?.getGeoUrls?.(slug, sido) || {
       dong: `data/${slug}-dong.geojson`,
       gu: `data/${slug}-gu.geojson`,
@@ -215,6 +229,10 @@
       this.sidoMenuOpen = false;
       this._changingDistrict = false;
       this._boundaryGen = 0;
+      this.labelManager = global.RealEstateMapBoundary?.BoundaryLabelManager
+        ? new global.RealEstateMapBoundary.BoundaryLabelManager(this.map)
+        : null;
+      this.labelManager?.bindMap();
     }
 
     init() {
@@ -294,7 +312,7 @@
       const gen = ++this._boundaryGen;
       const cfg = this.getDistrictConfig();
       const { slug, name, sido } = cfg;
-      const urls = geoUrls(slug, sido);
+      const urls = geoUrls(slug, sido, this.sigunguCode);
 
       // 이전 구 dong GeoJSON이 gu 경계·fitGuBounds에 섞이지 않도록 즉시 초기화
       this.geojson = null;
@@ -312,10 +330,8 @@
       if (gen !== this._boundaryGen) return;
       this.clearGuPolygon();
       try {
-        const res = await fetch(guUrl);
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        if (gen !== this._boundaryGen) return;
-        const guGeojson = await res.json();
+        const fetcher = global.RealEstateMapBoundary?.fetchGeoJsonCached || fetch;
+        const guGeojson = await fetcher(guUrl);
 
         let allPaths = [];
         for (const feature of guGeojson.features || []) {
@@ -371,10 +387,8 @@
 
     async loadGeoJson(dongUrl, districtName, gen) {
       try {
-        const res = await fetch(dongUrl);
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        if (gen !== this._boundaryGen) return;
-        const geojson = await res.json();
+        const fetcher = global.RealEstateMapBoundary?.fetchGeoJsonCached || fetch;
+        const geojson = await fetcher(dongUrl);
         if (gen !== this._boundaryGen) return;
         this.geojson = geojson;
         this.dongIndex = buildDongIndex(this.geojson);
@@ -382,12 +396,28 @@
           features: this.geojson.features?.length,
           legalDongs: [...this.dongIndex.keys()],
         });
+        await this.refreshLabels(gen);
       } catch (err) {
         if (gen !== this._boundaryGen) return;
         console.warn(`[${districtName}] GeoJSON 로드 실패`, err.message);
         this.geojson = null;
         this.dongIndex = new Map();
       }
+    }
+
+    makeDongPolygonFactory() {
+      const style = DONG_POLYGON_STYLE;
+      return (feature) => {
+        const paths = pathsFromGeoFeature(feature);
+        return createPolygonFromPaths(this.map, paths, style);
+      };
+    }
+
+    async refreshLabels(gen) {
+      if (gen !== undefined && gen !== this._boundaryGen) return;
+      if (!this.labelManager || !this.sigunguCode) return;
+      this.labelManager.setSigunguCode(this.sigunguCode);
+      await this.labelManager.refresh(this.geojson, this.makeDongPolygonFactory());
     }
 
     renderDongMenu() {
@@ -870,7 +900,7 @@
         this.dongPolygon = createPolygonFromPaths(
           this.map,
           paths,
-          DONG_POLYGON_STYLE
+          DONG_HIGHLIGHT_STYLE
         );
         this.dongPolygons = Array.isArray(this.dongPolygon)
           ? this.dongPolygon
@@ -894,11 +924,9 @@
       if (center) {
         console.warn(`[지역] ${dongName} GeoJSON 없음 → 원형 폴백`);
         const pos = new kakao.maps.LatLng(center.lat, center.lng);
-        this.dongCircle = new kakao.maps.Circle({
-          center: pos,
-          radius: 600,
-          ...DONG_POLYGON_STYLE,
-        });
+        const circleOpts = { center: pos, ...DONG_HIGHLIGHT_STYLE };
+        circleOpts.radius = 600;
+        this.dongCircle = new kakao.maps.Circle(circleOpts);
         this.dongCircle.setMap(this.map);
         this.map.setCenter(pos);
         this.map.setLevel(MAP_ZOOM.dong);

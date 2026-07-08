@@ -3,10 +3,23 @@
  *
  * 실행:
  *   node scripts/geocode-apartments.mjs
+ *
+ * 로그: data/nationwide/geocode.log
+ * 실패: data/nationwide/geocode-failed.json
  */
 import { createClient } from "@supabase/supabase-js";
+import { mkdirSync, appendFileSync, writeFileSync, existsSync } from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { loadEnvLocal, requireEnv } from "./load-env.mjs";
 import { geocodePrefix as gyeonggiPrefix } from "./lib/gyeonggi-districts.mjs";
+import { getAllLawdCodes } from "./lib/nationwide-districts.mjs";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const ROOT = path.join(__dirname, "..");
+const DATA_DIR = path.join(ROOT, "data", "nationwide");
+const LOG_FILE = path.join(DATA_DIR, "geocode.log");
+const FAILED_FILE = path.join(DATA_DIR, "geocode-failed.json");
 
 loadEnvLocal();
 requireEnv(["NEXT_PUBLIC_SUPABASE_URL", "SUPABASE_SECRET", "KAKAO_REST_KEY"]);
@@ -19,16 +32,12 @@ const supabase = createClient(
 
 const KAKAO_KEY = process.env.KAKAO_REST_KEY;
 const DELAY_MS = 100;
+const PROGRESS_EVERY = 50;
 const KAKAO_KA_HEADER =
   process.env.KAKAO_KA_HEADER ||
   "sdk/1.0 os/javascript lang/ko origin/https://seungbak.com";
 
-function kakaoHeaders() {
-  return {
-    Authorization: `KakaoAK ${KAKAO_KEY}`,
-    KA: KAKAO_KA_HEADER,
-  };
-}
+mkdirSync(DATA_DIR, { recursive: true });
 
 /** 시군구 코드 → 주소 접두사 (서울 25개구) */
 const SIGUNGU_PREFIX = {
@@ -59,14 +68,37 @@ const SIGUNGU_PREFIX = {
   "11740": "서울 강동구",
 };
 
+for (const row of getAllLawdCodes()) {
+  if (!SIGUNGU_PREFIX[row.code]) {
+    SIGUNGU_PREFIX[row.code] = `${row.sidoShort} ${row.name}`;
+  }
+}
+
 const stats = {
   total: 0,
   success: 0,
   failed: 0,
+  cacheHit: 0,
 };
+
+const failedList = [];
+const cacheByAddress = new Map();
+
+function log(line) {
+  const msg = `[${new Date().toISOString()}] ${line}`;
+  console.log(line);
+  appendFileSync(LOG_FILE, msg + "\n");
+}
 
 function sleep(ms) {
   return new Promise((r) => setTimeout(r, ms));
+}
+
+function kakaoHeaders() {
+  return {
+    Authorization: `KakaoAK ${KAKAO_KEY}`,
+    KA: KAKAO_KA_HEADER,
+  };
 }
 
 function regionPrefix(sigunguCode) {
@@ -74,7 +106,7 @@ function regionPrefix(sigunguCode) {
   if (SIGUNGU_PREFIX[code]) return SIGUNGU_PREFIX[code];
   const gg = gyeonggiPrefix(code);
   if (gg !== "경기도") return gg;
-  return "서울";
+  return SIGUNGU_PREFIX[code] || "대한민국";
 }
 
 async function withRetry(fn, label) {
@@ -88,6 +120,26 @@ async function withRetry(fn, label) {
     }
   }
   throw new Error(`${label}: ${lastErr.message}`);
+}
+
+async function loadCoordinatesCache() {
+  let from = 0;
+  while (true) {
+    const { data, error } = await supabase
+      .from("coordinates_cache")
+      .select("address, latitude, longitude")
+      .range(from, from + 999);
+    if (error) throw new Error(`캐시 로드: ${error.message}`);
+    if (!data?.length) break;
+    for (const row of data) {
+      if (row.address && row.latitude != null) {
+        cacheByAddress.set(row.address, row);
+      }
+    }
+    if (data.length < 1000) break;
+    from += 1000;
+  }
+  log(`coordinates_cache 로드: ${cacheByAddress.size}건`);
 }
 
 async function kakaoSearch(url, query) {
@@ -111,39 +163,49 @@ async function kakaoSearch(url, query) {
   };
 }
 
-async function geocodeApartment(apt) {
+function buildQueries(apt) {
   const region = regionPrefix(apt.sigungu_code);
   const dong = (apt.dong || "").trim();
   const name = (apt.name || "").trim();
   const jibun = (apt.jibun || "").trim();
-
   const attempts = [];
 
   if (dong && name) {
     attempts.push({
-      type: "keyword",
       query: `${region} ${dong} ${name}`,
       url: "https://dapi.kakao.com/v2/local/search/keyword.json",
     });
   }
-
   if (dong && jibun) {
     attempts.push({
-      type: "address",
       query: `${region} ${dong} ${jibun}`,
       url: "https://dapi.kakao.com/v2/local/search/address.json",
     });
   }
-
   if (dong && name) {
     attempts.push({
-      type: "keyword",
       query: `${region} ${name}`,
       url: "https://dapi.kakao.com/v2/local/search/keyword.json",
     });
   }
+  return attempts;
+}
+
+async function geocodeApartment(apt) {
+  const attempts = buildQueries(apt);
 
   for (const attempt of attempts) {
+    const cached = cacheByAddress.get(attempt.query);
+    if (cached) {
+      stats.cacheHit++;
+      return {
+        latitude: cached.latitude,
+        longitude: cached.longitude,
+        address: attempt.query,
+        fromCache: true,
+      };
+    }
+
     const result = await withRetry(
       () => kakaoSearch(attempt.url, attempt.query),
       attempt.query
@@ -177,6 +239,7 @@ async function saveResult(apt, geo) {
   );
 
   if (cacheError) throw new Error(`coordinates_cache upsert: ${cacheError.message}`);
+  cacheByAddress.set(geo.address, geo);
 }
 
 function formatDuration(ms) {
@@ -186,8 +249,22 @@ function formatDuration(ms) {
 }
 
 function label(apt) {
-  const dong = apt.dong || "?";
-  return `${dong} ${apt.name}`;
+  return `${apt.dong || "?"} ${apt.name}`;
+}
+
+function saveFailed() {
+  writeFileSync(
+    FAILED_FILE,
+    JSON.stringify(
+      {
+        updatedAt: new Date().toISOString(),
+        count: failedList.length,
+        items: failedList,
+      },
+      null,
+      2
+    )
+  );
 }
 
 async function fetchApartmentsNeedingGeo() {
@@ -200,7 +277,7 @@ async function fetchApartmentsNeedingGeo() {
       .from("apartments")
       .select("id, name, dong, jibun, sigungu_code, latitude, longitude")
       .is("latitude", null)
-      .order("dong", { ascending: true })
+      .order("sigungu_code", { ascending: true })
       .range(from, from + pageSize - 1);
 
     if (error) throw new Error(`조회 실패: ${error.message}`);
@@ -215,19 +292,22 @@ async function fetchApartmentsNeedingGeo() {
 
 async function main() {
   const started = Date.now();
+  if (existsSync(LOG_FILE)) {
+    appendFileSync(LOG_FILE, `\n--- 새 실행 ${new Date().toISOString()} ---\n`);
+  }
 
-  console.log("=== 카카오 지오코딩 → apartments 좌표 저장 ===\n");
+  log("=== 카카오 지오코딩 → apartments 좌표 저장 ===");
 
+  await loadCoordinatesCache();
   const apartments = await fetchApartmentsNeedingGeo();
-
   stats.total = apartments.length;
 
   if (stats.total === 0) {
-    console.log("좌표가 비어 있는 단지가 없습니다. (이미 모두 처리됨)");
+    log("좌표가 비어 있는 단지가 없습니다. (이미 모두 처리됨)");
     return;
   }
 
-  console.log(`처리 대상: ${stats.total}개\n`);
+  log(`처리 대상: ${stats.total}개 (호출 간격 ${DELAY_MS}ms)`);
 
   for (let i = 0; i < apartments.length; i++) {
     const apt = apartments[i];
@@ -239,34 +319,56 @@ async function main() {
       if (geo) {
         await saveResult(apt, geo);
         stats.success++;
-        console.log(
-          `[${idx}/${stats.total}] ${label(apt)} → (${geo.latitude.toFixed(4)}, ${geo.longitude.toFixed(4)}) ✅`
-        );
+        if (idx % PROGRESS_EVERY === 0 || idx === stats.total) {
+          const pct = ((idx / stats.total) * 100).toFixed(1);
+          log(
+            `[${idx}/${stats.total}] ${pct}% — 성공 ${stats.success}, 실패 ${stats.failed}, 캐시히트 ${stats.cacheHit}`
+          );
+        }
       } else {
         stats.failed++;
-        console.log(`[${idx}/${stats.total}] ${label(apt)} → 검색 실패 ❌`);
+        failedList.push({
+          id: apt.id,
+          name: apt.name,
+          dong: apt.dong,
+          jibun: apt.jibun,
+          sigungu_code: apt.sigungu_code,
+          queries: buildQueries(apt).map((q) => q.query),
+        });
+        if (failedList.length % 20 === 0) saveFailed();
       }
     } catch (err) {
       stats.failed++;
-      console.log(`[${idx}/${stats.total}] ${label(apt)} → 오류: ${err.message} ❌`);
+      failedList.push({
+        id: apt.id,
+        name: apt.name,
+        dong: apt.dong,
+        sigungu_code: apt.sigungu_code,
+        error: err.message,
+      });
+      log(`[${idx}/${stats.total}] ${label(apt)} → 오류: ${err.message}`);
     }
 
     await sleep(DELAY_MS);
   }
 
+  saveFailed();
+
   const elapsed = formatDuration(Date.now() - started);
   const rate = stats.total ? ((stats.success / stats.total) * 100).toFixed(1) : "0";
 
-  console.log("\n========== 처리 결과 ==========");
-  console.log(`처리 대상: ${stats.total}개`);
-  console.log(`성공: ${stats.success}개 (위경도 채워짐)`);
-  console.log(`실패: ${stats.failed}개 (주소 검색 실패)`);
-  console.log(`소요 시간: ${elapsed}`);
-  console.log(`성공률: ${rate}%`);
-  console.log("==============================");
+  log("\n========== 처리 결과 ==========");
+  log(`처리 대상: ${stats.total}개`);
+  log(`성공: ${stats.success}개`);
+  log(`실패: ${stats.failed}개`);
+  log(`캐시 히트: ${stats.cacheHit}회`);
+  log(`소요 시간: ${elapsed}`);
+  log(`성공률: ${rate}%`);
+  log(`실패 목록: ${FAILED_FILE}`);
+  log("==============================");
 }
 
 main().catch((err) => {
-  console.error("치명적 오류:", err.message);
+  log(`치명적 오류: ${err.message}`);
   process.exit(1);
 });
