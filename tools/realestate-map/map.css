@@ -1802,6 +1802,21 @@ body.map-page .sidebar-actions .btn-primary:hover:not(:disabled) {
   flex-shrink: 0;
 }
 
+.region-native-mobile {
+  display: none;
+}
+
+.region-custom-desktop {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.region-native-select {
+  font-family: Pretendard, -apple-system, sans-serif;
+}
+
 .region-dropdown-btn {
   position: relative;
   font-weight: 500;
@@ -2588,6 +2603,57 @@ body.map-page .map-toolbar .region-dropdown-menu {
     box-shadow: none;
     z-index: auto;
     gap: 4px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .region-native-mobile {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex: 1;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .region-custom-desktop {
+    display: none !important;
+  }
+
+  .region-native-select {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: 120px;
+    height: 30px;
+    padding: 0 22px 0 8px;
+    border: 1px solid #e5dfd0;
+    border-radius: 16px;
+    background-color: #ffffff;
+    color: #1a1a1a;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.2;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%23666' d='M1 1l4 4 4-4'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    touch-action: manipulation;
+    cursor: pointer;
+  }
+
+  .region-native-select:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
+  .map-toolbar-scroll {
+    overflow-y: visible;
+  }
+
+  .toolbar-group--region {
+    flex: 1;
+    min-width: 0;
   }
 
   .region-pin {

@@ -439,6 +439,7 @@
           this.selectDong(item.dataset.dong, item.textContent.trim());
         });
       });
+      this.updateNativeDongSelect();
     }
 
     updateGuLabel() {
@@ -455,6 +456,51 @@
           this.hasDistrictSelected() && el.dataset.sigungu === this.sigunguCode
         );
       });
+      this.syncNativeSelects();
+    }
+
+    buildNativeGuOptions(sorted) {
+      const placeholder = `<option value=""${!this.hasDistrictSelected() ? " selected" : ""}>시·군·구 선택</option>`;
+      const items = sorted
+        .map(
+          ([code, d]) =>
+            `<option value="${code}"${this.sigunguCode === code ? " selected" : ""}>${d.name}</option>`
+        )
+        .join("");
+      return placeholder + items;
+    }
+
+    buildNativeDongOptions() {
+      let html = `<option value="all"${this.selectedDong === "all" ? " selected" : ""}>전체 보기</option>`;
+      for (const dong of this.dongList) {
+        html += `<option value="${dong}"${this.selectedDong === dong ? " selected" : ""}>${dong}</option>`;
+      }
+      return html;
+    }
+
+    buildNativeSidoOptions() {
+      return SIDO_OPTIONS.map(
+        (s) => `<option value="${s.id}"${this.sidoId === s.id ? " selected" : ""}>${s.name}</option>`
+      ).join("");
+    }
+
+    updateNativeDongSelect() {
+      const sel = document.getElementById("nativeDongSelect");
+      if (!sel) return;
+      sel.disabled = !this.hasDistrictSelected();
+      sel.innerHTML = this.buildNativeDongOptions();
+    }
+
+    syncNativeSelects() {
+      const sidoSel = document.getElementById("nativeSidoSelect");
+      const guSel = document.getElementById("nativeGuSelect");
+      const dongSel = document.getElementById("nativeDongSelect");
+      if (sidoSel) sidoSel.value = this.sidoId;
+      if (guSel) guSel.value = this.hasDistrictSelected() ? this.sigunguCode : "";
+      if (dongSel) {
+        dongSel.disabled = !this.hasDistrictSelected();
+        dongSel.value = this.selectedDong;
+      }
     }
 
     renderUI() {
@@ -494,6 +540,18 @@
       ).join("");
 
       root.innerHTML = `
+        <div class="region-native-mobile">
+          <select id="nativeSidoSelect" class="region-native-select" aria-label="시도 선택">
+            ${this.buildNativeSidoOptions()}
+          </select>
+          <select id="nativeGuSelect" class="region-native-select" aria-label="시·군·구 선택">
+            ${this.buildNativeGuOptions(sorted)}
+          </select>
+          <select id="nativeDongSelect" class="region-native-select" aria-label="동 선택"${this.hasDistrictSelected() ? "" : " disabled"}>
+            ${this.buildNativeDongOptions()}
+          </select>
+        </div>
+        <div class="region-custom-desktop">
         <div class="region-dropdown-wrap region-sido-wrap">
           <button type="button" class="map-pill map-pill--dropdown region-dropdown-btn is-filled" id="sidoDropdownBtn" aria-expanded="false">
             <span id="selectedSido">${getSidoName(this.sidoId)}</span>
@@ -519,9 +577,11 @@
           </button>
           <div class="region-dropdown-menu" id="dongDropdownMenu" hidden>
           </div>
+        </div>
         </div>`;
 
       this.renderDongMenu();
+      this.updateNativeDongSelect();
       this.updateSelectionHint();
     }
 
@@ -530,6 +590,20 @@
 
       if (DistrictRegionSelector._delegationBound) return;
       DistrictRegionSelector._delegationBound = true;
+
+      document.addEventListener("change", (e) => {
+        const inst = DistrictRegionSelector._instance;
+        if (!inst || !e.target.closest("#region-selector")) return;
+        const target = e.target;
+        if (target.id === "nativeSidoSelect") {
+          inst.selectSido(target.value);
+        } else if (target.id === "nativeGuSelect") {
+          if (target.value) inst.selectDistrict(target.value);
+        } else if (target.id === "nativeDongSelect") {
+          const label = target.options[target.selectedIndex]?.textContent?.trim() || target.value;
+          inst.selectDong(target.value, label);
+        }
+      });
 
       document.addEventListener("click", (e) => {
         const inst = DistrictRegionSelector._instance;
@@ -565,7 +639,7 @@
           return;
         }
 
-        if (!e.target.closest("#region-selector")) {
+        if (!e.target.closest("#region-selector") && !e.target.closest(".region-dropdown-menu")) {
           inst.closeAllMenus();
         }
       });
@@ -592,6 +666,13 @@
       const btn = document.getElementById(btnId);
       const menu = document.getElementById(menuId);
       if (!btn || !menu || menu.hidden) return;
+
+      if (!menu._portalParent) {
+        menu._portalParent = menu.parentElement;
+      }
+      if (menu.parentElement !== document.body) {
+        document.body.appendChild(menu);
+      }
 
       menu.style.position = "fixed";
       menu.style.zIndex = "10001";
@@ -624,6 +705,9 @@
       menu.style.right = "";
       menu.style.transform = "";
       menu.style.zIndex = "";
+      if (menu._portalParent && menu.parentElement === document.body) {
+        menu._portalParent.appendChild(menu);
+      }
     }
 
     selectSido(sidoId) {
@@ -694,6 +778,8 @@
       this.clearDongOverlay();
       await this.loadBoundaries();
       this._changingDistrict = false;
+      this.updateNativeDongSelect();
+      this.syncNativeSelects();
     }
 
     resetToGuView() {
@@ -861,6 +947,7 @@
       this.updateDongFilledState();
       this.highlightDong(dong);
       this.closeAllMenus();
+      this.syncNativeSelects();
       this.onDongChange(dong);
       trackDongSelect(dong, label, this.sigunguCode);
     }
