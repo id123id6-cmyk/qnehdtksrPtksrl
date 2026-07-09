@@ -68,6 +68,7 @@
   }
   </script>
   <link rel="stylesheet" href="../../css/global-theme.css">
+  <link rel="stylesheet" href="../dday-calculator/style.css">
 </head>
 <body class="theme-tool-page">
   <nav class="theme-nav">
@@ -97,13 +98,13 @@
         </h1>
         <p class="hero-subtitle">2026년 최신 4대보험 요율과 소득세를 반영한 정확한 계산</p>
         <div class="hero-cta">
-          <a href="#calculator" class="btn-primary hero-cta-btn">지금 계산하기 ↓</a>
-          <button type="button" class="btn-outline hero-cta-btn" onclick="toggleGuide()">사용법 보기</button>
+          <a href="#calculator" class="btn-primary hero-cta-btn">바로 계산하기</a>
+          <a href="#guide" class="btn-outline hero-cta-btn">사용법 보기</a>
         </div>
       </div>
     </section>
 
-    <!-- 사용법 가이드 섹션 -->
+    <!-- 사용법 가이드 섹션 (아코디언, 기본 접힘) -->
     <section class="section guide-section" id="guide">
       <div class="container">
         <button
@@ -111,16 +112,16 @@
           class="guide-toggle-btn"
           id="guide-toggle"
           aria-expanded="false"
-          aria-controls="guide-section"
+          aria-controls="guide-content"
         >
           💡 처음이신가요? 30초 가이드 보기
           <span class="toggle-icon" aria-hidden="true">▼</span>
         </button>
 
-        <div class="card guide-card" id="guide-section" style="display: none;" hidden>
+        <div class="card guide-card" id="guide-content" hidden>
           <h2 class="section-title">사용법 가이드</h2>
           <p class="guide-intro">
-            아래 3단계만 따라가면 연·월 실수령액과 공제 상세 내역을 약 30초 안에 확인할 수 있습니다.
+            아래 4단계만 따라가면 월 실수령액을 약 30초 안에 확인할 수 있습니다.
           </p>
 
           <article class="guide-step">
@@ -129,54 +130,42 @@
               <h3>연봉 입력</h3>
             </div>
             <p class="guide-desc">
-              세전 연봉을 <strong>만원 단위</strong>로 입력하세요. 예: 4,950만 원 → <code>4950</code>
+              세전 연봉을 만원 단위로 입력하세요. 성과급·상여금 포함 여부를 확인하세요.
             </p>
-            <div class="guide-callout tip">
-              <span class="callout-icon" aria-hidden="true">💡</span>
-              <div>
-                <strong>TIP</strong>
-                <p>계약서상 연봉(기본급+상여+식대 포함) 기준으로 입력하세요.</p>
-              </div>
-            </div>
             <button type="button" class="guide-next-btn" data-scroll-to="#salary">다음 →</button>
           </article>
 
           <article class="guide-step">
             <div class="guide-step-header">
               <span class="step-badge" aria-hidden="true">2</span>
-              <h3>비과세액 / 부양가족 / 자녀 입력</h3>
+              <h3>부양가족수 입력</h3>
             </div>
             <p class="guide-desc">
-              <strong>비과세액</strong>은 식대·자가운전보조금 등 월 합계(없으면 0),
-              <strong>부양가족 수</strong>는 본인 포함 인원,
-              <strong>20세 이하 자녀 수</strong>는 추가 공제용으로 입력합니다.
+              본인 포함 부양가족 수를 입력합니다. 소득세 공제에 영향을 줍니다.
             </p>
-            <div class="guide-callout tip">
-              <span class="callout-icon" aria-hidden="true">💡</span>
-              <div>
-                <strong>TIP</strong>
-                <p>비과세 항목은 4대보험과 소득세 계산에서 제외됩니다.</p>
-              </div>
-            </div>
-            <button type="button" class="guide-next-btn" data-scroll-to="#nontax">다음 →</button>
+            <button type="button" class="guide-next-btn" data-scroll-to="#family">다음 →</button>
           </article>
 
           <article class="guide-step">
             <div class="guide-step-header">
               <span class="step-badge" aria-hidden="true">3</span>
-              <h3>결과 확인</h3>
+              <h3>20세 이하 자녀수 입력</h3>
             </div>
             <p class="guide-desc">
-              <strong>계산하기</strong>를 클릭하면 연·월 실수령액과 공제 상세 내역이 표시됩니다.
+              자녀 수에 따라 소득세 추가 공제가 적용됩니다.
             </p>
-            <div class="guide-callout warn">
-              <span class="callout-icon" aria-hidden="true">⚠️</span>
-              <div>
-                <strong>안내</strong>
-                <p>실제 수령액은 회사 정책(상여금, 야근수당, 연말정산 등)에 따라 달라질 수 있습니다.</p>
-              </div>
+            <button type="button" class="guide-next-btn" data-scroll-to="#children">다음 →</button>
+          </article>
+
+          <article class="guide-step">
+            <div class="guide-step-header">
+              <span class="step-badge" aria-hidden="true">4</span>
+              <h3>비과세액 입력 (선택)</h3>
             </div>
-            <button type="button" class="guide-next-btn" data-scroll-to="#calculate-btn">계산하러 가기 →</button>
+            <p class="guide-desc">
+              식대·자가운전보조금 등 월 비과세 항목이 있으면 입력하세요.
+            </p>
+            <button type="button" class="guide-next-btn" data-scroll-to="#nontax">계산하기 →</button>
           </article>
         </div>
       </div>
@@ -418,5 +407,40 @@
 </footer>
 
   <script src="calculator.js"></script>
+  <script>
+    (function () {
+      function toggleGuide() {
+        var guide = document.getElementById("guide-content");
+        var toggle = document.getElementById("guide-toggle");
+        var icon = toggle ? toggle.querySelector(".toggle-icon") : null;
+        if (!guide || !toggle) return;
+
+        var nextExpanded = toggle.getAttribute("aria-expanded") !== "true";
+        toggle.setAttribute("aria-expanded", String(nextExpanded));
+        guide.hidden = !nextExpanded;
+        if (icon) icon.textContent = nextExpanded ? "▲" : "▼";
+      }
+
+      window.toggleGuide = toggleGuide;
+
+      var guideToggle = document.getElementById("guide-toggle");
+      if (guideToggle) {
+        guideToggle.addEventListener("click", toggleGuide);
+      }
+
+      document.querySelectorAll(".guide-next-btn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var selector = btn.getAttribute("data-scroll-to");
+          if (!selector) return;
+          var target = document.querySelector(selector);
+          if (!target) return;
+          target.scrollIntoView({ behavior: "smooth", block: "center" });
+          if (typeof target.focus === "function") {
+            target.focus({ preventScroll: true });
+          }
+        });
+      });
+    })();
+  </script>
 </body>
 </html>

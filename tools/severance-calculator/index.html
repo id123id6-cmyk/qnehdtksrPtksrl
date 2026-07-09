@@ -67,20 +67,21 @@
     "author": { "@type": "Person", "name": "승박" }
   }
   </script>
+  <link rel="stylesheet" href="../../css/global-theme.css">
+  <link rel="stylesheet" href="../dday-calculator/style.css">
 </head>
-<body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <div class="logo"><a href="/">승박</a></div>
-      <nav class="main-nav">
-        <a href="/">홈</a>
-        <a href="/tools/" class="active" aria-current="page">도구</a>
-        <a href="/blog/">블로그</a>
-        <a href="/about.html">소개</a>
-        <a href="/contact.html">문의</a>
-      </nav>
+<body class="theme-tool-page">
+  <nav class="theme-nav">
+  <div class="theme-nav-inner">
+    <a href="/" class="theme-nav-logo">seungbak.com</a>
+    <div class="theme-nav-menu">
+      <a href="/tools/realestate-map/" class="theme-nav-item">지도</a>
+      <a href="/#tools" class="theme-nav-item is-active" aria-current="page">도구</a>
+      <a href="/blog/" class="theme-nav-item">블로그</a>
+      <a href="/about.html" class="theme-nav-item">소개</a>
     </div>
-  </header>
+  </div>
+</nav>
 
   <main>
     <section class="hero">
@@ -96,8 +97,8 @@
         </h1>
         <p class="hero-subtitle">2026년 고용노동부 퇴직금 공식과 국세청 퇴직소득세 계산 방식 반영</p>
         <div class="hero-cta">
-          <a href="#calculator" class="btn-primary hero-cta-btn">지금 계산하기 ↓</a>
-          <button type="button" class="btn-outline hero-cta-btn" onclick="toggleGuide()">사용법 보기</button>
+          <a href="#calculator" class="btn-primary hero-cta-btn">바로 계산하기</a>
+          <a href="#guide" class="btn-outline hero-cta-btn">사용법 보기</a>
         </div>
       </div>
     </section>
@@ -109,25 +110,25 @@
           class="guide-toggle-btn"
           id="guide-toggle"
           aria-expanded="false"
-          aria-controls="guide-section"
+          aria-controls="guide-content"
         >
           💡 처음이신가요? 30초 가이드 보기
           <span class="toggle-icon" aria-hidden="true">▼</span>
         </button>
 
-        <div class="card guide-card" id="guide-section" style="display: none;" hidden>
+        <div class="card guide-card" id="guide-content" hidden>
           <h2 class="section-title">사용법 가이드</h2>
           <p class="guide-intro">
-            아래 3단계만 따라가면 퇴직금, 퇴직소득세, 실수령액을 약 30초 안에 확인할 수 있습니다.
+            아래 4단계만 따라가면 예상 퇴직금을 약 30초 안에 확인할 수 있습니다.
           </p>
 
           <article class="guide-step">
             <div class="guide-step-header">
               <span class="step-badge" aria-hidden="true">1</span>
-              <h3>입사일과 퇴사일 입력</h3>
+              <h3>입사일·퇴사일 입력</h3>
             </div>
             <p class="guide-desc">
-              입사일과 퇴사일을 선택하면 <strong>재직일수</strong>가 자동으로 계산됩니다. 퇴사일은 기본값이 오늘 날짜입니다.
+              정확한 날짜를 입력하세요. 근속연수가 자동 계산됩니다.
             </p>
             <button type="button" class="guide-next-btn" data-scroll-to="#join-date">다음 →</button>
           </article>
@@ -135,30 +136,34 @@
           <article class="guide-step">
             <div class="guide-step-header">
               <span class="step-badge" aria-hidden="true">2</span>
-              <h3>최근 3개월 급여(세전) 입력</h3>
+              <h3>최근 3개월 급여 입력</h3>
             </div>
             <p class="guide-desc">
-              퇴사 전 3개월간 받은 <strong>세전 급여</strong>를 만원 단위로 입력하세요. 연간 상여금·연차수당은 선택 입력입니다.
+              퇴사 직전 3개월간의 월 급여(세전, 상여금 포함)를 입력합니다.
             </p>
-            <div class="guide-callout tip">
-              <span class="callout-icon" aria-hidden="true">💡</span>
-              <div>
-                <strong>TIP</strong>
-                <p>3개월 평균이 비슷하다면 한 곳에만 입력하고 같은 값으로 복사해도 됩니다.</p>
-              </div>
-            </div>
             <button type="button" class="guide-next-btn" data-scroll-to="#salary-1">다음 →</button>
           </article>
 
           <article class="guide-step">
             <div class="guide-step-header">
               <span class="step-badge" aria-hidden="true">3</span>
-              <h3>결과 확인</h3>
+              <h3>연간 상여금 입력</h3>
             </div>
             <p class="guide-desc">
-              <strong>퇴직금 계산하기</strong>를 클릭하면 퇴직금, 퇴직소득세, 실수령액과 상세 내역이 표시됩니다.
+              최근 1년간 받은 상여금 총액을 입력하세요. 평균임금 계산에 반영됩니다.
             </p>
-            <button type="button" class="guide-next-btn" data-scroll-to="#calculate-btn">계산하러 가기 →</button>
+            <button type="button" class="guide-next-btn" data-scroll-to="#bonus">다음 →</button>
+          </article>
+
+          <article class="guide-step">
+            <div class="guide-step-header">
+              <span class="step-badge" aria-hidden="true">4</span>
+              <h3>연차수당 입력 (선택)</h3>
+            </div>
+            <p class="guide-desc">
+              미사용 연차수당이 있으면 입력하세요.
+            </p>
+            <button type="button" class="guide-next-btn" data-scroll-to="#annual-leave">계산하기 →</button>
           </article>
         </div>
       </div>
@@ -451,5 +456,40 @@
   </footer>
 
   <script src="calculator.js"></script>
+  <script>
+    (function () {
+      function toggleGuide() {
+        var guide = document.getElementById("guide-content");
+        var toggle = document.getElementById("guide-toggle");
+        var icon = toggle ? toggle.querySelector(".toggle-icon") : null;
+        if (!guide || !toggle) return;
+
+        var nextExpanded = toggle.getAttribute("aria-expanded") !== "true";
+        toggle.setAttribute("aria-expanded", String(nextExpanded));
+        guide.hidden = !nextExpanded;
+        if (icon) icon.textContent = nextExpanded ? "▲" : "▼";
+      }
+
+      window.toggleGuide = toggleGuide;
+
+      var guideToggle = document.getElementById("guide-toggle");
+      if (guideToggle) {
+        guideToggle.addEventListener("click", toggleGuide);
+      }
+
+      document.querySelectorAll(".guide-next-btn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var selector = btn.getAttribute("data-scroll-to");
+          if (!selector) return;
+          var target = document.querySelector(selector);
+          if (!target) return;
+          target.scrollIntoView({ behavior: "smooth", block: "center" });
+          if (typeof target.focus === "function") {
+            target.focus({ preventScroll: true });
+          }
+        });
+      });
+    })();
+  </script>
 </body>
 </html>

@@ -61,6 +61,7 @@
   }
   </script>
   <link rel="stylesheet" href="../../css/global-theme.css">
+  <link rel="stylesheet" href="../dday-calculator/style.css">
 </head>
 <body class="theme-tool-page">
   <nav class="theme-nav">
@@ -112,148 +113,53 @@
         <div class="card guide-card" id="guide-content" hidden>
           <h2 class="section-title">사용법 가이드</h2>
           <p class="guide-intro">
-            아래 6단계만 따라가면 원하는 아파트 가격으로 필요한 최소 연봉을 약 30초 안에 확인할 수 있습니다.
-            각 단계 끝의 <strong>다음 →</strong> 버튼을 누르면 해당 입력 칸으로 바로 이동합니다.
+            아래 4단계만 따라가면 원하는 실수령액을 위한 필요 연봉을 약 30초 안에 확인할 수 있습니다.
           </p>
 
-          <article class="guide-step" id="guide-step-1">
+          <article class="guide-step">
             <div class="guide-step-header">
               <span class="step-badge" aria-hidden="true">1</span>
-              <h3>매수 희망 아파트 가격(만원) 입력하기</h3>
+              <h3>목표 월 실수령액 입력</h3>
             </div>
             <p class="guide-desc">
-              사고 싶은 아파트의 매매가를 <strong>만원 단위</strong>로 입력하세요. 예를 들어 5억 원 아파트라면 <code>50000</code>을 입력합니다.
-              이 값을 기준으로 LTV(주택담보대출비율)와 DSR(총부채원리금상환비율) 한도가 역산되어 필요한 최소 연봉이 계산됩니다.
+              매달 손에 쥐고 싶은 금액을 만원 단위로 입력하세요.
             </p>
-            <div class="guide-callout tip">
-              <span class="callout-icon" aria-hidden="true">💡</span>
-              <div>
-                <strong>TIP</strong>
-                <p>관심 있는 단지의 KB시세나 국토부 실거래가를 기준으로 입력하면 현실에 가까운 결과를 얻을 수 있습니다.</p>
-              </div>
-            </div>
             <button type="button" class="guide-next-btn" data-scroll-to="#targetPrice">다음 →</button>
           </article>
 
-          <article class="guide-step" id="guide-step-2">
+          <article class="guide-step">
             <div class="guide-step-header">
               <span class="step-badge" aria-hidden="true">2</span>
-              <h3>보유 자기자본(만원) 입력하기</h3>
+              <h3>부양가족수 입력</h3>
             </div>
             <p class="guide-desc">
-              매수 시 사용할 수 있는 현금성 자산을 만원 단위로 입력합니다. 예를 들어 8,000만 원이 있다면 <code>8000</code>을 입력하세요.
-              자기자본이 많을수록 대출 부담이 줄어 필요 연봉도 낮아집니다. 부모님 지원금이나 청약 당첨 시 받을 중도금도 포함 가능합니다.
+              본인 포함 부양가족 수를 입력합니다. 세금 공제에 영향을 줍니다.
             </p>
-            <div class="guide-callout tip">
-              <span class="callout-icon" aria-hidden="true">💡</span>
-              <div>
-                <strong>TIP</strong>
-                <p>자기자본은 매매가의 최소 30% 이상 준비하는 것을 권장합니다.</p>
-              </div>
-            </div>
             <button type="button" class="guide-next-btn" data-scroll-to="#reverseCash">다음 →</button>
           </article>
 
-          <article class="guide-step" id="guide-step-3">
+          <article class="guide-step">
             <div class="guide-step-header">
               <span class="step-badge" aria-hidden="true">3</span>
-              <h3>기존 대출 원리금 합계 입력하기</h3>
+              <h3>20세 이하 자녀수 입력</h3>
             </div>
             <p class="guide-desc">
-              현재 갚고 있는 <strong>모든 대출의 월 원리금 상환액</strong>을 만원 단위로 입력하세요.
-              신용대출, 자동차할부, 카드론, 학자금대출 등 모든 대출이 포함됩니다.
-              기존 대출이 많을수록 DSR 한도가 차감되어 필요 연봉이 증가합니다. 없으면 0으로 두세요.
+              자녀 수에 따라 필요 연봉이 낮아질 수 있습니다.
             </p>
-            <div class="guide-callout tip">
-              <span class="callout-icon" aria-hidden="true">💡</span>
-              <div>
-                <strong>TIP</strong>
-                <p>마이너스통장도 한도가 아닌 실제 사용 금액 기준으로 산정됩니다.</p>
-              </div>
-            </div>
             <button type="button" class="guide-next-btn" data-scroll-to="#existingDebt">다음 →</button>
           </article>
 
-          <article class="guide-step" id="guide-step-4">
+          <article class="guide-step">
             <div class="guide-step-header">
               <span class="step-badge" aria-hidden="true">4</span>
-              <h3>매수 희망 지역 선택</h3>
+              <h3>비과세액 입력 (선택)</h3>
             </div>
             <p class="guide-desc">
-              <strong>규제지역</strong>과 <strong>비규제지역</strong> 중 선택합니다.
-              규제지역(투기과열지구·조정대상지역)은 LTV 50%까지만 허용되어 필요 연봉이 더 높아지고,
-              비규제지역은 LTV 70%까지 가능해 상대적으로 부담이 적습니다.
-              잘 모르겠다면 보수적으로 '규제지역'을 선택하는 것이 안전합니다.
+              식대 등 월 비과세 금액이 있다면 입력하세요.
             </p>
-            <div class="guide-callout tip">
-              <span class="callout-icon" aria-hidden="true">💡</span>
-              <div>
-                <strong>TIP</strong>
-                <p>수도권 대부분과 광역시 주요 지역은 규제지역으로 보면 됩니다.</p>
-              </div>
-            </div>
-            <button type="button" class="guide-next-btn" data-scroll-to="#field-reverse-region">다음 →</button>
+            <button type="button" class="guide-next-btn" data-scroll-to="#reverse-toggle-advanced">계산하기 →</button>
           </article>
-
-          <article class="guide-step" id="guide-step-5">
-            <div class="guide-step-header">
-              <span class="step-badge" aria-hidden="true">5</span>
-              <h3>주택 보유 형태 선택</h3>
-            </div>
-            <p class="guide-desc">
-              현재 주택 보유 상황에 따라 대출 한도가 크게 달라집니다.
-            </p>
-            <ul class="guide-desc">
-              <li><strong>무주택자:</strong> 가장 유리한 조건 (규제지역 LTV 50%, 비규제 70%)</li>
-              <li><strong>1주택 처분조건:</strong> 기존 주택 처분 약정 시 무주택자와 동일</li>
-              <li><strong>다주택자:</strong> 규제지역 대출 불가, 비규제지역 LTV 60%까지만</li>
-            </ul>
-            <div class="guide-callout tip">
-              <span class="callout-icon" aria-hidden="true">💡</span>
-              <div>
-                <strong>TIP</strong>
-                <p>다주택자는 규제지역에서 대출이 불가능하므로 필요 연봉이 매우 높게 산출됩니다.</p>
-              </div>
-            </div>
-            <button type="button" class="guide-next-btn" data-scroll-to="#field-reverse-homeStatus">다음 →</button>
-          </article>
-
-          <article class="guide-step" id="guide-step-6">
-            <div class="guide-step-header">
-              <span class="step-badge" aria-hidden="true">6</span>
-              <h3>결과 확인하기</h3>
-            </div>
-            <p class="guide-desc">
-              모든 항목 입력 후 <strong>계산하기</strong> 버튼을 누르면 필요한 최소 연봉, 월 상환액, DSR 비율,
-              안정성 신호등(🟢🟡🔴)이 표시됩니다. 결과는 스트레스 DSR(금리 +1.5%p)을 적용한 보수적 기준으로 산출되어
-              실제 대출 심사에 가깝습니다.
-            </p>
-            <div class="guide-callout tip">
-              <span class="callout-icon" aria-hidden="true">💡</span>
-              <div>
-                <strong>TIP</strong>
-                <p>결과로 나온 연봉의 약 1.1~1.3배 정도를 실제 목표 연봉으로 잡으면 여유 있는 상환이 가능합니다.</p>
-              </div>
-            </div>
-            <button type="button" class="guide-next-btn" data-scroll-to="#reverseCalculateBtn">계산하기 →</button>
-          </article>
-
-          <div class="guide-callout warn">
-            <span class="callout-icon" aria-hidden="true">⚠️</span>
-            <div>
-              <strong>안내</strong>
-              <p>본 계산기는 참고용이며, 실제 대출 한도와 승인 여부는 금융기관의 신용평가, 담보 평가액, 개인 신용점수 등에 따라 달라질 수 있습니다.</p>
-            </div>
-          </div>
-
-          <div class="guide-crosslink related-tool-card">
-            <p class="related-tool-text">👉 반대로 내 연봉으로 살 수 있는 아파트가 궁금하다면?</p>
-            <a href="/tools/apt-calculator/" class="btn-outline">내 연봉 아파트 계산기 →</a>
-          </div>
         </div>
-      </div>
-    </section>
-
     <section class="section" id="calculator">
       <div class="container">
         <div class="card form-card">

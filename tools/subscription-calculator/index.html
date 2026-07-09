@@ -59,6 +59,7 @@
   }
   </script>
   <link rel="stylesheet" href="../../css/global-theme.css">
+  <link rel="stylesheet" href="../dday-calculator/style.css">
 </head>
 <body class="sub-page theme-tool-page">
   <nav class="theme-nav">
@@ -87,7 +88,64 @@
         </h1>
         <p class="hero-subtitle">입력 즉시 총 가점과 항목별 점수를 확인하세요</p>
         <div class="hero-cta">
-          <a href="#calculator" class="btn-primary hero-cta-btn">바로 계산하기 ↓</a>
+          <a href="#calculator" class="btn-primary hero-cta-btn">바로 계산하기</a>
+          <a href="#guide" class="btn-outline hero-cta-btn">사용법 보기</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 사용법 가이드 섹션 (아코디언, 기본 접힘) -->
+    <section class="section guide-section" id="guide">
+      <div class="container">
+        <button
+          type="button"
+          class="guide-toggle-btn"
+          id="guide-toggle"
+          aria-expanded="false"
+          aria-controls="guide-content"
+        >
+          💡 처음이신가요? 30초 가이드 보기
+          <span class="toggle-icon" aria-hidden="true">▼</span>
+        </button>
+
+        <div class="card guide-card" id="guide-content" hidden>
+          <h2 class="section-title">사용법 가이드</h2>
+          <p class="guide-intro">
+            아래 3단계만 따라가면 청약가점을 약 30초 안에 확인할 수 있습니다.
+          </p>
+
+          <article class="guide-step">
+            <div class="guide-step-header">
+              <span class="step-badge" aria-hidden="true">1</span>
+              <h3>무주택기간 선택</h3>
+            </div>
+            <p class="guide-desc">
+              만 30세 이후 또는 혼인신고일 이후 무주택으로 지낸 기간을 선택하세요. <strong>15년 이상</strong>이면 32점 만점입니다.
+            </p>
+            <button type="button" class="guide-next-btn" data-scroll-to="#birth-date">다음 →</button>
+          </article>
+
+          <article class="guide-step">
+            <div class="guide-step-header">
+              <span class="step-badge" aria-hidden="true">2</span>
+              <h3>부양가족수 입력</h3>
+            </div>
+            <p class="guide-desc">
+              본인을 제외한 배우자·직계존비속 인원수를 입력합니다. <strong>6명 이상</strong>이면 35점 만점입니다.
+            </p>
+            <button type="button" class="guide-next-btn" data-scroll-to="#spouse">다음 →</button>
+          </article>
+
+          <article class="guide-step">
+            <div class="guide-step-header">
+              <span class="step-badge" aria-hidden="true">3</span>
+              <h3>청약통장 가입기간 선택</h3>
+            </div>
+            <p class="guide-desc">
+              주택청약종합저축 가입일부터 현재까지 기간을 선택하세요. <strong>15년 이상</strong>이면 17점 만점입니다.
+            </p>
+            <button type="button" class="guide-next-btn" data-scroll-to="#subscription-join">계산하기 →</button>
+          </article>
         </div>
       </div>
     </section>
@@ -280,5 +338,40 @@
 </footer>
 
   <script type="module" src="calculator.js"></script>
+  <script>
+    (function () {
+      function toggleGuide() {
+        var guide = document.getElementById("guide-content");
+        var toggle = document.getElementById("guide-toggle");
+        var icon = toggle ? toggle.querySelector(".toggle-icon") : null;
+        if (!guide || !toggle) return;
+
+        var nextExpanded = toggle.getAttribute("aria-expanded") !== "true";
+        toggle.setAttribute("aria-expanded", String(nextExpanded));
+        guide.hidden = !nextExpanded;
+        if (icon) icon.textContent = nextExpanded ? "▲" : "▼";
+      }
+
+      window.toggleGuide = toggleGuide;
+
+      var guideToggle = document.getElementById("guide-toggle");
+      if (guideToggle) {
+        guideToggle.addEventListener("click", toggleGuide);
+      }
+
+      document.querySelectorAll(".guide-next-btn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var selector = btn.getAttribute("data-scroll-to");
+          if (!selector) return;
+          var target = document.querySelector(selector);
+          if (!target) return;
+          target.scrollIntoView({ behavior: "smooth", block: "center" });
+          if (typeof target.focus === "function") {
+            target.focus({ preventScroll: true });
+          }
+        });
+      });
+    })();
+  </script>
 </body>
 </html>

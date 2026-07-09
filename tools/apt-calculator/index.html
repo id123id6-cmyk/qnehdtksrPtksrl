@@ -74,6 +74,7 @@
   </script>
   -->
   <link rel="stylesheet" href="../../css/global-theme.css">
+  <link rel="stylesheet" href="../dday-calculator/style.css">
 </head>
 <body class="theme-tool-page">
   <nav class="theme-nav">
@@ -126,228 +127,64 @@
         <div class="card guide-card" id="guide-content" hidden>
           <h2 class="section-title">사용법 가이드</h2>
           <p class="guide-intro">
-            아래 7단계만 따라가면 연봉 기준 최대 매수 가능 아파트 가격과 월 상환액을 약 30초 안에 확인할 수 있습니다.
-            각 단계 끝의 <strong>다음 →</strong> 버튼을 누르면 해당 입력 칸으로 바로 이동합니다.
+            아래 5단계만 따라가면 아파트 매수·전세 총비용을 약 30초 안에 확인할 수 있습니다.
           </p>
 
-          <!-- STEP 1 -->
-          <article class="guide-step" id="guide-step-1">
+          <article class="guide-step">
             <div class="guide-step-header">
               <span class="step-badge" aria-hidden="true">1</span>
-              <h3>연소득(만원) 입력하기</h3>
+              <h3>매수·전세 선택</h3>
             </div>
             <p class="guide-desc">
-              세전 연간 총소득을 <strong>만원 단위</strong>로 입력합니다. 예를 들어 연봉이 5,000만 원이면 <code>5000</code>을 입력하세요.
-              DSR(총부채원리금상환비율) 한도는 연소득을 기준으로 산정되므로, 이 값이 정확할수록 대출 한도 추정도 현실에 가까워집니다.
-              프리랜서·자영업자는 최근 1~2년 평균 소득이나 금융기관에 제출하는 소득금액증명 기준 금액을 참고하세요.
+              매매인지 전세인지 먼저 선택하세요. 계산 항목이 달라집니다.
             </p>
-            <div class="guide-callout tip">
-              <span class="callout-icon" aria-hidden="true">💡</span>
-              <div>
-                <strong>TIP</strong>
-                <p>상여·성과급이 큰 경우, 최근 3년 평균 소득으로 여러 번 계산해 보시면 보수적인 한도를 파악하는 데 도움이 됩니다.</p>
-              </div>
-            </div>
-            <button type="button" class="guide-next-btn" data-scroll-to="#annualIncome">다음 →</button>
-          </article>
-
-          <!-- STEP 2 -->
-          <article class="guide-step" id="guide-step-2">
-            <div class="guide-step-header">
-              <span class="step-badge" aria-hidden="true">2</span>
-              <h3>보유 현금(만원) 입력하기</h3>
-            </div>
-            <p class="guide-desc">
-              아파트 매수에 쓸 수 있는 <strong>자기자본</strong>을 만원 단위로 입력합니다.
-              보통 계좌 잔고, 예·적금, 주식·펀드 등 즉시 현금화 가능한 자산, 그리고 부모님 지원금 등 매수 자금으로 확정된 금액을 합산합니다.
-              LTV(주택담보대출비율) 계산 시 이 금액이 담보가치 대비 내가 부담하는 비율을 결정하므로, 대출 없이 살 수 있는 최소 가격의 기준이 됩니다.
-            </p>
-            <div class="guide-callout tip">
-              <span class="callout-icon" aria-hidden="true">💡</span>
-              <div>
-                <strong>TIP</strong>
-                <p>취득세·중개수수료·인테리어·이사비 등 부대비용(보통 매매가의 5~7%)은 별도로 빼 두고 입력하는 것이 안전합니다.</p>
-              </div>
-            </div>
-            <button type="button" class="guide-next-btn" data-scroll-to="#cash">다음 →</button>
-          </article>
-
-          <!-- STEP 3 -->
-          <article class="guide-step" id="guide-step-3">
-            <div class="guide-step-header">
-              <span class="step-badge" aria-hidden="true">3</span>
-              <h3>기존 부채 월 상환액(만원) 입력하기</h3>
-            </div>
-            <p class="guide-desc">
-              현재 매달 갚고 있는 <strong>모든 대출의 원리금 합계</strong>를 만원 단위로 입력합니다.
-              신용대출, 카드론, 자동차 할부, 전세자금대출, 기존 주택담보대출 등 DSR 산정 대상 대출이 모두 포함됩니다.
-              기존 상환액이 클수록 새 주담대에 쓸 수 있는 DSR 여유가 줄어들기 때문에, 이 항목을 0으로 두면 실제보다 높은 한도가 나올 수 있습니다.
-              대출이 없다면 기본값 <code>0</code>을 그대로 두시면 됩니다.
-            </p>
-            <div class="guide-callout warn">
-              <span class="callout-icon" aria-hidden="true">⚠️</span>
-              <div>
-                <strong>주의</strong>
-                <p>카드 결제 전액을 갚는 경우와 최소 상환만 하는 경우 DSR 반영 방식이 다를 수 있습니다. 정확한 수치는 각 금융기관 앱의 월 상환 스케줄을 확인하세요.</p>
-              </div>
-            </div>
-            <button type="button" class="guide-next-btn" data-scroll-to="#existingDebt">다음 →</button>
-          </article>
-
-          <!-- STEP 4 -->
-          <article class="guide-step" id="guide-step-4">
-            <div class="guide-step-header">
-              <span class="step-badge" aria-hidden="true">4</span>
-              <h3>가족 형태(주택 보유 수) 선택하기</h3>
-            </div>
-            <p class="guide-desc">
-              현재 주택 보유 상황에 맞는 항목을 선택합니다. <strong>무주택</strong>은 주택을 소유하지 않은 경우,
-              <strong>1주택 처분조건</strong>은 기존 주택을 매도하고 새 아파트를 구입하는 경우,
-              <strong>다주택자</strong>는 2주택 이상 보유 중인 경우입니다.
-              보유 형태에 따라 LTV 한도가 크게 달라지며, 특히 다주택자는 규제지역에서 주담대가 제한될 수 있습니다.
-            </p>
-            <div class="guide-callout tip">
-              <span class="callout-icon" aria-hidden="true">💡</span>
-              <div>
-                <strong>TIP</strong>
-                <p>생애최초·신혼부부 등 정책 우대는 이 계산기에 반영되지 않습니다. 해당 대상이면 결과를 보수적 하한선으로 참고하세요.</p>
-              </div>
-            </div>
-            <div class="table-wrapper guide-table-wrapper">
-              <table class="guide-table">
-                <caption class="sr-only">2026년 LTV 한도 참고표</caption>
-                <thead>
-                  <tr>
-                    <th scope="col">가족 형태</th>
-                    <th scope="col">규제지역</th>
-                    <th scope="col">비규제지역</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>무주택 / 1주택 처분조건</td>
-                    <td>50%</td>
-                    <td>70%</td>
-                  </tr>
-                  <tr>
-                    <td>다주택자</td>
-                    <td>0% (대출 불가)</td>
-                    <td>60%</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
             <button type="button" class="guide-next-btn" data-scroll-to="#field-homeStatus">다음 →</button>
           </article>
 
-          <!-- STEP 5 -->
-          <article class="guide-step" id="guide-step-5">
+          <article class="guide-step">
             <div class="guide-step-header">
-              <span class="step-badge" aria-hidden="true">5</span>
-              <h3>매수 희망 지역 선택하기</h3>
+              <span class="step-badge" aria-hidden="true">2</span>
+              <h3>아파트 가격 입력</h3>
             </div>
             <p class="guide-desc">
-              구입을 검토하는 아파트가 <strong>규제지역</strong>인지 <strong>비규제지역</strong>인지 선택합니다.
-              규제지역은 수도권·광역시 일부 등 투기과열지구·조정대상지역 등으로 지정된 지역으로, LTV·DSR 규제가 더 엄격하게 적용됩니다.
-              비규제지역은 상대적으로 LTV 한도가 높게 책정되는 경우가 많습니다.
-              정확한 지역 구분은 국토교통부·금융위원회 공고 또는 해당 단지의 등기·분양 공고를 확인하세요.
+              매매가 또는 전세금을 만원 단위로 입력합니다. 실거래가 지도에서 시세 확인 후 입력하는 것을 권장합니다.
             </p>
-            <div class="guide-callout warn">
-              <span class="callout-icon" aria-hidden="true">⚠️</span>
-              <div>
-                <strong>주의</strong>
-                <p>같은 도시 안에서도 구(區) 단위로 규제 여부가 다를 수 있습니다. 모호하면 규제지역으로 계산해 보수적으로 보는 것을 권장합니다.</p>
-              </div>
-            </div>
-            <button type="button" class="guide-next-btn" data-scroll-to="#field-region">다음 →</button>
+            <button type="button" class="guide-next-btn" data-scroll-to="#annualIncome">다음 →</button>
           </article>
 
-          <!-- STEP 6 -->
-          <article class="guide-step" id="guide-step-6">
+          <article class="guide-step">
             <div class="guide-step-header">
-              <span class="step-badge" aria-hidden="true">6</span>
-              <h3>고급 옵션 설정하기 (선택)</h3>
+              <span class="step-badge" aria-hidden="true">3</span>
+              <h3>대출 조건 입력</h3>
             </div>
             <p class="guide-desc">
-              <strong>고급 옵션 펼치기</strong>를 누르면 대출 만기와 예상 금리를 조정할 수 있습니다.
-              만기는 20년·30년·40년 중 선택하며, 기본값은 30년입니다. 만기가 길수록 월 상환액은 줄지만 총 이자 부담은 늘어납니다.
-              대출 금리는 현재 시장 금리를 기준으로 입력하며, 기본값은 4.5%입니다.
-              DSR 한도 계산 시에는 여기에 <strong>스트레스 가산 1.5%p</strong>가 더해진 금리(예: 6.0%)로 심사합니다.
+              LTV(대출 비율), 금리, 대출 기간을 입력하세요. 월 상환액이 자동 계산됩니다.
             </p>
-            <div class="guide-callout tip">
-              <span class="callout-icon" aria-hidden="true">💡</span>
-              <div>
-                <strong>TIP</strong>
-                <p>은행 pre-qualification(사전 한도 조회)에서 안내받은 예상 금리를 입력하면 결과가 더 가깝게 나옵니다.</p>
-              </div>
-            </div>
             <button type="button" class="guide-next-btn" data-scroll-to="#toggle-advanced">다음 →</button>
           </article>
 
-          <!-- STEP 7 -->
-          <article class="guide-step" id="guide-step-7">
+          <article class="guide-step">
             <div class="guide-step-header">
-              <span class="step-badge" aria-hidden="true">7</span>
-              <h3>계산하기 및 결과 해석하기</h3>
+              <span class="step-badge" aria-hidden="true">4</span>
+              <h3>부대비용 확인</h3>
             </div>
             <p class="guide-desc">
-              모든 항목을 입력한 뒤 <strong>계산하기</strong> 버튼을 누르면 결과가 표시됩니다.
-              <strong>최대 매수 가능 아파트 가격</strong>은 LTV 한도와 DSR(스트레스 적용) 한도 중 더 작은 값을 기준으로 산출됩니다.
-              <strong>월 상환액</strong> 카드에서는 연소득 대비 상환 비율과 신호등(🟢안정 ~ 🟡보통 ~ 🟠빠듯 ~ 🔴위험)을 확인할 수 있습니다.
-              시나리오 비교 테이블에서는 3억·4억·대출한도 기준으로 30년·40년 만기별 월 상환액과 총 이자를 비교할 수 있습니다.
+              취득세·중개수수료·법무비 등이 자동 반영됩니다. 생애최초라면 감면 옵션을 체크하세요.
             </p>
-            <div class="guide-callout warn">
-              <span class="callout-icon" aria-hidden="true">⚠️</span>
-              <div>
-                <strong>주의</strong>
-                <p>본 계산기는 참고용이며, 실제 대출 한도·금리·승인 여부는 금융기관 심사, 신용점수, 담보 평가액, 정책 변경 등에 따라 달라질 수 있습니다.</p>
-              </div>
-            </div>
-            <div class="table-wrapper guide-table-wrapper">
-              <table class="guide-table">
-                <caption class="sr-only">연소득 대비 월 상환 비율 신호등 기준</caption>
-                <thead>
-                  <tr>
-                    <th scope="col">신호등</th>
-                    <th scope="col">연소득 대비 비율</th>
-                    <th scope="col">의미</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>🟢 안정</td>
-                    <td>25% 이하</td>
-                    <td>상환 여유가 충분한 편</td>
-                  </tr>
-                  <tr>
-                    <td>🟡 보통</td>
-                    <td>25~35%</td>
-                    <td>일반적인 수준, 지출 관리 필요</td>
-                  </tr>
-                  <tr>
-                    <td>🟠 빠듯</td>
-                    <td>35~40%</td>
-                    <td>생활비 압박 가능, 신중한 검토 권장</td>
-                  </tr>
-                  <tr>
-                    <td>🔴 위험</td>
-                    <td>40% 초과</td>
-                    <td>DSR 한도 근접·초과, 대출 어려울 수 있음</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <button type="button" class="guide-next-btn" data-scroll-to="#calculate-btn">계산하러 가기 →</button>
+            <button type="button" class="guide-next-btn" data-scroll-to="#cash">다음 →</button>
           </article>
 
-          <div class="guide-crosslink related-tool-card">
-            <p class="related-tool-text">👉 반대로 원하는 아파트 가격으로 필요 연봉이 궁금하다면?</p>
-            <a href="/tools/salary-calculator/" class="btn-outline">아파트 가격 필요 연봉 계산기 →</a>
-          </div>
+          <article class="guide-step">
+            <div class="guide-step-header">
+              <span class="step-badge" aria-hidden="true">5</span>
+              <h3>총비용 결과 확인</h3>
+            </div>
+            <p class="guide-desc">
+              초기 자금(계약금+중도금+잔금+세금) 합계와 월 상환액이 표시됩니다. 실제 금액은 은행 심사 후 확정됩니다.
+            </p>
+            <button type="button" class="guide-next-btn" data-scroll-to="#calculate-btn">계산하기 →</button>
+          </article>
         </div>
-      </div>
-    </section>
-
     <!-- 입력 폼 섹션 -->
     <section class="section">
       <div class="container">
