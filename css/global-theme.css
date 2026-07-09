@@ -2115,6 +2115,14 @@ body.theme-about-page .theme-page-hero-tagline {
   line-height: 1.7;
 }
 
+body.theme-about-page .theme-about-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+}
+
 body.theme-about-page .theme-about-section-title {
   margin-top: 0;
   margin-bottom: 28px;

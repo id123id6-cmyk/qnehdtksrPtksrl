@@ -58,6 +58,37 @@
   <link rel="stylesheet" href="../styles.css">
   <link rel="stylesheet" href="../css/global-theme.css">
 
+  <style>
+    .post-article .post-tip-box {
+      margin: 24px 0;
+      padding: 20px 22px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+      border: 1px solid #fcd34d;
+    }
+    .post-article .post-tip-box h3 { margin: 0 0 12px; font-size: 18px; color: #92400e; }
+    .post-article .post-tip-box ul { margin: 0; padding-left: 20px; color: #78350f; }
+    .post-article .post-tip-box li { margin-bottom: 8px; line-height: 1.55; }
+    .post-article .post-warn-box {
+      margin: 24px 0;
+      padding: 20px 22px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+      border: 1px solid #fca5a5;
+    }
+    .post-article .post-warn-box h3 { margin: 0 0 12px; font-size: 18px; color: #991b1b; }
+    .post-article .post-warn-box p, .post-article .post-warn-box li { color: #7f1d1d; line-height: 1.55; }
+    .post-article .post-checklist {
+      margin: 20px 0;
+      padding: 18px 22px;
+      border-radius: 12px;
+      background: #fef2f2;
+      border: 1px solid #fca5a5;
+    }
+    .post-article .post-checklist h3 { margin: 0 0 10px; font-size: 17px; color: #991b1b; }
+    .post-article .post-checklist li { margin-bottom: 6px; line-height: 1.5; color: #7f1d1d; }
+  </style>
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -65,7 +96,7 @@
     "headline": "비전공자 직장인이 코딩 0줄로 사이트 만든 후기 (도메인부터 배포까지 진짜 3일 도전기)",
     "description": "생산관리 직장인이 AI 도구만으로 부동산 계산기 사이트를 만든 3일 후기. 도메인 구매, Vercel 배포, DNS 설정까지 비전공자가 직접 겪은 시행착오 전부 공개.",
     "datePublished": "2026-06-09",
-    "dateModified": "2026-06-09",
+    "dateModified": "2026-07-09",
     "author": { "@type": "Person", "name": "승박" },
     "publisher": {
       "@type": "Organization",
@@ -107,6 +138,8 @@
             <time datetime="2026-06-09">2026-06-09</time>
             <span class="post-meta-sep">|</span>
             작성자: 승박
+            <span class="post-meta-sep">|</span>
+            8분 읽기
           </p>
 
           <!-- 이미지 영역 -->
@@ -118,6 +151,32 @@
             이 글을 쓰고 있는 곳이 바로 제가 직접 만든 사이트(seungbak.com)입니다.
             이게 어떻게 가능했는지, 어떤 시행착오를 겪었는지 솔직하게 공유보려고 합니다.
           </p>
+
+          <h2>이 글을 쓰게 된 계기</h2>
+          <p>
+            사이트를 만든 지 한 달이 지났는데, 아직도 "정말 내가 만든 거 맞나?" 싶을 때가 있습니다.
+            주변에 "어떻게 했어?"라고 물어보는 분이 생기면서, 처음부터 끝까지 솔직하게 적어두고 싶다는 생각이 들었습니다.
+            유튜브 후기는 10분짜리로 잘라 놓은 하이라이트만 보여주는 경우가 많고, 블로그 검색해도 "3일 만에 100만 원 벌었다" 같은 과장 글이 너무 많더군요.
+          </p>
+          <p>
+            저는 그런 성공담이 아닙니다. 생산관리 직장인이 퇴근 후 2~3시간씩, 주말에 반나절을 쪼개서 겨우 3일 만에 올린 기록입니다.
+            중간에 GitHub 용어 때문에 40분 동안 화면을 멍하니 바라본 적도 있고, DNS 설정 후 30분 동안 새로고침만 누른 적도 있습니다.
+            그런 어색한 순간까지 남기지 않으면, 나중에 같은 길을 걷는 분이 또 헤맬 것 같았습니다.
+          </p>
+          <p>
+            특히 "코딩 0줄"이라는 표현이 오해를 부를 수 있다는 것도 알고 있습니다. 제가 직접 타이핑한 코드는 거의 없지만,
+            AI가 만든 결과를 보고 "이 버튼 위치 바꿔줘", "LTV 계산식이 2026년 규제랑 맞는지 다시 확인해줘"라고 수십 번 대화한 건 사실입니다.
+            코딩을 안 했다기보다, <strong>코딩 대신 '요구사항 말하기'에 시간을 썼다</strong>고 보는 게 맞습니다.
+          </p>
+          <p>
+            그래서 이 글은 튜토리얼이 아니라 <strong>제 3일 도전기 전체 스토리</strong>입니다.
+            시간대별로 무엇을 했는지, 얼마를 썼는지, 어디서 막혔는지까지 적었으니, 비슷한 고민을 하는 직장인 분께 작은 지도가 되었으면 합니다.
+          </p>
+
+          <figure class="post-figure">
+            <img src="/images/blog/post-1-screenshot-1.png" alt="Cursor에서 부동산 계산기 첫 화면을 만든 장면" width="1200" height="630" loading="lazy">
+            <figcaption>Day 1 저녁 — Cursor에서 첫 계산기 화면이 뜬 순간 (스크린샷 예정)</figcaption>
+          </figure>
 
           <h2>왜 사이트를 만들기로 했나?</h2>
           <p>
@@ -134,6 +193,49 @@
             "내가 직접 계산기를 만들면 어떨까?"
             그게 시작이었습니다.
           </p>
+
+          </p>
+
+          <h2>3일 도전기 — 시간·비용 타임라인 (전체)</h2>
+          <p>
+            아래 표는 제가 실제로 기록해 둔 메모를 바탕으로 정리한 것입니다.
+            직장인이라 평일은 퇴근 후 21시~24시, 주말은 오전 10시~오후 3시 정도만 쓸 수 있었습니다.
+            <strong>총 투입 시간은 약 18시간, 총 비용은 약 4만 7천 원</strong>이었습니다.
+          </p>
+
+          <div class="post-table-wrap">
+            <table class="post-table">
+              <thead>
+                <tr>
+                  <th scope="col">일차·시간대</th>
+                  <th scope="col">한 일</th>
+                  <th scope="col">소요</th>
+                  <th scope="col">비용</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Day 0 (금) 22:00</td><td>Cursor 설치, 계정 생성, 첫 프롬프트 입력</td><td>1시간</td><td>$20 (월 구독)</td></tr>
+                <tr><td>Day 1 (토) 10:00~13:00</td><td>LTV·DSR 계산기 UI·로직 1차 완성</td><td>3시간</td><td>—</td></tr>
+                <tr><td>Day 1 (토) 14:00~16:30</td><td>모바일 반응형, 색상·폰트 수정</td><td>2.5시간</td><td>—</td></tr>
+                <tr><td>Day 1 (토) 21:00~23:00</td><td>규제 수치 검증, 문구 다듬기</td><td>2시간</td><td>—</td></tr>
+                <tr><td>Day 2 (일) 10:00~12:00</td><td>GitHub 가입, repository 생성</td><td>2시간</td><td>무료</td></tr>
+                <tr><td>Day 2 (일) 13:00~16:00</td><td>코드 push, Vercel 연동·첫 배포</td><td>3시간</td><td>무료</td></tr>
+                <tr><td>Day 2 (일) 20:00~22:30</td><td>배포 오류 해결 (경로·빌드 설정)</td><td>2.5시간</td><td>—</td></tr>
+                <tr><td>Day 3 (월) 퇴근 후</td><td>가비아에서 seungbak.com 구매</td><td>30분</td><td>약 19,800원</td></tr>
+                <tr><td>Day 3 (월) 21:00~23:30</td><td>DNS A/CNAME 설정, Vercel 도메인 연결</td><td>2.5시간</td><td>—</td></tr>
+                <tr><td>Day 3 (월) 23:30~24:00</td><td>DNS 전파 대기·https 접속 확인</td><td>30분</td><td>—</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="post-tip-box">
+            <h3>💡 3일 안에 끝낸 비결 (저만의 방식)</h3>
+            <ul>
+              <li><strong>범위를 좁혔습니다</strong> — 첫 도구는 LTV·DSR 계산기 하나만. 블로그·지도·회원가입은 나중으로 미뤘습니다.</li>
+              <li><strong>모르는 용어는 바로바로 AI에게 물었습니다</strong> — "push가 뭐야?"를 10번 넘게 물어도 부끄러워하지 않았습니다.</li>
+              <li><strong>완벽보다 '뜨는 것'을 우선</strong> — 디자인은 나중에 손보면 된다고 스스로 설득했습니다.</li>
+            </ul>
+          </div>
 
           <h2>준비물: 진짜 이게 전부야?</h2>
           <p>비전공자가 사이트를 만들기 위해 제가 사용한 도구는 딱 4가지입니다.</p>
@@ -166,6 +268,11 @@
           <p>
             <strong>핵심 깨달음</strong>: 코딩을 몰라도, 내가 뭘 원하는지 명확하게 말할 수만 있으면 된다.
           </p>
+          <p>
+            Day 1 상세 기록을 조금 더 적으면, 오전 10시에 Cursor를 켜고 "2026년 수도권 LTV 40%, 지방 70% 반영해줘"라고 첫 요청을 보냈습니다.
+            30분 뒤 기본 화면이 떴고, 저는 연봉 입력란·지역 선택·결과 카드 세 가지를 중심으로 피드백을 반복했습니다.
+            가장 오래 걸린 건 코드가 아니라 <strong>규제 숫자 검증</strong>이었습니다. 금융위 보도자료와 뉴스 기사를 열어두고 AI에게 "이 수치 맞아?"라고 확인하는 데 2시간은 썼습니다.
+          </p>
 
           <h2>Day 2: 사이트 배포의 벽 (여기서 많이 헤맸음)</h2>
           <p>
@@ -190,6 +297,16 @@
             (qnehdtksr-ptksrl.vercel.app)로 사이트가 떴습니다.
             <strong>처음으로 내 사이트가 인터넷에 올라간 순간</strong>이었습니다. 🎉
           </p>
+          <p>
+            Day 2는 정신적으로 가장 힘들었습니다. GitHub Desktop을 설치한 뒤 "Commit"과 "Push"의 차이를 이해하는 데만 1시간이 걸렸고,
+            Vercel에서 프로젝트를 import할 때 Root Directory 설정을 잘못해서 404가 뜨는 바람에 저녁 2시간을 추가로 썼습니다.
+            그때 AI에게 스크린샷을 붙여넣으며 "이 화면에서 뭘 눌러야 해?"라고 물었는데, 이 방식이 이후 모든 막힘을 뚫는 패턴이 됐습니다.
+          </p>
+
+          <figure class="post-figure">
+            <img src="/images/blog/post-1-screenshot-2.png" alt="Vercel 배포 완료 화면과 임시 도메인 주소" width="1200" height="630" loading="lazy">
+            <figcaption>Day 2 오후 — Vercel 첫 배포 성공 화면 (스크린샷 예정)</figcaption>
+          </figure>
 
           <h2>Day 3: 도메인 연결 — 진짜 어른의 사이트</h2>
           <p>
@@ -215,6 +332,35 @@
             가비아 DNS 설정 화면에서 위 두 줄을 입력하고 저장.
             30분 정도 기다리니까... <strong>https://seungbak.com 접속 완료!</strong> 🚀
           </p>
+          <p>
+            Day 3 타임라인을 시간 단위로 적으면 이렇습니다.
+            <strong>19:10</strong> 가비아 결제 완료 → <strong>19:40</strong> Vercel에 Add Existing Domain 클릭 →
+            <strong>20:15</strong> DNS 레코드 입력 → <strong>20:20</strong> 저장 후 "왜 안 되지?" 10회 새로고침 →
+            <strong>20:50</strong> https 자물쇠 아이콘 확인 → <strong>21:00</strong> 집안에 "됐다!" 소리 지름.
+            도메인 비용 19,800원에 Cursor 월 27,000원(환율 기준)을 합치면, 첫 달 총비용은 약 4만 7천 원이었습니다.
+          </p>
+
+          <h3>3일 도전 비용 breakdown</h3>
+          <div class="post-table-wrap">
+            <table class="post-table">
+              <thead>
+                <tr>
+                  <th scope="col">항목</th>
+                  <th scope="col">서비스</th>
+                  <th scope="col">금액</th>
+                  <th scope="col">비고</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>AI 코드 에디터</td><td>Cursor Pro</td><td>월 $20 (약 27,000원)</td><td>첫 달 필수</td></tr>
+                <tr><td>도메인 (.com)</td><td>가비아</td><td>19,800원/년</td><td>seungbak.com</td></tr>
+                <tr><td>코드 저장소</td><td>GitHub</td><td>0원</td><td>무료 플랜</td></tr>
+                <tr><td>호스팅·배포</td><td>Vercel</td><td>0원</td><td>개인 프로젝트 무료</td></tr>
+                <tr><td>SSL 인증서</td><td>Vercel 자동</td><td>0원</td><td>https 자동 적용</td></tr>
+                <tr><td><strong>합계 (첫 달)</strong></td><td>—</td><td><strong>약 47,000원</strong></td><td>이후 월 Cursor만</td></tr>
+              </tbody>
+            </table>
+          </div>
 
           <h2>솔직한 시행착오 3가지</h2>
 
@@ -237,6 +383,17 @@
             계속 의심했습니다. 그런데 30분만 기다리면 되는 거였더라구요.
             <strong>기다림이 정답이었습니다.</strong>
           </p>
+
+          <div class="post-warn-box">
+            <h3>🚨 비전공자가 자주 빠지는 함정 5가지</h3>
+            <ul>
+              <li><strong>가비아에서 도메인을 두 번 살려고 함</strong> — Vercel의 "Buy Domain"이 아니라 "Add Existing Domain"을 찾아야 합니다.</li>
+              <li><strong>DNS 호스트 칸을 비워둠</strong> — 루트 도메인(seungbak.com)은 반드시 <strong>@</strong>를 입력해야 합니다.</li>
+              <li><strong>DNS 전파 전에 설정을 계속 바꿈</strong> — 30분~최대 48시간 걸릴 수 있습니다. 바꿀수록 대기 시간이 늘어납니다.</li>
+              <li><strong>GitHub push 없이 Vercel만 새로고침</strong> — 코드 수정 후에는 commit → push → 자동 배포 흐름을 지켜야 반영됩니다.</li>
+              <li><strong>첫날부터 블로그·회원가입·결제까지 욕심냄</strong> — 범위가 넓어질수록 3일은 3주가 됩니다. 저도 블로그는 2주 뒤에 붙였습니다.</li>
+            </ul>
+          </div>
 
           <h2>3일이 지나고 느낀 것들</h2>
 
@@ -277,6 +434,62 @@
             같은 고민을 하는 다른 직장인들에게 작은 힌트가 되었으면 좋겠습니다.
           </p>
 
+          <div class="post-checklist">
+            <h3>📋 3일 도전 전·중·후 체크리스트</h3>
+            <ul>
+              <li>✅ 만들 도구 주제를 하나로 좁혔는가 (예: LTV·DSR 계산기)</li>
+              <li>✅ Cursor·GitHub·Vercel 계정을 미리 만들어 두었는가</li>
+              <li>✅ AI에게 요구사항을 문장으로 설명할 수 있는가</li>
+              <li>✅ 규제·수치 등 도메인 지식을 별도로 검증했는가</li>
+              <li>✅ 로컬에서 화면이 정상 동작하는지 확인했는가</li>
+              <li>✅ GitHub repository 생성 후 첫 push를 완료했는가</li>
+              <li>✅ Vercel import 시 Root Directory를 확인했는가</li>
+              <li>✅ 임시 vercel.app 주소로 접속 테스트를 했는가</li>
+              <li>✅ 도메인 구매 후 A 레코드(@)와 CNAME(www)을 입력했는가</li>
+              <li>✅ DNS 전파 30분 이상 기다린 뒤 https를 확인했는가</li>
+              <li>✅ 모바일·PC에서 계산기 동작을 최종 점검했는가</li>
+              <li>✅ 면책 문구·개인정보처리방침 링크를 넣을 계획을 세웠는가</li>
+            </ul>
+          </div>
+
+          <h2>자주 묻는 질문 (FAQ)</h2>
+
+          <h3>Q1. 정말 코딩 한 줄도 안 써도 되나요?</h3>
+          <p>
+            제가 직접 타이핑한 코드는 거의 없습니다. 다만 AI가 만든 결과를 검토하고, "이 부분 수정해줘"라고 대화한 시간은 꽤 길었습니다.
+            코딩 문법을 몰라도 <strong>원하는 기능을 말로 설명하는 능력</strong>은 필요합니다. 저는 그걸 '코딩 0줄'이라고 표현했습니다.
+          </p>
+
+          <h3>Q2. 3일이면 누구나 가능한가요?</h3>
+          <p>
+            직장인 기준으로 하루 2~3시간, 주말 반나절 정도는 필요합니다. IT에 전혀 익숙하지 않다면 5~7일로 잡는 게 현실적입니다.
+            중요한 건 연속으로 밀어붙이는 것보다, 막힌 지점을 AI에게 바로 물어보는 습관입니다.
+          </p>
+
+          <h3>Q3. Cursor 말고 무료 도구만으로도 가능한가요?</h3>
+          <p>
+            가능합니다. ChatGPT나 Claude 무료 버전 + VS Code 조합으로도 비슷하게 할 수 있습니다.
+            다만 Cursor는 프로젝트 전체 맥락을 이해하고 파일을 직접 수정해 주기 때문에, 비전공자에게 시간 절약 효과가 컸습니다.
+          </p>
+
+          <h3>Q4. 도메인 없이 Vercel 주소만 써도 되나요?</h3>
+          <p>
+            네, 테스트·개인용으로는 vercel.app 주소만으로 충분합니다. 다만 애드센스 신청이나 브랜딩을 생각하면 커스텀 도메인이 낫습니다.
+            저는 도메인 연결 후에야 "내 사이트"라는 실감이 들었습니다.
+          </p>
+
+          <h3>Q5. GitHub가 꼭 필요한가요?</h3>
+          <p>
+            Vercel 배포의 가장 쉬운 경로가 GitHub 연동입니다. 코드 변경 → push → 자동 배포 흐름이 잡히면 이후 수정이 훨씬 편해집니다.
+            Git 없이 Vercel CLI로 올리는 방법도 있지만, 비전공자에게는 GitHub Desktop + Vercel 조합이 덜 헷갈렸습니다.
+          </p>
+
+          <h3>Q6. 부동산 계산기 말고 다른 주제도 같은 방식으로 가능한가요?</h3>
+          <p>
+            물론입니다. 연봉 실수령액 계산기, D-Day 계산기, 가계부 등 정적 웹앱이면 같은 방식으로 만들 수 있습니다.
+            다만 금융·세금·부동산처럼 <strong>수치 정확성이 중요한 주제</strong>는 반드시 공식 출처로 한 번 더 검증하세요.
+          </p>
+
           <h2>마치며</h2>
           <p>
             "평범한 직장인도 자기 사이트를 가질 수 있다."
@@ -306,6 +519,29 @@
           </div>
 
           <!-- AdSense 광고 영역 (승인 후 삽입) -->
+
+          
+          <div class="post-author-box" itemscope itemtype="https://schema.org/Person">
+            <img src="/images/about/profile.jpg" alt="승박 프로필 사진" class="post-author-avatar" width="72" height="72" loading="lazy">
+            <div class="post-author-info">
+              <p class="post-author-label">글쓴이</p>
+              <p class="post-author-name" itemprop="name">승박</p>
+              <p class="post-author-bio" itemprop="description">비전공자 생산관리 직장인이 직접 조사·작성합니다. 부동산 정책과 계산기를 월급쟁이 눈높이로 정리하는 <a href="/about.html">seungbak.com</a> 운영자입니다.</p>
+              <p class="post-author-links">
+                <a href="/about.html">운영자 소개</a>
+                <span class="post-meta-sep">·</span>
+                <a href="/contact.html">문의하기</a>
+                <span class="post-meta-sep">·</span>
+                <a href="mailto:id123id6@gmail.com">id123id6@gmail.com</a>
+              </p>
+            </div>
+          </div>
+
+          <p class="post-updated-footer">
+            <time datetime="2026-06-09">최초 게시: 2026년 6월 9일</time>
+            <span class="post-meta-sep">·</span>
+            <time datetime="2026-07-09">최종 수정: 2026년 7월 9일</time>
+          </p>
 
           <nav class="post-nav" aria-label="글 네비게이션">
             <a href="post-2.html" class="post-nav-link">← 이전 글: 평범한 직장인이 사이트를 만들기로 한 이유</a>

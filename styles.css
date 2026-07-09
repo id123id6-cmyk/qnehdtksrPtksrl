@@ -3656,6 +3656,74 @@ a.tool-card:hover {
   color: var(--color-text-muted);
 }
 
+.post-author-box {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin: 32px 0 16px;
+  padding: 20px 22px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #FAF5E8 0%, #F5EFE0 100%);
+  border: 1px solid #E5DFD0;
+}
+
+.post-author-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #fff;
+  box-shadow: 0 2px 12px rgba(26, 26, 26, 0.1);
+  flex-shrink: 0;
+}
+
+.post-author-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.post-author-label {
+  margin: 0 0 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.post-author-name {
+  margin: 0 0 8px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-dark);
+}
+
+.post-author-bio {
+  margin: 0 0 8px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--color-text-muted);
+}
+
+.post-author-links {
+  margin: 0;
+  font-size: 13px;
+}
+
+.post-updated-footer {
+  margin: 0 0 8px;
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+@media (max-width: 600px) {
+  .post-author-box {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+
 .post-article ul {
   margin: 0 0 16px;
   padding-left: 20px;

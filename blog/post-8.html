@@ -55,7 +55,7 @@
     "headline": "막연하게 \"돈 벌고 싶다\"로 시작했는데, 이것저것 하다 보니 여기까지 왔습니다",
     "description": "평범한 직장인이 막연한 마음으로 시작한 부업들. 중국 구매대행, 블로그, 사이트 제작까지. 작게 시작한 것들이 모여 지금의 저를 만들었습니다.",
     "datePublished": "2026-06-15",
-    "dateModified": "2026-06-15",
+    "dateModified": "2026-07-09",
     "author": { "@type": "Person", "name": "승박" },
     "publisher": {
       "@type": "Organization",
@@ -69,6 +69,65 @@
     "inLanguage": "ko-KR"
   }
   </script>
+  <style>
+    .post-article .cta-box {
+      margin: 28px 0;
+      padding: 24px 26px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+      color: #fff;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .post-article .cta-box:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(220, 38, 38, 0.35);
+    }
+    .post-article .cta-box .cta-icon { font-size: 32px; margin-bottom: 8px; }
+    .post-article .cta-box h3 { margin: 0 0 8px; font-size: 20px; color: #fff; }
+    .post-article .cta-box p { margin: 0 0 16px; font-size: 15px; color: #fecaca; }
+    .post-article .cta-box .cta-button {
+      display: inline-block;
+      padding: 12px 24px;
+      background: #fff;
+      color: #dc2626;
+      font-weight: 700;
+      border-radius: 10px;
+      text-decoration: none;
+    }
+    .post-article .cta-box .cta-button:hover { background: #fef2f2; }
+    .post-article .post-tip-box {
+      margin: 24px 0;
+      padding: 20px 22px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+      border: 1px solid #fcd34d;
+    }
+    .post-article .post-tip-box h3 { margin: 0 0 12px; font-size: 18px; color: #92400e; }
+    .post-article .post-tip-box ul { margin: 0; padding-left: 20px; color: #78350f; }
+    .post-article .post-tip-box li { margin-bottom: 8px; line-height: 1.55; }
+    .post-article .post-warn-box {
+      margin: 24px 0;
+      padding: 20px 22px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+      border: 1px solid #fca5a5;
+    }
+    .post-article .post-warn-box h3 { margin: 0 0 12px; font-size: 18px; color: #991b1b; }
+    .post-article .post-warn-box p, .post-article .post-warn-box li { color: #7f1d1d; line-height: 1.55; }
+    .post-article .post-checklist {
+      margin: 20px 0;
+      padding: 18px 22px;
+      border-radius: 12px;
+      background: #fef2f2;
+      border: 1px solid #fca5a5;
+    }
+    .post-article .post-checklist h3 { margin: 0 0 10px; font-size: 17px; color: #991b1b; }
+    .post-article .post-checklist li { margin-bottom: 6px; line-height: 1.5; color: #7f1d1d; }
+    .post-breadcrumb { font-size: 14px; color: var(--color-text-muted); margin-bottom: 16px; }
+    .post-breadcrumb a { color: var(--color-dark); text-decoration: none; }
+    .post-breadcrumb a:hover { text-decoration: underline; }
+  </style>
 </head>
 <body class="theme-blog-post">
   <header class="site-header">
@@ -90,13 +149,20 @@
         <article class="post-article card page-card">
           <!-- AdSense 광고 영역 (승인 후 삽입) -->
 
+          <nav class="post-breadcrumb" aria-label="breadcrumb">
+            <a href="/">홈</a> &gt; <a href="/blog/">블로그</a> &gt; 부업 로드맵
+          </nav>
+
           <span class="blog-category-badge blog-category-badge--side">💰 직장인 부업</span>
           <h1>막연하게 "돈 벌고 싶다"로 시작했는데, 이것저것 하다 보니 여기까지 왔습니다</h1>
+          <p class="post-subtitle">중국 구매대행·부동산 공부·블로그까지 — 2년 부업 로드맵과 시행착오</p>
 
           <p class="post-meta">
             <time datetime="2026-06-15">2026-06-15</time>
             <span class="post-meta-sep">|</span>
             작성자: 승박
+            <span class="post-meta-sep">|</span>
+            7분 읽기
           </p>
 
           <p class="post-lead">
@@ -104,11 +170,85 @@
             그런데 이것저것 해보다 보니 어느새 여기까지 왔더라고요. 그리고 그 '이것저것'이 모여서 지금의 저를 만들었습니다.
           </p>
 
+          <h2>이 글을 쓰게 된 계기</h2>
+          <p>
+            블로그를 시작한 지 6개월쯤, '형은 어떻게 이렇게까지 왔어?'라는 메일을 받았습니다.
+            솔직히 저도 그때쯤은 아직 수익이 거의 없었고, 매일 퇴근 후 글 쓰고 도구 만드는 게 버거웠습니다.
+            겉으로 보이는 결과만 보면 '성공 스토리'처럼 느껴질 수 있지만, 그 전에 1년간 구매대행으로 지치고,
+            부동산 공부는 반년 넘게 '언제 쓰지?' 싶었던 시간이 있었습니다.
+          </p>
+          <p>
+            저는 완벽한 로드맵 없이 하나씩 시도했습니다. 실패한 것도, 지금은 안 하는 것도 있지만,
+            돌이켜보면 <strong>각각이 다음 선택의 재료</strong>가 됐습니다.
+            구매대행에서 배운 CS 마인드가 블로그 독자 응대에 쓰이고, 부동산 공부가 계산기 콘텐츠의 뼈대가 됐습니다.
+          </p>
+          <p>
+            그래서 이 글에서는 '성공 공식'이 아니라 <strong>제 2년간 부업 타임라인</strong>과
+            <strong>시행착오 정리</strong>를 적었습니다. 지금 막연하게 시작하려는 분에게
+            "처음부터 다 맞출 필요 없다"는 위로보다, "이렇게 연결될 수 있다"는 지도가 되었으면 합니다.
+          </p>
+          <p>
+            아래 로드맵은 제 개인 경험이며, 누구에게나 같은 결과를 보장하지 않습니다.
+            다만 작게 시작하고, 안 맞으면 정리하고, 남는 걸 다음에 쓰는 패턴은 재현 가능하다고 믿습니다.
+          </p>
+
+          <figure class="post-figure">
+            <!-- TODO: images/post-8/side-income-roadmap-hero.png 로 교체 예정 -->
+            <img src="images/post-8/roadmap-placeholder.png" alt="노트에 부업 로드맵을 그려보는 직장인" width="1200" height="630" loading="eager">
+            <figcaption>퇴근 후 노트에 부업 시도들을 정리해 본 장면 (스크린샷 예정)</figcaption>
+          </figure>
+
           <h2>시작은 정말 막연했습니다</h2>
           <p>
             처음엔 그냥 "월급 말고 다른 돈이 좀 있었으면" 정도의 생각이었습니다. 뭘 해야 할지도 몰랐고, 잘할 수 있을지도 몰랐어요.
             유튜브에서 부업 영상 보면서 "나도 해볼까?" 정도의 가벼운 마음이었습니다. 그렇게 별 생각 없이 하나씩 시작했습니다.
           </p>
+
+          <h2>📅 2년 부업 로드맵 타임라인 (제 실제 기록)</h2>
+          <p>
+            거창한 계획서는 없었지만, 나중에 돌이켜보니 <strong>시기별로 겹치고 이어진 시도</strong>가 있었습니다.
+            아래 표는 제가 메모해 둔 날짜를 바탕으로 정리한 것입니다.
+          </p>
+
+          <div class="post-table-wrap">
+            <table class="post-table">
+              <thead>
+                <tr>
+                  <th scope="col">시기</th>
+                  <th scope="col">시도한 것</th>
+                  <th scope="col">결과</th>
+                  <th scope="col">남은 자산</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>2024 상반기</td><td>부동산 세금·대출 공부</td><td>투자까지는 안 감</td><td>LTV·DSR·세금 이해</td></tr>
+                <tr><td>2024 하반기</td><td>중국 구매대행 시작</td><td>1년 후 정리</td><td>소싱·CS·손익 계산 경험</td></tr>
+                <tr><td>2025 초</td><td>스마트스토어 병행·광고</td><td>실수익 미미</td><td>광고 ROAS 착각 교훈</td></tr>
+                <tr><td>2025 봄</td><td>AI 도구(ChatGPT·Claude) 학습</td><td>업무 효율↑</td><td>프롬프트·글쓰기 스킬</td></tr>
+                <tr><td>2025 여름</td><td>Cursor로 사이트 제작</td><td>seungbak.com 오픈</td><td>비전공 제작 자신감</td></tr>
+                <tr><td>2025 가을</td><td>부동산 계산기·지도 도구</td><td>도구 3종 런칭</td><td>공부한 내용의 제품화</td></tr>
+                <tr><td>2025~2026</td><td>블로그·SEO 꾸준히</td><td>방문·수익 서서히</td><td>콘텐츠 자산 축적</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="post-tip-box">
+            <h3>💡 로드맵에서 배운 것 — 계획보다 '연결'</h3>
+            <ul>
+              <li><strong>실패도 스킬이 됩니다</strong> — 구매대행 손익 계산 경험이 지금 글 쓸 때 도움이 됩니다.</li>
+              <li><strong>공부는 나중에 쓰입니다</strong> — 당시엔 '언제 쓰지?' 싶었던 부동산 공부가 계산기의 뼈대가 됐습니다.</li>
+              <li><strong>한 번에 하나만</strong> — 구매대행 정리 전에 사이트를 본격 시작하지 않은 게 다행이었습니다.</li>
+            </ul>
+          </div>
+
+          <div class="post-warn-box">
+            <h3>🚨 로드맵 짤 때 피한 시행착오</h3>
+            <ul>
+              <li><strong>동시에 3개 부업</strong> — 구매대행+유튜브 준비를 같이 하다 둘 다 미룸. 한 번에 하나가 낫습니다.</li>
+              <li><strong>결과 없으면 바로 포기</strong> — 블로그 6개월은 수익 0원이었지만, 지금은 자산입니다.</li>
+              <li><strong>남의 성공담 그대로 복사</strong> — '월 500만' 영상과 제 상황은 달랐습니다.</li>
+            </ul>
+          </div>
 
           <h2>그동안 제가 해본 것들</h2>
           <p>각각을 짧게 솔직하게 정리해볼게요. 결과보다 "그때 느낀 것"과 "남은 것"을 중심으로 말씀드립니다.</p>
@@ -145,6 +285,49 @@
             "그때 그거 안 했으면 지금의 나도 없다"는 게 진심이에요.
           </p>
 
+          <h2>🗺️ 부업 로드맵·시행착오 정리</h2>
+          <p>
+            제가 2년간 겪으면서 정리한 <strong>직장인 부업 로드맵</strong>입니다.
+            완벽한 순서는 아니지만, '막연하게 시작'에서 '자산이 쌓이는 구조'로 가려면
+            아래 흐름이 저에게는 맞았습니다.
+          </p>
+
+          <div class="post-table-wrap">
+            <table class="post-table">
+              <thead>
+                <tr>
+                  <th scope="col">단계</th>
+                  <th scope="col">추천 행동</th>
+                  <th scope="col">기간</th>
+                  <th scope="col">제 시행착오</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>1. 탐색</td><td>유튜브·블로그로 2~3개 후보 조사, 시급 환산</td><td>2~4주</td><td>첫 본 영상 보자마자 바로 시작</td></tr>
+                <tr><td>2. 소량 실험</td><td>한 가지만 최소 비용·시간으로 테스트</td><td>1~3개월</td><td>구매대행에 100만원 광고 태움</td></tr>
+                <tr><td>3. 손익·체력 점검</td><td>실수익·시급·스트레스 3지표로 Go/No-Go</td><td>3개월 시점</td><td>매출만 보고 9개월 버팀</td></tr>
+                <tr><td>4. 정리·전환</td><td>안 맞으면 과감히 접고, 남은 스킬 재활용</td><td>1~2개월</td><td>미배송 건 방치하고 급하게 접음</td></tr>
+                <tr><td>5. 자산형 부업</td><td>블로그·도구·콘텐츠 등 시간이 쌓이는 일</td><td>6개월+</td><td>6개월 수익 0원에 포기할 뻔</td></tr>
+                <tr><td>6. 복리</td><td>글·도구·경험을 서로 연결해 확장</td><td>지속</td><td>처음엔 각각 따로 놀았음</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <figure class="post-figure">
+            <!-- TODO: images/post-8/side-project-timeline.png 로 교체 예정 -->
+            <img src="images/post-8/timeline-placeholder.png" alt="부업 시도들을 타임라인으로 정리한 노트" width="1200" height="630" loading="lazy">
+            <figcaption>2년간 부업 시도를 시기별로 정리한 타임라인 (스크린샷 예정)</figcaption>
+          </figure>
+
+          <div class="post-warn-box">
+            <h3>🚨 로드맵에서 반복된 실수 TOP 3</h3>
+            <ul>
+              <li><strong>단기 수익에 집착</strong> — 구매대행은 빠른 돈처럼 보였지만, 실수익은 거의 없었습니다.</li>
+              <li><strong>본업 시간 침범</strong> — CS 때문에 회의 중에도 카톡을 봤던 시기가 있습니다. 다시는 안 합니다.</li>
+              <li><strong>혼자 끙끙</strong> — 6개월째에야 비슷한 고민 하는 분 글을 찾아보니 마음이 훨씬 편해졌습니다.</li>
+            </ul>
+          </div>
+
           <blockquote>
             실패한 것 같았던 경험도, 별것 아닌 것 같았던 시간도, 다 어딘가에선 쓰이더라고요.
           </blockquote>
@@ -172,6 +355,71 @@
             <strong>"이것저것" 하다 보면, 어느 순간 그 "이것저것"이 본인을 만들어주더라고요.</strong>
           </p>
 
+          <div class="post-checklist">
+            <h3>📋 막연한 부업 시작 전 체크리스트 (10+)</h3>
+            <ul>
+              <li>✅ 왜 시작하는지 한 문장으로 쓸 수 있는가? (돈·성장·취미 등)</li>
+              <li>✅ 주당 투입 가능 시간을 현실적으로 적었는가? (퇴근 후 1~2시간?)</li>
+              <li>✅ 3개월 후 '계속/정리' 기준을 미리 정했는가?</li>
+              <li>✅ 실수익·시급·스트레스 3가지로 성공을 정의했는가?</li>
+              <li>✅ 한 번에 하나만 시작하기로 했는가?</li>
+              <li>✅ 실패해도 남는 스킬이 있는 부업인가?</li>
+              <li>✅ 본업·가족·수면을 해치지 않을 각오가 있는가?</li>
+              <li>✅ 초기 비용 상한선을 정했는가? (예: 50만원 이하)</li>
+              <li>✅ 남의 성공담과 내 상황이 같은지 비교했는가?</li>
+              <li>✅ 정리할 때 미처리 건·재고 계획을 생각했는가?</li>
+              <li>✅ 6개월 수익 0원이어도 버틸 수 있는가? (자산형 부업)</li>
+              <li>✅ 비슷한 고민 하는 글·커뮤니티를 찾아봤는가?</li>
+            </ul>
+          </div>
+
+          <h2>FAQ</h2>
+
+          <h3>Q1. 로드맵 없이 시작해도 되나요?</h3>
+          <p>
+            <strong>네, 저도 없었습니다.</strong> 다만 3개월마다 '계속할지 말지'를 점검하는 습관만 있으면
+            막연한 시작도 방향을 잡을 수 있습니다.
+          </p>
+
+          <h3>Q2. 구매대행 실패는 시간 낭비였나요?</h3>
+          <p>
+            수익만 보면 그렇지만, <strong>CS·손익 계산·끈기</strong>는 지금 블로그·도구 운영에 쓰입니다.
+            (<a href="post-7.html">관련 글: 구매대행 1년 후기</a>)
+          </p>
+
+          <h3>Q3. 언제부터 수익이 보이나요?</h3>
+          <p>
+            구매대행은 3개월에 매출은 났지만 실수익은 미미했고, 블로그·사이트는 <strong>6~12개월</strong>이 걸렸습니다.
+            자산형 부업은 느리지만 오래 갑니다.
+          </p>
+
+          <h3>Q4. 직장인이 시간을 어떻게 쪼개나요?</h3>
+          <p>
+            저는 평일 퇴근 후 21~24시, 주말 오전 2~3시간이 전부였습니다.
+            출퇴근길에는 AI로 아이디어만 정리했습니다.
+          </p>
+
+          <h3>Q5. 다음에 뭘 시도할 계획인가요?</h3>
+          <p>
+            지금은 <strong>부동산 도구·블로그 확장</strong>에 집중합니다.
+            새 부업을 또 동시에 시작하지 않기로 했습니다.
+          </p>
+
+          <h3>Q6. 형에게 한마디?</h3>
+          <p>
+            완벽한 계획보다 <strong>작은 시작 + 3개월 점검</strong>이 더 중요합니다.
+            안 맞으면 정리해도 괜찮고, 남는 건 반드시 있습니다.
+          </p>
+
+          <div class="post-warn-box">
+            <h3>🚨 작게 시작해도 이건 피하세요</h3>
+            <ul>
+              <li><strong>빚 내서 부업 시작</strong> — 저는 생활비 범위 안에서만 했습니다.</li>
+              <li><strong>본업까지 포기각</strong> — 부업이 본업을 갉아먹으면 구조가 무너집니다.</li>
+              <li><strong>비교만 하고 시작 안 함</strong> — 1주일 조사 후 일단 하나만 해보세요.</li>
+            </ul>
+          </div>
+
           <div class="post-cta">
             <p>작은 시작, 함께 해보실래요?</p>
             <a href="/tools/income-calculator/" class="btn-primary">본업 실수령액부터 정확히 알아보기 →</a>
@@ -188,9 +436,32 @@
 
           <!-- AdSense 광고 영역 (승인 후 삽입) -->
 
+          
+          <div class="post-author-box" itemscope itemtype="https://schema.org/Person">
+            <img src="/images/about/profile.jpg" alt="승박 프로필 사진" class="post-author-avatar" width="72" height="72" loading="lazy">
+            <div class="post-author-info">
+              <p class="post-author-label">글쓴이</p>
+              <p class="post-author-name" itemprop="name">승박</p>
+              <p class="post-author-bio" itemprop="description">비전공자 생산관리 직장인이 직접 조사·작성합니다. 부동산 정책과 계산기를 월급쟁이 눈높이로 정리하는 <a href="/about.html">seungbak.com</a> 운영자입니다.</p>
+              <p class="post-author-links">
+                <a href="/about.html">운영자 소개</a>
+                <span class="post-meta-sep">·</span>
+                <a href="/contact.html">문의하기</a>
+                <span class="post-meta-sep">·</span>
+                <a href="mailto:id123id6@gmail.com">id123id6@gmail.com</a>
+              </p>
+            </div>
+          </div>
+
+          <p class="post-updated-footer">
+            <time datetime="2026-06-15">최초 게시: 2026년 6월 15일</time>
+            <span class="post-meta-sep">·</span>
+            <time datetime="2026-07-09">최종 수정: 2026년 7월 9일</time>
+          </p>
+
           <nav class="post-nav" aria-label="글 네비게이션">
             <a href="post-7.html" class="post-nav-link">← 이전 글: 중국 구매대행 1년 해본 후기, 솔직히 추천 안 합니다</a>
-            <a href="post-9.html" class="post-nav-link">다음 글: Claude Opus 4.7 vs GPT-5.5, 직장인은 뭐 써야 할까? →</a>
+            <a href="post-11.html" class="post-nav-link">다음 글: ChatGPT vs Claude vs Gemini — 솔직 비교 →</a>
             <a href="/blog/" class="post-nav-link">블로그 목록 →</a>
           </nav>
         </article>

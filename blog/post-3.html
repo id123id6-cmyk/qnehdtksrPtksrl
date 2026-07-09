@@ -65,7 +65,7 @@
     "headline": "비전공자 직장인이 Cursor 2개월 써본 솔직 후기 (+ 비전공자용 사용법)",
     "description": "비전공자 직장인이 Cursor AI 코드 에디터를 2개월 직접 써본 솔직 후기. 장단점, 가격, 비전공자용 사용법 5단계까지 정리.",
     "datePublished": "2026-06-09",
-    "dateModified": "2026-06-09",
+    "dateModified": "2026-07-09",
     "author": { "@type": "Person", "name": "승박" },
     "publisher": {
       "@type": "Organization",
@@ -79,6 +79,36 @@
     "inLanguage": "ko-KR"
   }
   </script>
+  <style>
+    .post-article .post-tip-box {
+      margin: 24px 0;
+      padding: 20px 22px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+      border: 1px solid #fcd34d;
+    }
+    .post-article .post-tip-box h3 { margin: 0 0 12px; font-size: 18px; color: #92400e; }
+    .post-article .post-tip-box ul { margin: 0; padding-left: 20px; color: #78350f; }
+    .post-article .post-tip-box li { margin-bottom: 8px; line-height: 1.55; }
+    .post-article .post-warn-box {
+      margin: 24px 0;
+      padding: 20px 22px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+      border: 1px solid #fca5a5;
+    }
+    .post-article .post-warn-box h3 { margin: 0 0 12px; font-size: 18px; color: #991b1b; }
+    .post-article .post-warn-box p, .post-article .post-warn-box li { color: #7f1d1d; line-height: 1.55; }
+    .post-article .post-checklist {
+      margin: 20px 0;
+      padding: 18px 22px;
+      border-radius: 12px;
+      background: #fef2f2;
+      border: 1px solid #fca5a5;
+    }
+    .post-article .post-checklist h3 { margin: 0 0 10px; font-size: 17px; color: #991b1b; }
+    .post-article .post-checklist li { margin-bottom: 6px; line-height: 1.5; color: #7f1d1d; }
+  </style>
 </head>
 <body class="theme-blog-post">
   <header class="site-header">
@@ -107,6 +137,8 @@
             <time datetime="2026-06-09">2026-06-09</time>
             <span class="post-meta-sep">|</span>
             작성자: 승박
+            <span class="post-meta-sep">|</span>
+            8분 읽기
           </p>
 
           <p class="post-lead">
@@ -116,6 +148,28 @@
             이 Cursor라는 도구로 2개월 만에 사이트(seungbak.com)까지 만들었습니다.
             오늘은 그동안의 솔직한 사용 후기를 풀어볼게요.
           </p>
+
+          <h2>이 글을 쓰게 된 계기</h2>
+          <p>
+            Cursor를 처음 깔았을 때는 "한 달만 써보고 안 맞으면 끊자"라고 생각했습니다.
+            그런데 2개월이 지난 지금, 제 사이트 운영 루틴의 절반 이상이 Cursor 안에서 돌아갑니다.
+            부동산 계산기 수정, 블로그 글 추가, 메인 페이지 카드 만들기까지 — 전부 퇴근 후 Cursor Agent에게 말 걸어서 진행했습니다.
+          </p>
+          <p>
+            주변 직장인 친구들은 "AI 코딩 도구"라는 말만 들으면 어렵다고 손사래를 칩니다.
+            저도 2개월 전까지 그랬거든요. 그래서 화려한 기능 나열 대신,
+            <strong>비전공자가 실제로 어떻게 쓰는지</strong>를 시간 순서대로 적어두고 싶었습니다.
+            유료 구독($20/월)이 부담스러운 분, ChatGPT만 쓰다 Cursor가 필요한지 고민하는 분께 작은 지도가 되었으면 합니다.
+          </p>
+          <p>
+            이 글은 공식 매뉴얼이 아니라 <strong>제 2개월 사용기 + 실전 팁</strong>입니다.
+            Cursor 버전과 AI 모델은 계속 바뀌지만, "한국어로 말하면 된다", "Agent 모드가 핵심이다" 같은 원칙은 지금도 유효합니다.
+          </p>
+
+          <figure class="post-figure">
+            <img src="/images/blog/post-3-screenshot-1.png" alt="Cursor Agent 모드에서 부동산 계산기 수정을 요청하는 화면" width="1200" height="630" loading="lazy">
+            <figcaption>퇴근 후 Cursor Agent 모드 — 한국어로 "버튼 색 바꿔줘"라고 말하는 실제 작업 화면 (스크린샷 예정)</figcaption>
+          </figure>
 
           <h2>Cursor가 뭐야? 한 줄 정리</h2>
           <p>
@@ -146,6 +200,39 @@
             Cursor는 그걸 한 곳에서 다 해결해줍니다.
             코드를 짜고, 수정하고, 실행하는 게 한 화면에서 끝나죠.
           </p>
+
+          <h2>2개월 사용 타임라인 — 제가 실제로 한 일</h2>
+          <p>
+            아래 표는 제가 메모해 둔 기록을 바탕으로 정리한 것입니다.
+            매일 2~3시간, 주말 반나절 정도만 썼는데도 사이트 하나가 굴러갔습니다.
+          </p>
+
+          <div class="post-table-wrap">
+            <table class="post-table">
+              <thead>
+                <tr>
+                  <th scope="col">기간</th>
+                  <th scope="col">한 일</th>
+                  <th scope="col">체감</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>1~2주차</td><td>Cursor 설치, 첫 계산기·메인 페이지, Vercel 배포</td><td>ChatGPT보다 "한 화면"이 편함</td></tr>
+                <tr><td>3~4주차</td><td>도메인 연결, 두 번째 계산기, GitHub 백업 습관</td><td>DNS·Git 용어에 1주일 소모</td></tr>
+                <tr><td>5~6주차</td><td>블로그 10편+, index 카드 자동 추가</td><td>Agent 모드 본격 사용 시작</td></tr>
+                <tr><td>7~8주차</td><td>글 확장, SEO 메타, 스타일 통일</td><td>대화 5~10번이 글 품질 좌우</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="post-tip-box">
+            <h3>💡 2개월 써보니 이게 제일 중요했습니다</h3>
+            <ul>
+              <li><strong>Agent 모드</strong> — 복잡한 작업(블로그 5편 추가 등)은 Chat 모드보다 Agent가 압도적입니다.</li>
+              <li><strong>Git 커밋</strong> — AI가 엉뚱한 파일을 건드리기 전에 "일단 저장"하는 습관이 생명줄입니다.</li>
+              <li><strong>한국어 프롬프트</strong> — 영어 못해도 됩니다. 오히려 한국어로 구체적으로 말하는 게 더 정확했습니다.</li>
+            </ul>
+          </div>
 
           <h2>2개월 사용 후기 - 진짜 좋았던 점 4가지</h2>
 
@@ -204,6 +291,61 @@
             영어로 짓는 게 훨씬 자연스럽긴 합니다.
           </p>
 
+          <div class="post-warn-box">
+            <h3>⚠️ Git 백업 없이 Agent 쓰지 마세요</h3>
+            <p>
+              저는 3주차에 "메뉴 하나만 고쳐줘"라고 했는데 AI가 styles.css 전체를 갈아엎은 적이 있습니다.
+              GitHub에 커밋해 두지 않았다면 복구가 거의 불가능했을 거예요.
+              이제는 <strong>작업 시작 전·Accept 전</strong>에 꼭 커밋합니다.
+            </p>
+          </div>
+
+          <div class="post-warn-box">
+            <h3>⚠️ 무료 플랜으로는 '진지한' 사이트 만들기 어렵습니다</h3>
+            <p>
+              무료 플랜은 요청 횟수·모델 제한이 빡빡합니다.
+              저도 첫 3일은 무료로 써봤는데, 본격적으로 만들려니 하루 만에 한도에 걸렸습니다.
+              사이드 프로젝트를 진심으로 할 거면 Pro($20)는 사실상 필수라고 봅니다.
+            </p>
+          </div>
+
+          <div class="post-warn-box">
+            <h3>⚠️ AI 답변·코드를 100% 믿지 마세요</h3>
+            <p>
+              LTV·DSR 숫자, 법령, API 키 설정 같은 건 AI가 틀릴 수 있습니다.
+              저는 부동산 규제 수치는 반드시 공식 자료와 대조합니다.
+              "돌아가긴 하는데 틀린 계산기"가 제일 무섭더라고요.
+            </p>
+          </div>
+
+          <figure class="post-figure">
+            <img src="/images/blog/post-3-screenshot-2.png" alt="Cursor에서 Chat 모드와 Agent 모드 비교 화면" width="1200" height="630" loading="lazy">
+            <figcaption>Chat 모드 vs Agent 모드 — 복잡한 작업은 Agent가 파일 여러 개를 한 번에 수정 (스크린샷 예정)</figcaption>
+          </figure>
+
+          <h2>Cursor 모드·도구 비교 (비전공자 기준)</h2>
+          <p>
+            처음엔 모드가 뭐가 다른지 몰라 Chat만 썼는데, Agent를 알고 나서 속도가 3배는 빨라졌습니다.
+          </p>
+
+          <div class="post-table-wrap">
+            <table class="post-table">
+              <thead>
+                <tr>
+                  <th scope="col">방식</th>
+                  <th scope="col">언제 쓰나</th>
+                  <th scope="col">비전공자 체감</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>ChatGPT (웹)</td><td>아이디어·글초안</td><td>코드 복붙·실행이 번거로움</td></tr>
+                <tr><td>Cursor Chat</td><td>한 파일 수정, 질문</td><td>가볍고 빠름</td></tr>
+                <tr><td>Cursor Agent</td><td>블로그 추가, 다파일 작업</td><td>제가 80% 이상 쓰는 모드</td></tr>
+                <tr><td>Cursor Tab (자동완성)</td><td>코드 직접 볼 때</td><td>저는 거의 안 씀</td></tr>
+              </tbody>
+            </table>
+          </div>
+
           <h2>비전공자를 위한 Cursor 사용법 5단계</h2>
           <p>자, 이제 진짜 비전공자도 따라할 수 있는 사용법입니다.</p>
 
@@ -248,6 +390,48 @@
           </blockquote>
           <p>이걸 반복하면서 점점 완성도를 높여가면 됩니다.</p>
 
+          <h2>비전공자 실전 활용법 — 제가 매일 쓰는 패턴</h2>
+          <p>
+            5단계를 넘어서, 2개월간 반복해서 효과 본 <strong>실전 프롬프트 패턴</strong>을 공유합니다.
+          </p>
+
+          <h3>패턴 1: "역할 + 목표 + 제약"</h3>
+          <blockquote>
+            "당신은 비전공자에게 설명하는 웹 개발 도우미야.
+            내 사이트(seungbak.com) 블로그 post-3.html을 post-1.html과 같은 구조로 확장해줘.
+            GA4·AdSense 코드는 건드리지 말고, 한국어 1인칭 톤 유지."
+          </blockquote>
+
+          <h3>패턴 2: "스크린샷·에러 그대로 붙이기"</h3>
+          <p>
+            터미널 에러나 브라우저 화면을 캡처해서 채팅에 넣으면, "이 에러 고쳐줘" 한 마디보다 훨씬 정확합니다.
+            저는 DNS 안 될 때 가비아 설정 화면 캡처를 통째로 붙였더니 5분 만에 해결됐어요.
+          </p>
+
+          <h3>패턴 3: "작게 쪼개서 Accept"</h3>
+          <p>
+            "사이트 전체 리디자인해줘"보다 "헤더만 post-30이랑 똑같이"가 안전합니다.
+            Accept(적용) 버튼을 누르기 전에 diff(변경 내용)를 훑어보는 습관도 들였습니다.
+          </p>
+
+          <div class="post-checklist">
+            <h3>📋 Cursor 시작 전 체크리스트 (비전공자용)</h3>
+            <ul>
+              <li>✅ cursor.com에서 설치·회원가입 완료</li>
+              <li>✅ 바탕화면에 프로젝트 폴더 하나 만들기</li>
+              <li>✅ GitHub 계정 생성 (무료)</li>
+              <li>✅ GitHub Desktop 또는 Cursor 내 Git 연동</li>
+              <li>✅ 첫 작업 전 "git commit"으로 백업</li>
+              <li>✅ Agent 모드 위치 확인 (채팅창 상단)</li>
+              <li>✅ index.html 더블클릭으로 브라우저 미리보기</li>
+              <li>✅ 모르는 용어는 바로 AI에게 질문</li>
+              <li>✅ Pro 무료 체험 또는 1주일 무료 플랜으로 테스트</li>
+              <li>✅ 숫자·규제는 공식 자료로 재확인</li>
+              <li>✅ 작업 범위를 한 번에 하나씩 (파일·기능 단위)</li>
+              <li>✅ Accept 전 변경 파일 목록 확인</li>
+            </ul>
+          </div>
+
           <h2>Cursor가 적합한 사람 / 비추인 사람</h2>
 
           <h3>✅ 이런 분께 추천</h3>
@@ -285,6 +469,46 @@
             시작이 곧 전부라는 말, 진심입니다.
           </p>
 
+          <h2>자주 묻는 질문 (FAQ)</h2>
+
+          <h3>Q1. 코딩 0줄인데 Cursor만으로 사이트 만들 수 있나요?</h3>
+          <p>
+            저처럼 <strong>가능합니다</strong>.
+            다만 "코드를 안 짠다"는 뜻이지 "아무 생각 없이 누른다"는 뜻은 아닙니다.
+            무엇을 만들지, 어떻게 보일지 말로 설명할 수 있어야 합니다.
+          </p>
+
+          <h3>Q2. ChatGPT Plus만 있으면 Cursor가 필요 없나요?</h3>
+          <p>
+            글쓰기·아이디어 정리만 한다면 ChatGPT만으로 충분할 수 있습니다.
+            <strong>코드를 파일에 저장하고 배포까지</strong> 하려면 Cursor 같은 에디터가 훨씬 편합니다.
+            저는 Claude(글) + Cursor(코딩) 조합을 씁니다.
+          </p>
+
+          <h3>Q3. Mac 없이 Windows에서도 되나요?</h3>
+          <p>
+            네. 저는 Windows 11 노트북으로 전부 했습니다.
+            cursor.com에서 Windows용 설치 파일 받으면 됩니다.
+          </p>
+
+          <h3>Q4. Agent 모드가 파일을 망가뜨리면 어떡하죠?</h3>
+          <p>
+            Git으로 커밋해 두면 <strong>이전 버전으로 되돌리기</strong>가 가능합니다.
+            Cursor에게 "방금 변경 취소해줘"라고 해도 되지만, Git이 더 확실합니다.
+          </p>
+
+          <h3>Q5. 월 $20이 아깝지 않나요?</h3>
+          <p>
+            저녁 회식 한 번, 또는 배달음식 두 번이면 한 달치입니다.
+            퇴근 후 2시간씩 10일만 절약해도 시급으로 환산하면 본전 이상이라고 느꼈습니다.
+          </p>
+
+          <h3>Q6. 영어를 못해도 되나요?</h3>
+          <p>
+            됩니다. 저는 프롬프트·수정 요청을 전부 한국어로 합니다.
+            변수명만 영어로 짓는 게 AI에게 더 자연스럽긴 합니다.
+          </p>
+
           <div class="post-cta">
             <p>👉 제가 Cursor로 만든 첫 번째 도구, 직접 써보세요!</p>
             <a href="/tools/apt-calculator/" class="btn-primary">내 연봉 아파트 계산기 →</a>
@@ -299,6 +523,29 @@
           </div>
 
           <!-- AdSense 광고 영역 (승인 후 삽입) -->
+
+          
+          <div class="post-author-box" itemscope itemtype="https://schema.org/Person">
+            <img src="/images/about/profile.jpg" alt="승박 프로필 사진" class="post-author-avatar" width="72" height="72" loading="lazy">
+            <div class="post-author-info">
+              <p class="post-author-label">글쓴이</p>
+              <p class="post-author-name" itemprop="name">승박</p>
+              <p class="post-author-bio" itemprop="description">비전공자 생산관리 직장인이 직접 조사·작성합니다. 부동산 정책과 계산기를 월급쟁이 눈높이로 정리하는 <a href="/about.html">seungbak.com</a> 운영자입니다.</p>
+              <p class="post-author-links">
+                <a href="/about.html">운영자 소개</a>
+                <span class="post-meta-sep">·</span>
+                <a href="/contact.html">문의하기</a>
+                <span class="post-meta-sep">·</span>
+                <a href="mailto:id123id6@gmail.com">id123id6@gmail.com</a>
+              </p>
+            </div>
+          </div>
+
+          <p class="post-updated-footer">
+            <time datetime="2026-06-09">최초 게시: 2026년 6월 9일</time>
+            <span class="post-meta-sep">·</span>
+            <time datetime="2026-07-09">최종 수정: 2026년 7월 9일</time>
+          </p>
 
           <nav class="post-nav" aria-label="글 네비게이션">
             <a href="post-1.html" class="post-nav-link">← 비전공자가 코딩 0줄로 사이트 만든 후기</a>
