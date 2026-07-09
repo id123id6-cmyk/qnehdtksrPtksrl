@@ -3677,6 +3677,14 @@ a.tool-card:hover {
   flex-shrink: 0;
 }
 
+body.theme-blog-post .post-article img.post-author-avatar {
+  width: 72px;
+  height: 72px;
+  margin: 0;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
 .post-author-info {
   flex: 1;
   min-width: 0;
