@@ -298,5 +298,94 @@
       }
     })();
   </script>
+
+  <!-- 사용법 모달 트리거 버튼 -->
+  <button id="guide-modal-trigger" type="button" aria-label="실거래가 지도 사용법 열기" style="position:fixed;bottom:20px;right:20px;z-index:9998;background:#1A1A1A;color:#F5EFE0;border:none;border-radius:24px;padding:12px 20px;font-size:14px;font-weight:700;box-shadow:0 4px 16px rgba(0,0,0,0.2);cursor:pointer;font-family:inherit;">
+    ❓ 사용법
+  </button>
+
+  <!-- 사용법 모달 -->
+  <div id="guide-modal" role="dialog" aria-modal="true" aria-labelledby="guide-modal-title" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.5);align-items:center;justify-content:center;padding:20px;overflow-y:auto;">
+    <div style="background:#FFFFFF;max-width:720px;width:100%;max-height:90vh;overflow-y:auto;border-radius:16px;padding:32px 28px;box-shadow:0 20px 60px rgba(0,0,0,0.3);position:relative;line-height:1.7;color:#1A1A1A;font-family:inherit;">
+
+      <button id="guide-modal-close" type="button" aria-label="닫기" style="position:absolute;top:16px;right:16px;background:transparent;border:none;font-size:24px;cursor:pointer;color:#1A1A1A;padding:4px 10px;line-height:1;">✕</button>
+
+      <h2 id="guide-modal-title" style="font-size:24px;font-weight:800;margin:0 0 12px;">📖 seungbak.com 실거래가 지도</h2>
+      <p style="margin:0 0 20px;font-size:14px;color:rgba(26,26,26,0.7);">국토교통부 실거래가 데이터를 지도에 시각화한 무료 도구입니다. 전국 255개 시·군·구를 회원가입 없이 바로 조회할 수 있습니다.</p>
+
+      <h3 style="font-size:17px;font-weight:700;margin:20px 0 8px;">🗺️ 사용법 3단계</h3>
+      <ol style="padding-left:20px;margin:0 0 20px;">
+        <li><strong>시·도 선택</strong> — 상단 필터에서 서울·경기·부산 등 원하는 시·도 선택</li>
+        <li><strong>시·군·구 선택</strong> — 두 번째 필터에서 세부 지역 선택 시 아파트 마커 표시</li>
+        <li><strong>줌인·마커 클릭</strong> — 지도 확대 후 마커 클릭 시 최근 실거래 팝업 확인</li>
+      </ol>
+
+      <h3 style="font-size:17px;font-weight:700;margin:20px 0 8px;">🧮 데이터 출처</h3>
+      <ul style="padding-left:20px;margin:0 0 20px;">
+        <li>출처: <a href="https://rt.molit.go.kr" target="_blank" rel="noopener noreferrer" style="color:#1A1A1A;">국토교통부 실거래가 공개시스템</a></li>
+        <li>포함: 전국 아파트 매매·전세·월세 실거래 신고 데이터</li>
+        <li>갱신: 국토부는 계약 후 최대 30일 이내 신고분 공개 (본 사이트는 정기 반영)</li>
+        <li>주의: 계약 취소·해제 반영에 시차 있을 수 있으니 최신 원본은 국토부 확인 권장</li>
+      </ul>
+
+      <h3 style="font-size:17px;font-weight:700;margin:20px 0 8px;">❓ 자주 묻는 질문</h3>
+
+      <p style="margin:12px 0 4px;font-weight:700;">Q1. 회원가입이 필요한가요?</p>
+      <p style="margin:0 0 12px;">아니요. 로그인·회원가입 없이 바로 사용 가능하며 개인정보 수집도 없습니다.</p>
+
+      <p style="margin:12px 0 4px;font-weight:700;">Q2. 데이터는 얼마나 최신인가요?</p>
+      <p style="margin:0 0 12px;">국토부 신고 기준 오늘로부터 약 1~2개월 이내 계약분까지 확인 가능합니다.</p>
+
+      <p style="margin:12px 0 4px;font-weight:700;">Q3. 실거래가와 호가·시세 차이는?</p>
+      <p style="margin:0 0 12px;">실거래가는 실제 계약 체결 후 신고된 가격입니다. 호가·KB시세와 달리 시장 실거래를 가장 정확히 반영합니다.</p>
+
+      <p style="margin:12px 0 4px;font-weight:700;">Q4. 모바일에서도 가능한가요?</p>
+      <p style="margin:0 0 12px;">네, 모바일에 최적화되어 스마트폰·태블릿에서 정상 작동합니다.</p>
+
+      <p style="margin:12px 0 4px;font-weight:700;">Q5. 전세사기 예방에 어떻게 활용하나요?</p>
+      <p style="margin:0 0 12px;">전세 계약 전 해당 단지 최근 매매 실거래가로 전세가율을 계산하세요. 70% 이하가 안전, 80% 이상은 HUG 보증 필수 확인. 자세히는 <a href="/blog/post-30.html" style="color:#1A1A1A;">전세사기 예방 체크리스트</a> 참고.</p>
+
+      <h3 style="font-size:17px;font-weight:700;margin:20px 0 8px;">🔗 관련 도구·블로그</h3>
+      <ul style="padding-left:20px;margin:0 0 20px;">
+        <li><a href="/tools/apt-calculator/" style="color:#1A1A1A;">아파트 매매·전세 계산기</a></li>
+        <li><a href="/tools/salary-calculator/" style="color:#1A1A1A;">필요 연봉 계산기</a></li>
+        <li><a href="/blog/post-29.html" style="color:#1A1A1A;">실거래가 지도 200% 활용법</a></li>
+        <li><a href="/blog/post-30.html" style="color:#1A1A1A;">전세사기 예방 완벽 체크리스트</a></li>
+        <li><a href="/blog/post-28.html" style="color:#1A1A1A;">종부세 12억 공제 받는 법</a></li>
+      </ul>
+
+      <p style="margin-top:24px;padding-top:16px;border-top:1px solid rgba(26,26,26,0.1);font-size:12px;color:rgba(26,26,26,0.6);font-style:italic;">
+        본 도구는 정보 제공 목적입니다. 실제 부동산 거래 판단은 <a href="/disclaimer.html" style="color:#1A1A1A;">면책조항</a> 참고 후 전문가와 상담하세요.
+      </p>
+    </div>
+  </div>
+
+  <!-- 모달 제어 스크립트 -->
+  <script>
+  (function(){
+    var trigger = document.getElementById('guide-modal-trigger');
+    var modal = document.getElementById('guide-modal');
+    var closeBtn = document.getElementById('guide-modal-close');
+    if(!trigger || !modal || !closeBtn) return;
+
+    function openModal(){
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal(){
+      modal.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
+    trigger.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', function(e){
+      if(e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape' && modal.style.display === 'flex') closeModal();
+    });
+  })();
+  </script>
 </body>
 </html>
