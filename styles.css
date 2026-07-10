@@ -3420,8 +3420,9 @@ a.tool-card:hover {
   border-color: #bfdbfe;
 }
 
-.blog-card.hidden {
-  display: none;
+.blog-card.hidden,
+body.theme-blog-page .blog-card.hidden {
+  display: none !important;
 }
 
 .blog-card.fade-out {

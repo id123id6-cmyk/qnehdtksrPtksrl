@@ -93,6 +93,21 @@
         </div>
 
         <div class="blog-grid" id="blog-grid">
+          <a href="post-33.html" class="blog-card fade-in has-thumbnail" data-category="side-income">
+          <div class="blog-card-thumbnail">
+            <img src="images/post-33/essay-hero.png" alt="부동산 공부하면서 느낀 것 — 창밖 도시 풍경을 멀리서 바라보는 잔잔한 분위기" loading="lazy">
+          </div>
+            <div class="blog-card-content">
+              <span class="blog-category-badge blog-card-category blog-category-badge--side">💰 직장인 부업</span>
+              <h3 class="blog-card-title">부동산 투자하고 느낀 것 — 조급하면 안 보이더라고요</h3>
+              <p class="blog-card-excerpt">월급쟁이 승박의 솔직한 투자 회고. 조급함, 시야 좁아짐, 한 발 물러서기. 개인적인 경험과 생각.</p>
+              <div class="blog-card-meta">
+                <time class="blog-card-date" datetime="2026-07-09">2026-07-09</time>
+                <span class="blog-card-readtime">7분 읽기</span>
+              </div>
+            </div>
+          </a>
+
           <a href="post-32.html" class="blog-card fade-in has-thumbnail" data-category="real-estate">
           <div class="blog-card-thumbnail">
             <img src="images/post-18/hero-loan-guide.png" alt="KB 생애최초 주담대 한도 6억→3억 축소 (2026.7.10) — 디딤돌은 그대로? 30대 대응법" loading="lazy">
@@ -138,7 +153,7 @@
             </div>
           </a>
 
-          <a href="post-29.html" class="blog-card fade-in has-thumbnail" data-category="guide">
+          <a href="post-29.html" class="blog-card fade-in has-thumbnail" data-category="real-estate">
           <div class="blog-card-thumbnail">
             <img src="images/post-29/map-guide-hero.png" alt="실거래가 지도 200% 활용법 (전국 아파트 시세 한눈에·seungbak.com 오리지널 가이드)" loading="lazy">
           </div>
@@ -556,23 +571,15 @@
       var filterBtns = document.querySelectorAll(".filter-btn");
       var blogCards = document.querySelectorAll("#blog-grid .blog-card");
       var noResults = document.querySelector(".no-results");
-      var fadeDuration = 300;
 
       function showCard(card) {
-        card.classList.remove("hidden", "fade-out");
-        requestAnimationFrame(function () {
-          card.classList.add("fade-in");
-        });
+        card.classList.remove("hidden");
+        card.style.removeProperty("display");
       }
 
       function hideCard(card) {
-        card.classList.remove("fade-in");
-        card.classList.add("fade-out");
-        window.setTimeout(function () {
-          if (!card.classList.contains("fade-in")) {
-            card.classList.add("hidden");
-          }
-        }, fadeDuration);
+        card.classList.add("hidden");
+        card.style.display = "none";
       }
 
       filterBtns.forEach(function (btn) {
