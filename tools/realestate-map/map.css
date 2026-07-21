@@ -2648,12 +2648,19 @@ body.map-page .map-toolbar .region-dropdown-menu {
   }
 
   .map-toolbar-scroll {
-    overflow-y: visible;
+    flex-wrap: wrap;
+    row-gap: 6px;
+    overflow-x: auto;
+    overflow-y: hidden;
   }
 
   .toolbar-group--region {
-    flex: 1;
-    min-width: 0;
+    flex: 0 0 auto;
+    min-width: auto;
+  }
+
+  .toolbar-group--filter {
+    flex: 1 1 100%;
   }
 
   .region-pin {
