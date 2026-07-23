@@ -8,11 +8,37 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const OUT_PATH = path.join(__dirname, '..', 'tools', 'bunyang-alarm', 'data.json');
+const ROOT = path.join(__dirname, '..');
+const OUT_PATH = path.join(ROOT, 'tools', 'bunyang-alarm', 'data.json');
 const API_URL = 'https://api.odcloud.kr/api/ApplyhomeInfoDetailSvc/v1/getAPTLttotPblancDetail';
 const PER_PAGE = 100;
 /** 조회 하한: 올해 1/1 과 6개월 전 중 더 이른 날 (YYYY-MM-DD) */
 const LOOKBACK_MONTHS = 6;
+
+/** 로컬 전용: process.env에 없을 때 .env.local 의 BUNYANG_API_KEY 로드 (레포에 키 기록 금지) */
+function loadEnvLocal() {
+  if (process.env.BUNYANG_API_KEY) return;
+  const envPath = path.join(ROOT, '.env.local');
+  if (!fs.existsSync(envPath)) return;
+  const text = fs.readFileSync(envPath, 'utf8');
+  for (const line of text.split(/\r?\n/)) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith('#')) continue;
+    const i = trimmed.indexOf('=');
+    if (i < 1) continue;
+    const name = trimmed.slice(0, i).trim();
+    let value = trimmed.slice(i + 1).trim();
+    if (
+      (value.startsWith('"') && value.endsWith('"')) ||
+      (value.startsWith("'") && value.endsWith("'"))
+    ) {
+      value = value.slice(1, -1);
+    }
+    if (name && process.env[name] == null) process.env[name] = value;
+  }
+}
+
+loadEnvLocal();
 
 const FIELD_ALIASES = {
   HOUSE_NM: ['HOUSE_NM', 'house_nm', 'HouseNm'],
@@ -221,7 +247,7 @@ async function main() {
     `[range] primary YYYY-MM-DD ${range.gte} ~ ${range.lte} (올해 시작 ${range.yearStart} 또는 ${LOOKBACK_MONTHS}개월)`
   );
 
-  // 1) 공식 권장: YYYY-MM-DD
+  // odcloud 날짜 조건은 반드시 YYYY-MM-DD (YYYYMMDD 는 matchCount=0)
   let items = await fetchAllPages(
     serviceKey,
     { gte: range.gte, lte: range.lte },
@@ -229,30 +255,17 @@ async function main() {
   );
   let usedRange = { gte: range.gte, lte: range.lte, dateFormat: 'YYYY-MM-DD' };
 
-  // 2) 폴백: YYYYMMDD (일부 스키마/구문서)
+  // 폴백: 날짜 조건 없이 수집 후 클라이언트에서 기간 필터
   if (items.length === 0) {
-    console.warn('[fallback] ISO 날짜 0건 → YYYYMMDD 조건으로 재시도');
-    items = await fetchAllPages(
-      serviceKey,
-      { gte: range.gteCompact, lte: range.lteCompact },
-      'compact-date'
+    console.warn(
+      '[fallback] YYYY-MM-DD 조건 0건 → 조건 없이 수집 후 기간 필터 (참고: YYYYMMDD 조건은 API가 0건 반환)'
     );
-    usedRange = {
-      gte: range.gteCompact,
-      lte: range.lteCompact,
-      dateFormat: 'YYYYMMDD',
-    };
-  }
-
-  // 3) 폴백: 날짜 조건 없이 전량 수집 후 클라이언트 필터
-  if (items.length === 0) {
-    console.warn('[fallback] 날짜 조건 0건 → 조건 없이 수집 후 기간 필터');
     const all = await fetchAllPages(serviceKey, null, 'no-filter');
     const gteN = range.gteCompact;
     const lteN = range.lteCompact;
     items = all.filter((it) => {
       const d = String(it.RCRIT_PBLANC_DE || '').replace(/\D/g, '');
-      if (d.length < 8) return true; // 날짜 없으면 일단 포함
+      if (d.length < 8) return true;
       return d >= gteN && d <= lteN;
     });
     usedRange = {

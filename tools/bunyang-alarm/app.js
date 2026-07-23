@@ -220,6 +220,16 @@
       }
       return true;
     });
+    // 접수중 → 청약예정 → 마감 순, 같으면 모집공고일 최신순
+    var rank = { open: 0, upcoming: 1, unknown: 2, closed: 3 };
+    filtered.sort(function (a, b) {
+      var ra = rank[getStatus(a).key] ?? 9;
+      var rb = rank[getStatus(b).key] ?? 9;
+      if (ra !== rb) return ra - rb;
+      return String(b.RCRIT_PBLANC_DE || "").localeCompare(
+        String(a.RCRIT_PBLANC_DE || "")
+      );
+    });
     render(filtered);
   }
 
