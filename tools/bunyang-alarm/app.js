@@ -2,6 +2,14 @@
   "use strict";
 
   var DATA_URL = "./data.json";
+  var IMAGE_FILES = [
+    "./images/apt-1.jpg",
+    "./images/apt-2.jpg",
+    "./images/apt-3.jpg",
+    "./images/apt-4.jpg",
+    "./images/apt-5.jpg",
+  ];
+
   var allItems = [];
   var regionSelect = document.getElementById("filter-region");
   var statusSelect = document.getElementById("filter-status");
@@ -37,6 +45,24 @@
     return value || "-";
   }
 
+  function ymdToDate(ymd) {
+    if (!ymd || ymd.length !== 8) return null;
+    var y = Number(ymd.slice(0, 4));
+    var m = Number(ymd.slice(4, 6)) - 1;
+    var d = Number(ymd.slice(6, 8));
+    var dt = new Date(y, m, d);
+    if (isNaN(dt.getTime())) return null;
+    return dt;
+  }
+
+  function daysBetween(aYmd, bYmd) {
+    var a = ymdToDate(aYmd);
+    var b = ymdToDate(bYmd);
+    if (!a || !b) return null;
+    var ms = b.getTime() - a.getTime();
+    return Math.round(ms / 86400000);
+  }
+
   function getStatus(item) {
     var today = todayYmd();
     var start = normalizeDate(item.RCEPT_BGNDE);
@@ -45,6 +71,41 @@
     if (today < start) return { key: "upcoming", label: "청약예정" };
     if (today > end) return { key: "closed", label: "마감" };
     return { key: "open", label: "접수중" };
+  }
+
+  /** D-Day 뱃지: 접수 시작일 기준 */
+  function getDdayBadge(item, status) {
+    if (status.key === "closed") {
+      return { text: "마감", show: true };
+    }
+    if (status.key === "open") {
+      return { text: "접수중", show: true };
+    }
+    var today = todayYmd();
+    var start = normalizeDate(item.RCEPT_BGNDE);
+    var diff = daysBetween(today, start);
+    if (diff == null) return { text: "", show: false };
+    if (diff === 0) return { text: "D-Day", show: true };
+    if (diff > 0) return { text: "D-" + diff, show: true };
+    return { text: "접수중", show: true };
+  }
+
+  function hashString(str) {
+    var h = 0;
+    var s = String(str || "");
+    for (var i = 0; i < s.length; i++) {
+      h = (h << 5) - h + s.charCodeAt(i);
+      h |= 0;
+    }
+    return Math.abs(h);
+  }
+
+  /** 지역 우선 + 단지명 해시로 이미지 순환 배정 */
+  function pickImage(item, index) {
+    var region = (item.SUBSCRPT_AREA_CODE_NM || "").trim();
+    var name = item.HOUSE_NM || String(index);
+    var seed = hashString(region + "|" + name);
+    return IMAGE_FILES[seed % IMAGE_FILES.length];
   }
 
   function escapeHtml(str) {
@@ -80,62 +141,68 @@
     emptyState.hidden = true;
 
     var frag = document.createDocumentFragment();
-    items.forEach(function (item) {
+    items.forEach(function (item, index) {
       var status = getStatus(item);
+      var dday = getDdayBadge(item, status);
       var url = item.PBLANC_URL || "https://www.applyhome.co.kr/";
+      var img = pickImage(item, index);
       var households = item.TOT_SUPLY_HSHLDCO;
       var householdsText =
         households === "" || households == null
           ? "-"
           : Number(households).toLocaleString("ko-KR") + "세대";
+      var region = item.SUBSCRPT_AREA_CODE_NM || "지역미상";
+      var addr = item.HSSPLY_ADRES || "";
+      var locationText = addr ? region + " · " + addr : region;
 
       var card = document.createElement("article");
       card.className = "bunyang-card";
       card.innerHTML =
-        '<div class="bunyang-card-top">' +
-        '<span class="bunyang-badge bunyang-badge--region">' +
-        escapeHtml(item.SUBSCRPT_AREA_CODE_NM || "지역미상") +
+        '<div class="bunyang-card-media">' +
+        '<img src="' +
+        escapeHtml(img) +
+        '" alt="" loading="lazy" width="640" height="400">' +
+        '<span class="bunyang-overlay-badge bunyang-overlay-badge--status bunyang-overlay-badge--' +
+        status.key +
+        '">' +
+        escapeHtml(status.label) +
         "</span>" +
+        (dday.show
+          ? '<span class="bunyang-overlay-badge bunyang-overlay-badge--dday">' +
+            escapeHtml(dday.text) +
+            "</span>"
+          : "") +
+        "</div>" +
+        '<div class="bunyang-card-body">' +
         (item.HOUSE_DTL_SECD_NM
-          ? '<span class="bunyang-badge bunyang-badge--type">' +
+          ? '<span class="bunyang-type-badge">' +
             escapeHtml(item.HOUSE_DTL_SECD_NM) +
             "</span>"
           : "") +
-        '<span class="bunyang-badge bunyang-badge--' +
-        status.key +
-        '">' +
-        status.label +
-        "</span>" +
-        "</div>" +
         '<h2 class="bunyang-card-title">' +
         escapeHtml(item.HOUSE_NM || "단지명 미상") +
         "</h2>" +
-        '<p class="bunyang-card-addr">' +
-        escapeHtml(item.HSSPLY_ADRES || "") +
+        '<p class="bunyang-card-addr">📍 ' +
+        escapeHtml(locationText) +
         "</p>" +
-        '<dl class="bunyang-dl">' +
-        "<dt>접수기간</dt><dd>" +
+        '<ul class="bunyang-info-list">' +
+        '<li><span class="ico" aria-hidden="true">🏢</span><span>' +
+        escapeHtml(householdsText) +
+        "</span></li>" +
+        '<li><span class="ico" aria-hidden="true">🗓</span><span>접수 ' +
         formatDate(item.RCEPT_BGNDE) +
         " ~ " +
         formatDate(item.RCEPT_ENDDE) +
-        "</dd>" +
-        "<dt>총 세대수</dt><dd>" +
-        escapeHtml(householdsText) +
-        "</dd>" +
-        "<dt>입주예정</dt><dd>" +
+        "</span></li>" +
+        '<li><span class="ico" aria-hidden="true">🏠</span><span>입주예정 ' +
         escapeHtml(formatYm(item.MVN_PREARNGE_YM)) +
-        "</dd>" +
-        "<dt>모집공고</dt><dd>" +
-        formatDate(item.RCRIT_PBLANC_DE) +
-        "</dd>" +
-        "<dt>당첨발표</dt><dd>" +
-        formatDate(item.PRZWNER_PRESNATN_DE) +
-        "</dd>" +
-        "</dl>" +
+        "</span></li>" +
+        "</ul>" +
         '<div class="bunyang-card-actions">' +
         '<a class="bunyang-card-link" href="' +
         escapeHtml(url) +
         '" target="_blank" rel="noopener noreferrer">청약홈에서 자세히 보기</a>' +
+        "</div>" +
         "</div>";
       frag.appendChild(card);
     });
@@ -158,9 +225,8 @@
 
   function setMeta(data) {
     var updated = data.updatedAt ? new Date(data.updatedAt) : null;
-    var updatedText = updated && !isNaN(updated)
-      ? updated.toLocaleString("ko-KR")
-      : "-";
+    var updatedText =
+      updated && !isNaN(updated) ? updated.toLocaleString("ko-KR") : "-";
     metaEl.textContent =
       "공고 " +
       (data.count || (data.items && data.items.length) || 0) +
@@ -186,7 +252,9 @@
       populateRegions(allItems);
       setMeta(data);
       if (!allItems.length) {
-        showBanner("아직 저장된 공고가 없습니다. GitHub Actions 갱신 후 다시 확인해 주세요.");
+        showBanner(
+          "아직 저장된 공고가 없습니다. GitHub Actions 갱신 후 다시 확인해 주세요."
+        );
       }
       applyFilters();
     })
