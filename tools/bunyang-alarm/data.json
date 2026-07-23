@@ -1,0 +1,51 @@
+{
+  "updatedAt": "2026-07-23T00:00:00.000Z",
+  "source": "ApplyhomeInfoDetailSvc/v1/getAPTLttotPblancDetail",
+  "range": {
+    "gte": "20260524",
+    "lte": "20260723",
+    "lookbackDays": 60
+  },
+  "count": 3,
+  "items": [
+    {
+      "HOUSE_NM": "샘플 단지 A (로컬 테스트용)",
+      "HOUSE_DTL_SECD_NM": "민영",
+      "SUBSCRPT_AREA_CODE_NM": "서울",
+      "HSSPLY_ADRES": "서울특별시 강남구 샘플로 1",
+      "TOT_SUPLY_HSHLDCO": 320,
+      "RCRIT_PBLANC_DE": "20260720",
+      "RCEPT_BGNDE": "20260722",
+      "RCEPT_ENDDE": "20260724",
+      "PRZWNER_PRESNATN_DE": "20260730",
+      "MVN_PREARNGE_YM": "202803",
+      "PBLANC_URL": "https://www.applyhome.co.kr/"
+    },
+    {
+      "HOUSE_NM": "샘플 단지 B (청약예정)",
+      "HOUSE_DTL_SECD_NM": "민영",
+      "SUBSCRPT_AREA_CODE_NM": "경기",
+      "HSSPLY_ADRES": "경기도 성남시 분당구 샘플로 2",
+      "TOT_SUPLY_HSHLDCO": 510,
+      "RCRIT_PBLANC_DE": "20260718",
+      "RCEPT_BGNDE": "20260728",
+      "RCEPT_ENDDE": "20260730",
+      "PRZWNER_PRESNATN_DE": "20260805",
+      "MVN_PREARNGE_YM": "202806",
+      "PBLANC_URL": "https://www.applyhome.co.kr/"
+    },
+    {
+      "HOUSE_NM": "샘플 단지 C (마감)",
+      "HOUSE_DTL_SECD_NM": "국민",
+      "SUBSCRPT_AREA_CODE_NM": "인천",
+      "HSSPLY_ADRES": "인천광역시 연수구 샘플로 3",
+      "TOT_SUPLY_HSHLDCO": 180,
+      "RCRIT_PBLANC_DE": "20260601",
+      "RCEPT_BGNDE": "20260610",
+      "RCEPT_ENDDE": "20260612",
+      "PRZWNER_PRESNATN_DE": "20260620",
+      "MVN_PREARNGE_YM": "202712",
+      "PBLANC_URL": "https://www.applyhome.co.kr/"
+    }
+  ]
+}
