@@ -143,6 +143,13 @@ body.home-redesign .hr-hero-cta {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
+  align-items: center;
+}
+
+body.home-redesign .hr-hero-cta .hr-btn {
+  flex: 0 1 auto;
+  min-width: 0;
+  text-align: center;
 }
 
 body.home-redesign .hr-btn {
@@ -196,6 +203,40 @@ body.home-redesign .hr-btn-dark:hover {
 body.home-redesign .hr-map-banner {
   background: var(--hr-beige);
   padding: 100px 0;
+}
+
+body.home-redesign .hr-main-tools {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: stretch;
+}
+
+body.home-redesign .hr-main-tool-card {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 28px;
+  border-radius: 12px;
+  border: 1px solid var(--hr-border);
+  background: var(--hr-white);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  height: 100%;
+}
+
+body.home-redesign .hr-main-tool-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+body.home-redesign .hr-main-tool-body .hr-btn {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+body.home-redesign .hr-main-tool-media {
+  margin-top: auto;
 }
 
 body.home-redesign .hr-map-grid {
@@ -570,6 +611,7 @@ body.home-redesign .hr-nav-mobile a {
 }
 
 @media (max-width: 900px) {
+  body.home-redesign .hr-main-tools,
   body.home-redesign .hr-map-grid {
     grid-template-columns: 1fr;
   }
@@ -603,6 +645,7 @@ body.home-redesign .hr-nav-mobile a {
 
   body.home-redesign .hr-hero-cta {
     flex-direction: column;
+    align-items: stretch;
   }
 
   body.home-redesign .hr-hero-cta .hr-btn {

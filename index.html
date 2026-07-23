@@ -77,13 +77,14 @@
       <div class="hr-container">
         <div class="hr-hero-inner">
           <h1 class="hr-hero-title" id="hero-title">부동산 정보를 한 곳에서</h1>
-          <p class="hr-hero-sub">지도로 시세를 확인하고, 집 마련 일정까지 점검해 보세요. 실거래가 지도부터 청약 계산기까지, 7개 무료 도구</p>
+          <p class="hr-hero-sub">지도로 시세를 확인하고, 집 마련 일정까지 점검해 보세요. 실거래가 지도부터 청약 계산기까지, 8개 무료 도구</p>
           <p class="hr-hero-desc">
             회원가입 없이 바로 사용할 수 있습니다.<br>
             국토부 실거래가 기반의 신뢰할 수 있는 데이터를 제공합니다.
           </p>
           <div class="hr-hero-cta">
             <a href="/tools/realestate-map/" class="hr-btn hr-btn-primary">실거래가 지도 보기</a>
+            <a href="/tools/bunyang-alarm/" class="hr-btn hr-btn-primary">분양 알리미 보기</a>
             <a href="/tools/" class="hr-btn hr-btn-outline">전체 도구 보기</a>
           </div>
         </div>
@@ -92,21 +93,40 @@
 
     <section class="hr-map-banner" aria-labelledby="map-banner-title">
       <div class="hr-container">
-        <div class="hr-map-grid">
-          <div class="hr-map-text">
-            <span class="hr-label">MAIN TOOL</span>
-            <h2 class="hr-map-title" id="map-banner-title">실거래가 지도</h2>
-            <p class="hr-map-sub">전국 아파트 실거래가를 지도에서 확인</p>
-            <ul class="hr-checklist">
-              <li>국토교통부 실거래가 데이터</li>
-              <li>시·군·구 단위 필터링</li>
-              <li>면적별 시세 비교</li>
-            </ul>
-            <a href="/tools/realestate-map/" class="hr-btn hr-btn-dark">지도 열기 →</a>
-          </div>
-          <div class="hr-map-image">
-            <img src="/images/main/map-preview.png" alt="seungbak.com 실거래가 지도 미리보기" width="1200" height="800" loading="lazy">
-          </div>
+        <div class="hr-main-tools">
+          <article class="hr-main-tool-card">
+            <div class="hr-main-tool-body">
+              <span class="hr-label">MAIN TOOL</span>
+              <h2 class="hr-map-title" id="map-banner-title">실거래가 지도</h2>
+              <p class="hr-map-sub">전국 아파트 실거래가를 지도에서 확인</p>
+              <ul class="hr-checklist">
+                <li>국토교통부 실거래가 데이터</li>
+                <li>시·군·구 단위 필터링</li>
+                <li>면적별 시세 비교</li>
+              </ul>
+              <a href="/tools/realestate-map/" class="hr-btn hr-btn-dark">지도 열기 →</a>
+            </div>
+            <div class="hr-map-image hr-main-tool-media">
+              <img src="/images/main/map-preview.png" alt="seungbak.com 실거래가 지도 미리보기" width="1200" height="800" loading="lazy">
+            </div>
+          </article>
+
+          <article class="hr-main-tool-card">
+            <div class="hr-main-tool-body">
+              <span class="hr-label">MAIN TOOL</span>
+              <h2 class="hr-map-title" id="bunyang-banner-title">분양 알리미</h2>
+              <p class="hr-map-sub">전국 아파트 청약·분양 일정을 한눈에</p>
+              <ul class="hr-checklist">
+                <li>한국부동산원 청약홈 데이터</li>
+                <li>지역별 필터링</li>
+                <li>D-Day 자동 계산</li>
+              </ul>
+              <a href="/tools/bunyang-alarm/" class="hr-btn hr-btn-dark">분양 알리미 열기 →</a>
+            </div>
+            <div class="hr-map-image hr-main-tool-media">
+              <img src="/tools/bunyang-alarm/images/apt-1.jpg" alt="분양 알리미 미리보기" width="960" height="640" loading="lazy">
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -125,6 +145,15 @@
             <div class="hr-tool-text">
               <h3 class="hr-tool-title">실거래가 지도</h3>
               <p class="hr-tool-desc">전국 아파트 실거래가 시세</p>
+            </div>
+          </a>
+          <a href="/tools/bunyang-alarm/" class="hr-tool-card">
+            <span class="hr-tool-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20V8l8-5 8 5v12"/><path d="M9 20v-6h6v6M9 10h6"/><path d="M12 14v2"/></svg>
+            </span>
+            <div class="hr-tool-text">
+              <h3 class="hr-tool-title">분양 알리미</h3>
+              <p class="hr-tool-desc">전국 청약·분양 일정 조회</p>
             </div>
           </a>
           <a href="/tools/subscription-calculator/" class="hr-tool-card">
@@ -191,7 +220,40 @@
           <h2 class="hr-section-title" id="blog-title">최신 블로그</h2>
           <p class="hr-section-sub">부동산 실전 정보 매일 업데이트</p>
         </div>
-        <div class="hr-blog-grid">
+        <div class="hr-blog-grid" id="hr-blog-grid">
+          <a href="/blog/post-38.html" class="hr-blog-card">
+            <div class="hr-blog-thumb">
+              <img src="/blog/images/post-38/hero.png" alt="전셋값이 집값보다 더 오른다? 2026 하반기 전세 전망 정리" loading="lazy">
+            </div>
+            <div class="hr-blog-body">
+              <span class="hr-blog-tag">부동산 실전</span>
+              <h3 class="hr-blog-title">전셋값이 집값보다 더 오른다? 2026 하반기 전세 전망 정리</h3>
+              <p class="hr-blog-excerpt">기관 전망 참고용 정리. 전세 4~5% vs 매매 0.8~2.5% 범위, 공급 부족·매물 감소 배경과 세입자·집주인 체크포인트.</p>
+              <time class="hr-blog-date" datetime="2026-07-22">2026-07-22</time>
+            </div>
+          </a>
+          <a href="/blog/post-37.html" class="hr-blog-card">
+            <div class="hr-blog-thumb">
+              <img src="/blog/images/post-37/hero.png" alt="종부세 어떻게 바뀔까? 2026년 7월 세제 개편 방향 총정리" loading="lazy">
+            </div>
+            <div class="hr-blog-body">
+              <span class="hr-blog-tag">부동산 세금</span>
+              <h3 class="hr-blog-title">종부세 어떻게 바뀔까? 2026년 7월 세제 개편 방향 총정리</h3>
+              <p class="hr-blog-excerpt">확정안이 아닌 논의 단계 정리. 주택수→가격 기준, 1주택자 대상 증가, 공정시장가액비율·장특공제 시나리오.</p>
+              <time class="hr-blog-date" datetime="2026-07-22">2026-07-22</time>
+            </div>
+          </a>
+          <a href="/blog/post-36.html" class="hr-blog-card">
+            <div class="hr-blog-thumb">
+              <img src="/blog/images/post-36/routine-hero.png" alt="본업 하면서 부동산 공부까지, 저는 이렇게 시간 냈습니다" loading="lazy">
+            </div>
+            <div class="hr-blog-body">
+              <span class="hr-blog-tag">직장인 부업</span>
+              <h3 class="hr-blog-title">본업 하면서 부동산 공부까지, 저는 이렇게 시간 냈습니다</h3>
+              <p class="hr-blog-excerpt">생산관리 월급쟁이가 퇴근 후 부동산 공부·사이드를 병행하며 시간을 쪼갠 솔직한 후기. 짧은 루틴과 쉬는 날의 허용.</p>
+              <time class="hr-blog-date" datetime="2026-07-21">2026-07-21</time>
+            </div>
+          </a>
           <a href="/blog/post-35.html" class="hr-blog-card">
             <div class="hr-blog-thumb">
               <img src="/blog/images/post-35/study-hero.png" alt="월급쟁이가 부동산 공부 시작할 때 삽질한 것들" loading="lazy">
@@ -225,17 +287,6 @@
               <time class="hr-blog-date" datetime="2026-07-09">2026-07-09</time>
             </div>
           </a>
-          <a href="/blog/post-32.html" class="hr-blog-card">
-            <div class="hr-blog-thumb">
-              <img src="/blog/images/post-18/hero-loan-guide.png" alt="KB 생애최초 주담대 한도 6억→3억 축소 (2026.7.10) — 디딤돌은 그대로? 30대 대응법" loading="lazy">
-            </div>
-            <div class="hr-blog-body">
-              <span class="hr-blog-tag">부동산 대출</span>
-              <h3 class="hr-blog-title">KB 생애최초 주담대 한도 6억→3억 축소 — 디딤돌은 그대로?</h3>
-              <p class="hr-blog-excerpt">KB 자체 재원 생애최초 주담대 3억 한도 시행. 디딤돌·보금자리는 제외. 30대 무주택 직장인 대응법.</p>
-              <time class="hr-blog-date" datetime="2026-07-09">2026-07-09</time>
-            </div>
-          </a>
         </div>
         <div class="hr-section-footer">
           <a href="/blog/" class="hr-btn hr-btn-dark">블로그 전체 보기 →</a>
@@ -250,8 +301,8 @@
           <p class="hr-about-text">
             seungbak.com은 부동산 관련 계산과 정보 조회를 한곳에서
             할 수 있도록 만든 무료 웹사이트입니다.
-            실거래가 지도, 청약 가점 계산기, 연봉 실수령액 계산기 등
-            7개의 실용 도구와 부동산 실전 블로그를 제공합니다.
+            실거래가 지도, 분양 알리미, 청약 가점 계산기, 연봉 실수령액 계산기 등
+            8개의 실용 도구와 부동산 실전 블로그를 제공합니다.
           </p>
           <a href="/about.html" class="hr-btn hr-btn-dark">자세히 보기 →</a>
         </div>
@@ -290,6 +341,7 @@
     </div>
   </footer>
 
+  <script src="/js/home-latest-posts.js" defer></script>
   <script>
     (function () {
       var yearEl = document.getElementById("current-year");
