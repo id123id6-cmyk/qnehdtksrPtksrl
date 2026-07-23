@@ -17,6 +17,9 @@
   var emptyState = document.getElementById("empty-state");
   var metaEl = document.getElementById("data-meta");
   var banner = document.getElementById("status-banner");
+  var modal = document.getElementById("bunyang-modal");
+  var modalBody = document.getElementById("bunyang-modal-body");
+  var lastFocus = null;
 
   function todayYmd() {
     var d = new Date();
@@ -43,6 +46,23 @@
     var s = String(value || "").replace(/\D/g, "");
     if (s.length >= 6) return s.slice(0, 4) + "." + s.slice(4, 6);
     return value || "-";
+  }
+
+  function formatPhone(value) {
+    var s = String(value || "").replace(/\D/g, "");
+    if (!s) return "";
+    if (s.length === 8) return s.slice(0, 4) + "-" + s.slice(4);
+    if (s.length === 9) return s.slice(0, 2) + "-" + s.slice(2, 5) + "-" + s.slice(5);
+    if (s.length === 10) {
+      if (s.indexOf("02") === 0) {
+        return s.slice(0, 2) + "-" + s.slice(2, 6) + "-" + s.slice(6);
+      }
+      return s.slice(0, 3) + "-" + s.slice(3, 6) + "-" + s.slice(6);
+    }
+    if (s.length === 11) {
+      return s.slice(0, 3) + "-" + s.slice(3, 7) + "-" + s.slice(7);
+    }
+    return String(value);
   }
 
   function ymdToDate(ymd) {
@@ -73,7 +93,6 @@
     return { key: "open", label: "접수중" };
   }
 
-  /** D-Day 뱃지: 접수 시작일 기준 */
   function getDdayBadge(item, status) {
     if (status.key === "closed") {
       return { text: "마감", show: true };
@@ -100,7 +119,6 @@
     return Math.abs(h);
   }
 
-  /** 지역 우선 + 단지명 해시로 이미지 순환 배정 */
   function pickImage(item, index) {
     var region = (item.SUBSCRPT_AREA_CODE_NM || "").trim();
     var name = item.HOUSE_NM || String(index);
@@ -114,6 +132,19 @@
       .replace(/</g, "&lt;")
       .replace(/>/g, "&gt;")
       .replace(/"/g, "&quot;");
+  }
+
+  function householdsText(item) {
+    var households = item.TOT_SUPLY_HSHLDCO;
+    if (households === "" || households == null) return "-";
+    return Number(households).toLocaleString("ko-KR") + "세대";
+  }
+
+  function locationText(item) {
+    var region = item.SUBSCRPT_AREA_CODE_NM || "지역미상";
+    var addr = item.HSSPLY_ADRES || "";
+    var zip = item.HSSPLY_ZIP ? " (" + item.HSSPLY_ZIP + ")" : "";
+    return addr ? region + " · " + addr + zip : region + zip;
   }
 
   function populateRegions(items) {
@@ -132,6 +163,162 @@
     });
   }
 
+  function detailRow(label, valueHtml) {
+    if (!valueHtml || valueHtml === "-") return "";
+    return (
+      '<div class="bunyang-modal-row">' +
+      "<dt>" +
+      escapeHtml(label) +
+      "</dt>" +
+      "<dd>" +
+      valueHtml +
+      "</dd>" +
+      "</div>"
+    );
+  }
+
+  function buildModalHtml(item, index) {
+    var status = getStatus(item);
+    var dday = getDdayBadge(item, status);
+    var img = pickImage(item, index);
+    var url = item.PBLANC_URL || "https://www.applyhome.co.kr/";
+    var phone = formatPhone(item.MDHS_TELNO);
+    var homepage = (item.HMPG_ADRES || "").trim();
+    if (homepage && !/^https?:\/\//i.test(homepage)) {
+      homepage = "https://" + homepage;
+    }
+
+    var typeBits = [];
+    if (item.HOUSE_DTL_SECD_NM) typeBits.push(item.HOUSE_DTL_SECD_NM);
+    if (item.HOUSE_SECD_NM) typeBits.push(item.HOUSE_SECD_NM);
+    if (item.RENT_SECD_NM) typeBits.push(item.RENT_SECD_NM);
+
+    var contract =
+      item.CNTRCT_CNCLS_BGNDE || item.CNTRCT_CNCLS_ENDDE
+        ? formatDate(item.CNTRCT_CNCLS_BGNDE) +
+          " ~ " +
+          formatDate(item.CNTRCT_CNCLS_ENDDE)
+        : "";
+
+    return (
+      '<div class="bunyang-modal-media">' +
+      '<img src="' +
+      escapeHtml(img) +
+      '" alt="" width="960" height="540">' +
+      '<span class="bunyang-overlay-badge bunyang-overlay-badge--status bunyang-overlay-badge--' +
+      status.key +
+      '">' +
+      escapeHtml(status.label) +
+      "</span>" +
+      (dday.show
+        ? '<span class="bunyang-overlay-badge bunyang-overlay-badge--dday">' +
+          escapeHtml(dday.text) +
+          "</span>"
+        : "") +
+      "</div>" +
+      '<div class="bunyang-modal-content">' +
+      '<div class="bunyang-modal-badges">' +
+      typeBits
+        .map(function (t) {
+          return (
+            '<span class="bunyang-type-badge">' + escapeHtml(t) + "</span>"
+          );
+        })
+        .join("") +
+      "</div>" +
+      '<h2 class="bunyang-modal-title" id="bunyang-modal-title">' +
+      escapeHtml(item.HOUSE_NM || "단지명 미상") +
+      "</h2>" +
+      '<dl class="bunyang-modal-dl">' +
+      detailRow("📍 지역/주소", escapeHtml(locationText(item))) +
+      detailRow("🏢 공급세대", escapeHtml(householdsText(item))) +
+      detailRow("🗓 모집공고일", escapeHtml(formatDate(item.RCRIT_PBLANC_DE))) +
+      detailRow(
+        "🗓 청약접수",
+        escapeHtml(
+          formatDate(item.RCEPT_BGNDE) + " ~ " + formatDate(item.RCEPT_ENDDE)
+        )
+      ) +
+      detailRow(
+        "🏆 당첨발표",
+        escapeHtml(formatDate(item.PRZWNER_PRESNATN_DE))
+      ) +
+      detailRow(
+        "🏠 입주예정",
+        escapeHtml(formatYm(item.MVN_PREARNGE_YM))
+      ) +
+      (contract ? detailRow("📝 계약기간", escapeHtml(contract)) : "") +
+      detailRow("🏗 시행", escapeHtml(item.BSNS_MBY_NM || "")) +
+      detailRow("🧱 시공", escapeHtml(item.CNSTRCT_ENTRPS_NM || "")) +
+      (phone
+        ? detailRow(
+            "☎️ 문의",
+            '<a href="tel:' +
+              escapeHtml(String(item.MDHS_TELNO).replace(/\D/g, "")) +
+              '">' +
+              escapeHtml(phone) +
+              "</a>"
+          )
+        : "") +
+      (homepage
+        ? detailRow(
+            "🌐 홈페이지",
+            '<a href="' +
+              escapeHtml(homepage) +
+              '" target="_blank" rel="noopener noreferrer">' +
+              escapeHtml(homepage.replace(/^https?:\/\//i, "")) +
+              "</a>"
+          )
+        : "") +
+      detailRow("📰 신문", escapeHtml(item.NSPRC_NM || "")) +
+      "</dl>" +
+      '<div class="bunyang-modal-actions">' +
+      '<a class="bunyang-modal-link" href="' +
+      escapeHtml(url) +
+      '" target="_blank" rel="noopener noreferrer">청약홈에서 자세히 보기</a>' +
+      "</div>" +
+      "</div>"
+    );
+  }
+
+  function openModal(item, index, triggerEl) {
+    if (!modal || !modalBody) return;
+    lastFocus = triggerEl || document.activeElement;
+    modalBody.innerHTML = buildModalHtml(item, index);
+    modal.hidden = false;
+    document.body.classList.add("bunyang-modal-open");
+    requestAnimationFrame(function () {
+      modal.classList.add("is-open");
+      var closeBtn = modal.querySelector(".bunyang-modal-close");
+      if (closeBtn) closeBtn.focus();
+    });
+  }
+
+  function closeModal() {
+    if (!modal || modal.hidden) return;
+    modal.classList.remove("is-open");
+    document.body.classList.remove("bunyang-modal-open");
+    var panel = modal.querySelector(".bunyang-modal-panel");
+    var done = false;
+    function finish() {
+      if (done) return;
+      done = true;
+      modal.hidden = true;
+      if (modalBody) modalBody.innerHTML = "";
+      if (lastFocus && typeof lastFocus.focus === "function") {
+        try {
+          lastFocus.focus();
+        } catch (e) {}
+      }
+    }
+    if (panel) {
+      panel.addEventListener("transitionend", finish, { once: true });
+      setTimeout(finish, 280);
+    } else {
+      finish();
+    }
+  }
+
   function render(items) {
     grid.innerHTML = "";
     if (!items.length) {
@@ -146,17 +333,15 @@
       var dday = getDdayBadge(item, status);
       var url = item.PBLANC_URL || "https://www.applyhome.co.kr/";
       var img = pickImage(item, index);
-      var households = item.TOT_SUPLY_HSHLDCO;
-      var householdsText =
-        households === "" || households == null
-          ? "-"
-          : Number(households).toLocaleString("ko-KR") + "세대";
-      var region = item.SUBSCRPT_AREA_CODE_NM || "지역미상";
-      var addr = item.HSSPLY_ADRES || "";
-      var locationText = addr ? region + " · " + addr : region;
 
       var card = document.createElement("article");
       card.className = "bunyang-card";
+      card.tabIndex = 0;
+      card.setAttribute("role", "button");
+      card.setAttribute(
+        "aria-label",
+        (item.HOUSE_NM || "단지") + " 상세 보기"
+      );
       card.innerHTML =
         '<div class="bunyang-card-media">' +
         '<img src="' +
@@ -183,11 +368,11 @@
         escapeHtml(item.HOUSE_NM || "단지명 미상") +
         "</h2>" +
         '<p class="bunyang-card-addr">📍 ' +
-        escapeHtml(locationText) +
+        escapeHtml(locationText(item).replace(/\s*\(\d+\)$/, "")) +
         "</p>" +
         '<ul class="bunyang-info-list">' +
         '<li><span class="ico" aria-hidden="true">🏢</span><span>' +
-        escapeHtml(householdsText) +
+        escapeHtml(householdsText(item)) +
         "</span></li>" +
         '<li><span class="ico" aria-hidden="true">🗓</span><span>접수 ' +
         formatDate(item.RCEPT_BGNDE) +
@@ -198,12 +383,25 @@
         escapeHtml(formatYm(item.MVN_PREARNGE_YM)) +
         "</span></li>" +
         "</ul>" +
+        '<p class="bunyang-card-hint">클릭하면 상세 정보를 볼 수 있어요</p>' +
         '<div class="bunyang-card-actions">' +
         '<a class="bunyang-card-link" href="' +
         escapeHtml(url) +
         '" target="_blank" rel="noopener noreferrer">청약홈에서 자세히 보기</a>' +
         "</div>" +
         "</div>";
+
+      card.addEventListener("click", function (e) {
+        if (e.target.closest("a")) return;
+        openModal(item, index, card);
+      });
+      card.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") {
+          if (e.target.closest("a")) return;
+          e.preventDefault();
+          openModal(item, index, card);
+        }
+      });
       frag.appendChild(card);
     });
     grid.appendChild(frag);
@@ -220,7 +418,6 @@
       }
       return true;
     });
-    // 접수중 → 청약예정 → 마감 순, 같으면 모집공고일 최신순
     var rank = { open: 0, upcoming: 1, unknown: 2, closed: 3 };
     filtered.sort(function (a, b) {
       var ra = rank[getStatus(a).key] ?? 9;
@@ -248,6 +445,18 @@
     banner.hidden = false;
     banner.textContent = msg;
   }
+
+  if (modal) {
+    modal.addEventListener("click", function (e) {
+      if (e.target.closest("[data-modal-close]")) closeModal();
+    });
+  }
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && modal && !modal.hidden) {
+      e.preventDefault();
+      closeModal();
+    }
+  });
 
   regionSelect.addEventListener("change", applyFilters);
   statusSelect.addEventListener("change", applyFilters);

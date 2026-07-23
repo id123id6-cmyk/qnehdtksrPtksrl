@@ -43,8 +43,10 @@ loadEnvLocal();
 const FIELD_ALIASES = {
   HOUSE_NM: ['HOUSE_NM', 'house_nm', 'HouseNm'],
   HOUSE_DTL_SECD_NM: ['HOUSE_DTL_SECD_NM', 'house_dtl_secd_nm'],
+  HOUSE_SECD_NM: ['HOUSE_SECD_NM', 'house_secd_nm'],
   SUBSCRPT_AREA_CODE_NM: ['SUBSCRPT_AREA_CODE_NM', 'subscrpt_area_code_nm'],
   HSSPLY_ADRES: ['HSSPLY_ADRES', 'hssply_adres'],
+  HSSPLY_ZIP: ['HSSPLY_ZIP', 'hssply_zip'],
   TOT_SUPLY_HSHLDCO: ['TOT_SUPLY_HSHLDCO', 'tot_suply_hshldco'],
   RCRIT_PBLANC_DE: ['RCRIT_PBLANC_DE', 'rcrit_pblanc_de'],
   RCEPT_BGNDE: ['RCEPT_BGNDE', 'rcept_bgnde'],
@@ -52,6 +54,14 @@ const FIELD_ALIASES = {
   PRZWNER_PRESNATN_DE: ['PRZWNER_PRESNATN_DE', 'przwner_presnatn_de'],
   MVN_PREARNGE_YM: ['MVN_PREARNGE_YM', 'mvn_prearnge_ym'],
   PBLANC_URL: ['PBLANC_URL', 'pblanc_url'],
+  BSNS_MBY_NM: ['BSNS_MBY_NM', 'bsns_mby_nm'],
+  CNSTRCT_ENTRPS_NM: ['CNSTRCT_ENTRPS_NM', 'cnstrct_entrps_nm'],
+  MDHS_TELNO: ['MDHS_TELNO', 'mdhs_telno'],
+  HMPG_ADRES: ['HMPG_ADRES', 'hmpg_adres'],
+  NSPRC_NM: ['NSPRC_NM', 'nsprc_nm'],
+  CNTRCT_CNCLS_BGNDE: ['CNTRCT_CNCLS_BGNDE', 'cntrct_cncls_bgnde'],
+  CNTRCT_CNCLS_ENDDE: ['CNTRCT_CNCLS_ENDDE', 'cntrct_cncls_endde'],
+  RENT_SECD_NM: ['RENT_SECD_NM', 'rent_secd_nm'],
 };
 
 function formatDateISO(date) {
