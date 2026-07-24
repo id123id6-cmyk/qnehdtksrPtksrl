@@ -1,8 +1,32 @@
 {
-  "updatedAt": "2026-07-23T05:34:20.896Z",
+  "updatedAt": "2026-07-24T00:10:00.000Z",
   "source": "blog/index.html",
-  "count": 26,
+  "count": 28,
   "posts": [
+    {
+      "id": 40,
+      "slug": "post-40.html",
+      "href": "/blog/post-40.html",
+      "category": "real-estate",
+      "image": "/blog/images/post-40/hero.jpg",
+      "alt": "부동산 대토론회 보면서 든 생각 — 30대 무주택 월급쟁이는 뭘 준비해야 할까",
+      "tag": "투자 에세이",
+      "title": "부동산 대토론회 보면서 든 생각 — 30대 무주택 월급쟁이는 뭘 준비해야 할까",
+      "excerpt": "부동산 대토론회를 본 30대 무주택 월급쟁이의 솔직한 생각. 조급함 대신 청약 자격·일정 준비하기.",
+      "date": "2026-07-23"
+    },
+    {
+      "id": 39,
+      "slug": "post-39.html",
+      "href": "/blog/post-39.html",
+      "category": "real-estate",
+      "image": "/blog/images/post-39/hero.jpg",
+      "alt": "이재명 대통령 부동산 대토론회 총정리 — 보유세·다주택·공급, 무슨 얘기 나왔나 (2026.7.23)",
+      "tag": "부동산 정책",
+      "title": "이재명 대통령 부동산 대토론회 총정리 — 보유세·다주택·공급, 무슨 얘기 나왔나 (2026.7.23)",
+      "excerpt": "2026.7.23 이재명 대통령 부동산 대토론회 핵심 정리. 보유세·다주택 세제·공급 방향과 실수요자 체크포인트.",
+      "date": "2026-07-23"
+    },
     {
       "id": 38,
       "slug": "post-38.html",
