@@ -1,8 +1,20 @@
 {
-  "updatedAt": "2026-07-24T00:10:00.000Z",
+  "updatedAt": "2026-07-27T00:00:00.000Z",
   "source": "blog/index.html",
-  "count": 28,
+  "count": 29,
   "posts": [
+    {
+      "id": 41,
+      "slug": "post-41.html",
+      "href": "/blog/post-41.html",
+      "category": "real-estate",
+      "image": "/blog/images/post-41/hero.jpg",
+      "alt": "7월 부동산 세제개편 미리보기 — 무주택자·1주택자·다주택자, 지금 뭘 준비해야 할까 (2026.7.27)",
+      "tag": "부동산 정책",
+      "title": "7월 부동산 세제개편 미리보기 — 무주택자·1주택자·다주택자, 지금 뭘 준비해야 할까 (2026.7.27)",
+      "excerpt": "7월 말 발표 예정인 부동산 세제개편, 상황별로 무엇을 체크해야 하는지 무주택·1주택·다주택 입장에서 정리했습니다.",
+      "date": "2026-07-27"
+    },
     {
       "id": 40,
       "slug": "post-40.html",
