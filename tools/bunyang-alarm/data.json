@@ -1,15 +1,38 @@
 {
-  "updatedAt": "2026-07-27T01:49:57.422Z",
+  "updatedAt": "2026-07-28T01:24:34.665Z",
   "source": "ApplyhomeInfoDetailSvc/v1/getAPTLttotPblancDetail",
   "range": {
     "gte": "2026-01-01",
-    "lte": "2026-07-27",
+    "lte": "2026-07-28",
     "dateFormat": "YYYY-MM-DD",
     "lookbackMonths": 6,
     "yearStart": "2026-01-01"
   },
-  "count": 196,
+  "count": 197,
   "items": [
+    {
+      "HOUSE_NM": "아산테크노밸리 더원 7차 (Ab4BL)",
+      "HOUSE_DTL_SECD_NM": "민영",
+      "HOUSE_SECD_NM": "APT",
+      "SUBSCRPT_AREA_CODE_NM": "충남",
+      "HSSPLY_ADRES": "충청남도 아산시 둔포면 아산테크노밸리 Ab4BL (아산시 둔포면 석곡리 1818번지 일원)",
+      "HSSPLY_ZIP": "31406",
+      "TOT_SUPLY_HSHLDCO": 622,
+      "RCRIT_PBLANC_DE": "2026-07-27",
+      "RCEPT_BGNDE": "2026-08-03",
+      "RCEPT_ENDDE": "2026-08-05",
+      "PRZWNER_PRESNATN_DE": "2026-08-11",
+      "MVN_PREARNGE_YM": "202901",
+      "PBLANC_URL": "https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000295&pblancNo=2026000295",
+      "BSNS_MBY_NM": "주식회사 이지건설",
+      "CNSTRCT_ENTRPS_NM": "주식회사 라인산업",
+      "MDHS_TELNO": "0415430622",
+      "HMPG_ADRES": "https://아산테크노밸리더원7차.com",
+      "NSPRC_NM": "",
+      "CNTRCT_CNCLS_BGNDE": "2026-08-22",
+      "CNTRCT_CNCLS_ENDDE": "2026-08-24",
+      "RENT_SECD_NM": "분양주택"
+    },
     {
       "HOUSE_NM": "센트레빌 아스테리움 거제",
       "HOUSE_DTL_SECD_NM": "민영",
