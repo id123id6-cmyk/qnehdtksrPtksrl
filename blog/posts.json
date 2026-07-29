@@ -1,8 +1,20 @@
 {
-  "updatedAt": "2026-07-28T00:00:00.000Z",
+  "updatedAt": "2026-07-29T00:00:00.000Z",
   "source": "blog/index.html",
-  "count": 30,
+  "count": 31,
   "posts": [
+    {
+      "id": 43,
+      "slug": "post-43.html",
+      "href": "/blog/post-43.html",
+      "category": "real-estate",
+      "image": "/blog/images/post-43/hero.jpg",
+      "alt": "7월 부동산 세제개편, 지금까지 나온 방향 총정리 — 보유세·장특공제·양도세 (2026.7.29)",
+      "tag": "부동산 정책",
+      "title": "7월 부동산 세제개편, 지금까지 나온 방향 총정리 — 보유세·장특공제·양도세 (2026.7.29)",
+      "excerpt": "7월 말~8월 초 발표 예정인 부동산 세제개편. 종부세(보유세), 1주택 장기보유특별공제, 양도세까지 현재까지 거론되는 방향을 상황별로 정리했습니다.",
+      "date": "2026-07-29"
+    },
     {
       "id": 42,
       "slug": "post-42.html",
