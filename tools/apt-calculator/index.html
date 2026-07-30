@@ -27,16 +27,16 @@
   <meta name="google-adsense-account" content="ca-pub-8232968272801958">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8232968272801958" crossorigin="anonymous"></script>
 
-  <title>내 연봉 아파트 계산기 | 2026년 LTV·DSR 반영 | 승박</title>
-  <meta name="description" content="연봉을 입력하면 2026년 최신 LTV·DSR 규제를 반영한 매수 가능 아파트 가격을 30초 만에 계산. 무주택자/다주택자 구분, 스트레스 DSR 적용.">
+  <title>내 연봉 아파트 계산기 | LTV·DSR 매수 한도 | 승박</title>
+  <meta name="description" content="연봉·현금·기존 부채를 넣으면 LTV·DSR을 반영한 매수 가능 아파트 가격을 계산합니다. 병목이 대출인지 자기자본인지 해석하는 가이드를 제공합니다.">
   <meta name="keywords" content="연봉 아파트 계산기, LTV DSR 계산기, 아파트 매수 가능 가격">
   <link rel="canonical" href="https://seungbak.com/tools/apt-calculator/">
 
   <!-- Open Graph (카카오톡, 페이스북 공유용) -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://seungbak.com/tools/apt-calculator/">
-  <meta property="og:title" content="내 연봉 아파트 계산기 | 2026년 LTV·DSR 반영 | 승박">
-  <meta property="og:description" content="연봉을 입력하면 2026년 최신 LTV·DSR 규제를 반영한 매수 가능 아파트 가격을 30초 만에 계산합니다.">
+  <meta property="og:title" content="내 연봉 아파트 계산기 | 승박">
+  <meta property="og:description" content="연봉 기준으로 매수 가능 금액을 계산하고, LTV·DSR 병목을 쉽게 해석합니다.">
   <meta property="og:image" content="https://seungbak.com/images/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -75,6 +75,7 @@
   -->
   <link rel="stylesheet" href="../../css/global-theme.css">
   <link rel="stylesheet" href="../dday-calculator/style.css">
+  <link rel="stylesheet" href="../../css/tool-content.css">
 </head>
 <body class="theme-tool-page">
   <nav class="theme-nav">
@@ -666,6 +667,62 @@
         </div>
       </div>
     </section>
+  <!-- tool-content:start -->
+    <section class="section tool-content-section" aria-label="내 연봉 아파트 계산기 상세 안내">
+      <div class="container">
+        <article class="card form-card tool-content-card">
+          <p class="tool-content-kicker">내 연봉 아파트 계산기 가이드</p>
+          <h2>이 도구는 무엇인가요?</h2>
+          <p>연봉은 아는데 “그래서 얼마짜리까지 보지?”가 막막할 때 쓰는 도구입니다. 연소득과 보유 현금, 기존 부채, 무주택/다주택, 규제지역 여부를 넣으면 LTV·DSR을 반영한 <strong>매수 가능 가격대</strong>를 가늠해 줍니다. 집 구경 전에 예산 상한선을 그어 두면, 중개 현장에서 충동적으로 예산이 커지는 일을 줄일 수 있습니다.</p>
+          <p>실제 승인 한도는 금융기관 심사에 따르며, 계산 결과는 계획 수립용입니다.</p>
+
+          <h2>이렇게 사용하세요</h2>
+          <ol>
+            <li><strong>소득·현금 입력</strong> — 세전 연소득과 지금 가용한 계약금·중도금 여력을 넣습니다.</li>
+            <li><strong>부채·주택 수·지역</strong> — 기존 대출, 무주택/다주택, 규제지역 여부를 맞춥니다. 값이 바뀌면 한도가 크게 달라질 수 있습니다.</li>
+            <li><strong>시나리오 비교</strong> — 결과에서 가능한 가격, 필요 대출, 월 상환 부담을 확인합니다. 막히는 지점(LTV vs DSR) 안내가 있다면 그 이유를 읽고 변수를 조정해 보세요.</li>
+          </ol>
+
+          <h2>결과를 이렇게 해석하세요</h2>
+          <p>매수 한도가 “현금 부족”으로 막히면 저축·가족 지원·목표가 하향이 해법에 가깝고, “DSR”로 막히면 소득·기존 부채·금리 가정이 핵심입니다. LTV로 막히면 규제지역·주택 수에 따른 담보대출 비율 한도를 의해야 합니다. <strong>무엇이 병목인지</strong>를 먼저 읽으면 다음 행동이 구체화됩니다.</p>
+          <p>화면에 나오는 최대 금액은 “그 가격을 사라는 추천”이 아닙니다. 월 상환이 실수령의 과도한 비중을 차지하면 생활이 흔들립니다. 가능 한도의 70~80%만 실전 탐색 상한으로 두는 보수적 습관을 추천합니다.</p>
+          <p>스트레스 DSR·금리 가정은 시기에 따라 달라질 수 있습니다. 결과가 아슬아슬하면 금리 상승 시나리오를 한 단계 더 빡빡하게 가정해 보세요.</p>
+
+          <h2>자주 하는 실수 / 주의할 점</h2>
+          <ul>
+            <li>최대 한도 = 내 예산이라고 생각하고 바로 임장 가기</li>
+            <li>취득세·이사·인테리어를 현금에서 빼지 않기</li>
+            <li>배우자 소득·기존 대출을 빠뜨리거나 과대 입력하기</li>
+          </ul>
+
+          <h2>자주 묻는 질문 (FAQ)</h2>
+          <div class="tool-content-faq">
+            <details>
+              <summary>Q. 필요 연봉 계산기와 함께 쓰려면?</summary>
+              <p>먼저 이 도구로 “지금 소득으로 가능한 가격”을 보고, 원하는 단지가 더 비싸면 필요 연봉 계산기로 “얼마나 더 필요한지”를 역산하세요.</p>
+            </details>
+            <details>
+              <summary>Q. 전세 끼고 사는 갭투자도 계산되나요?</summary>
+              <p>기본 가정은 실거주 매수·주담대 중심입니다. 전세 승계·갭 구조는 별도 리스크(전세가 하락, 역전세)가 있어 이 결과만으로 판단하지 마세요.</p>
+            </details>
+            <details>
+              <summary>Q. 정책대출(디딤돌 등)은 반영되나요?</summary>
+              <p>상품별 소득·가격·면적 요건이 복잡해 일반 LTV·DSR 프레임으로 근사합니다. 정책대출을 노린다면 해당 상품 공식 요건을 따로 확인하세요.</p>
+            </details>
+          </div>
+
+          <h2>함께 보면 좋은 글</h2>
+          <ul class="tool-content-links">
+            <li><a href="/blog/post-25.html">취득세 계산할 때 다들 실수하는 부분</a></li>
+            <li><a href="/blog/post-26.html">생애최초 취득세 감면, 놓치기 쉬운 조건</a></li>
+            <li><a href="/blog/post-32.html">생애최초 주담대 한도 변화</a></li>
+          </ul>
+          <p class="tool-content-note">대출 규제·금리는 변경될 수 있습니다. 본 계산은 참고용이며 금융·세무 자문이 아닙니다.</p>
+        </article>
+      </div>
+    </section>
+<!-- tool-content:end -->
+
   </main>
 
   <!-- 생애최초 자격 체크 모달 -->

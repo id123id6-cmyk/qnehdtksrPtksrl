@@ -1,0 +1,125 @@
+/* Tool page SEO / AdSense description blocks (static HTML below tool UI) */
+.tool-content-section {
+  padding: 48px 0 64px;
+  background: var(--color-beige-light, #f7f3ea);
+}
+
+.tool-content-section .tool-content-card {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 28px 28px 32px;
+}
+
+.tool-content-section .tool-content-kicker {
+  display: inline-block;
+  margin: 0 0 10px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(26, 26, 26, 0.06);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-dark, #1a1a1a);
+}
+
+.tool-content-section h2 {
+  margin: 28px 0 12px;
+  font-size: 1.35rem;
+  line-height: 1.35;
+  color: var(--color-dark, #1a1a1a);
+}
+
+.tool-content-section h2:first-of-type {
+  margin-top: 8px;
+}
+
+.tool-content-section h3 {
+  margin: 18px 0 8px;
+  font-size: 1.05rem;
+  color: var(--color-dark, #1a1a1a);
+}
+
+.tool-content-section p,
+.tool-content-section li {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--color-text, #334155);
+}
+
+.tool-content-section p {
+  margin: 0 0 12px;
+}
+
+.tool-content-section ol,
+.tool-content-section ul {
+  margin: 0 0 14px;
+  padding-left: 1.25rem;
+}
+
+.tool-content-section li {
+  margin-bottom: 8px;
+}
+
+.tool-content-section .tool-content-faq {
+  margin: 12px 0 0;
+}
+
+.tool-content-section .tool-content-faq details {
+  margin-bottom: 10px;
+  padding: 12px 14px;
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: 12px;
+  background: #fff;
+}
+
+.tool-content-section .tool-content-faq summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--color-dark, #1a1a1a);
+}
+
+.tool-content-section .tool-content-faq details p {
+  margin: 10px 0 0;
+}
+
+.tool-content-section .tool-content-links {
+  margin: 8px 0 0;
+  padding-left: 1.25rem;
+}
+
+.tool-content-section .tool-content-links a {
+  color: var(--color-dark, #1a1a1a);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.tool-content-section .tool-content-note {
+  margin-top: 20px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  font-size: 14px;
+  line-height: 1.65;
+  color: #9a3412;
+}
+
+body.map-page .tool-content-section {
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+}
+
+body.map-page .tool-content-section .tool-content-card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+}
+
+@media (max-width: 640px) {
+  .tool-content-section {
+    padding: 36px 0 48px;
+  }
+  .tool-content-section .tool-content-card {
+    padding: 22px 18px 26px;
+  }
+}

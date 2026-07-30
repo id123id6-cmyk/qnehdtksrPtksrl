@@ -27,15 +27,15 @@
   <meta name="google-adsense-account" content="ca-pub-8232968272801958">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8232968272801958" crossorigin="anonymous"></script>
 
-  <title>서울 부동산 지도 | 실거래가 마커 | 승박</title>
-  <meta name="description" content="서울 25개구 아파트 단지의 실거래가(매매·전세)를 카카오맵에서 확인하세요. 마커 클릭 시 면적별 가격 그래프를 바로 볼 수 있습니다.">
+  <title>전국 아파트 실거래가 지도 | 매매·전세 시세 확인 | 승박</title>
+  <meta name="description" content="전국 아파트 단지 실거래가(매매·전세)를 지도에서 확인하세요. 면적별 시세 그래프와 급매·호가 비교 관점까지 초보 눈높이로 안내합니다.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://seungbak.com/tools/realestate-map/">
 
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://seungbak.com/tools/realestate-map/">
-  <meta property="og:title" content="서울 부동산 지도 | 승박">
-  <meta property="og:description" content="서울 25개구 · 매매·전세 실거래가 지도">
+  <meta property="og:title" content="전국 아파트 실거래가 지도 | 승박">
+  <meta property="og:description" content="매매·전세 실거래가를 지도에서 보고, 면적별 시세를 해석하는 방법을 안내합니다.">
   <meta property="og:locale" content="ko_KR">
   <meta property="og:site_name" content="승박">
 
@@ -44,6 +44,7 @@
   <link rel="stylesheet" href="../../styles.css">
   <link rel="stylesheet" href="map.css">
   <link rel="stylesheet" href="nav.css">
+  <link rel="stylesheet" href="../../css/tool-content.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
 </head>
@@ -204,6 +205,63 @@
     </aside>
   </div>
   </div>
+
+  <!-- tool-content:start -->
+    <section class="section tool-content-section" aria-label="실거래가 지도 상세 안내">
+      <div class="container">
+        <article class="card form-card tool-content-card">
+          <p class="tool-content-kicker">실거래가 지도 가이드</p>
+          <h2>이 도구는 무엇인가요?</h2>
+          <p>허위 매물·과장 호가에 흔들리지 않으려면, 실제로 체결된 가격부터 보는 습관이 필요합니다. 이 지도는 단지별 실거래(매매·전세)를 지도 위에서 바로 찾아보고, 면적별 가격 흐름을 그래프로 확인할 수 있게 만든 도구입니다. “이 동네 시세가 어느 정도인지”를 빠르게 감 잡고 싶을 때, 중개사 말만 듣기 전에 스스로 교차검증할 때 쓰기 좋습니다.</p>
+          <p>단, 표시 가격은 참고용이며 최신성·누락 여부는 국토교통부 실거래가 공개시스템 등 공식 자료와 대조하는 것이 안전합니다.</p>
+
+          <h2>이렇게 사용하세요</h2>
+          <ol>
+            <li><strong>지역 선택</strong> — 상단에서 시도·시군구(필요하면 동)를 고릅니다. 구를 바꾸면 해당 지역 단지 마커가 지도에 표시됩니다.</li>
+            <li><strong>필터·검색</strong> — 매매/전세 구분, 단지 검색, 인프라(지하철·학교 등) 토글을 상황에 맞게 켭니다. 관심 단지명을 검색하면 위치를 빨리 찾을 수 있습니다.</li>
+            <li><strong>마커 클릭 → 상세</strong> — 단지 마커를 누르면 사이드바에 면적별 실거래와 추이 그래프가 열립니다. 같은 단지라도 전용면적대별로 가격대가 크게 다를 수 있으니 면적을 먼저 맞춰 보세요.</li>
+            <li><strong>(선택) D-day 연결</strong> — 관심 단지의 목표가를 잡았다면 D-day 계산기로 넘어가 저축·대출 시나리오를 이어서 볼 수 있습니다.</li>
+          </ol>
+
+          <h2>결과를 이렇게 해석하세요</h2>
+          <p>실거래가는 “최근에 실제로 계약된 가격”이고, 호가는 “지금 내놓은 희망 가격”입니다. 호가가 실거래보다 크게 높으면 협상 여지가 있을 수도 있고, 반대로 매물이 귀해 호가가 실거래를 끌어올리는 구간일 수도 있습니다. 한 건의 최고가·최저가만 보지 말고, <strong>비슷한 면적대의 최근 여러 건</strong>을 나란히 보는 편이 안전합니다.</p>
+          <p>급매처럼 보이는 낮은 가격은 저층·향·수리 상태·권리관계 이슈가 반영된 경우도 있습니다. “싸니까 좋다”보다 “왜 싼가”를 먼저 질문하세요. 전세 실거래는 보증금 수준을 가늠하는 참고치이지, 매매 판단의 유일한 근거는 아닙니다. 전세가율(전세/매매)이 높은 구간은 갭 리스크도 함께 점검하는 습관이 필요합니다.</p>
+          <p>면적 비교 시에는 공급면적·전용면적 표기가 섞이지 않았는지 확인하세요. 같은 “30평대”라도 전용㎡가 다르면 단가(3.3㎡당) 비교가 어긋납니다. 그래프가 단기 급등·급락을 보이면 거래 건수가 적은 구간인지, 특정 대형 평형의 이상치인지부터 걸러 보세요.</p>
+
+          <h2>자주 하는 실수 / 주의할 점</h2>
+          <ul>
+            <li>한 건의 최고가만 보고 “이 단지 시세”라고 단정하기</li>
+            <li>호가 앱 캡처만 모아 두고 실거래 교차검증을 생략하기</li>
+            <li>전용면적 단위를 맞추지 않은 채 평당가를 비교하기</li>
+          </ul>
+
+          <h2>자주 묻는 질문 (FAQ)</h2>
+          <div class="tool-content-faq">
+            <details>
+              <summary>Q. 지도에 없는 단지/거래는 없나요?</summary>
+              <p>수집·표시 범위와 시점 때문에 일부 단지·최근 계약이 비어 보일 수 있습니다. 중요 결정 전에는 국토부 실거래가 공개시스템에서 동일 단지를 한 번 더 확인하세요.</p>
+            </details>
+            <details>
+              <summary>Q. 매매와 전세를 같이 보면 뭐가 좋나요?</summary>
+              <p>매매만 보면 “살 가격”, 전세만 보면 “보증금 수준”만 보입니다. 둘을 같이 보면 전세가율·월세 전환 압력 같은 흐름을 감으로라도 잡을 수 있습니다.</p>
+            </details>
+            <details>
+              <summary>Q. 이 가격으로 바로 사도 되나요?</summary>
+              <p>아니요. 실거래는 참고 시세입니다. 대출·세금·수리비·학군·교통·단지 관리 상태까지 본인 조건에 맞게 재확인해야 합니다.</p>
+            </details>
+          </div>
+
+          <h2>함께 보면 좋은 글</h2>
+          <ul class="tool-content-links">
+            <li><a href="/blog/post-29.html">실거래가 지도 200% 활용법</a></li>
+            <li><a href="/blog/post-30.html">2026 전세사기 예방 체크리스트</a></li>
+            <li><a href="/blog/post-38.html">2026 하반기 전세 전망 정리</a></li>
+          </ul>
+          <p class="tool-content-note">본 안내는 정보 제공 목적이며 투자·법률 자문이 아닙니다. 정확한 실거래 내역은 국토교통부 등 공식 공개 자료를 확인하세요.</p>
+        </article>
+      </div>
+    </section>
+<!-- tool-content:end -->
 
   <footer class="site-footer">
     <div class="container footer-grid">
