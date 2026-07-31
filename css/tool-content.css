@@ -1,3 +1,31 @@
+/* Short static intro above tool UI (crawler-visible) */
+.tool-top-intro-section {
+  padding: 20px 0 8px;
+  background: transparent;
+}
+
+.tool-top-intro {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 16px 18px;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid var(--color-border, #e2e8f0);
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--color-text, #334155);
+}
+
+body.map-page .tool-top-intro-section {
+  padding: 16px 16px 0;
+  background: #f8fafc;
+}
+
+body.map-page .tool-top-intro {
+  max-width: 960px;
+}
+
 /* Tool page SEO / AdSense description blocks (static HTML below tool UI) */
 .tool-content-section {
   padding: 48px 0 64px;
@@ -83,13 +111,31 @@
 
 .tool-content-section .tool-content-links {
   margin: 8px 0 0;
-  padding-left: 1.25rem;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 8px;
+}
+
+.tool-content-section .tool-content-links li {
+  margin: 0;
 }
 
 .tool-content-section .tool-content-links a {
+  display: block;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #fff;
+  border: 1px solid var(--color-border, #e2e8f0);
   color: var(--color-dark, #1a1a1a);
-  text-decoration: underline;
-  text-underline-offset: 2px;
+  text-decoration: none;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.tool-content-section .tool-content-links a:hover {
+  border-color: var(--color-dark, #1a1a1a);
+  background: var(--color-beige-light, #f7f3ea);
 }
 
 .tool-content-section .tool-content-note {
