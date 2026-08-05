@@ -8,8 +8,10 @@
 
 html.map-page-root,
 html.map-page-root body.map-page {
-  height: 100%;
-  overflow: hidden;
+  height: auto;
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 body.map-page {
@@ -18,7 +20,8 @@ body.map-page {
   min-height: 100vh;
   min-height: 100dvh;
   margin: 0;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 body.map-page .hr-header {
@@ -28,10 +31,12 @@ body.map-page .hr-header {
 }
 
 body.map-page .map-page-shell {
-  flex: 1 1 auto;
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
-  min-height: 0;
+  height: calc(100vh - var(--map-header-h));
+  height: calc(100dvh - var(--map-header-h));
+  min-height: 420px;
   overflow: hidden;
 }
 
@@ -39,8 +44,29 @@ body.map-page .map-page-header {
   display: none;
 }
 
-body.map-page .site-footer {
-  display: none;
+/* 정적 푸터·가이드가 크롤러/화면에 보이도록 숨김 해제 */
+body.map-page .site-footer,
+body.map-page .theme-footer,
+body.map-page .hr-footer {
+  display: block;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 150;
+  background: #1a1a1a;
+  color: #f5efe0;
+  padding: 1.25rem 0 1rem;
+}
+
+body.map-page .site-footer a,
+body.map-page .theme-footer a,
+body.map-page .hr-footer a {
+  color: #d4cbb8;
+}
+
+body.map-page .site-footer a:hover,
+body.map-page .theme-footer a:hover,
+body.map-page .hr-footer a:hover {
+  color: #f5efe0;
 }
 
 .map-page-header {

@@ -433,43 +433,5 @@
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <script src="script.js"></script>
-  <script>
-    (function () {
-      var el = document.getElementById("current-year");
-      if (el) el.textContent = new Date().getFullYear();
-
-      function toggleGuide() {
-        var guide = document.getElementById("guide-content");
-        var toggle = document.getElementById("guide-toggle");
-        var icon = toggle ? toggle.querySelector(".toggle-icon") : null;
-        if (!guide || !toggle) return;
-
-        var nextExpanded = toggle.getAttribute("aria-expanded") !== "true";
-        toggle.setAttribute("aria-expanded", String(nextExpanded));
-        guide.hidden = !nextExpanded;
-        if (icon) icon.textContent = nextExpanded ? "▲" : "▼";
-      }
-
-      window.toggleGuide = toggleGuide;
-
-      var guideToggle = document.getElementById("guide-toggle");
-      if (guideToggle) {
-        guideToggle.addEventListener("click", toggleGuide);
-      }
-
-      document.querySelectorAll(".guide-next-btn").forEach(function (btn) {
-        btn.addEventListener("click", function () {
-          var selector = btn.getAttribute("data-scroll-to");
-          if (!selector) return;
-          var target = document.querySelector(selector);
-          if (!target) return;
-          target.scrollIntoView({ behavior: "smooth", block: "center" });
-          if (typeof target.focus === "function") {
-            target.focus({ preventScroll: true });
-          }
-        });
-      });
-    })();
-  </script>
-</body>
+  </body>
 </html>

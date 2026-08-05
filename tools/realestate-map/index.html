@@ -275,8 +275,8 @@
   <footer class="site-footer">
     <div class="container footer-grid">
       <div class="footer-col footer-brand">
-        <p class="footer-logo">승박</p>
-        <p class="footer-tagline">평범한 직장인의 두 번째 월급 만들기</p>
+        <p class="footer-logo">seungbak.com</p>
+        <p class="footer-tagline">생산관리 월급쟁이가 만드는 부동산·생활 도구</p>
         <p class="footer-owner">운영자: <strong>승박</strong></p>
       </div>
       <div class="footer-col">
@@ -293,19 +293,20 @@
         <p class="footer-col-title">정책</p>
         <ul class="footer-nav">
           <li><a href="/privacy.html">개인정보처리방침</a></li>
+          <li><a href="/terms.html">이용약관</a></li>
           <li><a href="/disclaimer.html">면책조항</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <p class="footer-col-title">함께해요</p>
         <ul class="footer-nav">
-          <li><a href="mailto:id123id6@gmail.com">이메일</a></li>
-          <li class="footer-coming-soon">유튜브 (준비 중)</li>
+          <li><a href="/contact.html">문의하기</a></li>
+          <li><a href="mailto:id123id6@gmail.com">id123id6@gmail.com</a></li>
         </ul>
       </div>
     </div>
     <div class="container footer-bottom">
-      <p class="footer-copy">&copy; <span id="current-year"></span> 승박. All rights reserved.</p>
+      <p class="footer-copy">© 2026 seungbak.com</p>
     </div>
   </footer>
 
@@ -340,32 +341,6 @@
   <script src="js/map-toolbar.js"></script>
   <script src="js/map-welcome.js"></script>
   <script src="map.js"></script>
-  <script>
-    (function () {
-      var el = document.getElementById("current-year");
-      if (el) el.textContent = new Date().getFullYear();
-
-      var toggle = document.getElementById("hr-menu-toggle");
-      var mobileNav = document.getElementById("hr-nav-mobile");
-      if (toggle && mobileNav) {
-        toggle.addEventListener("click", function () {
-          var open = mobileNav.classList.toggle("is-open");
-          toggle.setAttribute("aria-expanded", open ? "true" : "false");
-          toggle.setAttribute("aria-label", open ? "메뉴 닫기" : "메뉴 열기");
-          mobileNav.hidden = !open;
-        });
-        mobileNav.querySelectorAll("a").forEach(function (link) {
-          link.addEventListener("click", function () {
-            mobileNav.classList.remove("is-open");
-            mobileNav.hidden = true;
-            toggle.setAttribute("aria-expanded", "false");
-            toggle.setAttribute("aria-label", "메뉴 열기");
-          });
-        });
-      }
-    })();
-  </script>
-
   <!-- 사용법 모달 트리거 버튼 -->
   <button id="guide-modal-trigger" type="button" aria-label="실거래가 지도 사용법 열기" style="position:fixed;bottom:20px;right:20px;z-index:9998;background:#1A1A1A;color:#F5EFE0;border:none;border-radius:24px;padding:12px 20px;font-size:14px;font-weight:700;box-shadow:0 4px 16px rgba(0,0,0,0.2);cursor:pointer;font-family:inherit;">
     ❓ 사용법
