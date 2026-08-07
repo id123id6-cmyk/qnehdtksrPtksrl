@@ -1,15 +1,38 @@
 {
-  "updatedAt": "2026-08-06T01:23:02.617Z",
+  "updatedAt": "2026-08-07T02:02:23.159Z",
   "source": "ApplyhomeInfoDetailSvc/v1/getAPTLttotPblancDetail",
   "range": {
     "gte": "2026-01-01",
-    "lte": "2026-08-06",
+    "lte": "2026-08-07",
     "dateFormat": "YYYY-MM-DD",
     "lookbackMonths": 6,
     "yearStart": "2026-01-01"
   },
-  "count": 200,
+  "count": 201,
   "items": [
+    {
+      "HOUSE_NM": "달서자이 제니크",
+      "HOUSE_DTL_SECD_NM": "민영",
+      "HOUSE_SECD_NM": "APT",
+      "SUBSCRPT_AREA_CODE_NM": "대구",
+      "HSSPLY_ADRES": "대구광역시 달서구 본리동 661-9번지 일원",
+      "HSSPLY_ZIP": "42695",
+      "TOT_SUPLY_HSHLDCO": 360,
+      "RCRIT_PBLANC_DE": "2026-08-06",
+      "RCEPT_BGNDE": "2026-08-18",
+      "RCEPT_ENDDE": "2026-08-20",
+      "PRZWNER_PRESNATN_DE": "2026-08-26",
+      "MVN_PREARNGE_YM": "202702",
+      "PBLANC_URL": "https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000376&pblancNo=2026000376",
+      "BSNS_MBY_NM": "교보자산신탁(주)",
+      "CNSTRCT_ENTRPS_NM": "지에스건설(주)",
+      "MDHS_TELNO": "18332330",
+      "HMPG_ADRES": "https://www.xi.co.kr/ds",
+      "NSPRC_NM": "헤럴드경제신문",
+      "CNTRCT_CNCLS_BGNDE": "2026-09-07",
+      "CNTRCT_CNCLS_ENDDE": "2026-09-09",
+      "RENT_SECD_NM": "분양주택"
+    },
     {
       "HOUSE_NM": "세종 우미 린 센터파크(행정중심복합도시 5-2생활권 S1블록, 글미마을 9단지)",
       "HOUSE_DTL_SECD_NM": "민영",
