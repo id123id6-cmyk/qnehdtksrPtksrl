@@ -1,9 +1,9 @@
 {
-  "updatedAt": "2026-08-08T00:45:32.783Z",
+  "updatedAt": "2026-08-09T00:49:13.392Z",
   "source": "ApplyhomeInfoDetailSvc/v1/getAPTLttotPblancDetail",
   "range": {
     "gte": "2026-01-01",
-    "lte": "2026-08-08",
+    "lte": "2026-08-09",
     "dateFormat": "YYYY-MM-DD",
     "lookbackMonths": 6,
     "yearStart": "2026-01-01"
