@@ -1,8 +1,20 @@
 {
-  "updatedAt": "2026-08-06T00:00:00.000Z",
+  "updatedAt": "2026-08-10T00:00:00.000Z",
   "source": "blog/index.html",
-  "count": 33,
+  "count": 34,
   "posts": [
+    {
+      "id": 46,
+      "slug": "post-46.html",
+      "href": "/blog/post-46.html",
+      "category": "real-estate",
+      "image": "/blog/images/post-46/hero.jpg",
+      "alt": "집 한 채로 매달 연금 받는 법 — 주택연금 조건·수령액 총정리 (2026 개편 반영)",
+      "tag": "노후/연금",
+      "title": "집 한 채로 매달 연금 받는 법 — 주택연금 조건·수령액 총정리 (2026 개편 반영)",
+      "excerpt": "내 집을 담보로 평생 매달 연금을 받는 주택연금. 가입 나이·주택가격 조건부터 나이·집값별 월지급금, 2026년 개편(수령액 인상·보증료 인하)까지 초보 눈높이로 총정리했습니다.",
+      "date": "2026-08-10"
+    },
     {
       "id": 45,
       "slug": "post-45.html",
