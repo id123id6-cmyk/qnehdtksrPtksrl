@@ -1,8 +1,20 @@
 {
-  "updatedAt": "2026-08-12T00:00:00.000Z",
+  "updatedAt": "2026-08-14T00:00:00.000Z",
   "source": "blog/index.html",
-  "count": 35,
+  "count": 36,
   "posts": [
+    {
+      "id": 48,
+      "slug": "post-48.html",
+      "href": "/blog/post-48.html",
+      "category": "real-estate",
+      "image": "/blog/images/post-48/hero.jpg",
+      "alt": "국민연금 언제부터 받는 게 이득일까 — 조기수령 vs 연기수령 완벽 비교 (2026)",
+      "tag": "노후/연금",
+      "title": "국민연금 언제부터 받는 게 이득일까 — 조기수령 vs 연기수령 완벽 비교 (2026)",
+      "excerpt": "국민연금, 일찍 받을까 늦게 받을까? 조기수령 감액률, 연기수령 증액률, 출생연도별 수급개시연령, 손익분기점까지 초보 눈높이로 정리했습니다.",
+      "date": "2026-08-14"
+    },
     {
       "id": 47,
       "slug": "post-47.html",
