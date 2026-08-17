@@ -1,0 +1,16 @@
+# AdSense 심사 / 내부용 — Git에는 두고 Vercel 배포에서 제외
+backup/
+sitemap.full.xml
+screenshots/
+data/
+blog/screenshots/
+blog/screenshot-post-31.mjs
+tools/realestate-map/screenshots/
+
+# 개발·검증 스크립트 (사이트 런타임 불필요; build용 mjs는 아래 ! 로 유지)
+scripts/*.mjs
+!scripts/generate-frontend-config.mjs
+!scripts/load-env.mjs
+scripts/blog-text-baselines/
+scripts/README.md
+scripts/audit-thin-output.json

@@ -20,7 +20,8 @@
 
 2. **sitemap 복원**
    ```bash
-   cp sitemap.full.xml sitemap.xml
+   cp backup/sitemap.full.xml sitemap.xml
    ```
+   (백업 파일은 `backup/sitemap.full.xml` — Git에만 있고 Vercel 배포에는 포함되지 않음)
 
 3. robots.txt는 변경 없음(Disallow 없음).

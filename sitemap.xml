@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- AdSense 블로그 중심 심사: tools/ URL 제외됨. 복구 → sitemap.full.xml 로 교체 -->
+<!-- AdSense 블로그 중심 심사: tools/ URL 제외됨. 복구 → backup/sitemap.full.xml → sitemap.xml -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
