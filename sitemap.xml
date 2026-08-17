@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
+<!-- AdSense 블로그 중심 심사: tools/ URL 제외됨. 복구 → sitemap.full.xml 로 교체 -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
@@ -7,72 +7,6 @@
     <loc>https://seungbak.com/</loc>
 
     <priority>1.0</priority>
-
-  </url>
-
-  <url>
-
-    <loc>https://seungbak.com/tools/</loc>
-
-    <priority>0.8</priority>
-
-  </url>
-
-  <url>
-
-    <loc>https://seungbak.com/tools/bunyang-alarm/</loc>
-
-    <lastmod>2026-07-23</lastmod>
-
-    <priority>0.9</priority>
-
-  </url>
-
-  <url>
-
-    <loc>https://seungbak.com/tools/subscription-calculator/</loc>
-
-    <priority>0.9</priority>
-
-  </url>
-
-  <url>
-
-    <loc>https://seungbak.com/tools/apt-calculator/</loc>
-
-    <priority>0.9</priority>
-
-  </url>
-
-  <url>
-
-    <loc>https://seungbak.com/tools/salary-calculator/</loc>
-
-    <priority>0.9</priority>
-
-  </url>
-
-  <url>
-
-    <loc>https://seungbak.com/tools/income-calculator/</loc>
-
-    <priority>0.9</priority>
-
-  </url>
-
-  <url>
-
-    <loc>https://seungbak.com/tools/dday-calculator/</loc>
-
-    <priority>0.9</priority>
-
-  </url>
-
-  <url>
-
-    <loc>https://seungbak.com/tools/realestate-map/</loc>
-
-    <priority>0.9</priority>
 
   </url>
 

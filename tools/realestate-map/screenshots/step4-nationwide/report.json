@@ -1,0 +1,85 @@
+{
+  "loadMs": 1570,
+  "sidoCount": 16,
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  ],
+  "results": [
+    {
+      "sido": "busan",
+      "name": "부산",
+      "gu": "26350",
+      "guName": "해운대구",
+      "shot": "busan-haeundae",
+      "markers": 275,
+      "sidebar": true,
+      "switchMs": 4871,
+      "error": null
+    },
+    {
+      "sido": "jeonnamgwangju",
+      "name": "광주",
+      "gu": "12240",
+      "guName": "서구",
+      "shot": "gwangju-seo",
+      "markers": 203,
+      "sidebar": true,
+      "switchMs": 4917,
+      "error": null
+    },
+    {
+      "sido": "gangwon",
+      "name": "강원",
+      "gu": "51110",
+      "guName": "춘천시",
+      "shot": "gangwon-chuncheon",
+      "markers": 139,
+      "sidebar": true,
+      "switchMs": 4925,
+      "error": null
+    },
+    {
+      "sido": "jeonbuk",
+      "name": "전북",
+      "gu": "52111",
+      "guName": "완산구",
+      "shot": "jeonbuk-wansan",
+      "markers": 255,
+      "sidebar": true,
+      "switchMs": 4923,
+      "error": null
+    },
+    {
+      "sido": "jeonnamgwangju",
+      "name": "전남",
+      "gu": "12110",
+      "guName": "목포시",
+      "shot": "jeonnam-mokpo",
+      "markers": 178,
+      "sidebar": true,
+      "switchMs": 4922,
+      "error": null
+    },
+    {
+      "sido": "incheon",
+      "name": "인천",
+      "gu": "28125",
+      "guName": "제물포구",
+      "shot": "incheon-jemulpo",
+      "markers": 57,
+      "sidebar": true,
+      "switchMs": 4915,
+      "error": null
+    }
+  ],
+  "at": "2026-07-08T06:27:02.221Z"
+}

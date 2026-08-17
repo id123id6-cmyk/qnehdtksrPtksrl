@@ -1,0 +1,1456 @@
+{
+  "centroids": 57,
+  "bySido": {
+    "jeonnamgwangju": {
+      "12110": {
+        "name": "목포시",
+        "slug": "lawd-12110",
+        "lat": 35.1595,
+        "lng": 126.8526,
+        "zoom": 5,
+        "sido": "jeonnamgwangju"
+      },
+      "12130": {
+        "name": "여수시",
+        "slug": "lawd-12130",
+        "lat": 35.1595,
+        "lng": 126.8526,
+        "zoom": 5,
+        "sido": "jeonnamgwangju"
+      },
+      "12150": {
+        "name": "순천시",
+        "slug": "lawd-12150",
+        "lat": 35.1595,
+        "lng": 126.8526,
+        "zoom": 5,
+        "sido": "jeonnamgwangju"
+      },
+      "12170": {
+        "name": "나주시",
+        "slug": "lawd-12170",
+        "lat": 35.1595,
+        "lng": 126.8526,
+        "zoom": 5,
+        "sido": "jeonnamgwangju"
+      },
+      "12190": {
+        "name": "광양시",
+        "slug": "lawd-12190",
+        "lat": 35.1595,
+        "lng": 126.8526,
+        "zoom": 5,
+        "sido": "jeonnamgwangju"
+      },
+      "12210": {
+        "name": "동구",
+        "slug": "lawd-12210",
+        "lat": 35.1595,
+        "lng": 126.8526,
+        "zoom": 5,
+        "sido": "jeonnamgwangju"
+      },
+      "12240": {
+        "name": "서구",
+        "slug": "lawd-12240",
+        "lat": 35.1595,
+        "lng": 126.8526,
+        "zoom": 5,
+        "sido": "jeonnamgwangju"
+      },
+      "12270": {
+        "name": "남구",
+        "slug": "lawd-12270",
+        "lat": 35.1595,
+        "lng": 126.8526,
+        "zoom": 5,
+        "sido": "jeonnamgwangju"
+      },
+      "12300": {
+        "name": "북구",
+        "slug": "lawd-12300",
+        "lat": 35.1595,
+        "lng": 126.8526,
+        "zoom": 5,
+        "sido": "jeonnamgwangju"
+      },
+      "12330": {
+        "name": "광산구",
+        "slug": "lawd-12330",
+        "lat": 35.1595,
+        "lng": 126.8526,
+        "zoom": 5,
+        "sido": "jeonnamgwangju"
+      },
+      "12710": {
+        "name": "담양군",
+        "slug": "lawd-12710",
+        "lat": 35.1595,
+        "lng": 126.8526,
+        "zoom": 5,
+        "sido": "jeonnamgwangju"
+      },
+      "12720": {
+        "name": "곡성군",
+        "slug": "lawd-12720",
+        "lat": 35.1595,
+        "lng": 126.8526,
+        "zoom": 5,
+        "sido": "jeonnamgwangju"
+      },
+      "12730": {
+        "name": "구례군",
+        "slug": "lawd-12730",
+        "lat": 35.1595,
+        "lng": 126.8526,
+        "zoom": 5,
+        "sido": "jeonnamgwangju"
+      },
+      "12740": {
+        "name": "고흥군",
+        "slug": "lawd-12740",
+        "lat": 35.1595,
+        "lng": 126.8526,
+        "zoom": 5,
+        "sido": "jeonnamgwangju"
+      },
+      "12750": {
+        "name": "보성군",
+        "slug": "lawd-12750",
+        "lat": 35.1595,
+        "lng": 126.8526,
+        "zoom": 5,
+        "sido": "jeonnamgwangju"
+      },
+      "12760": {
+        "name": "화순군",
+        "slug": "lawd-12760",
+        "lat": 35.1595,
+        "lng": 126.8526,
+        "zoom": 5,
+        "sido": "jeonnamgwangju"
+      },
+      "12770": {
+        "name": "장흥군",
+        "slug": "lawd-12770",
+        "lat": 35.1595,
+        "lng": 126.8526,
+        "zoom": 5,
+        "sido": "jeonnamgwangju"
+      },
+      "12780": {
+        "name": "강진군",
+        "slug": "lawd-12780",
+        "lat": 35.1595,
+        "lng": 126.8526,
+        "zoom": 5,
+        "sido": "jeonnamgwangju"
+      },
+      "12790": {
+        "name": "해남군",
+        "slug": "lawd-12790",
+        "lat": 35.1595,
+        "lng": 126.8526,
+        "zoom": 5,
+        "sido": "jeonnamgwangju"
+      },
+      "12800": {
+        "name": "영암군",
+        "slug": "lawd-12800",
+        "lat": 35.1595,
+        "lng": 126.8526,
+        "zoom": 5,
+        "sido": "jeonnamgwangju"
+      },
+      "12810": {
+        "name": "무안군",
+        "slug": "lawd-12810",
+        "lat": 35.1595,
+        "lng": 126.8526,
+        "zoom": 5,
+        "sido": "jeonnamgwangju"
+      },
+      "12820": {
+        "name": "함평군",
+        "slug": "lawd-12820",
+        "lat": 35.1595,
+        "lng": 126.8526,
+        "zoom": 5,
+        "sido": "jeonnamgwangju"
+      },
+      "12830": {
+        "name": "영광군",
+        "slug": "lawd-12830",
+        "lat": 35.1595,
+        "lng": 126.8526,
+        "zoom": 5,
+        "sido": "jeonnamgwangju"
+      },
+      "12840": {
+        "name": "장성군",
+        "slug": "lawd-12840",
+        "lat": 35.1595,
+        "lng": 126.8526,
+        "zoom": 5,
+        "sido": "jeonnamgwangju"
+      },
+      "12850": {
+        "name": "완도군",
+        "slug": "lawd-12850",
+        "lat": 35.1595,
+        "lng": 126.8526,
+        "zoom": 5,
+        "sido": "jeonnamgwangju"
+      },
+      "12860": {
+        "name": "진도군",
+        "slug": "lawd-12860",
+        "lat": 35.1595,
+        "lng": 126.8526,
+        "zoom": 5,
+        "sido": "jeonnamgwangju"
+      },
+      "12870": {
+        "name": "신안군",
+        "slug": "lawd-12870",
+        "lat": 35.1595,
+        "lng": 126.8526,
+        "zoom": 5,
+        "sido": "jeonnamgwangju"
+      }
+    },
+    "daegu": {
+      "27110": {
+        "name": "중구",
+        "slug": "lawd-27110",
+        "lat": 35.8714,
+        "lng": 128.6014,
+        "zoom": 5,
+        "sido": "daegu"
+      },
+      "27140": {
+        "name": "동구",
+        "slug": "lawd-27140",
+        "lat": 35.8714,
+        "lng": 128.6014,
+        "zoom": 5,
+        "sido": "daegu"
+      },
+      "27170": {
+        "name": "서구",
+        "slug": "lawd-27170",
+        "lat": 35.8714,
+        "lng": 128.6014,
+        "zoom": 5,
+        "sido": "daegu"
+      },
+      "27200": {
+        "name": "남구",
+        "slug": "lawd-27200",
+        "lat": 35.8714,
+        "lng": 128.6014,
+        "zoom": 5,
+        "sido": "daegu"
+      },
+      "27230": {
+        "name": "북구",
+        "slug": "lawd-27230",
+        "lat": 35.8714,
+        "lng": 128.6014,
+        "zoom": 5,
+        "sido": "daegu"
+      },
+      "27260": {
+        "name": "수성구",
+        "slug": "lawd-27260",
+        "lat": 35.8714,
+        "lng": 128.6014,
+        "zoom": 5,
+        "sido": "daegu"
+      },
+      "27290": {
+        "name": "달서구",
+        "slug": "lawd-27290",
+        "lat": 35.8714,
+        "lng": 128.6014,
+        "zoom": 5,
+        "sido": "daegu"
+      },
+      "27710": {
+        "name": "달성군",
+        "slug": "lawd-27710",
+        "lat": 35.8714,
+        "lng": 128.6014,
+        "zoom": 5,
+        "sido": "daegu"
+      },
+      "27720": {
+        "name": "군위군",
+        "slug": "lawd-27720",
+        "lat": 35.8714,
+        "lng": 128.6014,
+        "zoom": 5,
+        "sido": "daegu"
+      }
+    },
+    "incheon": {
+      "28125": {
+        "name": "제물포구",
+        "slug": "lawd-28125",
+        "lat": 37.4563,
+        "lng": 126.7052,
+        "zoom": 5,
+        "sido": "incheon"
+      },
+      "28155": {
+        "name": "영종구",
+        "slug": "lawd-28155",
+        "lat": 37.4563,
+        "lng": 126.7052,
+        "zoom": 5,
+        "sido": "incheon"
+      },
+      "28177": {
+        "name": "미추홀구",
+        "slug": "lawd-28177",
+        "lat": 37.4563,
+        "lng": 126.7052,
+        "zoom": 5,
+        "sido": "incheon"
+      },
+      "28185": {
+        "name": "연수구",
+        "slug": "lawd-28185",
+        "lat": 37.4563,
+        "lng": 126.7052,
+        "zoom": 5,
+        "sido": "incheon"
+      },
+      "28200": {
+        "name": "남동구",
+        "slug": "lawd-28200",
+        "lat": 37.4563,
+        "lng": 126.7052,
+        "zoom": 5,
+        "sido": "incheon"
+      },
+      "28237": {
+        "name": "부평구",
+        "slug": "lawd-28237",
+        "lat": 37.4563,
+        "lng": 126.7052,
+        "zoom": 5,
+        "sido": "incheon"
+      },
+      "28245": {
+        "name": "계양구",
+        "slug": "lawd-28245",
+        "lat": 37.4563,
+        "lng": 126.7052,
+        "zoom": 5,
+        "sido": "incheon"
+      },
+      "28275": {
+        "name": "서해구",
+        "slug": "lawd-28275",
+        "lat": 37.4563,
+        "lng": 126.7052,
+        "zoom": 5,
+        "sido": "incheon"
+      },
+      "28290": {
+        "name": "검단구",
+        "slug": "lawd-28290",
+        "lat": 37.4563,
+        "lng": 126.7052,
+        "zoom": 5,
+        "sido": "incheon"
+      },
+      "28710": {
+        "name": "강화군",
+        "slug": "lawd-28710",
+        "lat": 37.4563,
+        "lng": 126.7052,
+        "zoom": 5,
+        "sido": "incheon"
+      },
+      "28720": {
+        "name": "옹진군",
+        "slug": "lawd-28720",
+        "lat": 37.4563,
+        "lng": 126.7052,
+        "zoom": 5,
+        "sido": "incheon",
+        "isReady": false
+      }
+    },
+    "daejeon": {
+      "30110": {
+        "name": "동구",
+        "slug": "lawd-30110",
+        "lat": 36.3504,
+        "lng": 127.3845,
+        "zoom": 5,
+        "sido": "daejeon"
+      },
+      "30140": {
+        "name": "중구",
+        "slug": "lawd-30140",
+        "lat": 36.3504,
+        "lng": 127.3845,
+        "zoom": 5,
+        "sido": "daejeon"
+      },
+      "30170": {
+        "name": "서구",
+        "slug": "lawd-30170",
+        "lat": 36.3504,
+        "lng": 127.3845,
+        "zoom": 5,
+        "sido": "daejeon"
+      },
+      "30200": {
+        "name": "유성구",
+        "slug": "lawd-30200",
+        "lat": 36.3504,
+        "lng": 127.3845,
+        "zoom": 5,
+        "sido": "daejeon"
+      },
+      "30230": {
+        "name": "대덕구",
+        "slug": "lawd-30230",
+        "lat": 36.3504,
+        "lng": 127.3845,
+        "zoom": 5,
+        "sido": "daejeon"
+      }
+    },
+    "ulsan": {
+      "31110": {
+        "name": "중구",
+        "slug": "lawd-31110",
+        "lat": 35.5384,
+        "lng": 129.3114,
+        "zoom": 5,
+        "sido": "ulsan"
+      },
+      "31140": {
+        "name": "남구",
+        "slug": "lawd-31140",
+        "lat": 35.5384,
+        "lng": 129.3114,
+        "zoom": 5,
+        "sido": "ulsan"
+      },
+      "31170": {
+        "name": "동구",
+        "slug": "lawd-31170",
+        "lat": 35.5384,
+        "lng": 129.3114,
+        "zoom": 5,
+        "sido": "ulsan"
+      },
+      "31200": {
+        "name": "북구",
+        "slug": "lawd-31200",
+        "lat": 35.5384,
+        "lng": 129.3114,
+        "zoom": 5,
+        "sido": "ulsan"
+      },
+      "31710": {
+        "name": "울주군",
+        "slug": "lawd-31710",
+        "lat": 35.5384,
+        "lng": 129.3114,
+        "zoom": 5,
+        "sido": "ulsan"
+      }
+    },
+    "sejong": {
+      "36110": {
+        "name": "세종특별자치시",
+        "slug": "lawd-36110",
+        "lat": 36.4801,
+        "lng": 127.289,
+        "zoom": 5,
+        "sido": "sejong"
+      }
+    },
+    "gangwon": {
+      "51110": {
+        "name": "춘천시",
+        "slug": "lawd-51110",
+        "lat": 37.8813,
+        "lng": 127.7298,
+        "zoom": 5,
+        "sido": "gangwon"
+      },
+      "51130": {
+        "name": "원주시",
+        "slug": "lawd-51130",
+        "lat": 37.8813,
+        "lng": 127.7298,
+        "zoom": 5,
+        "sido": "gangwon"
+      },
+      "51150": {
+        "name": "강릉시",
+        "slug": "lawd-51150",
+        "lat": 37.8813,
+        "lng": 127.7298,
+        "zoom": 5,
+        "sido": "gangwon"
+      },
+      "51170": {
+        "name": "동해시",
+        "slug": "lawd-51170",
+        "lat": 37.8813,
+        "lng": 127.7298,
+        "zoom": 5,
+        "sido": "gangwon"
+      },
+      "51190": {
+        "name": "태백시",
+        "slug": "lawd-51190",
+        "lat": 37.8813,
+        "lng": 127.7298,
+        "zoom": 5,
+        "sido": "gangwon"
+      },
+      "51210": {
+        "name": "속초시",
+        "slug": "lawd-51210",
+        "lat": 37.8813,
+        "lng": 127.7298,
+        "zoom": 5,
+        "sido": "gangwon"
+      },
+      "51230": {
+        "name": "삼척시",
+        "slug": "lawd-51230",
+        "lat": 37.8813,
+        "lng": 127.7298,
+        "zoom": 5,
+        "sido": "gangwon"
+      },
+      "51720": {
+        "name": "홍천군",
+        "slug": "lawd-51720",
+        "lat": 37.8813,
+        "lng": 127.7298,
+        "zoom": 5,
+        "sido": "gangwon"
+      },
+      "51730": {
+        "name": "횡성군",
+        "slug": "lawd-51730",
+        "lat": 37.8813,
+        "lng": 127.7298,
+        "zoom": 5,
+        "sido": "gangwon"
+      },
+      "51750": {
+        "name": "영월군",
+        "slug": "lawd-51750",
+        "lat": 37.8813,
+        "lng": 127.7298,
+        "zoom": 5,
+        "sido": "gangwon"
+      },
+      "51760": {
+        "name": "평창군",
+        "slug": "lawd-51760",
+        "lat": 37.8813,
+        "lng": 127.7298,
+        "zoom": 5,
+        "sido": "gangwon"
+      },
+      "51770": {
+        "name": "정선군",
+        "slug": "lawd-51770",
+        "lat": 37.8813,
+        "lng": 127.7298,
+        "zoom": 5,
+        "sido": "gangwon"
+      },
+      "51780": {
+        "name": "철원군",
+        "slug": "lawd-51780",
+        "lat": 37.8813,
+        "lng": 127.7298,
+        "zoom": 5,
+        "sido": "gangwon"
+      },
+      "51790": {
+        "name": "화천군",
+        "slug": "lawd-51790",
+        "lat": 37.8813,
+        "lng": 127.7298,
+        "zoom": 5,
+        "sido": "gangwon"
+      },
+      "51800": {
+        "name": "양구군",
+        "slug": "lawd-51800",
+        "lat": 37.8813,
+        "lng": 127.7298,
+        "zoom": 5,
+        "sido": "gangwon"
+      },
+      "51810": {
+        "name": "인제군",
+        "slug": "lawd-51810",
+        "lat": 37.8813,
+        "lng": 127.7298,
+        "zoom": 5,
+        "sido": "gangwon"
+      },
+      "51820": {
+        "name": "고성군",
+        "slug": "lawd-51820",
+        "lat": 37.8813,
+        "lng": 127.7298,
+        "zoom": 5,
+        "sido": "gangwon"
+      },
+      "51830": {
+        "name": "양양군",
+        "slug": "lawd-51830",
+        "lat": 37.8813,
+        "lng": 127.7298,
+        "zoom": 5,
+        "sido": "gangwon"
+      }
+    },
+    "chungbuk": {
+      "43111": {
+        "name": "청주시 상당구",
+        "slug": "lawd-43111",
+        "lat": 36.8,
+        "lng": 127.7,
+        "zoom": 5,
+        "sido": "chungbuk"
+      },
+      "43112": {
+        "name": "청주시 서원구",
+        "slug": "lawd-43112",
+        "lat": 36.8,
+        "lng": 127.7,
+        "zoom": 5,
+        "sido": "chungbuk"
+      },
+      "43113": {
+        "name": "청주시 흥덕구",
+        "slug": "lawd-43113",
+        "lat": 36.8,
+        "lng": 127.7,
+        "zoom": 5,
+        "sido": "chungbuk"
+      },
+      "43114": {
+        "name": "청주시 청원구",
+        "slug": "lawd-43114",
+        "lat": 36.8,
+        "lng": 127.7,
+        "zoom": 5,
+        "sido": "chungbuk"
+      },
+      "43130": {
+        "name": "충주시",
+        "slug": "lawd-43130",
+        "lat": 36.8,
+        "lng": 127.7,
+        "zoom": 5,
+        "sido": "chungbuk"
+      },
+      "43150": {
+        "name": "제천시",
+        "slug": "lawd-43150",
+        "lat": 36.8,
+        "lng": 127.7,
+        "zoom": 5,
+        "sido": "chungbuk"
+      },
+      "43720": {
+        "name": "보은군",
+        "slug": "lawd-43720",
+        "lat": 36.8,
+        "lng": 127.7,
+        "zoom": 5,
+        "sido": "chungbuk"
+      },
+      "43730": {
+        "name": "옥천군",
+        "slug": "lawd-43730",
+        "lat": 36.8,
+        "lng": 127.7,
+        "zoom": 5,
+        "sido": "chungbuk"
+      },
+      "43740": {
+        "name": "영동군",
+        "slug": "lawd-43740",
+        "lat": 36.8,
+        "lng": 127.7,
+        "zoom": 5,
+        "sido": "chungbuk"
+      },
+      "43745": {
+        "name": "증평군",
+        "slug": "lawd-43745",
+        "lat": 36.8,
+        "lng": 127.7,
+        "zoom": 5,
+        "sido": "chungbuk"
+      },
+      "43750": {
+        "name": "진천군",
+        "slug": "lawd-43750",
+        "lat": 36.8,
+        "lng": 127.7,
+        "zoom": 5,
+        "sido": "chungbuk"
+      },
+      "43760": {
+        "name": "괴산군",
+        "slug": "lawd-43760",
+        "lat": 36.8,
+        "lng": 127.7,
+        "zoom": 5,
+        "sido": "chungbuk"
+      },
+      "43770": {
+        "name": "음성군",
+        "slug": "lawd-43770",
+        "lat": 36.8,
+        "lng": 127.7,
+        "zoom": 5,
+        "sido": "chungbuk"
+      },
+      "43800": {
+        "name": "단양군",
+        "slug": "lawd-43800",
+        "lat": 36.8,
+        "lng": 127.7,
+        "zoom": 5,
+        "sido": "chungbuk"
+      }
+    },
+    "chungnam": {
+      "44131": {
+        "name": "천안시 동남구",
+        "slug": "lawd-44131",
+        "lat": 36.5184,
+        "lng": 126.8,
+        "zoom": 5,
+        "sido": "chungnam"
+      },
+      "44133": {
+        "name": "천안시 서북구",
+        "slug": "lawd-44133",
+        "lat": 36.5184,
+        "lng": 126.8,
+        "zoom": 5,
+        "sido": "chungnam"
+      },
+      "44150": {
+        "name": "공주시",
+        "slug": "lawd-44150",
+        "lat": 36.5184,
+        "lng": 126.8,
+        "zoom": 5,
+        "sido": "chungnam"
+      },
+      "44180": {
+        "name": "보령시",
+        "slug": "lawd-44180",
+        "lat": 36.5184,
+        "lng": 126.8,
+        "zoom": 5,
+        "sido": "chungnam"
+      },
+      "44200": {
+        "name": "아산시",
+        "slug": "lawd-44200",
+        "lat": 36.5184,
+        "lng": 126.8,
+        "zoom": 5,
+        "sido": "chungnam"
+      },
+      "44210": {
+        "name": "서산시",
+        "slug": "lawd-44210",
+        "lat": 36.5184,
+        "lng": 126.8,
+        "zoom": 5,
+        "sido": "chungnam"
+      },
+      "44230": {
+        "name": "논산시",
+        "slug": "lawd-44230",
+        "lat": 36.5184,
+        "lng": 126.8,
+        "zoom": 5,
+        "sido": "chungnam"
+      },
+      "44250": {
+        "name": "계룡시",
+        "slug": "lawd-44250",
+        "lat": 36.5184,
+        "lng": 126.8,
+        "zoom": 5,
+        "sido": "chungnam"
+      },
+      "44270": {
+        "name": "당진시",
+        "slug": "lawd-44270",
+        "lat": 36.5184,
+        "lng": 126.8,
+        "zoom": 5,
+        "sido": "chungnam"
+      },
+      "44710": {
+        "name": "금산군",
+        "slug": "lawd-44710",
+        "lat": 36.5184,
+        "lng": 126.8,
+        "zoom": 5,
+        "sido": "chungnam"
+      },
+      "44760": {
+        "name": "부여군",
+        "slug": "lawd-44760",
+        "lat": 36.5184,
+        "lng": 126.8,
+        "zoom": 5,
+        "sido": "chungnam"
+      },
+      "44770": {
+        "name": "서천군",
+        "slug": "lawd-44770",
+        "lat": 36.5184,
+        "lng": 126.8,
+        "zoom": 5,
+        "sido": "chungnam"
+      },
+      "44790": {
+        "name": "청양군",
+        "slug": "lawd-44790",
+        "lat": 36.5184,
+        "lng": 126.8,
+        "zoom": 5,
+        "sido": "chungnam"
+      },
+      "44800": {
+        "name": "홍성군",
+        "slug": "lawd-44800",
+        "lat": 36.5184,
+        "lng": 126.8,
+        "zoom": 5,
+        "sido": "chungnam"
+      },
+      "44810": {
+        "name": "예산군",
+        "slug": "lawd-44810",
+        "lat": 36.5184,
+        "lng": 126.8,
+        "zoom": 5,
+        "sido": "chungnam"
+      },
+      "44825": {
+        "name": "태안군",
+        "slug": "lawd-44825",
+        "lat": 36.5184,
+        "lng": 126.8,
+        "zoom": 5,
+        "sido": "chungnam"
+      }
+    },
+    "jeonbuk": {
+      "52111": {
+        "name": "전주시 완산구",
+        "slug": "lawd-52111",
+        "lat": 35.8242,
+        "lng": 127.148,
+        "zoom": 5,
+        "sido": "jeonbuk"
+      },
+      "52113": {
+        "name": "전주시 덕진구",
+        "slug": "lawd-52113",
+        "lat": 35.8242,
+        "lng": 127.148,
+        "zoom": 5,
+        "sido": "jeonbuk"
+      },
+      "52130": {
+        "name": "군산시",
+        "slug": "lawd-52130",
+        "lat": 35.8242,
+        "lng": 127.148,
+        "zoom": 5,
+        "sido": "jeonbuk"
+      },
+      "52140": {
+        "name": "익산시",
+        "slug": "lawd-52140",
+        "lat": 35.8242,
+        "lng": 127.148,
+        "zoom": 5,
+        "sido": "jeonbuk"
+      },
+      "52180": {
+        "name": "정읍시",
+        "slug": "lawd-52180",
+        "lat": 35.8242,
+        "lng": 127.148,
+        "zoom": 5,
+        "sido": "jeonbuk"
+      },
+      "52190": {
+        "name": "남원시",
+        "slug": "lawd-52190",
+        "lat": 35.8242,
+        "lng": 127.148,
+        "zoom": 5,
+        "sido": "jeonbuk"
+      },
+      "52210": {
+        "name": "김제시",
+        "slug": "lawd-52210",
+        "lat": 35.8242,
+        "lng": 127.148,
+        "zoom": 5,
+        "sido": "jeonbuk"
+      },
+      "52710": {
+        "name": "완주군",
+        "slug": "lawd-52710",
+        "lat": 35.8242,
+        "lng": 127.148,
+        "zoom": 5,
+        "sido": "jeonbuk"
+      },
+      "52720": {
+        "name": "진안군",
+        "slug": "lawd-52720",
+        "lat": 35.8242,
+        "lng": 127.148,
+        "zoom": 5,
+        "sido": "jeonbuk"
+      },
+      "52730": {
+        "name": "무주군",
+        "slug": "lawd-52730",
+        "lat": 35.8242,
+        "lng": 127.148,
+        "zoom": 5,
+        "sido": "jeonbuk"
+      },
+      "52740": {
+        "name": "장수군",
+        "slug": "lawd-52740",
+        "lat": 35.8242,
+        "lng": 127.148,
+        "zoom": 5,
+        "sido": "jeonbuk"
+      },
+      "52750": {
+        "name": "임실군",
+        "slug": "lawd-52750",
+        "lat": 35.8242,
+        "lng": 127.148,
+        "zoom": 5,
+        "sido": "jeonbuk"
+      },
+      "52770": {
+        "name": "순창군",
+        "slug": "lawd-52770",
+        "lat": 35.8242,
+        "lng": 127.148,
+        "zoom": 5,
+        "sido": "jeonbuk"
+      },
+      "52790": {
+        "name": "고창군",
+        "slug": "lawd-52790",
+        "lat": 35.8242,
+        "lng": 127.148,
+        "zoom": 5,
+        "sido": "jeonbuk"
+      },
+      "52800": {
+        "name": "부안군",
+        "slug": "lawd-52800",
+        "lat": 35.8242,
+        "lng": 127.148,
+        "zoom": 5,
+        "sido": "jeonbuk"
+      }
+    },
+    "gyeongbuk": {
+      "47111": {
+        "name": "포항시 남구",
+        "slug": "lawd-47111",
+        "lat": 36.4919,
+        "lng": 128.8889,
+        "zoom": 5,
+        "sido": "gyeongbuk"
+      },
+      "47113": {
+        "name": "포항시 북구",
+        "slug": "lawd-47113",
+        "lat": 36.4919,
+        "lng": 128.8889,
+        "zoom": 5,
+        "sido": "gyeongbuk"
+      },
+      "47130": {
+        "name": "경주시",
+        "slug": "lawd-47130",
+        "lat": 36.4919,
+        "lng": 128.8889,
+        "zoom": 5,
+        "sido": "gyeongbuk"
+      },
+      "47150": {
+        "name": "김천시",
+        "slug": "lawd-47150",
+        "lat": 36.4919,
+        "lng": 128.8889,
+        "zoom": 5,
+        "sido": "gyeongbuk"
+      },
+      "47170": {
+        "name": "안동시",
+        "slug": "lawd-47170",
+        "lat": 36.4919,
+        "lng": 128.8889,
+        "zoom": 5,
+        "sido": "gyeongbuk"
+      },
+      "47190": {
+        "name": "구미시",
+        "slug": "lawd-47190",
+        "lat": 36.4919,
+        "lng": 128.8889,
+        "zoom": 5,
+        "sido": "gyeongbuk"
+      },
+      "47210": {
+        "name": "영주시",
+        "slug": "lawd-47210",
+        "lat": 36.4919,
+        "lng": 128.8889,
+        "zoom": 5,
+        "sido": "gyeongbuk"
+      },
+      "47230": {
+        "name": "영천시",
+        "slug": "lawd-47230",
+        "lat": 36.4919,
+        "lng": 128.8889,
+        "zoom": 5,
+        "sido": "gyeongbuk"
+      },
+      "47250": {
+        "name": "상주시",
+        "slug": "lawd-47250",
+        "lat": 36.4919,
+        "lng": 128.8889,
+        "zoom": 5,
+        "sido": "gyeongbuk"
+      },
+      "47280": {
+        "name": "문경시",
+        "slug": "lawd-47280",
+        "lat": 36.4919,
+        "lng": 128.8889,
+        "zoom": 5,
+        "sido": "gyeongbuk"
+      },
+      "47290": {
+        "name": "경산시",
+        "slug": "lawd-47290",
+        "lat": 36.4919,
+        "lng": 128.8889,
+        "zoom": 5,
+        "sido": "gyeongbuk"
+      },
+      "47730": {
+        "name": "의성군",
+        "slug": "lawd-47730",
+        "lat": 36.4919,
+        "lng": 128.8889,
+        "zoom": 5,
+        "sido": "gyeongbuk"
+      },
+      "47750": {
+        "name": "청송군",
+        "slug": "lawd-47750",
+        "lat": 36.4919,
+        "lng": 128.8889,
+        "zoom": 5,
+        "sido": "gyeongbuk"
+      },
+      "47760": {
+        "name": "영양군",
+        "slug": "lawd-47760",
+        "lat": 36.4919,
+        "lng": 128.8889,
+        "zoom": 5,
+        "sido": "gyeongbuk"
+      },
+      "47770": {
+        "name": "영덕군",
+        "slug": "lawd-47770",
+        "lat": 36.4919,
+        "lng": 128.8889,
+        "zoom": 5,
+        "sido": "gyeongbuk"
+      },
+      "47820": {
+        "name": "청도군",
+        "slug": "lawd-47820",
+        "lat": 36.4919,
+        "lng": 128.8889,
+        "zoom": 5,
+        "sido": "gyeongbuk"
+      },
+      "47830": {
+        "name": "고령군",
+        "slug": "lawd-47830",
+        "lat": 36.4919,
+        "lng": 128.8889,
+        "zoom": 5,
+        "sido": "gyeongbuk"
+      },
+      "47840": {
+        "name": "성주군",
+        "slug": "lawd-47840",
+        "lat": 36.4919,
+        "lng": 128.8889,
+        "zoom": 5,
+        "sido": "gyeongbuk"
+      },
+      "47850": {
+        "name": "칠곡군",
+        "slug": "lawd-47850",
+        "lat": 36.4919,
+        "lng": 128.8889,
+        "zoom": 5,
+        "sido": "gyeongbuk"
+      },
+      "47900": {
+        "name": "예천군",
+        "slug": "lawd-47900",
+        "lat": 36.4919,
+        "lng": 128.8889,
+        "zoom": 5,
+        "sido": "gyeongbuk"
+      },
+      "47920": {
+        "name": "봉화군",
+        "slug": "lawd-47920",
+        "lat": 36.4919,
+        "lng": 128.8889,
+        "zoom": 5,
+        "sido": "gyeongbuk"
+      },
+      "47930": {
+        "name": "울진군",
+        "slug": "lawd-47930",
+        "lat": 36.4919,
+        "lng": 128.8889,
+        "zoom": 5,
+        "sido": "gyeongbuk"
+      },
+      "47940": {
+        "name": "울릉군",
+        "slug": "lawd-47940",
+        "lat": 36.4919,
+        "lng": 128.8889,
+        "zoom": 5,
+        "sido": "gyeongbuk"
+      }
+    },
+    "gyeongnam": {
+      "48121": {
+        "name": "창원시 의창구",
+        "slug": "lawd-48121",
+        "lat": 35.4606,
+        "lng": 128.2132,
+        "zoom": 5,
+        "sido": "gyeongnam"
+      },
+      "48123": {
+        "name": "창원시 성산구",
+        "slug": "lawd-48123",
+        "lat": 35.4606,
+        "lng": 128.2132,
+        "zoom": 5,
+        "sido": "gyeongnam"
+      },
+      "48125": {
+        "name": "창원시 마산합포구",
+        "slug": "lawd-48125",
+        "lat": 35.4606,
+        "lng": 128.2132,
+        "zoom": 5,
+        "sido": "gyeongnam"
+      },
+      "48127": {
+        "name": "창원시 마산회원구",
+        "slug": "lawd-48127",
+        "lat": 35.4606,
+        "lng": 128.2132,
+        "zoom": 5,
+        "sido": "gyeongnam"
+      },
+      "48129": {
+        "name": "창원시 진해구",
+        "slug": "lawd-48129",
+        "lat": 35.4606,
+        "lng": 128.2132,
+        "zoom": 5,
+        "sido": "gyeongnam"
+      },
+      "48170": {
+        "name": "진주시",
+        "slug": "lawd-48170",
+        "lat": 35.4606,
+        "lng": 128.2132,
+        "zoom": 5,
+        "sido": "gyeongnam"
+      },
+      "48220": {
+        "name": "통영시",
+        "slug": "lawd-48220",
+        "lat": 35.4606,
+        "lng": 128.2132,
+        "zoom": 5,
+        "sido": "gyeongnam"
+      },
+      "48240": {
+        "name": "사천시",
+        "slug": "lawd-48240",
+        "lat": 35.4606,
+        "lng": 128.2132,
+        "zoom": 5,
+        "sido": "gyeongnam"
+      },
+      "48250": {
+        "name": "김해시",
+        "slug": "lawd-48250",
+        "lat": 35.4606,
+        "lng": 128.2132,
+        "zoom": 5,
+        "sido": "gyeongnam"
+      },
+      "48270": {
+        "name": "밀양시",
+        "slug": "lawd-48270",
+        "lat": 35.4606,
+        "lng": 128.2132,
+        "zoom": 5,
+        "sido": "gyeongnam"
+      },
+      "48310": {
+        "name": "거제시",
+        "slug": "lawd-48310",
+        "lat": 35.4606,
+        "lng": 128.2132,
+        "zoom": 5,
+        "sido": "gyeongnam"
+      },
+      "48330": {
+        "name": "양산시",
+        "slug": "lawd-48330",
+        "lat": 35.4606,
+        "lng": 128.2132,
+        "zoom": 5,
+        "sido": "gyeongnam"
+      },
+      "48720": {
+        "name": "의령군",
+        "slug": "lawd-48720",
+        "lat": 35.4606,
+        "lng": 128.2132,
+        "zoom": 5,
+        "sido": "gyeongnam"
+      },
+      "48730": {
+        "name": "함안군",
+        "slug": "lawd-48730",
+        "lat": 35.4606,
+        "lng": 128.2132,
+        "zoom": 5,
+        "sido": "gyeongnam"
+      },
+      "48740": {
+        "name": "창녕군",
+        "slug": "lawd-48740",
+        "lat": 35.4606,
+        "lng": 128.2132,
+        "zoom": 5,
+        "sido": "gyeongnam"
+      },
+      "48820": {
+        "name": "고성군",
+        "slug": "lawd-48820",
+        "lat": 35.4606,
+        "lng": 128.2132,
+        "zoom": 5,
+        "sido": "gyeongnam"
+      },
+      "48840": {
+        "name": "남해군",
+        "slug": "lawd-48840",
+        "lat": 35.4606,
+        "lng": 128.2132,
+        "zoom": 5,
+        "sido": "gyeongnam"
+      },
+      "48850": {
+        "name": "하동군",
+        "slug": "lawd-48850",
+        "lat": 35.4606,
+        "lng": 128.2132,
+        "zoom": 5,
+        "sido": "gyeongnam"
+      },
+      "48860": {
+        "name": "산청군",
+        "slug": "lawd-48860",
+        "lat": 35.4606,
+        "lng": 128.2132,
+        "zoom": 5,
+        "sido": "gyeongnam"
+      },
+      "48870": {
+        "name": "함양군",
+        "slug": "lawd-48870",
+        "lat": 35.4606,
+        "lng": 128.2132,
+        "zoom": 5,
+        "sido": "gyeongnam"
+      },
+      "48880": {
+        "name": "거창군",
+        "slug": "lawd-48880",
+        "lat": 35.4606,
+        "lng": 128.2132,
+        "zoom": 5,
+        "sido": "gyeongnam"
+      },
+      "48890": {
+        "name": "합천군",
+        "slug": "lawd-48890",
+        "lat": 35.4606,
+        "lng": 128.2132,
+        "zoom": 5,
+        "sido": "gyeongnam"
+      }
+    },
+    "jeju": {
+      "50110": {
+        "name": "제주시",
+        "slug": "lawd-50110",
+        "lat": 33.4996,
+        "lng": 126.5312,
+        "zoom": 5,
+        "sido": "jeju"
+      },
+      "50130": {
+        "name": "서귀포시",
+        "slug": "lawd-50130",
+        "lat": 33.4996,
+        "lng": 126.5312,
+        "zoom": 5,
+        "sido": "jeju"
+      }
+    }
+  },
+  "jsBlocks": [
+    {
+      "sidoId": "jeonnamgwangju",
+      "constName": "JEONNAMGWANGJU_DISTRICTS",
+      "js": "  const JEONNAMGWANGJU_DISTRICTS = {\n    \"12110\": { name: \"목포시\", slug: \"lawd-12110\", lat: 35.1595, lng: 126.8526, zoom: 5, sido: \"jeonnamgwangju\" },\n    \"12130\": { name: \"여수시\", slug: \"lawd-12130\", lat: 35.1595, lng: 126.8526, zoom: 5, sido: \"jeonnamgwangju\" },\n    \"12150\": { name: \"순천시\", slug: \"lawd-12150\", lat: 35.1595, lng: 126.8526, zoom: 5, sido: \"jeonnamgwangju\" },\n    \"12170\": { name: \"나주시\", slug: \"lawd-12170\", lat: 35.1595, lng: 126.8526, zoom: 5, sido: \"jeonnamgwangju\" },\n    \"12190\": { name: \"광양시\", slug: \"lawd-12190\", lat: 35.1595, lng: 126.8526, zoom: 5, sido: \"jeonnamgwangju\" },\n    \"12210\": { name: \"동구\", slug: \"lawd-12210\", lat: 35.1595, lng: 126.8526, zoom: 5, sido: \"jeonnamgwangju\" },\n    \"12240\": { name: \"서구\", slug: \"lawd-12240\", lat: 35.1595, lng: 126.8526, zoom: 5, sido: \"jeonnamgwangju\" },\n    \"12270\": { name: \"남구\", slug: \"lawd-12270\", lat: 35.1595, lng: 126.8526, zoom: 5, sido: \"jeonnamgwangju\" },\n    \"12300\": { name: \"북구\", slug: \"lawd-12300\", lat: 35.1595, lng: 126.8526, zoom: 5, sido: \"jeonnamgwangju\" },\n    \"12330\": { name: \"광산구\", slug: \"lawd-12330\", lat: 35.1595, lng: 126.8526, zoom: 5, sido: \"jeonnamgwangju\" },\n    \"12710\": { name: \"담양군\", slug: \"lawd-12710\", lat: 35.1595, lng: 126.8526, zoom: 5, sido: \"jeonnamgwangju\" },\n    \"12720\": { name: \"곡성군\", slug: \"lawd-12720\", lat: 35.1595, lng: 126.8526, zoom: 5, sido: \"jeonnamgwangju\" },\n    \"12730\": { name: \"구례군\", slug: \"lawd-12730\", lat: 35.1595, lng: 126.8526, zoom: 5, sido: \"jeonnamgwangju\" },\n    \"12740\": { name: \"고흥군\", slug: \"lawd-12740\", lat: 35.1595, lng: 126.8526, zoom: 5, sido: \"jeonnamgwangju\" },\n    \"12750\": { name: \"보성군\", slug: \"lawd-12750\", lat: 35.1595, lng: 126.8526, zoom: 5, sido: \"jeonnamgwangju\" },\n    \"12760\": { name: \"화순군\", slug: \"lawd-12760\", lat: 35.1595, lng: 126.8526, zoom: 5, sido: \"jeonnamgwangju\" },\n    \"12770\": { name: \"장흥군\", slug: \"lawd-12770\", lat: 35.1595, lng: 126.8526, zoom: 5, sido: \"jeonnamgwangju\" },\n    \"12780\": { name: \"강진군\", slug: \"lawd-12780\", lat: 35.1595, lng: 126.8526, zoom: 5, sido: \"jeonnamgwangju\" },\n    \"12790\": { name: \"해남군\", slug: \"lawd-12790\", lat: 35.1595, lng: 126.8526, zoom: 5, sido: \"jeonnamgwangju\" },\n    \"12800\": { name: \"영암군\", slug: \"lawd-12800\", lat: 35.1595, lng: 126.8526, zoom: 5, sido: \"jeonnamgwangju\" },\n    \"12810\": { name: \"무안군\", slug: \"lawd-12810\", lat: 35.1595, lng: 126.8526, zoom: 5, sido: \"jeonnamgwangju\" },\n    \"12820\": { name: \"함평군\", slug: \"lawd-12820\", lat: 35.1595, lng: 126.8526, zoom: 5, sido: \"jeonnamgwangju\" },\n    \"12830\": { name: \"영광군\", slug: \"lawd-12830\", lat: 35.1595, lng: 126.8526, zoom: 5, sido: \"jeonnamgwangju\" },\n    \"12840\": { name: \"장성군\", slug: \"lawd-12840\", lat: 35.1595, lng: 126.8526, zoom: 5, sido: \"jeonnamgwangju\" },\n    \"12850\": { name: \"완도군\", slug: \"lawd-12850\", lat: 35.1595, lng: 126.8526, zoom: 5, sido: \"jeonnamgwangju\" },\n    \"12860\": { name: \"진도군\", slug: \"lawd-12860\", lat: 35.1595, lng: 126.8526, zoom: 5, sido: \"jeonnamgwangju\" },\n    \"12870\": { name: \"신안군\", slug: \"lawd-12870\", lat: 35.1595, lng: 126.8526, zoom: 5, sido: \"jeonnamgwangju\" },\n  };",
+      "count": 27
+    },
+    {
+      "sidoId": "daegu",
+      "constName": "DAEGU_DISTRICTS",
+      "js": "  const DAEGU_DISTRICTS = {\n    \"27110\": { name: \"중구\", slug: \"lawd-27110\", lat: 35.8714, lng: 128.6014, zoom: 5, sido: \"daegu\" },\n    \"27140\": { name: \"동구\", slug: \"lawd-27140\", lat: 35.8714, lng: 128.6014, zoom: 5, sido: \"daegu\" },\n    \"27170\": { name: \"서구\", slug: \"lawd-27170\", lat: 35.8714, lng: 128.6014, zoom: 5, sido: \"daegu\" },\n    \"27200\": { name: \"남구\", slug: \"lawd-27200\", lat: 35.8714, lng: 128.6014, zoom: 5, sido: \"daegu\" },\n    \"27230\": { name: \"북구\", slug: \"lawd-27230\", lat: 35.8714, lng: 128.6014, zoom: 5, sido: \"daegu\" },\n    \"27260\": { name: \"수성구\", slug: \"lawd-27260\", lat: 35.8714, lng: 128.6014, zoom: 5, sido: \"daegu\" },\n    \"27290\": { name: \"달서구\", slug: \"lawd-27290\", lat: 35.8714, lng: 128.6014, zoom: 5, sido: \"daegu\" },\n    \"27710\": { name: \"달성군\", slug: \"lawd-27710\", lat: 35.8714, lng: 128.6014, zoom: 5, sido: \"daegu\" },\n    \"27720\": { name: \"군위군\", slug: \"lawd-27720\", lat: 35.8714, lng: 128.6014, zoom: 5, sido: \"daegu\" },\n  };",
+      "count": 9
+    },
+    {
+      "sidoId": "incheon",
+      "constName": "INCHEON_DISTRICTS",
+      "js": "  const INCHEON_DISTRICTS = {\n    \"28125\": { name: \"제물포구\", slug: \"lawd-28125\", lat: 37.4563, lng: 126.7052, zoom: 5, sido: \"incheon\" },\n    \"28155\": { name: \"영종구\", slug: \"lawd-28155\", lat: 37.4563, lng: 126.7052, zoom: 5, sido: \"incheon\" },\n    \"28177\": { name: \"미추홀구\", slug: \"lawd-28177\", lat: 37.4563, lng: 126.7052, zoom: 5, sido: \"incheon\" },\n    \"28185\": { name: \"연수구\", slug: \"lawd-28185\", lat: 37.4563, lng: 126.7052, zoom: 5, sido: \"incheon\" },\n    \"28200\": { name: \"남동구\", slug: \"lawd-28200\", lat: 37.4563, lng: 126.7052, zoom: 5, sido: \"incheon\" },\n    \"28237\": { name: \"부평구\", slug: \"lawd-28237\", lat: 37.4563, lng: 126.7052, zoom: 5, sido: \"incheon\" },\n    \"28245\": { name: \"계양구\", slug: \"lawd-28245\", lat: 37.4563, lng: 126.7052, zoom: 5, sido: \"incheon\" },\n    \"28275\": { name: \"서해구\", slug: \"lawd-28275\", lat: 37.4563, lng: 126.7052, zoom: 5, sido: \"incheon\" },\n    \"28290\": { name: \"검단구\", slug: \"lawd-28290\", lat: 37.4563, lng: 126.7052, zoom: 5, sido: \"incheon\" },\n    \"28710\": { name: \"강화군\", slug: \"lawd-28710\", lat: 37.4563, lng: 126.7052, zoom: 5, sido: \"incheon\" },\n    \"28720\": { name: \"옹진군\", slug: \"lawd-28720\", lat: 37.4563, lng: 126.7052, zoom: 5, sido: \"incheon\", isReady: false },\n  };",
+      "count": 11
+    },
+    {
+      "sidoId": "daejeon",
+      "constName": "DAEJEON_DISTRICTS",
+      "js": "  const DAEJEON_DISTRICTS = {\n    \"30110\": { name: \"동구\", slug: \"lawd-30110\", lat: 36.3504, lng: 127.3845, zoom: 5, sido: \"daejeon\" },\n    \"30140\": { name: \"중구\", slug: \"lawd-30140\", lat: 36.3504, lng: 127.3845, zoom: 5, sido: \"daejeon\" },\n    \"30170\": { name: \"서구\", slug: \"lawd-30170\", lat: 36.3504, lng: 127.3845, zoom: 5, sido: \"daejeon\" },\n    \"30200\": { name: \"유성구\", slug: \"lawd-30200\", lat: 36.3504, lng: 127.3845, zoom: 5, sido: \"daejeon\" },\n    \"30230\": { name: \"대덕구\", slug: \"lawd-30230\", lat: 36.3504, lng: 127.3845, zoom: 5, sido: \"daejeon\" },\n  };",
+      "count": 5
+    },
+    {
+      "sidoId": "ulsan",
+      "constName": "ULSAN_DISTRICTS",
+      "js": "  const ULSAN_DISTRICTS = {\n    \"31110\": { name: \"중구\", slug: \"lawd-31110\", lat: 35.5384, lng: 129.3114, zoom: 5, sido: \"ulsan\" },\n    \"31140\": { name: \"남구\", slug: \"lawd-31140\", lat: 35.5384, lng: 129.3114, zoom: 5, sido: \"ulsan\" },\n    \"31170\": { name: \"동구\", slug: \"lawd-31170\", lat: 35.5384, lng: 129.3114, zoom: 5, sido: \"ulsan\" },\n    \"31200\": { name: \"북구\", slug: \"lawd-31200\", lat: 35.5384, lng: 129.3114, zoom: 5, sido: \"ulsan\" },\n    \"31710\": { name: \"울주군\", slug: \"lawd-31710\", lat: 35.5384, lng: 129.3114, zoom: 5, sido: \"ulsan\" },\n  };",
+      "count": 5
+    },
+    {
+      "sidoId": "sejong",
+      "constName": "SEJONG_DISTRICTS",
+      "js": "  const SEJONG_DISTRICTS = {\n    \"36110\": { name: \"세종특별자치시\", slug: \"lawd-36110\", lat: 36.4801, lng: 127.289, zoom: 5, sido: \"sejong\" },\n  };",
+      "count": 1
+    },
+    {
+      "sidoId": "gangwon",
+      "constName": "GANGWON_DISTRICTS",
+      "js": "  const GANGWON_DISTRICTS = {\n    \"51110\": { name: \"춘천시\", slug: \"lawd-51110\", lat: 37.8813, lng: 127.7298, zoom: 5, sido: \"gangwon\" },\n    \"51130\": { name: \"원주시\", slug: \"lawd-51130\", lat: 37.8813, lng: 127.7298, zoom: 5, sido: \"gangwon\" },\n    \"51150\": { name: \"강릉시\", slug: \"lawd-51150\", lat: 37.8813, lng: 127.7298, zoom: 5, sido: \"gangwon\" },\n    \"51170\": { name: \"동해시\", slug: \"lawd-51170\", lat: 37.8813, lng: 127.7298, zoom: 5, sido: \"gangwon\" },\n    \"51190\": { name: \"태백시\", slug: \"lawd-51190\", lat: 37.8813, lng: 127.7298, zoom: 5, sido: \"gangwon\" },\n    \"51210\": { name: \"속초시\", slug: \"lawd-51210\", lat: 37.8813, lng: 127.7298, zoom: 5, sido: \"gangwon\" },\n    \"51230\": { name: \"삼척시\", slug: \"lawd-51230\", lat: 37.8813, lng: 127.7298, zoom: 5, sido: \"gangwon\" },\n    \"51720\": { name: \"홍천군\", slug: \"lawd-51720\", lat: 37.8813, lng: 127.7298, zoom: 5, sido: \"gangwon\" },\n    \"51730\": { name: \"횡성군\", slug: \"lawd-51730\", lat: 37.8813, lng: 127.7298, zoom: 5, sido: \"gangwon\" },\n    \"51750\": { name: \"영월군\", slug: \"lawd-51750\", lat: 37.8813, lng: 127.7298, zoom: 5, sido: \"gangwon\" },\n    \"51760\": { name: \"평창군\", slug: \"lawd-51760\", lat: 37.8813, lng: 127.7298, zoom: 5, sido: \"gangwon\" },\n    \"51770\": { name: \"정선군\", slug: \"lawd-51770\", lat: 37.8813, lng: 127.7298, zoom: 5, sido: \"gangwon\" },\n    \"51780\": { name: \"철원군\", slug: \"lawd-51780\", lat: 37.8813, lng: 127.7298, zoom: 5, sido: \"gangwon\" },\n    \"51790\": { name: \"화천군\", slug: \"lawd-51790\", lat: 37.8813, lng: 127.7298, zoom: 5, sido: \"gangwon\" },\n    \"51800\": { name: \"양구군\", slug: \"lawd-51800\", lat: 37.8813, lng: 127.7298, zoom: 5, sido: \"gangwon\" },\n    \"51810\": { name: \"인제군\", slug: \"lawd-51810\", lat: 37.8813, lng: 127.7298, zoom: 5, sido: \"gangwon\" },\n    \"51820\": { name: \"고성군\", slug: \"lawd-51820\", lat: 37.8813, lng: 127.7298, zoom: 5, sido: \"gangwon\" },\n    \"51830\": { name: \"양양군\", slug: \"lawd-51830\", lat: 37.8813, lng: 127.7298, zoom: 5, sido: \"gangwon\" },\n  };",
+      "count": 18
+    },
+    {
+      "sidoId": "chungbuk",
+      "constName": "CHUNGBUK_DISTRICTS",
+      "js": "  const CHUNGBUK_DISTRICTS = {\n    \"43111\": { name: \"청주시 상당구\", slug: \"lawd-43111\", lat: 36.8, lng: 127.7, zoom: 5, sido: \"chungbuk\" },\n    \"43112\": { name: \"청주시 서원구\", slug: \"lawd-43112\", lat: 36.8, lng: 127.7, zoom: 5, sido: \"chungbuk\" },\n    \"43113\": { name: \"청주시 흥덕구\", slug: \"lawd-43113\", lat: 36.8, lng: 127.7, zoom: 5, sido: \"chungbuk\" },\n    \"43114\": { name: \"청주시 청원구\", slug: \"lawd-43114\", lat: 36.8, lng: 127.7, zoom: 5, sido: \"chungbuk\" },\n    \"43130\": { name: \"충주시\", slug: \"lawd-43130\", lat: 36.8, lng: 127.7, zoom: 5, sido: \"chungbuk\" },\n    \"43150\": { name: \"제천시\", slug: \"lawd-43150\", lat: 36.8, lng: 127.7, zoom: 5, sido: \"chungbuk\" },\n    \"43720\": { name: \"보은군\", slug: \"lawd-43720\", lat: 36.8, lng: 127.7, zoom: 5, sido: \"chungbuk\" },\n    \"43730\": { name: \"옥천군\", slug: \"lawd-43730\", lat: 36.8, lng: 127.7, zoom: 5, sido: \"chungbuk\" },\n    \"43740\": { name: \"영동군\", slug: \"lawd-43740\", lat: 36.8, lng: 127.7, zoom: 5, sido: \"chungbuk\" },\n    \"43745\": { name: \"증평군\", slug: \"lawd-43745\", lat: 36.8, lng: 127.7, zoom: 5, sido: \"chungbuk\" },\n    \"43750\": { name: \"진천군\", slug: \"lawd-43750\", lat: 36.8, lng: 127.7, zoom: 5, sido: \"chungbuk\" },\n    \"43760\": { name: \"괴산군\", slug: \"lawd-43760\", lat: 36.8, lng: 127.7, zoom: 5, sido: \"chungbuk\" },\n    \"43770\": { name: \"음성군\", slug: \"lawd-43770\", lat: 36.8, lng: 127.7, zoom: 5, sido: \"chungbuk\" },\n    \"43800\": { name: \"단양군\", slug: \"lawd-43800\", lat: 36.8, lng: 127.7, zoom: 5, sido: \"chungbuk\" },\n  };",
+      "count": 14
+    },
+    {
+      "sidoId": "chungnam",
+      "constName": "CHUNGNAM_DISTRICTS",
+      "js": "  const CHUNGNAM_DISTRICTS = {\n    \"44131\": { name: \"천안시 동남구\", slug: \"lawd-44131\", lat: 36.5184, lng: 126.8, zoom: 5, sido: \"chungnam\" },\n    \"44133\": { name: \"천안시 서북구\", slug: \"lawd-44133\", lat: 36.5184, lng: 126.8, zoom: 5, sido: \"chungnam\" },\n    \"44150\": { name: \"공주시\", slug: \"lawd-44150\", lat: 36.5184, lng: 126.8, zoom: 5, sido: \"chungnam\" },\n    \"44180\": { name: \"보령시\", slug: \"lawd-44180\", lat: 36.5184, lng: 126.8, zoom: 5, sido: \"chungnam\" },\n    \"44200\": { name: \"아산시\", slug: \"lawd-44200\", lat: 36.5184, lng: 126.8, zoom: 5, sido: \"chungnam\" },\n    \"44210\": { name: \"서산시\", slug: \"lawd-44210\", lat: 36.5184, lng: 126.8, zoom: 5, sido: \"chungnam\" },\n    \"44230\": { name: \"논산시\", slug: \"lawd-44230\", lat: 36.5184, lng: 126.8, zoom: 5, sido: \"chungnam\" },\n    \"44250\": { name: \"계룡시\", slug: \"lawd-44250\", lat: 36.5184, lng: 126.8, zoom: 5, sido: \"chungnam\" },\n    \"44270\": { name: \"당진시\", slug: \"lawd-44270\", lat: 36.5184, lng: 126.8, zoom: 5, sido: \"chungnam\" },\n    \"44710\": { name: \"금산군\", slug: \"lawd-44710\", lat: 36.5184, lng: 126.8, zoom: 5, sido: \"chungnam\" },\n    \"44760\": { name: \"부여군\", slug: \"lawd-44760\", lat: 36.5184, lng: 126.8, zoom: 5, sido: \"chungnam\" },\n    \"44770\": { name: \"서천군\", slug: \"lawd-44770\", lat: 36.5184, lng: 126.8, zoom: 5, sido: \"chungnam\" },\n    \"44790\": { name: \"청양군\", slug: \"lawd-44790\", lat: 36.5184, lng: 126.8, zoom: 5, sido: \"chungnam\" },\n    \"44800\": { name: \"홍성군\", slug: \"lawd-44800\", lat: 36.5184, lng: 126.8, zoom: 5, sido: \"chungnam\" },\n    \"44810\": { name: \"예산군\", slug: \"lawd-44810\", lat: 36.5184, lng: 126.8, zoom: 5, sido: \"chungnam\" },\n    \"44825\": { name: \"태안군\", slug: \"lawd-44825\", lat: 36.5184, lng: 126.8, zoom: 5, sido: \"chungnam\" },\n  };",
+      "count": 16
+    },
+    {
+      "sidoId": "jeonbuk",
+      "constName": "JEONBUK_DISTRICTS",
+      "js": "  const JEONBUK_DISTRICTS = {\n    \"52111\": { name: \"전주시 완산구\", slug: \"lawd-52111\", lat: 35.8242, lng: 127.148, zoom: 5, sido: \"jeonbuk\" },\n    \"52113\": { name: \"전주시 덕진구\", slug: \"lawd-52113\", lat: 35.8242, lng: 127.148, zoom: 5, sido: \"jeonbuk\" },\n    \"52130\": { name: \"군산시\", slug: \"lawd-52130\", lat: 35.8242, lng: 127.148, zoom: 5, sido: \"jeonbuk\" },\n    \"52140\": { name: \"익산시\", slug: \"lawd-52140\", lat: 35.8242, lng: 127.148, zoom: 5, sido: \"jeonbuk\" },\n    \"52180\": { name: \"정읍시\", slug: \"lawd-52180\", lat: 35.8242, lng: 127.148, zoom: 5, sido: \"jeonbuk\" },\n    \"52190\": { name: \"남원시\", slug: \"lawd-52190\", lat: 35.8242, lng: 127.148, zoom: 5, sido: \"jeonbuk\" },\n    \"52210\": { name: \"김제시\", slug: \"lawd-52210\", lat: 35.8242, lng: 127.148, zoom: 5, sido: \"jeonbuk\" },\n    \"52710\": { name: \"완주군\", slug: \"lawd-52710\", lat: 35.8242, lng: 127.148, zoom: 5, sido: \"jeonbuk\" },\n    \"52720\": { name: \"진안군\", slug: \"lawd-52720\", lat: 35.8242, lng: 127.148, zoom: 5, sido: \"jeonbuk\" },\n    \"52730\": { name: \"무주군\", slug: \"lawd-52730\", lat: 35.8242, lng: 127.148, zoom: 5, sido: \"jeonbuk\" },\n    \"52740\": { name: \"장수군\", slug: \"lawd-52740\", lat: 35.8242, lng: 127.148, zoom: 5, sido: \"jeonbuk\" },\n    \"52750\": { name: \"임실군\", slug: \"lawd-52750\", lat: 35.8242, lng: 127.148, zoom: 5, sido: \"jeonbuk\" },\n    \"52770\": { name: \"순창군\", slug: \"lawd-52770\", lat: 35.8242, lng: 127.148, zoom: 5, sido: \"jeonbuk\" },\n    \"52790\": { name: \"고창군\", slug: \"lawd-52790\", lat: 35.8242, lng: 127.148, zoom: 5, sido: \"jeonbuk\" },\n    \"52800\": { name: \"부안군\", slug: \"lawd-52800\", lat: 35.8242, lng: 127.148, zoom: 5, sido: \"jeonbuk\" },\n  };",
+      "count": 15
+    },
+    {
+      "sidoId": "gyeongbuk",
+      "constName": "GYEONGBUK_DISTRICTS",
+      "js": "  const GYEONGBUK_DISTRICTS = {\n    \"47111\": { name: \"포항시 남구\", slug: \"lawd-47111\", lat: 36.4919, lng: 128.8889, zoom: 5, sido: \"gyeongbuk\" },\n    \"47113\": { name: \"포항시 북구\", slug: \"lawd-47113\", lat: 36.4919, lng: 128.8889, zoom: 5, sido: \"gyeongbuk\" },\n    \"47130\": { name: \"경주시\", slug: \"lawd-47130\", lat: 36.4919, lng: 128.8889, zoom: 5, sido: \"gyeongbuk\" },\n    \"47150\": { name: \"김천시\", slug: \"lawd-47150\", lat: 36.4919, lng: 128.8889, zoom: 5, sido: \"gyeongbuk\" },\n    \"47170\": { name: \"안동시\", slug: \"lawd-47170\", lat: 36.4919, lng: 128.8889, zoom: 5, sido: \"gyeongbuk\" },\n    \"47190\": { name: \"구미시\", slug: \"lawd-47190\", lat: 36.4919, lng: 128.8889, zoom: 5, sido: \"gyeongbuk\" },\n    \"47210\": { name: \"영주시\", slug: \"lawd-47210\", lat: 36.4919, lng: 128.8889, zoom: 5, sido: \"gyeongbuk\" },\n    \"47230\": { name: \"영천시\", slug: \"lawd-47230\", lat: 36.4919, lng: 128.8889, zoom: 5, sido: \"gyeongbuk\" },\n    \"47250\": { name: \"상주시\", slug: \"lawd-47250\", lat: 36.4919, lng: 128.8889, zoom: 5, sido: \"gyeongbuk\" },\n    \"47280\": { name: \"문경시\", slug: \"lawd-47280\", lat: 36.4919, lng: 128.8889, zoom: 5, sido: \"gyeongbuk\" },\n    \"47290\": { name: \"경산시\", slug: \"lawd-47290\", lat: 36.4919, lng: 128.8889, zoom: 5, sido: \"gyeongbuk\" },\n    \"47730\": { name: \"의성군\", slug: \"lawd-47730\", lat: 36.4919, lng: 128.8889, zoom: 5, sido: \"gyeongbuk\" },\n    \"47750\": { name: \"청송군\", slug: \"lawd-47750\", lat: 36.4919, lng: 128.8889, zoom: 5, sido: \"gyeongbuk\" },\n    \"47760\": { name: \"영양군\", slug: \"lawd-47760\", lat: 36.4919, lng: 128.8889, zoom: 5, sido: \"gyeongbuk\" },\n    \"47770\": { name: \"영덕군\", slug: \"lawd-47770\", lat: 36.4919, lng: 128.8889, zoom: 5, sido: \"gyeongbuk\" },\n    \"47820\": { name: \"청도군\", slug: \"lawd-47820\", lat: 36.4919, lng: 128.8889, zoom: 5, sido: \"gyeongbuk\" },\n    \"47830\": { name: \"고령군\", slug: \"lawd-47830\", lat: 36.4919, lng: 128.8889, zoom: 5, sido: \"gyeongbuk\" },\n    \"47840\": { name: \"성주군\", slug: \"lawd-47840\", lat: 36.4919, lng: 128.8889, zoom: 5, sido: \"gyeongbuk\" },\n    \"47850\": { name: \"칠곡군\", slug: \"lawd-47850\", lat: 36.4919, lng: 128.8889, zoom: 5, sido: \"gyeongbuk\" },\n    \"47900\": { name: \"예천군\", slug: \"lawd-47900\", lat: 36.4919, lng: 128.8889, zoom: 5, sido: \"gyeongbuk\" },\n    \"47920\": { name: \"봉화군\", slug: \"lawd-47920\", lat: 36.4919, lng: 128.8889, zoom: 5, sido: \"gyeongbuk\" },\n    \"47930\": { name: \"울진군\", slug: \"lawd-47930\", lat: 36.4919, lng: 128.8889, zoom: 5, sido: \"gyeongbuk\" },\n    \"47940\": { name: \"울릉군\", slug: \"lawd-47940\", lat: 36.4919, lng: 128.8889, zoom: 5, sido: \"gyeongbuk\" },\n  };",
+      "count": 23
+    },
+    {
+      "sidoId": "gyeongnam",
+      "constName": "GYEONGNAM_DISTRICTS",
+      "js": "  const GYEONGNAM_DISTRICTS = {\n    \"48121\": { name: \"창원시 의창구\", slug: \"lawd-48121\", lat: 35.4606, lng: 128.2132, zoom: 5, sido: \"gyeongnam\" },\n    \"48123\": { name: \"창원시 성산구\", slug: \"lawd-48123\", lat: 35.4606, lng: 128.2132, zoom: 5, sido: \"gyeongnam\" },\n    \"48125\": { name: \"창원시 마산합포구\", slug: \"lawd-48125\", lat: 35.4606, lng: 128.2132, zoom: 5, sido: \"gyeongnam\" },\n    \"48127\": { name: \"창원시 마산회원구\", slug: \"lawd-48127\", lat: 35.4606, lng: 128.2132, zoom: 5, sido: \"gyeongnam\" },\n    \"48129\": { name: \"창원시 진해구\", slug: \"lawd-48129\", lat: 35.4606, lng: 128.2132, zoom: 5, sido: \"gyeongnam\" },\n    \"48170\": { name: \"진주시\", slug: \"lawd-48170\", lat: 35.4606, lng: 128.2132, zoom: 5, sido: \"gyeongnam\" },\n    \"48220\": { name: \"통영시\", slug: \"lawd-48220\", lat: 35.4606, lng: 128.2132, zoom: 5, sido: \"gyeongnam\" },\n    \"48240\": { name: \"사천시\", slug: \"lawd-48240\", lat: 35.4606, lng: 128.2132, zoom: 5, sido: \"gyeongnam\" },\n    \"48250\": { name: \"김해시\", slug: \"lawd-48250\", lat: 35.4606, lng: 128.2132, zoom: 5, sido: \"gyeongnam\" },\n    \"48270\": { name: \"밀양시\", slug: \"lawd-48270\", lat: 35.4606, lng: 128.2132, zoom: 5, sido: \"gyeongnam\" },\n    \"48310\": { name: \"거제시\", slug: \"lawd-48310\", lat: 35.4606, lng: 128.2132, zoom: 5, sido: \"gyeongnam\" },\n    \"48330\": { name: \"양산시\", slug: \"lawd-48330\", lat: 35.4606, lng: 128.2132, zoom: 5, sido: \"gyeongnam\" },\n    \"48720\": { name: \"의령군\", slug: \"lawd-48720\", lat: 35.4606, lng: 128.2132, zoom: 5, sido: \"gyeongnam\" },\n    \"48730\": { name: \"함안군\", slug: \"lawd-48730\", lat: 35.4606, lng: 128.2132, zoom: 5, sido: \"gyeongnam\" },\n    \"48740\": { name: \"창녕군\", slug: \"lawd-48740\", lat: 35.4606, lng: 128.2132, zoom: 5, sido: \"gyeongnam\" },\n    \"48820\": { name: \"고성군\", slug: \"lawd-48820\", lat: 35.4606, lng: 128.2132, zoom: 5, sido: \"gyeongnam\" },\n    \"48840\": { name: \"남해군\", slug: \"lawd-48840\", lat: 35.4606, lng: 128.2132, zoom: 5, sido: \"gyeongnam\" },\n    \"48850\": { name: \"하동군\", slug: \"lawd-48850\", lat: 35.4606, lng: 128.2132, zoom: 5, sido: \"gyeongnam\" },\n    \"48860\": { name: \"산청군\", slug: \"lawd-48860\", lat: 35.4606, lng: 128.2132, zoom: 5, sido: \"gyeongnam\" },\n    \"48870\": { name: \"함양군\", slug: \"lawd-48870\", lat: 35.4606, lng: 128.2132, zoom: 5, sido: \"gyeongnam\" },\n    \"48880\": { name: \"거창군\", slug: \"lawd-48880\", lat: 35.4606, lng: 128.2132, zoom: 5, sido: \"gyeongnam\" },\n    \"48890\": { name: \"합천군\", slug: \"lawd-48890\", lat: 35.4606, lng: 128.2132, zoom: 5, sido: \"gyeongnam\" },\n  };",
+      "count": 22
+    },
+    {
+      "sidoId": "jeju",
+      "constName": "JEJU_DISTRICTS",
+      "js": "  const JEJU_DISTRICTS = {\n    \"50110\": { name: \"제주시\", slug: \"lawd-50110\", lat: 33.4996, lng: 126.5312, zoom: 5, sido: \"jeju\" },\n    \"50130\": { name: \"서귀포시\", slug: \"lawd-50130\", lat: 33.4996, lng: 126.5312, zoom: 5, sido: \"jeju\" },\n  };",
+      "count": 2
+    }
+  ]
+}

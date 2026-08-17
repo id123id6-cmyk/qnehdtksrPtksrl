@@ -1,0 +1,64 @@
+{
+  "mapTone": "saturate(0.55) brightness(1.03)",
+  "overlayRemoved": true,
+  "dongCount": 5,
+  "consoleErrors": [],
+  "results": [
+    {
+      "sido": "daegu",
+      "gu": "27110",
+      "guName": "대구 중구",
+      "shot": "daegu-jung",
+      "guLabel": true,
+      "fontSize": "18px",
+      "fontWeight": "800",
+      "stroke": null,
+      "level": 5
+    },
+    {
+      "sido": "busan",
+      "gu": "26230",
+      "guName": "부산 부산진구(서면)",
+      "shot": "busan-seomyeon",
+      "guLabel": true,
+      "fontSize": "26px",
+      "fontWeight": "800",
+      "stroke": null,
+      "level": 7
+    },
+    {
+      "sido": "seoul",
+      "gu": "11680",
+      "guName": "서울 강남구",
+      "shot": "seoul-gangnam",
+      "guLabel": true,
+      "fontSize": "26px",
+      "fontWeight": "800",
+      "stroke": null,
+      "level": 7
+    },
+    {
+      "sido": "jeonnamgwangju",
+      "gu": "12240",
+      "guName": "광주 서구",
+      "shot": "gwangju-seo",
+      "guLabel": true,
+      "fontSize": "26px",
+      "fontWeight": "800",
+      "stroke": null,
+      "level": 7
+    },
+    {
+      "sido": "incheon",
+      "gu": "28125",
+      "guName": "인천 제물포구",
+      "shot": "incheon-jemulpo",
+      "guLabel": true,
+      "fontSize": "26px",
+      "fontWeight": "800",
+      "stroke": null,
+      "level": 7
+    }
+  ],
+  "at": "2026-07-08T07:44:27.861Z"
+}
