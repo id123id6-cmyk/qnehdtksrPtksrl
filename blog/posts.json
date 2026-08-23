@@ -1,8 +1,20 @@
 {
-  "updatedAt": "2026-08-18T00:00:00.000Z",
+  "updatedAt": "2026-08-24T00:00:00.000Z",
   "source": "blog/index.html",
-  "count": 37,
+  "count": 38,
   "posts": [
+    {
+      "id": 50,
+      "slug": "post-50.html",
+      "href": "/blog/post-50.html",
+      "category": "real-estate",
+      "image": "/blog/images/post-50/hero.jpg",
+      "alt": "연금저축·IRP로 연말정산 세금 돌려받기 (2026 한도 총정리)",
+      "tag": "재테크/절세",
+      "title": "연금저축·IRP로 연말정산 세금 돌려받기 (2026 한도 총정리)",
+      "excerpt": "연금저축·IRP로 연말정산 때 최대 148만원 돌려받는 법. 세액공제 한도(연금저축 600만원·합산 900만원), 소득별 공제율(16.5%/13.2%), 연금저축 vs IRP 차이, ISA 추가 절세, 중도해지 주의점까지 초보 눈높이로 총정리했습니다.",
+      "date": "2026-08-24"
+    },
     {
       "id": 49,
       "slug": "post-49.html",
