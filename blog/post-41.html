@@ -28,8 +28,8 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8232968272801958" crossorigin="anonymous"></script>
 
   <title>7월 부동산 세제개편 미리보기 — 무주택자·1주택자·다주택자, 지금 뭘 준비해야 할까 (2026.7.27) | 승박</title>
-  <meta name="description" content="7월 말 발표 예정인 부동산 세제개편, 상황별로 무엇을 체크해야 하는지 무주택·1주택·다주택 입장에서 정리했습니다.">
-  <meta name="keywords" content="7월 세제개편, 부동산 세금, 보유세, 양도세, 장기보유특별공제, 무주택, 1주택, 다주택, 청약, 2026 부동산 정책, 승박 블로그">
+  <meta name="description" content="세제개편 발표 전 준비 실무 체크리스트. 취득일·전입일·거주 이력 서류, 공시가격 알리미·홈택스·정부24·위택스 조회, 상황별 할 일, 발표 후 대조표. 정책 방향은 post-43 참고.">
+  <meta name="keywords" content="7월 세제개편, 준비 체크리스트, 공시가격 알리미, 주민등록초본, 등기부등본, 홈택스, 위택스, 1주택, 다주택, 2026 부동산, 승박 블로그">
   <meta name="robots" content="index, follow">
   <meta name="author" content="승박">
   <meta name="blog:category" content="real-estate">
@@ -38,7 +38,7 @@
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://seungbak.com/blog/post-41.html">
   <meta property="og:title" content="7월 부동산 세제개편 미리보기 — 무주택자·1주택자·다주택자, 지금 뭘 준비해야 할까 (2026.7.27)">
-  <meta property="og:description" content="7월 말 발표 예정인 부동산 세제개편, 상황별로 무엇을 체크해야 하는지 무주택·1주택·다주택 입장에서 정리했습니다.">
+  <meta property="og:description" content="세제개편 발표 전 준비 실무 체크리스트. 취득일·전입일·거주 이력 서류, 공시가격 알리미·홈택스·정부24·위택스 조회, 상황별 할 일, 발표 후 대조표.">
   <meta property="og:image" content="https://seungbak.com/blog/images/post-41/hero.jpg">
   <meta property="og:locale" content="ko_KR">
   <meta property="og:site_name" content="승박">
@@ -55,9 +55,9 @@
     "@context": "https://schema.org",
     "@type": "Article",
     "headline": "7월 부동산 세제개편 미리보기 — 무주택자·1주택자·다주택자, 지금 뭘 준비해야 할까 (2026.7.27)",
-    "description": "7월 말 발표 예정인 부동산 세제개편, 상황별로 무엇을 체크해야 하는지 무주택·1주택·다주택 입장에서 정리했습니다.",
+    "description": "세제개편 발표 전 준비 실무 체크리스트. 취득일·전입일·거주 이력 서류, 공시가격 알리미·홈택스·정부24·위택스 조회, 상황별 할 일, 발표 후 대조표.",
     "datePublished": "2026-07-27",
-    "dateModified": "2026-07-27",
+    "dateModified": "2026-08-24",
     "author": { "@type": "Person", "name": "승박" },
     "publisher": {
       "@type": "Organization",
@@ -70,7 +70,7 @@
       "@id": "https://seungbak.com/blog/post-41.html"
     },
     "inLanguage": "ko-KR",
-    "keywords": ["7월 세제개편", "보유세", "양도세", "무주택", "1주택", "다주택"]
+    "keywords": ["세제개편 준비", "공시가격 알리미", "주민등록초본", "등기부등본", "홈택스"]
   }
   </script>
   <style>
@@ -122,46 +122,39 @@
     .post-breadcrumb { font-size: 14px; color: var(--color-text-muted); margin-bottom: 16px; }
     .post-breadcrumb a { color: var(--color-dark); text-decoration: none; }
     .post-breadcrumb a:hover { text-decoration: underline; }
-    .fact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin: 16px 0 24px;
+    .visually-hidden {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
     }
-    @media (max-width: 640px) {
-      .fact-grid { grid-template-columns: 1fr; }
+    .post-table-wrap { overflow-x: auto; margin: 16px 0 8px; }
+    .post-table {
+      width: 100%; border-collapse: collapse; font-size: 14px;
+      background: #fff; border: 1px solid #e2e8f0; border-radius: 12px;
     }
-    .fact-card {
-      padding: 16px 14px;
-      border-radius: 12px;
-      background: #f8fafc;
+    .post-table th, .post-table td {
+      padding: 10px 12px; border-bottom: 1px solid #e2e8f0; text-align: left;
+    }
+    .post-table thead th {
+      background: #f0fdfa; color: #115e59; font-weight: 700; white-space: nowrap;
+    }
+    .post-table tbody tr:nth-child(even) { background: #f8fafc; }
+    .reason-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 8px 0;
+    }
+    @media (max-width: 640px) { .reason-grid { grid-template-columns: 1fr; } }
+    .reason-card {
+      padding: 16px 14px; border-radius: 12px; background: #f8fafc;
       border: 1px solid #e2e8f0;
     }
-    .fact-card .fc-num {
-      display: inline-flex;
-      width: 24px;
-      height: 24px;
-      align-items: center;
-      justify-content: center;
-      border-radius: 999px;
-      background: #0d9488;
-      color: #fff;
-      font-size: 12px;
-      font-weight: 700;
-      margin-bottom: 8px;
+    .reason-card .rc-icon { font-size: 22px; margin-bottom: 6px; }
+    .reason-card h3 { margin: 0 0 6px; font-size: 15px; color: #0f172a; }
+    .reason-card p { margin: 0; font-size: 13px; line-height: 1.5; color: #475569; }
+    .check-list { margin: 16px 0; padding: 0; list-style: none; }
+    .check-list li {
+      margin-bottom: 12px; padding: 14px 16px; border-radius: 12px;
+      background: #f8fafc; border: 1px solid #e2e8f0; line-height: 1.55;
     }
-    .fact-card h3 { margin: 0 0 8px; font-size: 15px; color: #0f172a; }
-    .fact-card p { margin: 0; font-size: 13px; line-height: 1.55; color: #475569; }
-    .checklist-box {
-      margin: 20px 0 28px;
-      padding: 20px 22px;
-      border-radius: 14px;
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-    }
-    .checklist-box h3 { margin: 0 0 12px; font-size: 17px; color: #0f172a; }
-    .checklist-box ul { margin: 0; padding-left: 20px; color: #334155; }
-    .checklist-box li { margin-bottom: 10px; line-height: 1.55; }
+    .check-list strong { color: #0f766e; }
   </style>
 </head>
 <body class="theme-blog-post">
@@ -188,232 +181,637 @@
 
           <span class="blog-category-badge blog-category-badge--real-estate">📋 부동산 정책</span>
           <h1>7월 부동산 세제개편 미리보기 — 무주택자·1주택자·다주택자, 지금 뭘 준비해야 할까 (2026.7.27)</h1>
-          <p class="post-subtitle">확정 발표가 아니라, 7월 말 발표 예정으로 방향이 논의되는 단계를 정리한 글입니다</p>
+          <p class="post-subtitle">발표 전 준비 실무 — 서류·조회처·상황별 할 일·발표 후 대조 (확정안 아님)</p>
 
           <p class="post-meta">
             <time datetime="2026-07-27">2026-07-27</time>
             <span class="post-meta-sep">|</span>
             작성자: 승박
             <span class="post-meta-sep">|</span>
-            15분 읽기
+            13분 읽기
           </p>
 
           <figure class="post-figure">
             <img src="images/post-41/hero.jpg" alt="7월 부동산 세제개편 미리보기 — 무주택자·1주택자·다주택자, 지금 뭘 준비해야 할까" width="1200" height="675" loading="eager">
-            <figcaption>7월 말 발표 예정으로 논의 중인 세제개편 방향을 상황별로 정리한 안내 이미지 (확정 정책 아님)</figcaption>
+            <figcaption>7월 말 발표 예정 단계에서 상황별로 준비할 항목을 정리한 안내 이미지 (확정 정책 아님)</figcaption>
           </figure>
 
-          <h2>들어가며</h2>
+          <h2>1. 도입 — 방향이 아니라 준비 목록</h2>
           <p class="post-lead">
-            요즘 “7월에 부동산 세금 손본다”는 얘기가 계속 나옵니다.
-            뉴스 제목만 훑어도 보유세, 양도세, 장기보유특별공제 같은 단어가 자주 보이죠.
-            다만 지금 시점은 <strong>확정 발표</strong>가 아니라,
-            <strong>7월 말 발표 예정으로 방향이 논의되는 단계</strong>라는 점을 먼저 분명히 해두는 게 좋습니다.
+            2026년 7월 27일 작성·8월 24일 보강 기준, 부동산 세제개편은
+            <strong>7월 말~8월 초 발표 예정</strong>으로 <strong>논의·관측</strong>이 이어지는 단계입니다.
+            보유세·장특공제·양도세가 한꺼번에 거론되지만, 확정 세율·기준금액·시행일은 아직 없습니다.
+            정책 방향·비교표·일정은
+            <a href="post-43.html">7월 세제개편 방향 총정리(post-43)</a>에 모아 두었습니다.
+            이 글은 그 옆에서, <strong>발표 전에 내가 뭘 확인하고 준비해야 하나</strong>만 다룹니다.
           </p>
           <p>
-            지난
-            <a href="/blog/post-39.html">대토론회 정리 글</a>과
-            <a href="/blog/post-40.html">30대 무주택 월급쟁이 관점 글</a>에 이어,
-            이번엔 “그래서 상황별로 뭘 준비해야 하나”를 다뤄보려 합니다.
-            무주택자·1주택자·다주택자 입장에서 지금 점검할 수 있는 항목을 정리합니다.
-            정치적 평가가 아니라, 실수요자가 체크리스트로 쓰기 위한 참고용 글입니다.
+            생산관리 월급쟁이인 저도 처음엔 뉴스 제목만 모았습니다.
+            막상 발표가 나면 “내 취득일이 언제지?” “초본에 전입이 어떻게 찍혔지?”부터 찾게 됩니다.
+            그때 서류를 찾아 헤매면 시간이 두 배로 듭니다.
+            그래서 오늘은 <strong>서류 발급 절차</strong>, <strong>조회처에서 무엇을 볼지</strong>,
+            <strong>왜 미리 적어 둬야 하는지</strong>를 실무 눈높이로 적습니다.
+            투자·매매 권유가 아닙니다.
           </p>
 
           <div class="post-warn-box">
             <h3>먼저 읽어주세요</h3>
             <p>
-              아래 내용은 발표 전 <strong>논의·관측 단계</strong>를 정리한 것입니다.
-              구체적 세율·기준선·적용 시점은 공식 발표를 확인해야 하며,
-              “거론되고 있다”, “지켜봐야 한다” 수준의 표현으로만 적었습니다.
-              투자·세무 판단은 반드시 전문가와 상의하시기 바랍니다.
+              본 글은 정보 제공이며 세무·법률·투자 자문이 아닙니다.
+              표의 날짜·공시가 숫자는 <strong>견본(예시)</strong>이며, 독자 본인 서류·조회 결과로 바꿔 쓰세요.
+              확정 세율·공제율·기준금액은 기재하지 않습니다.
+              <strong>기획재정부·국세청 공식 발표</strong>와 전문가 상담을 기준으로 하세요.
             </p>
           </div>
 
           <ul>
-            <li>지금까지 거론되는 <strong>7월 세제개편 방향</strong>을 중립적으로 정리합니다.</li>
-            <li>무주택·1주택·다주택 <strong>상황별 준비 포인트</strong>를 나눕니다.</li>
-            <li>발표 전에 할 수 있는 <strong>공통 체크리스트</strong>를 남깁니다.</li>
+            <li>내 상황을 한 줄로 적고, 취득·전입·거주 서류를 모읍니다.</li>
+            <li>공시가격 알리미·홈택스·정부24·위택스에서 무엇을 볼지 정리합니다.</li>
+            <li>발표 후 확정 문안과 대조할 견본 표를 남겨 둡니다.</li>
           </ul>
 
-          <h2>1. 지금까지 나온 7월 세제개편 방향 (팩트 정리)</h2>
+          <h2>2. 내 상황부터 한 줄로 적기</h2>
           <p>
-            매체와 공개 논의에서 반복적으로 보이는 큰 줄기는 대략 네 가지입니다.
-            다만 각 항목마다 <strong>아직 확정 전, 방향만 논의 중</strong>이라는 전제를 같이 읽어야 합니다.
+            준비의 첫 단계는 “내가 어느 칸인지”를 한 줄로 고정하는 것입니다.
+            무주택인지, 1주택인지, 그 1주택에 실제로 사는지, 다주택인지에 따라
+            나중에 확정 문안을 읽을 때 대조하는 줄이 달라집니다.
+            정책이 어떻게 바뀌는지는
+            <a href="post-43.html">post-43 영향 매트릭스</a>를 보고,
+            여기서는 <strong>내 메모에 무엇을 적을지</strong>만 봅니다.
+          </p>
+          <p>
+            세대 기준도 함께 적으세요.
+            “명의는 배우자, 전입은 나”처럼 섞여 있으면 발표 후 질문이 길어집니다.
+            아래 표는 빈칸이 아니라 <strong>견본 값</strong>입니다. 본인 상황에 맞게 고쳐 쓰세요.
           </p>
 
-          <div class="fact-grid">
-            <div class="fact-card">
-              <span class="fc-num">1</span>
-              <h3>초고가·비거주 보유세 강화</h3>
-              <p>
-                초고가·비거주 주택의 보유세 부담을 키우는 방향이 거론되고 있습니다.
-                공시가 일정 기준 이상이 언급되는 경우도 있지만, 구체 숫자는 발표를 지켜봐야 합니다.
-                <strong>확정 전입니다.</strong>
-              </p>
-            </div>
-            <div class="fact-card">
-              <span class="fc-num">2</span>
-              <h3>비거주 1주택 장특공제 개편</h3>
-              <p>
-                비거주 1주택자의 양도세 장기보유특별공제 개편이 논의 대상으로 거론됩니다.
-                실거주와 비거주를 나누는 흐름과 연결해 보는 시각이 많습니다.
-                <strong>방향만 논의 중입니다.</strong>
-              </p>
-            </div>
-            <div class="fact-card">
-              <span class="fc-num">3</span>
-              <h3>다주택 양도세 중과 유예</h3>
-              <p>
-                다주택자 양도세 중과 유예 연장은 없을 것으로 관측하는 보도가 이어지고 있습니다.
-                다만 관측일 뿐이며, 최종 내용은 개편안 발표를 확인해야 합니다.
-                <strong>확정된 사실이 아닙니다.</strong>
-              </p>
-            </div>
-            <div class="fact-card">
-              <span class="fc-num">4</span>
-              <h3>대출 규제 흐름 지속</h3>
-              <p>
-                대출 규제 기조는 기존 6·27 대책 연장선에서 이어질 수 있다는 관측이 있습니다.
-                세제와 별개로 자금 계획에 영향을 줄 수 있어 함께 점검하는 편이 좋습니다.
-                <strong>세부 적용은 발표·시행 공지를 봐야 합니다.</strong>
-              </p>
-            </div>
+          <div class="post-table-wrap">
+            <table class="post-table">
+              <caption class="visually-hidden">상황 분류 견본</caption>
+              <thead>
+                <tr>
+                  <th scope="col">상황</th>
+                  <th scope="col">견본으로 적어 둘 한 줄</th>
+                  <th scope="col">왜 미리 적나</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">무주택</th>
+                  <td>무주택 · 세대원 주택 없음 · 청약통장 가입 2018-06</td>
+                  <td>직접 세금보다 매수·청약 시점 판단에 씀</td>
+                </tr>
+                <tr>
+                  <th scope="row">1주택·실거주</th>
+                  <td>1주택 · 본인 전입 2019-05-02 · 계속 거주</td>
+                  <td>거주 요건·장특 대조용</td>
+                </tr>
+                <tr>
+                  <th scope="row">1주택·비거주</th>
+                  <td>1주택 · 소유 서울A · 전입 인천B · 실거주 아님</td>
+                  <td>비거주 논의 시 본인 칸 확인용</td>
+                </tr>
+                <tr>
+                  <th scope="row">다주택</th>
+                  <td>2주택 · A 2019 취득 · B 2022 취득 · A만 거주</td>
+                  <td>보유/매도 시나리오 메모용</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
+          <p style="font-size:13px;color:#64748b;">※ 표 값은 견본입니다. 본인 등기·초본·가족관계로 교체하세요.</p>
+
+          <h2>3. 확인해야 할 서류 3종</h2>
+          <p>
+            발표가 나면 뉴스에 “실거주”, “취득일”, “보유 기간” 같은 단어가 나옵니다.
+            그때 머릿속 기억만으로는 대조가 안 됩니다.
+            미리 모아 둘 핵심은 세 가지입니다.
+            <strong>취득일</strong>, <strong>전입일</strong>, <strong>거주 이력</strong>입니다.
+            왜 필요한가? 확정 문안이 “언제부터 살았는가”, “언제 샀는가”를 물을 때
+            같은 날짜를 서류와 맞춰야 하기 때문입니다.
+          </p>
+
+          <h3>취득일 — 등기부등본·매매계약서</h3>
+          <p>
+            취득일은 “내가 언제 이 집을 갖게 됐는지”입니다.
+            매매계약서의 잔금일·소유권이전일과, 등기부등본 갑구의 소유권이전 등기일이
+            다를 수 있어 둘 다 보는 편이 안전합니다.
+            등기부등본은 인터넷등기소에서 열람·발급할 수 있습니다.
+            주소(또는 고유번호)로 검색한 뒤, 갑구에서
+            <strong>소유권이전</strong> 등기 원인·일자를 메모하세요.
+            견본: 취득일 <strong>2019-03-15 (등기부 갑구 소유권이전 기준)</strong>.
+            인터넷등기소 절차는 대략 이렇습니다.
+            사이트 접속 → 부동산등기 열람/발급 → 소재지 주소 또는 고유번호 입력 →
+            해당 집합건물·토지를 선택 → 등기사항전부증명서(말소사항 포함 여부는 목적에 맞게) →
+            갑구에서 현재 소유자 명의와 등기 원인을 확인합니다.
+            공동명의면 지분 비율도 메모하세요. 발표 후 세대·명의 요건이 나오면 지분이 대조 포인트가 됩니다.
+            매매계약서가 있으면 계약일·잔금일도 옆에 적어 두면,
+            발표 후 “어느 날짜를 보느냐” 논란이 나와도 자료를 바로 펼 수 있습니다.
+            발급 PDF는 파일명을 “등기_A단지_20190315.pdf”처럼 날짜가 보이게 저장하는 편이 찾기 쉽습니다.
+          </p>
+          <p>
+            왜 미리 적나?
+            장특공제·양도세 이야기가 나오면 보유 기간 계산의 출발점이 취득일입니다.
+            개편안이 나와도 “내 취득일이 이 날짜”라는 사실은 바뀌지 않습니다.
+            바뀌는 것은 그 날짜에 어떤 요건을 적용할지이므로,
+            날짜부터 고정해 두는 것이 발표 후 대조의 첫 칸입니다.
+          </p>
+
+          <h3>전입일 — 주민등록초본</h3>
+          <p>
+            전입일은 “이 주소로 언제 옮겼는지”입니다.
+            실거주 여부를 말할 때 자주 꺼내지는 자료가 주민등록초본입니다.
+            정부24(gov.kr)에서 공동인증·간편인증 후
+            <strong>주민등록표 초본</strong>을 신청합니다.
+            여기서 실무 디테일: 발급 옵션에서
+            <strong>「과거 주소 변동사항 포함」</strong>을 체크하지 않으면
+            현재 주소만 나오고, 예전에 어디에 살았는지 이력이 빠질 수 있습니다.
+            거주 기간을 세려면 과거 변동사항이 포함된 초본이 필요합니다.
+            견본: 현 주소 전입일 <strong>2019-05-02</strong>, 직전 주소 전출 <strong>2019-05-01</strong>.
+          </p>
+          <p>
+            왜 미리 적나?
+            “실거주냐 비거주냐” 논의가 나와도, 초본에 찍힌 전입·전출 날짜는 이미 있는 사실입니다.
+            발표 후 요건이 어떻게 정해지든, 그 날짜를 문안에 대입하려면
+            PDF나 출력본을 폴더에 넣어 두는 편이 훨씬 빠릅니다.
+            가족 세대가 갈라져 있으면 세대주·세대원 초본을 각각 받아
+            “누가 어디에 전입했는지”를 한 장에 정리하세요.
+            정부24 초본 신청 화면에서는 수령 방법(전자문서·출력)과 용도 칸이 있습니다.
+            용도는 “본인 확인·사실 확인” 정도로 두고, 열람만 하고 닫지 말고 파일을 받으세요.
+            모바일 앱으로 받으면 나중에 PC에서 날짜를 읽기 어려울 수 있어,
+            PDF를 메일함이나 클라우드 한곳에 모아 두는 것을 권합니다.
+            전입일이 계약일·잔금일과 몇 주 차이 나는 것은 흔합니다.
+            견본처럼 취득 3월 15일·전입 5월 2일이면, 그 간격을 숨기지 말고 그대로 적으세요.
+            발표 문안이 “전입 후 며칠”을 말할 때 그 간격이 대조 대상이 됩니다.
+          </p>
+
+          <h3>거주 이력 — 초본 + 전입신고 흐름</h3>
+          <p>
+            거주 이력은 전입일 하나로 끝나지 않습니다.
+            “그 주소에 얼마나 연속으로 살았는지”, “중간에 다른 곳으로 빠졌는지”가 이어집니다.
+            초본의 주소 변동 이력에 더해,
+            필요하면 정부24·주민센터에서 전입신고 관련 안내를 확인합니다.
+            견본 메모: <strong>2019-05-02~현재 동일 주소 거주 · 중간 전출 없음</strong>.
+            초본을 펼치면 주소가 시간 역순 또는 연대순으로 쌓여 있습니다.
+            위에서 아래로 읽으며 “이 집 주소가 언제부터 언제까지인지”만 노란 형광펜으로 표시하세요.
+            직장 발령으로 6개월만 다른 시·군에 전입했다가 돌아온 기록이 있으면,
+            그 시작일·종료일을 별도 줄로 적습니다. 발표 문안이 연속 거주를 물을 때 그 줄이 필요합니다.
+            전입신고는 보통 전입한 날부터 14일 이내 등 법정 기한이 있으니,
+            실제 이사일과 신고일이 어긋난 적이 있는지도 초본 날짜와 맞춰 보세요.
+            이 글은 기한을 확정 해석하지 않습니다. 본인 초본 날짜와 주민센터·정부24 안내를 기준으로 하세요.
+            중간에 지방 발령으로 일시 전출했다면 그 기간도 날짜로 적어 두세요.
+            발표 문안에 “연속 거주” 같은 표현이 나올 때 바로 대조됩니다.
+          </p>
+
+          <figure class="post-figure">
+            <img src="images/post-41/docs-checklist.png" alt="발표 전 확인할 서류 3종 — 취득일·전입일·거주 이력과 발급처 안내 인포그래픽" width="1024" height="614" loading="lazy">
+            <figcaption>서류: 발표 전 확인할 서류 3종과 발급처. 정부24 주민등록초본 발급 시 과거 주소 변동사항 포함을 반드시 체크하세요.</figcaption>
+          </figure>
+
+          <div class="post-table-wrap">
+            <table class="post-table">
+              <caption class="visually-hidden">서류 3종 견본</caption>
+              <thead>
+                <tr>
+                  <th scope="col">항목</th>
+                  <th scope="col">확인 문서</th>
+                  <th scope="col">발급·조회처</th>
+                  <th scope="col">견본 값</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">취득일</th>
+                  <td>등기부등본 갑구 · 매매계약서</td>
+                  <td>인터넷등기소 · 보관 계약서</td>
+                  <td>2019-03-15 (등기부 기준)</td>
+                </tr>
+                <tr>
+                  <th scope="row">전입일</th>
+                  <td>주민등록초본</td>
+                  <td>정부24 (과거 주소 변동사항 포함)</td>
+                  <td>2019-05-02 전입</td>
+                </tr>
+                <tr>
+                  <th scope="row">거주 이력</th>
+                  <td>초본 주소 변동 · 전출입 기록</td>
+                  <td>정부24 · 주민센터</td>
+                  <td>2019-05-02~현재 연속 거주</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="font-size:13px;color:#64748b;">※ 견본입니다. 본인 서류 날짜로 교체하세요.</p>
 
           <div class="post-tip-box">
-            <h3>읽는 포인트</h3>
+            <h3>초본 발급 시 자주 놓치는 체크</h3>
             <ul>
-              <li>뉴스 제목의 강한 단어와, 실제 확정 문안은 다를 수 있습니다.</li>
-              <li>기준선·세율·시행 시점은 “거론 → 발표 → 시행”으로 단계가 나뉩니다.</li>
-              <li>지금은 <strong>시나리오를 준비</strong>하는 단계이지, 결론을 내리는 단계가 아닙니다.</li>
+              <li>정부24 → 주민등록표 초본 → <strong>과거 주소 변동사항 포함</strong> 선택</li>
+              <li>열람만 하고 저장을 안 하면 나중에 다시 발급해야 합니다. PDF 저장 권장</li>
+              <li>배우자·자녀 전입이 다르면 각자 초본을 받아 세대 구성을 맞춰 보세요</li>
             </ul>
           </div>
 
-          <h2>2. 무주택자라면 — 지금이 준비 타이밍</h2>
+          <h2>4. 조회처 맵 — 공시가·홈택스·정부24·위택스</h2>
           <p>
-            세제개편 논의만으로도 시장 기대와 불안이 동시에 커질 수 있습니다.
-            무주택 실수요자 입장에서는 “지금 당장 사야 한다/절대 기다린다”처럼 단정하기보다,
-            <strong>변동성이 커질 수 있는 시기에 기회를 놓치지 않을 준비</strong>를 해두는 쪽이 현실적입니다.
+            서류가 날짜라면, 조회처는 “지금 숫자·고지를 어디서 보는지”입니다.
+            네 곳을 역할만 나눠 기억하세요.
+            <strong>부동산공시가격 알리미</strong>는 공시가,
+            <strong>홈택스</strong>는 국세(양도·종부세 관련 조회·신고 안내),
+            <strong>정부24</strong>는 초본 등 행정 서류,
+            <strong>위택스</strong>는 지방세(재산세 등) 쪽입니다.
+            세제개편 뉴스가 나와도 이 네 곳의 로그인·메뉴 위치는 바뀌지 않습니다.
+            미리 한 번씩 들어가 두면, 발표 후 “어디 가서 보지?”를 줄일 수 있습니다.
+            알리미에서 단지를 못 찾겠으면 도로명 전체와 동·호수를 나눠 검색해 보세요.
+            동일 단지에 전용면적이 여러 개면, 본인 등기 면적과 같은 호를 고르는 것이 핵심입니다.
+            옆집 타입 공시가를 적으면 발표 후 대조가 어긋납니다.
+            조회 화면을 캡처할 때는 연도(2026)가 보이게 찍으세요.
+            전년도 공시가와 나란히 두면, 나중에 “올해 공시가 오른 집” 뉴스와 내 숫자를 구분하기 쉽습니다.
           </p>
           <p>
-            먼저
-            <a href="/tools/subscription-calculator/">청약 가점</a>을 정확히 계산해 두세요.
-            무주택 기간·부양가족·통장 가입기간을 대략으로만 알고 있으면,
-            실제 접수 순간에 판단이 흔들리기 쉽습니다.
-            관심 지역의
-            <a href="/tools/bunyang-alarm/">분양 일정 확인</a>도 함께 챙기면,
-            공고가 떴을 때 허둥대지 않고 자격·일정을 맞춰 볼 수 있습니다.
+            공시가격 알리미(realtyprice.kr)에서는 주소·단지로 공동주택 공시가격을 조회합니다.
+            화면에 나온 <strong>연도별 공시가격</strong>을 메모하세요.
+            견본: <strong>공시가 8.4억 (2026년)</strong>.
+            현행 1주택 종부세 논의·집계에서 자주 나오는
+            <strong>공시가 12억원 초과</strong> 기준점은
+            “내 공시가가 그 선에 가까운지”를 보는 조회용으로만 적습니다.
+            대상 가구가 약 31.8만→48.7만(+53.5%)으로 <strong>집계·보도</strong>된 맥락은
+            <a href="post-43.html">post-43</a>·<a href="post-37.html">post-37</a>에 정리돼 있으니,
+            여기서는 내 공시가 숫자만 확보하면 됩니다.
           </p>
           <p>
-            다만 무리한 추격 매수는 피해야 합니다.
-            발표 전후 심리가 흔들릴수록, 자금 계획·대출 가능 범위·월 상환 부담을 먼저 점검하는 게 우선입니다.
-            “준비”와 “성급한 실행”은 다릅니다.
+            홈택스(hometax.go.kr)에서는 로그인 후
+            양도소득세·종합부동산세 관련 <strong>안내·조회 메뉴</strong> 위치를 익혀 두세요.
+            발표 전에 세율을 예측해 계산기를 돌리라는 뜻이 아닙니다.
+            “어디서 고지·신고 화면이 열리는지”를 알아 두는 준비입니다.
+            위택스(wetax.go.kr)는 재산세 납부·조회에 쓰입니다.
+            종부세(국세)와 재산세(지방세)를 한 사이트에서 다 보지 않는다는 점만 구분하면,
+            뉴스의 “보유세” 단어를 덜 헷갈립니다.
+            종부세 과세기준일 <strong>6월 1일</strong>은 현행 제도의 확정 사실로,
+            “그해 6월 1일 기준으로 누가 납세의무자인지”를 이해할 때 참고합니다.
+            홈택스는 처음 들어가면 메뉴가 많아 헤맵니다.
+            준비 단계에서는 세액을 맞히지 말고, 로그인 → 인증서 유효기간 확인 →
+            “양도소득세”, “종합부동산세”가 있는 조회·신고 안내 화면까지 한 번만 들어가 보세요.
+            위택스는 재산세 고지서를 이메일·앱으로 받아 왔다면 그 PDF를 공시가 폴더 옆에 두세요.
+            보유세 뉴스가 나와도 “지방세 고지 얼마”와 “국세 종부세”를 한 장에 섞지 않는 것이 실무입니다.
           </p>
+
+          <figure class="post-figure">
+            <img src="images/post-41/lookup-map.png" alt="공시가격 알리미·홈택스·정부24·위택스 조회처 맵 인포그래픽" width="1024" height="499" loading="lazy">
+            <figcaption>조회처: 공시가격 알리미·홈택스·정부24·위택스에서 확인할 항목. 공시가 12억원은 현행 1주택 공제 기준이며 확정 기준은 공식 발표를 확인하세요.</figcaption>
+          </figure>
+
+          <div class="post-table-wrap">
+            <table class="post-table">
+              <caption class="visually-hidden">조회처 맵</caption>
+              <thead>
+                <tr>
+                  <th scope="col">조회처</th>
+                  <th scope="col">화면에서 찾을 것</th>
+                  <th scope="col">견본 메모</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">공시가격 알리미</th>
+                  <td>단지·동·호 · 연도별 공시가격</td>
+                  <td>2026년 공시가 8.4억</td>
+                </tr>
+                <tr>
+                  <th scope="row">홈택스</th>
+                  <td>양도·종부세 안내·조회 메뉴 위치</td>
+                  <td>로그인 확인 · 메뉴 경로 메모</td>
+                </tr>
+                <tr>
+                  <th scope="row">정부24</th>
+                  <td>주민등록초본 · 과거 주소 변동 포함</td>
+                  <td>초본 PDF 저장 완료</td>
+                </tr>
+                <tr>
+                  <th scope="row">위택스</th>
+                  <td>재산세 고지·납부 조회</td>
+                  <td>최근 재산세 고지 연도 확인</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="font-size:13px;color:#64748b;">※ 8.4억 등은 견본. 알리미 조회 결과로 교체. 12억·집계 수치는 논의·집계 맥락(post-43) 참고.</p>
+
+          <div class="reason-grid">
+            <div class="reason-card">
+              <div class="rc-icon" aria-hidden="true">🔎</div>
+              <h3>공시가 ≠ 시세</h3>
+              <p>이웃이 말한 매매가와 알리미 공시가는 다릅니다. 종부세 집계 이야기는 공시가 기준입니다.</p>
+            </div>
+            <div class="reason-card">
+              <div class="rc-icon" aria-hidden="true">📅</div>
+              <h3>6월 1일 기준일</h3>
+              <p>종부세 과세기준일(현행)을 알아 두면, 연중 소유 변동 메모를 정리할 때 기준점이 됩니다.</p>
+            </div>
+          </div>
+
+          <h2>5. 무주택자 준비 항목</h2>
+          <p>
+            무주택자는 이번 세제개편의 <strong>직접 대상이 아닌 경우가 많습니다.</strong>
+            보유세·장특·양도는 이미 집을 가진 사람에게 더 직접 닿습니다.
+            다만 발표 전후 시장 심리·매물·호가가 흔들리면,
+            <strong>매수 시점·자금·청약 일정</strong>을 판단할 때 간접으로 쓰입니다.
+            지금은 “세금 계산”보다 “자격·일정·여유 자금이 정리돼 있는가”만 짧게 보면 됩니다.
+          </p>
+          <p>
+            청약 가점·통장 납입·분양 일정 상세는 이 글에서 길게 다루지 않습니다.
+            <a href="post-42.html">청약 필수 용어</a>,
+            <a href="post-44.html">청약통장 납입금액</a>,
+            <a href="/tools/subscription-calculator/">청약 가점 계산기</a>,
+            <a href="/tools/bunyang-alarm/">분양 알리미</a>로 넘깁니다.
+            무주택 관점 에세이는 <a href="post-40.html">post-40</a>을 참고하세요.
+          </p>
+
+          <h2>6. 1주택자 준비 — 실거주 vs 비거주</h2>
+          <p>
+            1주택자 준비의 핵심은 “내가 그 집에 실제로 살고 있는가”를
+            <strong>서류 날짜로</strong> 보여줄 수 있는지입니다.
+            정책이 실거주·비거주를 어떻게 나눌지는 발표를 봐야 하고,
+            그 방향 설명은 <a href="post-43.html">post-43 장특공제 섹션</a>에 있습니다.
+            여기서 할 일은 전입일·거주 연속 여부·공시가 위치를 메모하는 것입니다.
+          </p>
+          <p>
+            실거주 견본 메모:
+            소유 주택 주소 = 초본 현주소,
+            전입 <strong>2019-05-02</strong>,
+            취득 <strong>2019-03-15</strong>,
+            공시가 <strong>8.4억(2026)</strong>.
+            비거주 견본 메모:
+            소유는 서울 A단지, 전입은 인천 B주소,
+            A에는 전입 기록 없음.
+            두 경우 모두 확정 공제율을 가정해 계산하지 마세요.
+            발표 문안이 나오면 위 날짜를 그대로 대입하는 것이 목적입니다.
+            실거주 쪽은 전입 후 공과금·관리비 명의가 본인인지까지 맞춰 볼 필요는 이 단계에서 필수가 아닙니다.
+            다만 초본 주소와 등기 주소가 한 글자라도 다르면(행정동 개편·도로명 변경)
+            알리미·등기소 검색이 안 될 수 있어, 둘 다 캡처해 두는 편이 안전합니다.
+            비거주 쪽은 “전세 준 집”인지 “부모 집 명의만 본인”인지 한 줄로 구분해 두면,
+            발표 후 상담 때 설명 시간이 줄어듭니다. 세율 가정은 하지 마세요.
+          </p>
+          <p>
+            공시가가 12억 선에 가까운지 먼지는
+            알리미 숫자로만 확인합니다.
+            12억은 현행 1주택 관련 <strong>집계·논의</strong>에서 반복되는 기준점이지,
+            개편안의 확정 한도가 아닙니다.
+            “내 공시가 8.4억 → 12억과 差額 약 3.6억”처럼
+            거리감만 적어 두면, 발표 후 기준선이 나와도 대조가 빠릅니다.
+          </p>
+          <ul class="check-list">
+            <li>
+              <strong>주소 일치 여부</strong><br>
+              등기 주소 vs 초본 현주소 — 같으면 실거주 쪽 메모, 다르면 비거주 쪽 메모
+            </li>
+            <li>
+              <strong>전입·취득 순서</strong><br>
+              견본: 취득 2019-03-15 → 전입 2019-05-02 (약 48일 뒤 전입)
+            </li>
+            <li>
+              <strong>공시가 연도</strong><br>
+              알리미에서 2026년 값과 직전 연도 값을 나란히 저장
+            </li>
+          </ul>
+
+          <h2>7. 다주택자 준비 — 시나리오만 적어 두기</h2>
+          <p>
+            다주택자는 뉴스에 “중과”, “유예”, “보유세”가 자주 붙습니다.
+            <strong>다주택 양도세 중과 유예 연장은 없을 관측</strong>,
+            양도세 <strong>1년 유예 거론</strong> 등은
+            <a href="post-43.html">post-43</a>에 관측·거론으로 정리돼 있습니다.
+            이 글에서는 세율을 채우지 않습니다.
+            대신 “보유할 경우 / 일부를 정리할 경우”에
+            <strong>어떤 항목을 적어 둘지</strong>만 준비합니다.
+          </p>
+          <p>
+            시나리오 A(계속 보유) 견본 메모:
+            A주택 거주 · B주택 비거주 ·
+            B 취득 2022-08-10 ·
+            B 공시가 6.2억(2026) ·
+            대출 잔액은 은행 앱 잔액 그대로 기입.
+            시나리오 B(B만 매도 가정) 견본 메모:
+            매도 희망 시기(예: 2026년 4분기) ·
+            취득일 2022-08-10 ·
+            거주 여부 없음 ·
+            대체 주거 필요 여부 없음.
+            세금 칸은 “발표 후 기입”으로 비워 두지 말고,
+            <strong>「확정 문안 확인 후 세무사 상담」</strong>이라고 적어 두세요.
+            빈칸보다 “상담 전”이 행동 지시가 됩니다.
+          </p>
+          <p>
+            개별 취득 시기·담보·세대 구성에 따라 결과가 크게 달라집니다.
+            가정만으로 큰 매매를 결정하지 말고,
+            시나리오 메모를 들고 <strong>세무 전문가 상담</strong>을 권합니다.
+            주택이 세 채 이상이면 표를 직접 만들어
+            ① 소재지 ② 취득일 ③ 공시가 연도값 ④ 전입 여부 ⑤ 대출 유무
+            다섯 칸만 채우면 됩니다. 세율 칸은 비우지 말고 “발표·상담 후”라고 적으세요.
+            공시가가 다른 연도로 섞이면 합산 감각이 틀어지니, 조회 연도를 2026으로 통일하는 견본을 권합니다.
+          </p>
+
+          <h2>8. 발표 후 대조 체크리스트</h2>
+          <p>
+            발표가 나오면 보도자료·개정안 요약을 열고,
+            아래 견본처럼 <strong>내 값</strong>과 <strong>문안 항목</strong>을 한 줄씩 맞춥니다.
+            대조할 때는 기사 제목이 아니라 기획재정부 보도자료 본문 문장을 복사해 옆에 붙이세요.
+            “강화”, “완화” 같은 헤드라인 단어는 요건 문장과 다를 수 있습니다.
+            PDF 검색창에 “1주택”, “거주요건”, “시행일”만 쳐도 해당 페이지로 이동합니다.
+            목적은 “지금 당장 사거나 파는 것”이 아니라,
+            해당·비해당을 빠르게 가리는 것입니다.
+          </p>
+
+          <div class="post-table-wrap">
+            <table class="post-table">
+              <caption class="visually-hidden">발표 후 대조 견본</caption>
+              <thead>
+                <tr>
+                  <th scope="col">확정 문안에서 볼 항목</th>
+                  <th scope="col">내 견본 값</th>
+                  <th scope="col">대조 결과 예시</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">적용 시행 시기</th>
+                  <td>메모: 2027년 적용 관측(발표 전)</td>
+                  <td>발표문에 적힌 시행일으로 교체</td>
+                </tr>
+                <tr>
+                  <th scope="row">1주택 공시가·공제 관련</th>
+                  <td>공시가 8.4억 (2026)</td>
+                  <td>문안 기준선과 대소 비교</td>
+                </tr>
+                <tr>
+                  <th scope="row">실거주·전입 요건</th>
+                  <td>전입 2019-05-02 · 연속 거주</td>
+                  <td>요건 충족 여부 체크</td>
+                </tr>
+                <tr>
+                  <th scope="row">취득·보유 기간</th>
+                  <td>취득 2019-03-15</td>
+                  <td>보유 연수 계산 후 기입</td>
+                </tr>
+                <tr>
+                  <th scope="row">다주택 양도·유예</th>
+                  <td>2주택 · B 2022-08-10 취득</td>
+                  <td>해당 시 상담 일정 잡기</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="font-size:13px;color:#64748b;">※ 견본. 확정 세율은 비워 두지 말고 “공식 발표·상담 후 기입”으로 표시하세요.</p>
+
+          <ul class="check-list">
+            <li>
+              <strong>① 보도자료 PDF 저장</strong><br>
+              기획재정부·국세청 원문을 로컬에 보관 · 요약 기사만 보지 않기
+            </li>
+            <li>
+              <strong>② 내 폴더 열기</strong><br>
+              등기·초본·공시가 캡처를 같은 폴더에 모아 두었는지 확인
+            </li>
+            <li>
+              <strong>③ 한 줄 판정</strong><br>
+              “해당 / 비해당 / 상담 필요” 중 하나만 먼저 표시
+            </li>
+            <li>
+              <strong>④ 실행은 나중</strong><br>
+              매도·매수·증여는 판정·상담 이후로 미루는 편이 안전
+            </li>
+          </ul>
+
+          <h2>9. 자주 하는 실수·오해</h2>
+          <p>
+            첫 실수는 제목만 보고 급히 파는 것입니다.
+            “1년 유예”는 <strong>거론</strong>일 뿐 확정이 아닙니다.
+            유예 기간·대상이 발표문에 적히기 전에 세율을 가정하면
+            자기 상황에 해당하지 않는 규제를 전제할 수 있습니다.
+          </p>
+          <p>
+            둘째는 시세와 공시가를 섞는 것입니다.
+            “우리 단지 10억에 거래됐다”와 알리미 공시가 8.4억은 다른 숫자입니다.
+            12억 <strong>집계</strong> 이야기도 공시가 기준입니다.
+          </p>
+          <p>
+            셋째는 초본을 대충 발급하는 것입니다.
+            과거 주소 변동사항을 빼면 거주 이력이 안 나와,
+            발표 후 “연속 거주”를 증명하려다 다시 발급하게 됩니다.
+          </p>
+          <p>
+            넷째는 재산세 고지와 종부세를 한곳으로 아는 것입니다.
+            위택스와 홈택스 역할을 나누어 두면, “보유세” 뉴스에 덜 휘둘립니다.
+            공정시장가액비율 현행 약 60%·거론 시나리오 80% 같은 숫자는
+            개념 설명이 필요할 때
+            <a href="post-43.html">post-43</a>·<a href="post-31.html">post-31</a>을 보고,
+            준비 단계에서는 “내 공시가 숫자”만 확보하면 충분합니다.
+          </p>
+
+          <h2>10. 자주 묻는 질문 + 마무리</h2>
+          <p>
+            <strong>Q1. 발표 전에 집을 팔면 어떤 세율이 적용되나?</strong><br>
+            양도세는 원칙적으로 <strong>양도 시점</strong>의 세법을 따릅니다.
+            개편안이 확정·시행되기 전이면 현행 규정이 기준이 되는 경우가 많습니다.
+            다만 계약일·잔금일·등기일 해석과 개별 요건이 있어 단정하지 않습니다.
+            국세청 안내·세무 상담으로 확인하세요.
+          </p>
+          <p>
+            <strong>Q2. 공시가격은 어디서 보나?</strong><br>
+            국토교통부 <strong>부동산공시가격 알리미</strong>(realtyprice.kr)에서
+            주소·단지별 공시가격을 조회합니다.
+            견본처럼 “2026년 8.4억” 형식으로 메모해 두면 발표 후 대조가 쉽습니다.
+          </p>
+          <p>
+            <strong>Q3. 실거주·비거주는 뭘로 증명하나?</strong><br>
+            실무에서는 주민등록초본의 전입·주소 변동,
+            등기 주소와의 일치 여부를 먼저 봅니다.
+            개편안의 확정 요건은 발표 후 공식 문안을 따라야 합니다.
+            지금은 초본(과거 주소 포함)을 받아 날짜를 고정하세요.
+          </p>
+          <p>
+            <strong>Q4. 종부세 대상인지 미리 알 수 있나?</strong><br>
+            확정 고지 전에도 공시가와 현행 기준점을 대조해
+            “12억 선과의 거리”를 가늠할 수는 있습니다.
+            1주택 공시가 12억 초과는 현행·집계 맥락의 기준점이며,
+            개편안 확정 한도가 아닙니다.
+            최종 납부 대상·세액은 관할 안내·홈택스를 확인하세요.
+          </p>
+          <p>
+            <strong>Q5. 지금 급히 팔거나 사면 되나?</strong><br>
+            확정되지 않은 세율을 가정한 급매매는 위험할 수 있습니다.
+            서류·공시가·시나리오 메모를 준비해 두고,
+            발표·상담 후 판단하는 편이 안전합니다.
+            투자 권유가 아닙니다.
+          </p>
+
+          <p>
+            정리하면, 발표 전 할 일은 “세율 맞히기”가 아니라
+            <strong>취득일·전입일·거주 이력·공시가</strong>를 서류와 조회처에서 고정하는 것입니다.
+            정책 방향은 <a href="post-43.html">post-43</a>,
+            대토론회 맥락은 <a href="post-39.html">post-39</a>를 보세요.
+            숫자는 기획재정부·국세청·알리미·홈택스가 정본입니다.
+          </p>
+
+          <div class="post-table-wrap">
+            <table class="post-table">
+              <caption class="visually-hidden">상황별 준비 한눈에</caption>
+              <thead>
+                <tr>
+                  <th scope="col">상황</th>
+                  <th scope="col">우선 할 일 (견본)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">무주택</th>
+                  <td>직접 세금 대비보다 자금·일정 메모 · 청약은 post-42·44·도구로</td>
+                </tr>
+                <tr>
+                  <th scope="row">1주택·실거주</th>
+                  <td>초본(과거주소 포함)·등기 취득일·공시가 8.4억 형 메모</td>
+                </tr>
+                <tr>
+                  <th scope="row">1주택·비거주</th>
+                  <td>소유지 vs 전입지 주소 분리 메모 · 거주 이력 정리</td>
+                </tr>
+                <tr>
+                  <th scope="row">다주택</th>
+                  <td>주택별 취득일·공시가·거주 여부 · A/B 시나리오 · 상담 일정</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
           <div class="cta-box">
-            <div class="cta-icon">🏠</div>
-            <h3>청약 가점부터 확인해 보세요</h3>
-            <p>무주택 기간·부양가족·통장 가입기간을 넣으면 가점을 바로 계산합니다.</p>
-            <a href="/tools/subscription-calculator/" class="cta-button">청약 가점 계산기 열기 →</a>
+            <div class="cta-icon" aria-hidden="true">📑</div>
+            <h3>정책 방향이 궁금하면</h3>
+            <p>세제 3축·일정·영향 매트릭스는 총정리 글에서 이어집니다.</p>
+            <a href="post-43.html" class="cta-button">세제개편 방향 총정리 →</a>
           </div>
 
-          <div class="cta-box">
-            <div class="cta-icon">📢</div>
-            <h3>관심 지역 분양 일정 챙기기</h3>
-            <p>전국 청약·분양 공고를 카드로 모아보고 지역·상태로 빠르게 골라보세요.</p>
-            <a href="/tools/bunyang-alarm/" class="cta-button">분양 알리미 열기 →</a>
-          </div>
-
-          <h2>3. 1주택자라면 — 실거주 vs 비거주 구분이 핵심</h2>
-          <p>
-            논의 방향상 “비거주 1주택”에 대한 규제가 거론되는 만큼,
-            1주택자라면 본인이 <strong>실거주인지 비거주인지</strong> 상황을 먼저 정리해 두는 게 중요합니다.
-            같은 1주택이라도, 실제로 사는 집인지 아닌지에 따라 해석이 달라질 수 있다는 관측이 반복되고 있기 때문입니다.
-            물론 이것도 확정 전 논의입니다.
-          </p>
-          <p>
-            장기보유특별공제 개편 얘기가 나오는 만큼,
-            보유·거주 기간 요건을 미리 확인해 두는 것도 도움이 됩니다.
-            “내가 지금 어떤 요건을 충족하고 있는지”만 정리해 두면,
-            발표 후 확정 문안을 읽을 때 훨씬 빠르게 자기 케이스를 대조할 수 있습니다.
-          </p>
-          <p>
-            다만 확정 전이므로 성급한 매도·매수 결정은 신중해야 합니다.
-            제목만 보고 움직이면, 정작 자기 상황에 해당하지 않는 규제를 가정하고 손해를 볼 수 있습니다.
-            방향은 참고하되, 실행은 발표 이후가 안전한 경우가 많습니다.
-          </p>
-
-          <h2>4. 다주택자라면 — 시나리오별로 미리 계산</h2>
-          <p>
-            다주택자 양도세 중과 유예 연장이 없을 것으로 관측되는 보도가 이어지고 있습니다.
-            관측일 뿐이지만, 보유/매도 시나리오를 미리 따져보는 관점은 유용합니다.
-            “팔 경우 / 더 들고 갈 경우”를 표로 적어 두고,
-            세금·현금흐름·대체 주거 비용을 나란히 비교해 보세요.
-          </p>
-          <p>
-            보유세 부담이 바뀔 가능성도 염두에 둘 필요가 있습니다.
-            초고가·비거주 쪽에 초점이 맞춰진다는 논의가 있지만,
-            기준선과 적용 범위는 발표를 봐야 합니다.
-            가정만으로 큰 결정을 내리기보다, 시나리오 A/B를 준비해 두는 방식이 낫습니다.
-          </p>
-          <p>
-            이 블로그는 참고용입니다.
-            다주택 세제는 개별 보유 구조·취득 시기·거주 요건에 따라 결과가 크게 달라지므로,
-            <strong>세무 전문가 상담</strong>을 권합니다.
-          </p>
-
-          <h2>5. 공통 체크리스트 — 발표 전 지금 할 수 있는 것</h2>
-          <div class="checklist-box">
-            <h3>지금 점검해 두면 좋은 항목</h3>
-            <ul>
-              <li>내 상황(무주택 / 1주택 / 다주택)을 명확히 정의하기</li>
-              <li>자금 계획·대출 여력 점검하기</li>
-              <li><a href="/tools/subscription-calculator/">청약 가점</a> 계산해 두기</li>
-              <li>관심 단지 <a href="/tools/bunyang-alarm/">분양 일정</a> 챙기기</li>
-              <li>발표가 나오면 <strong>확정 내용 기준</strong>으로 다시 판단하기</li>
-            </ul>
-          </div>
-          <p>
-            체크리스트의 목적은 “지금 당장 무언가를 사거나 파는 것”이 아닙니다.
-            확정안이 나왔을 때, 자기 케이스를 빠르게 대조할 수 있게 준비해 두는 것입니다.
-          </p>
-
-          <h2>마무리</h2>
-          <p>
-            아직 확정 전이니, 미리 겁먹지도 말고 미리 확신하지도 않는 편이 낫습니다.
-            방향은 읽어 두고, 할 수 있는 준비만 해 두자는 톤이 지금 시점엔 가장 실용적입니다.
-            발표 후에는 확정 내용을 기준으로 후속 글을 이어가겠습니다.
-          </p>
-          <p>
-            시리즈로 이어 읽기 좋게,
-            <a href="/blog/post-39.html">지난 대토론회 정리 글</a>과
-            <a href="/blog/post-40.html">30대 무주택 월급쟁이 관점 글</a>도 함께 보시면 흐름이 잡힙니다.
-          </p>
-
-          <div class="post-tip-box">
-            <h3>같이 보면 좋은 글·도구</h3>
-            <ul>
-              <li><a href="/blog/post-39.html">지난 대토론회 정리 글</a></li>
-              <li><a href="/blog/post-40.html">30대 무주택 월급쟁이 관점 글</a></li>
-              <li><a href="/tools/subscription-calculator/">청약 가점 계산기</a> · <a href="/tools/bunyang-alarm/">분양 알리미</a></li>
-            </ul>
+          <div class="cta-box" style="background:linear-gradient(135deg,#1e3a5f 0%,#0f766e 100%);margin-top:16px;">
+            <div class="cta-icon" aria-hidden="true">🏠</div>
+            <h3>무주택·청약 쪽이면</h3>
+            <p>가점·분양 일정은 도구로, 용어·납입은 청약 글로 확인하세요.</p>
+            <a href="/tools/subscription-calculator/" class="cta-button">청약 가점 계산기 →</a>
           </div>
 
           <div class="post-sources">
             <p class="post-sources-title">📎 출처·참고</p>
             <ul>
-              <li>2026년 7월 부동산 세제개편 관련 공개 논의·매체 보도 (발표 예정 단계)</li>
-              <li><a href="/blog/post-39.html">대토론회 정리</a> · <a href="/blog/post-40.html">무주택 관점 에세이</a></li>
-              <li><a href="/tools/subscription-calculator/">청약 가점 계산기</a> · <a href="/tools/bunyang-alarm/">분양 알리미</a></li>
+              <li>2026년 7월 부동산 세제개편 관련 공개 논의·매체 보도 (발표 예정·관측 단계)</li>
+              <li>국토교통부 부동산공시가격 알리미(realtyprice.kr) · 정부24 · 홈택스 · 위택스 · 인터넷등기소</li>
+              <li>종부세 과세기준일 6월 1일(현행) · 1주택 공시가 12억 초과·대상 가구 집계는 논의·집계 맥락</li>
+              <li><a href="post-43.html">세제개편 총정리</a> · <a href="post-39.html">대토론회</a> · <a href="post-37.html">종부세</a></li>
             </ul>
           </div>
 
           <div class="post-related">
             <p class="post-related-title">📌 관련 글</p>
             <ul>
-              <li><a href="post-39.html">이재명 대통령 부동산 대토론회 총정리</a></li>
-              <li><a href="post-40.html">부동산 대토론회 보면서 든 생각</a></li>
-              <li><a href="post-37.html">종부세 어떻게 바뀔까? 세제 개편 방향 총정리</a></li>
+              <li><a href="post-43.html">7월 부동산 세제개편, 지금까지 나온 방향 총정리 — 보유세·장특공제·양도세</a></li>
+              <li><a href="post-39.html">부동산 대토론회 총정리 — 보유세·다주택·공급</a></li>
+              <li><a href="post-42.html">청약 전에 꼭 알아야 할 필수 용어 10가지</a></li>
             </ul>
           </div>
 
@@ -436,16 +834,16 @@
           <p class="post-updated-footer">
             <time datetime="2026-07-27">최초 게시: 2026년 7월 27일</time>
             <span class="post-meta-sep">·</span>
-            <time datetime="2026-07-27">최종 수정: 2026년 7월 27일</time>
+            <time datetime="2026-08-24">최종 수정: 2026년 8월 24일</time>
           </p>
 
           <nav class="post-nav" aria-label="글 네비게이션">
             <a href="post-40.html" class="post-nav-link">← 이전 글: 부동산 대토론회 보면서 든 생각</a>
-            <a href="/blog/" class="post-nav-link">블로그 목록 →</a>
+            <a href="post-43.html" class="post-nav-link">다음: 세제개편 방향 총정리 →</a>
           </nav>
 
           <p class="post-disclaimer">
-            <em>본 글은 정보 제공 목적이며, 발표 전 논의 단계 내용을 정리한 것으로 확정된 정책이 아닙니다. 투자·세무 판단은 반드시 전문가와 상의하시기 바랍니다.</em>
+            <em>본 글은 정보 제공 목적이며 발표 전 논의·관측 단계의 준비 실무를 정리한 것입니다. 표의 날짜·금액은 견본입니다. 투자·법률·세무 자문이 아니며, 확정 내용은 기획재정부·국세청 공식 발표와 전문가 상담으로 확인하시기 바랍니다.</em>
           </p>
         </article>
       </div>

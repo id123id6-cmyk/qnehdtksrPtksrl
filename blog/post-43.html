@@ -28,7 +28,7 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8232968272801958" crossorigin="anonymous"></script>
 
   <title>7월 부동산 세제개편, 지금까지 나온 방향 총정리 — 보유세·장특공제·양도세 (2026.7.29) | 승박</title>
-  <meta name="description" content="7월 말~8월 초 발표 예정인 부동산 세제개편. 종부세(보유세), 1주택 장기보유특별공제, 양도세까지 현재까지 거론되는 방향을 상황별로 정리했습니다.">
+  <meta name="description" content="2026년 7월 부동산 세제개편 논의를 보유세·장특공제·양도세 3축으로 총정리. 종부세 기준 변화, 장특공제 쟁점, 양도세 유예 관측, 입법 일정, 상황별 영향 매트릭스와 FAQ. 발표 전 논의·집계·관측 단계 안내.">
   <meta name="keywords" content="7월 세제개편, 부동산 세금, 종부세, 보유세, 장기보유특별공제, 양도세, 1주택, 다주택, 2026 부동산 정책, 승박 블로그">
   <meta name="robots" content="index, follow">
   <meta name="author" content="승박">
@@ -38,7 +38,7 @@
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://seungbak.com/blog/post-43.html">
   <meta property="og:title" content="7월 부동산 세제개편, 지금까지 나온 방향 총정리 — 보유세·장특공제·양도세 (2026.7.29)">
-  <meta property="og:description" content="7월 말~8월 초 발표 예정인 부동산 세제개편. 종부세(보유세), 1주택 장기보유특별공제, 양도세까지 현재까지 거론되는 방향을 상황별로 정리했습니다.">
+  <meta property="og:description" content="2026년 7월 부동산 세제개편 논의를 보유세·장특공제·양도세 3축으로 총정리. 종부세 기준 변화, 장특공제 쟁점, 양도세 유예 관측, 입법 일정, 상황별 영향 매트릭스와 FAQ.">
   <meta property="og:image" content="https://seungbak.com/blog/images/post-43/hero.jpg">
   <meta property="og:locale" content="ko_KR">
   <meta property="og:site_name" content="승박">
@@ -55,9 +55,9 @@
     "@context": "https://schema.org",
     "@type": "Article",
     "headline": "7월 부동산 세제개편, 지금까지 나온 방향 총정리 — 보유세·장특공제·양도세 (2026.7.29)",
-    "description": "7월 말~8월 초 발표 예정인 부동산 세제개편. 종부세(보유세), 1주택 장기보유특별공제, 양도세까지 현재까지 거론되는 방향을 상황별로 정리했습니다.",
+    "description": "2026년 7월 부동산 세제개편 논의를 보유세·장특공제·양도세 3축으로 총정리. 종부세 기준 변화, 장특공제 쟁점, 양도세 유예 관측, 입법 일정, 상황별 영향 매트릭스와 FAQ.",
     "datePublished": "2026-07-29",
-    "dateModified": "2026-07-29",
+    "dateModified": "2026-08-24",
     "author": { "@type": "Person", "name": "승박" },
     "publisher": {
       "@type": "Organization",
@@ -122,56 +122,39 @@
     .post-breadcrumb { font-size: 14px; color: var(--color-text-muted); margin-bottom: 16px; }
     .post-breadcrumb a { color: var(--color-dark); text-decoration: none; }
     .post-breadcrumb a:hover { text-decoration: underline; }
-    .fact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin: 16px 0 24px;
+    .visually-hidden {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
     }
-    @media (max-width: 640px) {
-      .fact-grid { grid-template-columns: 1fr; }
+    .post-table-wrap { overflow-x: auto; margin: 16px 0 8px; }
+    .post-table {
+      width: 100%; border-collapse: collapse; font-size: 14px;
+      background: #fff; border: 1px solid #e2e8f0; border-radius: 12px;
     }
-    .fact-card {
-      padding: 16px 14px;
-      border-radius: 12px;
-      background: #f8fafc;
+    .post-table th, .post-table td {
+      padding: 10px 12px; border-bottom: 1px solid #e2e8f0; text-align: left;
+    }
+    .post-table thead th {
+      background: #f0fdfa; color: #115e59; font-weight: 700; white-space: nowrap;
+    }
+    .post-table tbody tr:nth-child(even) { background: #f8fafc; }
+    .reason-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 8px 0;
+    }
+    @media (max-width: 640px) { .reason-grid { grid-template-columns: 1fr; } }
+    .reason-card {
+      padding: 16px 14px; border-radius: 12px; background: #f8fafc;
       border: 1px solid #e2e8f0;
     }
-    .fact-card .fc-num {
-      display: inline-flex;
-      width: 24px;
-      height: 24px;
-      align-items: center;
-      justify-content: center;
-      border-radius: 999px;
-      background: #0d9488;
-      color: #fff;
-      font-size: 12px;
-      font-weight: 700;
-      margin-bottom: 8px;
+    .reason-card .rc-icon { font-size: 22px; margin-bottom: 6px; }
+    .reason-card h3 { margin: 0 0 6px; font-size: 15px; color: #0f172a; }
+    .reason-card p { margin: 0; font-size: 13px; line-height: 1.5; color: #475569; }
+    .check-list { margin: 16px 0; padding: 0; list-style: none; }
+    .check-list li {
+      margin-bottom: 12px; padding: 14px 16px; border-radius: 12px;
+      background: #f8fafc; border: 1px solid #e2e8f0; line-height: 1.55;
     }
-    .fact-card h3 { margin: 0 0 8px; font-size: 15px; color: #0f172a; }
-    .fact-card p { margin: 0; font-size: 13px; line-height: 1.55; color: #475569; }
-    .checklist-box {
-      margin: 20px 0 28px;
-      padding: 20px 22px;
-      border-radius: 14px;
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-    }
-    .checklist-box h3 { margin: 0 0 12px; font-size: 17px; color: #0f172a; }
-    .checklist-box ul { margin: 0; padding-left: 20px; color: #334155; }
-    .checklist-box li { margin-bottom: 10px; line-height: 1.55; }
-    .situation-card {
-      margin: 16px 0;
-      padding: 18px 18px 14px;
-      border-radius: 14px;
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-    }
-    .situation-card h3 { margin: 0 0 10px; font-size: 17px; color: #0f172a; }
-    .situation-card p { margin: 0 0 10px; font-size: 15px; line-height: 1.65; color: #334155; }
-    .situation-card p:last-child { margin-bottom: 0; }
+    .check-list strong { color: #0f766e; }
   </style>
 </head>
 <body class="theme-blog-post">
@@ -198,7 +181,7 @@
 
           <span class="blog-category-badge blog-category-badge--real-estate">📋 부동산 정책</span>
           <h1>7월 부동산 세제개편, 지금까지 나온 방향 총정리 — 보유세·장특공제·양도세 (2026.7.29)</h1>
-          <p class="post-subtitle">발표 임박 단계의 논의 방향을 정리한 참고용 글입니다. 확정안이 아닙니다.</p>
+          <p class="post-subtitle">세제 3축 총정리 — 비교표·일정·영향 매트릭스 (발표 전 논의·관측 단계)</p>
 
           <p class="post-meta">
             <time datetime="2026-07-29">2026-07-29</time>
@@ -213,200 +196,551 @@
             <figcaption>7월 말~8월 초 발표 예정으로 논의 중인 세제개편 방향을 정리한 안내 이미지 (확정 정책 아님)</figcaption>
           </figure>
 
-          <h2>들어가며 — 발표가 임박했다</h2>
+          <h2>1. 도입 — 발표 임박, 아직 확정 전</h2>
           <p class="post-lead">
-            2026년 7월 29일 기준, 부동산 세제개편은
-            <strong>발표 예정·확정 전</strong> 단계입니다.
+            2026년 7월 29일 기준, 부동산 세제개편은 <strong>발표 예정·확정 전</strong> 단계입니다.
             7월 말~8월 초 발표가 거론되며 보유세(종부세), 장기보유특별공제, 양도세 이야기가 한꺼번에 나오고 있습니다.
             다만 지금 나오는 내용은 확정된 세율·기준선·시행일이 아니라,
             <strong>지금까지 거론되는 방향</strong>을 정리한 참고 자료로 읽어야 합니다.
           </p>
           <p>
-            <a href="/blog/post-41.html">지난 글(7월 세제개편 미리보기)</a>에서는
-            “상황별로 뭘 준비할지”를 먼저 다뤘습니다.
-            이번 글은 그 이후 반복적으로 보이는 최신 논의 골자를 다시 모아,
-            무주택·1주택·다주택 체크포인트까지 업데이트한 버전입니다.
-            정책 맥락이 궁금하면
-            <a href="/blog/post-39.html">대토론회 정리 글</a>도 함께 보면 흐름이 잡힙니다.
+            이 글은 “세금 3축(보유·장특·양도)의 정책 방향”을 한곳에 모은 <strong>총정리</strong>입니다.
+            <a href="post-39.html">7월 23일 대토론회 정리</a>는 논의가 처음 공개된 맥락을,
+            <a href="post-41.html">7월 세제개편 미리보기</a>는 무주택·1주택·다주택 <strong>준비 실무</strong>를 다룹니다.
+            오늘 글은 그 사이에서 반복되는 논의 골자를 표와 일정으로 정리합니다.
+            “지금 뭘 준비할까”는 post-41 한 편으로 충분합니다. 여기서는 <strong>어디에 닿는지</strong>를 먼저 봅니다.
           </p>
           <p>
+            뉴스 제목만 훑으면 “이미 확정됐다”는 착각이 생기기 쉽습니다.
+            실제로는 거론 → 발표 → 국회 → 시행 순서가 남아 있고,
+            적용 시점은 <strong>2027년부터</strong>라는 <strong>관측</strong>이 반복되지만 확정은 아닙니다.
+            생산관리 월급쟁이인 저도 “7월에 세금 바뀐다”는 말을 들으면 일단 달력부터 확인합니다.
+            바뀌는 건 세율표일 수도 있고, 공시가 <strong>집계</strong>에 따른 대상 확대일 수도 있고, 장특 요건일 수도 있습니다.
+            같은 “세제개편”이라도 3축 중 어디에 해당하는지부터 나누는 편이 덜 헷갈립니다.
             <strong>최종 확정안이 나오면 본문을 업데이트</strong>하겠습니다.
-            지금은 “거론된다 / 유력하다 / 논의 중이다” 수준의 표현만 사용합니다.
+            지금은 “거론된다 / 논의 중이다 / 관측된다” 수준의 표현만 사용합니다.
           </p>
 
           <div class="post-warn-box">
             <h3>먼저 읽어주세요</h3>
             <p>
               이 글은 2026년 7월 29일 기준 <strong>발표 전 논의·관측</strong>을 정리한 것입니다.
-              구체 세율, 공시가 기준, 적용 시점, 예외 요건은 공식 발표를 확인해야 합니다.
+              구체 세율, 공시가 기준, 적용 시점, 예외 요건은 <strong>기획재정부·국세청 공식 발표</strong>를 확인해야 합니다.
               투자·법률·세무 자문이 아니며, 의사결정은 확정 자료와 전문가 상담을 기준으로 하세요.
             </p>
           </div>
 
           <ul>
-            <li>지금까지 거론되는 <strong>4가지 방향</strong>을 중립적으로 정리합니다.</li>
-            <li>무주택·1주택·다주택 <strong>상황별 체크포인트</strong>를 나눕니다.</li>
-            <li>발표 전에 할 수 있는 <strong>공통 체크리스트</strong>를 남깁니다.</li>
+            <li>보유세·장특공제·양도세 <strong>3축</strong>을 표로 비교합니다.</li>
+            <li>종부세 기준 변화·장특공제 쟁점·양도세 유예 <strong>논의 방향</strong>을 구분해 적습니다.</li>
+            <li>입법 일정과 상황별 <strong>영향 매트릭스</strong>, FAQ를 함께 둡니다.</li>
+            <li>확정 세율·기준금액은 넣지 않고, <strong>논의·집계·관측</strong> 구분으로만 적습니다.</li>
+            <li>준비 실무는 <a href="post-41.html">post-41</a>로 넘기고, 여기서는 정책 방향만 봅니다.</li>
           </ul>
 
-          <h2>1. 지금까지 나온 4가지 방향</h2>
+          <h2>2. 세제 3축 한눈에 — 보유세·장특공제·양도세</h2>
           <p>
-            공개 논의와 매체 보도에서 반복적으로 보이는 줄기는 대략 아래 네 가지입니다.
-            각 항목은 <strong>방향만 논의 중</strong>이며, 세부 수치는 확정 전입니다.
+            부동산 세금 이야기가 한꺼번에 나올 때 헷갈리는 이유는, 세금 종류마다 <strong>과세 시점</strong>이 다르기 때문입니다.
+            보유세는 “가지고 있는 동안” 매년, 양도세는 “팔 때”, 장특공제는 “팔 때 세금 계산에서 깎아 주는 공제”입니다.
+            이번 7월 논의도 이 세 축이 동시에 거론되지만, 각각 바뀌는 방식과 시행 시점이 같지 않을 수 있습니다.
+            예를 들어 종부세 <strong>논의</strong>는 2026년 공시가 <strong>집계</strong>와 맞물려 이미 체감 이야기가 나오는 반면,
+            양도세 유예·강화는 <strong>2027년 적용 관측</strong>과 함께 읽히는 경우가 많습니다.
+            같은 날짜의 뉴스라도 3축 중 어디에 해당하는지부터 나누면, “오늘부터 바뀐다”는 오해를 줄일 수 있습니다.
+          </p>
+          <p>
+            보유세는 지방세인 <strong>재산세</strong>와 국세인 <strong>종합부동산세(종부세)</strong>를 함께 부르는 말입니다.
+            뉴스에서 “보유세 강화”라고만 나오면 두 세금이 섞여 전달되는 경우가 많습니다.
+            재산세는 매년 6월 1일 기준으로 부과되고, 종부세는 9월 1일 기준 합산 공시가격 등으로 별도 과세됩니다.
+            이번 개편 논의에서 특히 많이 언급되는 쪽은 종부세입니다.
+            “집 한 채만 있는데 왜 보유세?”라는 질문은, 1주택이라도 공시가가 일정 수준을 넘으면 종부세 대상에 들어갈 수 있기 때문에 나옵니다.
+            세부 구조는 <a href="post-28.html">종부세 기본 가이드</a>를 참고하세요.
+          </p>
+          <p>
+            종부세를 계산할 때는 공시가격 합계에서 기본공제를 빼고, 공정시장가액비율을 곱해 과세표준을 만듭니다.
+            그다음 세율·세액공제·세부담상한이 겹칩니다.
+            그래서 “공시가만 보면 된다”로 끝나지 않습니다.
+            개편 논의가 ‘주택 수’에서 ‘가격(가액)’ 쪽으로 옮겨간다는 말은,
+            다주택자만이 아니라 <strong>고가 1주택</strong> 보유자도 논의 범위에 더 자주 언급될 수 있다는 뜻으로 읽히는 경우가 많습니다.
+            초고가·비거주 주택 강화 <strong>논의</strong>와 같은 줄기입니다.
           </p>
 
-          <div class="fact-grid">
-            <div class="fact-card">
-              <span class="fc-num">1</span>
-              <h3>보유세(종부세): 주택 수 → 가격 기준 논의</h3>
-              <p>
-                보유세 산정 축을 주택 ‘수’ 중심에서 ‘가격’ 중심으로 바꾸려는 방향이 거론됩니다.
-                초고가·비거주 주택의 보유세 강화 방향이 함께 언급되는 경우가 많습니다.
-                <strong>확정된 세율·기준선은 아닙니다.</strong>
-              </p>
+          <figure class="post-figure">
+            <img src="images/post-43/tax-three-pillars.png" alt="보유세·장기보유특별공제·양도소득세 3축 비교 인포그래픽" width="1024" height="521" loading="lazy">
+            <figcaption>3축: 2026 세제개편 논의 3축 비교. 2026-07-29 기준 논의·보도 집계이며 확정 세율·공제율은 기획재정부 공식 발표를 확인하세요.</figcaption>
+          </figure>
+
+          <div class="post-table-wrap">
+            <table class="post-table">
+              <caption class="visually-hidden">부동산 세제 3축 비교</caption>
+              <thead>
+                <tr>
+                  <th scope="col">구분</th>
+                  <th scope="col">과세 시점</th>
+                  <th scope="col">주요 대상</th>
+                  <th scope="col">이번 개편 논의</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">보유세(재산세·종부세)</th>
+                  <td>매년(보유 중)</td>
+                  <td>주택·토지 보유자</td>
+                  <td>종부세 기준을 주택 수→가격(가액)으로, 초고가·비거주 강화 <strong>논의</strong></td>
+                </tr>
+                <tr>
+                  <th scope="row">장기보유특별공제(장특공제)</th>
+                  <td>양도(매도) 시</td>
+                  <td>부동산 양도자</td>
+                  <td>실거주 vs 비거주·1주택 vs 다주택 구분 <strong>논의</strong></td>
+                </tr>
+                <tr>
+                  <th scope="row">양도소득세(양도세)</th>
+                  <td>양도(매도) 시</td>
+                  <td>부동산 양도자</td>
+                  <td>유예 후 단계 강화, 다주택 중과 유예 연장 없을 <strong>관측</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="font-size:13px;color:#64748b;">※ 확정 세율·기준금액은 기획재정부·국세청 공식 발표 확인 필수.</p>
+
+          <div class="reason-grid">
+            <div class="reason-card">
+              <div class="rc-icon" aria-hidden="true">🏠</div>
+              <h3>보유세 — “갖고 있을 때”</h3>
+              <p>공시가·공제·공정시장가액비율 등이 겹칩니다. 이미 집을 가진 사람에게 직접 닿습니다.</p>
             </div>
-            <div class="fact-card">
-              <span class="fc-num">2</span>
-              <h3>1세대 1주택 장기보유특별공제 손질</h3>
-              <p>
-                1세대 1주택 양도세 장기보유특별공제(장특공제) 개편이 논의 대상으로 거론됩니다.
-                특히 실거주와 비거주를 어떻게 나눌지가 핵심 쟁점으로 보입니다.
-                <strong>방향만 논의 중입니다.</strong>
-              </p>
-            </div>
-            <div class="fact-card">
-              <span class="fc-num">3</span>
-              <h3>양도세: 유예 후 단계적 강화 관측</h3>
-              <p>
-                양도세는 일정 기간 유예 뒤 단계적으로 강화하는 방향이 거론되고 있습니다.
-                “1년 유예” 같은 표현이 나오기도 하지만, 기간·대상·세율은 확정 전입니다.
-                <strong>거론 수준으로만 이해하세요.</strong>
-              </p>
-            </div>
-            <div class="fact-card">
-              <span class="fc-num">4</span>
-              <h3>적용 시점: 2027년부터 관측</h3>
-              <p>
-                적용 시점은 2027년부터라는 관측이 반복되고 있습니다.
-                다만 발표 문안·시행령·유예 규정에 따라 달라질 수 있습니다.
-                <strong>관측일 뿐, 확정된 시행일이 아닙니다.</strong>
-              </p>
+            <div class="reason-card">
+              <div class="rc-icon" aria-hidden="true">📤</div>
+              <h3>장특·양도 — “팔 때”</h3>
+              <p>취득·보유·거주 이력이 세금 계산에 들어갑니다. 매도 시점·요건이 핵심입니다.</p>
             </div>
           </div>
 
-          <h3>왜 이런 논의가 나올까</h3>
+          <h2>3. 보유세(종부세) — 주택 ‘수’에서 ‘가격’ 기준으로?</h2>
           <p>
-            보유세를 가격 기준으로 보면, “몇 채를 가졌는가”보다 “얼마나 비싼 집을 가졌는가”에 초점을 맞추려는 취지로 읽히는 경우가 많습니다.
-            장특공제·양도세 논의는 실거주와 투자성 보유를 구분하려는 흐름과 자주 연결됩니다.
-            적용 시점을 뒤로 잡는다는 관측은, 시장 충격을 완화하면서 제도를 바꾸려는 논의로 해석되기도 합니다.
-            다만 이 해석들도 확정안이 나온 뒤 다시 검증해야 합니다.
+            이번 개편 논의에서 가장 많이 반복되는 줄기 중 하나는,
+            종부세 과세 축을 주택 <strong>‘수’ 중심</strong>에서 <strong>‘가격(가액)’ 중심</strong>으로 바꾸려는 <strong>방향</strong>입니다.
+            “몇 채를 가졌는가”보다 “얼마나 비싼 집을 가졌는가”에 초점을 맞추려는 취지로 읽히는 경우가 많습니다.
+            초고가·비거주 주택의 보유세 부담을 키우는 방향도 함께 <strong>거론</strong>됩니다.
+            다만 <strong>어느 금액부터 초고가로 볼지, 세율·공제를 어떻게 재설계할지</strong>는 아직 확정 전입니다.
           </p>
+          <p>
+            현행 구조에서 1세대 1주택자는 공시가격 합계가 일정 금액을 넘으면 종부세 대상이 됩니다.
+            공개·보도된 <strong>집계</strong>에 따르면, 1주택 공제 기준 <strong>공시가 12억원 초과</strong> 구간에 해당하는 가구가
+            전년 대비 크게 늘었다는 수치가 반복적으로 인용됩니다.
+            대상 가구는 약 <strong>31.8만 → 48.7만</strong> 가구, 증가율 약 <strong>+53.5%</strong>로 <strong>집계·보도</strong>된 바 있습니다.
+            이는 “세율이 올랐다”기보다, 공시가격이 오르면서 12억 선을 넘는 집이 늘었다는 <strong>집계</strong>에 가깝습니다.
+            개편안 확정 전에도 공시가 영향이 큰 해임을 기억할 필요가 있습니다.
+          </p>
+          <p>
+            같은 1주택이라도 단지·면적·연식에 따라 12억 선을 넘는 시점이 다릅니다.
+            “우리 아파트 시세”와 “공시가 12억”은 같은 숫자가 아닐 수 있습니다.
+            종부세 고지를 받기 전에도, 공시가 알리미에서 내 단지 위치를 먼저 확인해 두면
+            발표 후 뉴스 숫자와 내 집을 연결하기 쉽습니다.
+            실제 납부세액은 공제·세율·세액공제·상한에 따라 사람마다 다릅니다.
+            12억 <strong>집계</strong>는 “대상 가구 수” 이야기이지, 개인별 세액을 미리 단정하는 숫자가 아닙니다.
+          </p>
+          <p>
+            종부세 과세표준을 만드는 <strong>공정시장가액비율</strong>도 논의 대상입니다.
+            현행은 대략 <strong>60%</strong> 수준으로 알려져 있고,
+            <strong>80%</strong> 수준으로 올리는 <strong>거론 시나리오</strong>가 보도·논의에서 반복됩니다.
+            비율만 올라가고 공제·세율·상한이 함께 손질되면 체감이 달라질 수 있습니다.
+            “80%면 무조건 두 배”처럼 단정하지 않습니다.
+            개념 비교는 <a href="post-31.html">공정시장가액비율 시나리오 글</a>,
+            종부세 전체 흐름은 <a href="post-37.html">종부세 개편 방향 총정리</a>를 참고하세요.
+          </p>
+
+          <div class="post-table-wrap">
+            <table class="post-table">
+              <caption class="visually-hidden">종부세 기준 변화 방향 비교</caption>
+              <thead>
+                <tr>
+                  <th scope="col">항목</th>
+                  <th scope="col">현행(개념)</th>
+                  <th scope="col">거론·논의 방향</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">과세 축</th>
+                  <td>주택 수·공제 구조 중심</td>
+                  <td>주택 가격(가액)·초고가·비거주 중심 <strong>논의</strong></td>
+                </tr>
+                <tr>
+                  <th scope="row">1주택 공제(집계 기준)</th>
+                  <td>공시가 12억원 초과 시 대상(1세대 1주택)</td>
+                  <td>기준·공제 재설계 <strong>논의</strong> (확정 금액 아님)</td>
+                </tr>
+                <tr>
+                  <th scope="row">대상 가구(보도 집계)</th>
+                  <td>약 31.8만 가구(전년)</td>
+                  <td>약 48.7만 가구(+53.5%) <strong>집계·보도</strong></td>
+                </tr>
+                <tr>
+                  <th scope="row">공정시장가액비율</th>
+                  <td>현행 약 60%</td>
+                  <td>80% 시나리오 <strong>거론</strong> (확정 아님)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="font-size:13px;color:#64748b;">※ 세부 기준금액·세율은 기획재정부·국세청 공식 발표 확인 필수.</p>
 
           <div class="post-tip-box">
-            <h3>읽는 포인트</h3>
+            <h3>종부세 읽는 포인트</h3>
             <ul>
-              <li>뉴스 제목의 강한 단어와, 실제 확정 문안은 다를 수 있습니다.</li>
-              <li>구체 세율·금액을 보더라도 “거론되는 수준”인지 먼저 구분하세요.</li>
-              <li>지금은 시나리오를 준비하는 단계이지, 결론을 내리는 단계가 아닙니다.</li>
+              <li>시세와 공시가격·과세표준은 다릅니다. 12억은 <strong>공시가 기준 집계</strong>입니다.</li>
+              <li>재산세(지방)와 종부세(국세)가 함께 움직일 수 있습니다. “보유세” 한 단어로만 보지 마세요.</li>
+              <li>개편안이 나오면 기준금액·세율·공제·상한이 <strong>한 세트</strong>로 맞춰질 가능성이 큽니다.</li>
             </ul>
           </div>
 
-          <h2>2. 상황별 체크포인트</h2>
-
-          <div class="situation-card">
-            <h3>무주택자 — 직접 세금 영향은 상대적으로 적을 수 있다</h3>
-            <p>
-              보유세·장특공제·양도세 개편은 이미 집을 가진 사람에게 더 직접적으로 닿는 편입니다.
-              무주택자라면 세율표보다, 발표 전후 <strong>매물·호가·거래 심리</strong>가 어떻게 흔들릴지를 같이 보는 편이 실용적입니다.
-            </p>
-            <p>
-              “지금 당장 사야 한다/절대 기다려야 한다”처럼 단정하기보다,
-              자금 계획·대출 여력·청약 자격·관심 단지 일정을 정리해 두는 쪽이 낫습니다.
-              발표 직후 심리가 흔들릴수록, 미리 준비한 사람과 허둥대는 사람의 차이가 커질 수 있습니다.
-            </p>
-          </div>
-
-          <div class="situation-card">
-            <h3>1주택자 — 장특공제·거주 이력이 핵심 점검 포인트</h3>
-            <p>
-              1세대 1주택 장특공제 손질이 거론되는 만큼,
-              본인이 <strong>실거주인지 비거주인지</strong>, 보유·거주 기간을 어떻게 채워왔는지부터 정리해 보세요.
-              같은 1주택이라도 거주 이력에 따라 해석이 달라질 수 있다는 논의가 반복되고 있기 때문입니다.
-            </p>
-            <p>
-              지금 할 일은 “확정되지도 않은 세율을 가정해 급히 팔거나 사는 것”이 아니라,
-              확정 문안이 나왔을 때 자기 케이스를 바로 대조할 수 있게
-              취득일·전입일·거주 기간 자료를 모아 두는 것입니다.
-            </p>
-          </div>
-
-          <div class="situation-card">
-            <h3>다주택자 — 보유세 강화 시나리오를 나눠 보기</h3>
-            <p>
-              초고가·비거주 보유세 강화 방향이 거론되는 만큼,
-              다주택자는 “지금 구조로 더 보유할 경우 / 일부를 정리할 경우”를 나눠 보는 관점이 유용합니다.
-              양도세도 유예 후 단계적 강화 방향이 거론되므로, 시기별 현금흐름을 함께 적어 두면 발표 후 판단이 빨라집니다.
-            </p>
-            <p>
-              다만 개별 취득 시기·거주 요건·담보대출·대체 주거 비용에 따라 결과가 크게 달라집니다.
-              가정만으로 큰 결정을 내리기보다, 시나리오 A/B를 준비해 두고
-              <strong>세무 전문가 상담</strong>을 권합니다.
-            </p>
-          </div>
-
-          <h2>3. 공통 체크리스트 — 확정 전 지금 할 수 있는 것</h2>
-          <div class="checklist-box">
-            <h3>지금 점검해 두면 좋은 항목</h3>
-            <ul>
-              <li>내 상황(무주택 / 1주택 / 다주택, 실거주 / 비거주)을 명확히 정의하기</li>
-              <li>취득·전입·거주 기간 등 기본 이력을 메모해 두기</li>
-              <li>확정 발표 전 무리한 매수·매도 판단은 자제하기</li>
-              <li>발표가 나오면 <strong>확정 내용 기준</strong>으로 다시 계산·상담하기</li>
-              <li>무주택·실수요라면 관심 지역 <a href="/tools/bunyang-alarm/">분양 일정</a>도 함께 챙기기</li>
-            </ul>
-          </div>
+          <h2>4. 장기보유특별공제 — 실거주 vs 비거주가 쟁점</h2>
           <p>
-            체크리스트의 목적은 “지금 당장 무언가를 사거나 파는 것”이 아닙니다.
-            확정안이 나왔을 때, 자기 케이스를 빠르게 대조할 수 있게 준비해 두는 것입니다.
-          </p>
-
-          <h2>마무리</h2>
-          <p>
-            발표가 임박했다는 뉴스와, 확정안이 나왔다는 사실은 다릅니다.
-            지금은 방향을 읽어 두고, 할 수 있는 준비만 해 두자는 톤이 가장 실용적입니다.
-            확정안이 공개되면 이 글을 기준으로 후속 업데이트를 이어가겠습니다.
+            두 번째 축은 양도세 계산에 들어가는 <strong>장기보유특별공제(장특공제)</strong>입니다.
+            현행 제도에서는 부동산을 오래 보유할수록 양도세 산출 시 일정 비율을 공제해 줍니다.
+            1세대 1주택자는 보유·거주 요건에 따라 상대적으로 높은 공제를 받을 수 있고,
+            다주택자나 일반 부동산도 장기 보유 시 일정 부분 공제를 받아 왔습니다.
+            이번 개편에서는 이 구조를 <strong>실거주 중심</strong>으로 재편하는 <strong>논의</strong>가 거론됩니다.
           </p>
           <p>
-            상황별 준비 관점은
-            <a href="/blog/post-41.html">지난 미리보기 글</a>을,
-            정책 논의 맥락은
-            <a href="/blog/post-39.html">대토론회 정리</a>를 참고해 보세요.
-            무주택 실수요라면 세제 뉴스만 보다가 일정을 놓치지 않도록
-            <a href="/tools/bunyang-alarm/">분양 알리미</a>로 관심 지역 공고도 같이 확인해 보세요.
+            특히 <strong>비거주 1주택</strong> 장특공제 손질이 논의 대상으로 반복됩니다.
+            “한 채만 가지고 있으면 실거주·비거주 구분 없이 유리하다”는 인식과,
+            “실제로 살지 않는 고가 주택에도 장기 보유만으로 공제가 커진다”는 문제의식이 맞물린 흐름으로 읽히는 경우가 많습니다.
+            <strong>확정 공제율·거주 요건 변경안은 아직 없습니다.</strong>
+            다주택자·비거주 다주택에 대한 혜택 축소 <strong>논의</strong>도 함께 언급됩니다.
+          </p>
+          <p>
+            7월 23일 <a href="post-39.html">부동산 대토론회</a>에서도 장특공제·실거주 구분 이야기가 나왔고,
+            이후 매체 보도에서도 같은 줄기가 이어졌습니다.
+            양도 계획이 있는 분은 “지금 확정된 공제율로 계산”이 아니라,
+            발표안이 나왔을 때 <strong>취득일·전입일·거주 기간</strong>을 바로 대조할 수 있게 자료를 모아 두는 편이 낫습니다.
+            구체 공제율은 기획재정부·국세청 공식 발표를 확인하세요.
+          </p>
+          <p>
+            장특공제를 “팔 때 깎아 주는 혜택”으로만 보면, 보유세와 양도세를 따로 생각하기 쉽습니다.
+            이번 <strong>논의</strong>는 두 축을 연결합니다.
+            비거주 고가 주택은 보유 중 종부세 <strong>논의</strong>와, 매도 시 장특·양도 <strong>논의</strong>가 같은 맥락으로 거론됩니다.
+            실거주 1주택자는 상대적으로 “실거주 요건 강화” <strong>논의</strong>의 중심에 서 있지만,
+            공시가 12억 <strong>집계</strong> 맥락의 보유세 이야기와는 별개 레이어입니다.
+            두 표(종부세·장특)를 나란히 두고 읽는 것이 헷갈림을 줄입니다.
+          </p>
+
+          <div class="post-table-wrap">
+            <table class="post-table">
+              <caption class="visually-hidden">장특공제 쟁점 정리</caption>
+              <thead>
+                <tr>
+                  <th scope="col">구분</th>
+                  <th scope="col">현행(개념)</th>
+                  <th scope="col">거론·논의 방향</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1주택·실거주</th>
+                  <td>보유·거주 요건 충족 시 높은 공제</td>
+                  <td>실거주 요건 강화 <strong>논의</strong> (세부 미확정)</td>
+                </tr>
+                <tr>
+                  <th scope="row">1주택·비거주</th>
+                  <td>장기 보유 시 일정 공제</td>
+                  <td>비거주 1주택 손질 <strong>논의</strong></td>
+                </tr>
+                <tr>
+                  <th scope="row">다주택</th>
+                  <td>장기 보유 시 일부 공제</td>
+                  <td>비거주·다주택 혜택 축소 <strong>논의</strong></td>
+                </tr>
+                <tr>
+                  <th scope="row">확정 여부</th>
+                  <td>현행 세법 적용</td>
+                  <td>개편안·시행령 <strong>발표 전</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="font-size:13px;color:#64748b;">※ 공제율·거주 기간 등 수치는 확정 전. 기획재정부·국세청 공식 발표 확인 필수.</p>
+
+          <h2>5. 양도세 — 유예·단계적 강화 관측</h2>
+          <p>
+            세 번째 축은 <strong>양도소득세(양도세)</strong>입니다.
+            이번 7월 논의에서는 “당장 세율표가 바뀐다”기보다,
+            <strong>일정 기간 유예 뒤 단계적으로 강화</strong>하는 <strong>방향</strong>이 거론되는 흐름이 반복됩니다.
+            매체·논의에서 “<strong>1년 유예</strong>” 같은 표현이 나오기도 하지만,
+            유예 기간·대상·강화 방식·세율은 모두 <strong>확정 전</strong>입니다.
+            이 글에서는 유예·단계 강화를 <strong>거론·관측</strong>으로만 적습니다.
+          </p>
+          <p>
+            <a href="post-41.html">세제개편 미리보기</a>에서도 다룬 바 있듯,
+            <strong>다주택자 양도세 중과 유예 연장은 없을 것</strong>으로 <strong>관측</strong>하는 보도가 이어졌습니다.
+            관측일 뿐이며, 최종 내용은 개편안 발표를 확인해야 합니다.
+            다주택자에게는 “유예가 끝난 뒤 어떤 구조로 강화될지”가 현금흐름·매도 시점 판단과 맞물릴 수 있습니다.
+            다만 개별 취득 시기·거주 요건·대체 주거 비용에 따라 결과가 크게 달라집니다.
+          </p>
+          <p>
+            양도세 논의를 읽을 때 자주 빠지는 함정이 있습니다.
+            “유예 1년”이라는 말만 보고 “내년까지는 지금과 같다”고 단정하는 경우입니다.
+            유예는 <strong>거론</strong> 단계이고, 유예 대상·기간·강화 방식·경과 조치가 한 세트로 나와야 의미가 있습니다.
+            또 “발표 전에 팔면 현행 세율”도 개인별 취득·보유·거주·조정대상지역 여부에 따라 달라집니다.
+            발표 전 매도를 서두르거나 미루는 결정은, 확정되지 않은 세율 가정만으로 내리기 어렵습니다.
+            적용 시점 <strong>2027년 관측</strong>과 유예 <strong>1년 거론</strong>을 동시에 읽을 때는,
+            “언제 팔았을 때 어떤 법이 적용되는지”를 국세청·세무사 안내로 확인하는 편이 안전합니다.
+          </p>
+          <ul class="check-list">
+            <li>
+              <strong>유예 후 단계 강화(거론)</strong><br>
+              “1년 유예” 표현이 보도되나, 기간·대상·세율은 확정 전입니다. 기획재정부·국세청 공식 발표 확인 필수.
+            </li>
+            <li>
+              <strong>다주택 중과 유예(관측)</strong><br>
+              유예 연장이 없을 것으로 <strong>관측</strong>하는 보도가 있으나, 확정된 사실이 아닙니다.
+            </li>
+            <li>
+              <strong>발표 전 매도·매수</strong><br>
+              확정되지 않은 세율을 가정해 급히 거래하는 것은 위험할 수 있습니다. 양도 시점·현행 세법은 국세청 안내가 정본입니다.
+            </li>
+            <li>
+              <strong>보유세와의 관계</strong><br>
+              보유 부담(종부세)과 매도 부담(양도세)은 별도 레이어입니다. 한쪽만 보고 결론 내지 마세요.
+            </li>
+          </ul>
+          <p>
+            양도세는 “몇 % 중과”처럼 숫자 하나로 끝나지 않습니다.
+            1주택·다주택, 보유 기간, 거주 여부, 조정대상지역 여부 등 요건이 겹칩니다.
+            개편안이 나오기 전에는 <strong>현행 세법 기준</strong>으로 상담·신고하는 편이 안전합니다.
+            불확실한 중과율·유예 기간은 지어내지 않고, 공식 발표를 기다리는 쪽이 맞습니다.
+            <a href="post-39.html">7월 23일 대토론회</a> 이후 양도세·다주택 이야기가 반복 보도된 맥락은,
+            보유세·장특 <strong>논의</strong>와 같은 ‘실거주 vs 투자성 보유’ 구분 흐름 안에서 이해하는 편이 낫습니다.
+          </p>
+
+          <h2>6. 적용 시점·입법 일정 — 2027년부터?</h2>
+          <p>
+            네 번째로 반복되는 줄기는 <strong>적용 시점</strong>입니다.
+            <strong>2027년부터</strong> 적용한다는 <strong>관측</strong>이 보도·논의에서 여러 번 나왔습니다.
+            다만 발표 문안·시행령·유예 규정·경과 조치에 따라 실제 체감 시점은 달라질 수 있습니다.
+            “2027년”은 <strong>관측일 뿐</strong>, 확정된 시행일이 아닙니다.
+          </p>
+          <p>
+            세제 개편은 보통 아래 순서를 거칩니다.
+            먼저 정부가 개편안을 <strong>발표(거론·7월 말~8월 초 예정)</strong>하고,
+            국회에서 법률 개정·예산·시행령 논의가 이어진 뒤,
+            공포·시행일이 정해집니다.
+            유예·경과 규정이 붙으면 “법은 통과됐는데 내 케이스는 내년부터” 같은 간격도 생길 수 있습니다.
+            그래서 발표 직후 헤드라인만 보고 “내일부터 바뀐다”고 오해하지 않는 것이 중요합니다.
+          </p>
+          <p>
+            2026년 7월 23일 <strong>대토론회</strong>가 ① 거론·논의 단계의 공개 사건이었고,
+            7월 29일 기준으로는 ② 발표를 앞두고 세부 방향이 매체에 반복 보도되는 구간입니다.
+            ③ 국회·시행령은 아직 <strong>미확정</strong>이며, ④ 시행은 <strong>2027년부터 관측</strong>입니다.
+            같은 “7월 개편” 뉴스라도, 지금 읽는 단계(논의 vs 발표 vs 시행)를 먼저 구분하면
+            불필요한 조급함을 줄일 수 있습니다.
+            일정 숫자는 모두 <strong>관측·예정</strong> 표기이며, 기획재정부·국세청 공식 발표가 정본입니다.
+          </p>
+
+          <figure class="post-figure">
+            <img src="images/post-43/timeline.png" alt="세제개편 논의부터 시행까지 예상되는 4단계 절차를 보여주는 타임라인 인포그래픽" width="1024" height="486" loading="lazy">
+            <figcaption>타임라인: 세제개편 논의부터 시행까지 예상 절차. 각 단계 시점은 관측이며 일정은 변동될 수 있습니다.</figcaption>
+          </figure>
+
+          <div class="post-table-wrap">
+            <table class="post-table">
+              <caption class="visually-hidden">세제개편 입법·시행 단계</caption>
+              <thead>
+                <tr>
+                  <th scope="col">단계</th>
+                  <th scope="col">내용</th>
+                  <th scope="col">2026년 7~8월 맥락</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">① 거론·논의</th>
+                  <td>대토론회·매체·전문가 의견</td>
+                  <td>7월 23일 대토론회 이후 논의 지속 <strong>(진행 중)</strong></td>
+                </tr>
+                <tr>
+                  <th scope="row">② 발표</th>
+                  <td>정부 세제개편안 공개</td>
+                  <td>7월 말~8월 초 <strong>발표 예정</strong> (2026-07-29 기준)</td>
+                </tr>
+                <tr>
+                  <th scope="row">③ 국회·시행령</th>
+                  <td>법 개정·세부 규정</td>
+                  <td>발표 후 단계 · <strong>미확정</strong></td>
+                </tr>
+                <tr>
+                  <th scope="row">④ 시행</th>
+                  <td>실제 세금·신고에 반영</td>
+                  <td><strong>2027년부터</strong> 적용 <strong>관측</strong> (확정 아님)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="font-size:13px;color:#64748b;">※ 일정은 관측·예정 단계. 기획재정부·국세청 공식 발표 확인 필수.</p>
+
+          <h2>7. 상황별 영향 요약 — 준비가 아니라 ‘어디에 닿나’</h2>
+          <p>
+            같은 개편 뉴스라도 무주택·1주택·다주택에 닿는 방식이 다릅니다.
+            이 섹션은 “지금 뭘 준비할까”가 아니라, <strong>어떤 세금 항목에 영향이 올 수 있는지</strong>만 정리합니다.
+            체크리스트·도구 연결은 <a href="post-41.html">7월 세제개편 미리보기</a> 한 편으로 넘깁니다.
+          </p>
+          <p>
+            무주택자는 보유세·장특·양도에 <strong>직접</strong> 해당되지 않지만,
+            발표 전후 매물·호가·거래 심리·대출 규제 기대가 <strong>간접</strong> 영향으로 올 수 있습니다.
+            1주택 실거주자는 종부세(공시가 12억 구간 <strong>집계</strong>)와 장특공제(실거주 요건 <strong>논의</strong>)에 동시에 닿을 수 있습니다.
+            1주택 비거주·다주택자는 장특·양도·보유세 <strong>논의</strong>의 중심에 더 가깝게 거론됩니다.
+            같은 “1주택”이라도 실거주·비거주에 따라 표의 칸이 달라집니다.
+            “우리 집은 1주택이니까 무관하다”는 식으로 한 칸만 보고 넘어가면, 발표 후 놓치는 항목이 생길 수 있습니다.
+          </p>
+
+          <div class="post-table-wrap">
+            <table class="post-table">
+              <caption class="visually-hidden">상황별 세제 영향 매트릭스</caption>
+              <thead>
+                <tr>
+                  <th scope="col">상황</th>
+                  <th scope="col">보유세(종부세)</th>
+                  <th scope="col">장특공제</th>
+                  <th scope="col">양도세</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">무주택</th>
+                  <td>직접 해당 없음 · 시장 심리 간접</td>
+                  <td>직접 해당 없음</td>
+                  <td>직접 해당 없음</td>
+                </tr>
+                <tr>
+                  <th scope="row">1주택·실거주</th>
+                  <td>공시가·12억 구간 <strong>집계</strong> 영향 가능</td>
+                  <td>실거주 요건 <strong>논의</strong> 핵심</td>
+                  <td>1주택 비과세 등 <strong>현행</strong> 유지 여부 발표 확인</td>
+                </tr>
+                <tr>
+                  <th scope="row">1주택·비거주</th>
+                  <td>비거주·초고가 <strong>논의</strong></td>
+                  <td>비거주 1주택 손질 <strong>논의</strong></td>
+                  <td>양도 시점·요건 발표 확인</td>
+                </tr>
+                <tr>
+                  <th scope="row">다주택</th>
+                  <td>초고가·비거주 <strong>논의</strong></td>
+                  <td>다주택 혜택 축소 <strong>논의</strong></td>
+                  <td>유예·중과 <strong>관측</strong> · 발표 확인</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="font-size:13px;color:#64748b;">※ 직접/간접은 논의·집계 단계 기준. 확정 영향은 공식 발표 후 판단.</p>
+
+          <h2>8. 발표 전 공통 체크리스트</h2>
+          <p>
+            아래는 “지금 당장 사거나 팔라”는 권유가 아닙니다.
+            확정안이 나왔을 때 자기 케이스를 빠르게 대조하려는 <strong>정보 정리</strong> 목록입니다.
+            상황별 실행·도구는 <a href="post-41.html">post-41 미리보기</a>를 보세요.
+            공시가·전입·취득 서류는 발표 전후에 찾느라 시간이 걸릴 수 있어, 미리 한 폴더에 모아 두면 발표 직후 비교가 수월합니다.
+          </p>
+          <ul class="check-list">
+            <li>
+              <strong>① 내 분류 적기</strong><br>
+              무주택 / 1주택(실거주·비거주) / 다주택 · 세대 기준 정리
+            </li>
+            <li>
+              <strong>② 이력 메모</strong><br>
+              취득일·전입일·거주 기간 · 양도·장특 대조용
+            </li>
+            <li>
+              <strong>③ 공시가 확인</strong><br>
+              국토교통부 <strong>부동산공시가격 알리미</strong>(realtyprice.kr)에서 내 단지 공시가 조회
+            </li>
+            <li>
+              <strong>④ 12억 구간(집계 기준) 대조</strong><br>
+              1세대 1주택 · 공시가 12억 초과 <strong>집계</strong> 맥락만 참고 · 확정 과세는 발표 후
+            </li>
+            <li>
+              <strong>⑤ 무리한 거래 자제</strong><br>
+              확정 전 세율 가정 매매·매수 자제 · 발표 후 재계산·상담 · 기획재정부·국세청 보도자료와 대조
+            </li>
+          </ul>
+
+          <h2>9. 자주 묻는 질문</h2>
+          <p>
+            <strong>Q1. 지금 세율·한도가 확정됐나요?</strong><br>
+            아닙니다. 2026년 7월 29일 기준 <strong>발표 전 논의·관측</strong> 단계입니다.
+            7월 말~8월 초 <strong>발표 예정</strong>이 거론되지만, 확정안·시행령·경과 규정은 아직입니다.
+            기획재정부·국세청 공식 발표를 확인하세요.
+          </p>
+          <p>
+            <strong>Q2. 1주택 실거주자도 종부세·장특 영향을 받나요?</strong><br>
+            받을 수 있습니다. 종부세는 공시가 12억 초과 <strong>집계</strong> 맥락에서 1주택도 대상에 포함될 수 있고,
+            장특공제는 실거주 요건 <strong>논의</strong>의 중심입니다.
+            다만 확정 세율·공제 변경은 발표 전이므로 단정하지 않습니다.
+            공시가 확인은 Q4의 부동산공시가격 알리미를, 장특·양도는 취득·전입 이력과 함께 보세요.
+          </p>
+          <p>
+            <strong>Q3. 무주택자는 세제 개편과 무관한가요?</strong><br>
+            보유세·장특·양도에 <strong>직접</strong> 해당되지는 않습니다.
+            다만 발표 전후 시장 심리·대출·분양 일정에는 <strong>간접</strong> 영향이 올 수 있습니다.
+            무주택 실수요 준비는 post-41·청약 도구 쪽이 더 실용적입니다.
+          </p>
+          <p>
+            <strong>Q4. 공시가격은 어디서 확인하나요?</strong><br>
+            국토교통부 <strong>부동산공시가격 알리미</strong>(realtyprice.kr)에서 주소·단지별 공시가격을 조회할 수 있습니다.
+            종부세·재산세와 연결되는 숫자이므로, 12억 구간 <strong>집계</strong> 이야기를 볼 때 같이 확인하세요.
+            공시가는 매년 갱신되며, 2026년 공시가 반영으로 1주택 대상 가구 <strong>집계</strong>가 늘었다는 보도와 연결해 읽을 수 있습니다.
+            고지·과세표준과 다를 수 있으니, 최종 납부는 관할 기관·홈택스 안내를 따르세요.
+          </p>
+          <p>
+            <strong>Q5. 확정안이 나오면 이 글은 어떻게 되나요?</strong><br>
+            발표 직후 본문을 확정 수치·시행일 기준으로 <strong>업데이트</strong>할 예정입니다.
+            dateModified도 갱신합니다. 그때까지는 논의·집계·관측 구분 표기를 유지합니다.
+          </p>
+
+          <h2>10. 마무리 — 방향은 읽고, 숫자는 공식 발표에서</h2>
+          <p>
+            정리하면 이렇습니다.
+            2026년 7월 29일 기준, 부동산 세제개편은 <strong>발표 예정·확정 전</strong>입니다.
+            보유세(종부세)는 주택 수→가격(가액) 기준 <strong>논의</strong>, 1주택 공시가 12억 초과 <strong>집계</strong>(31.8만→48.7만, +53.5%),
+            공정시장가액비율 60% 현행·80% <strong>거론 시나리오</strong>가 반복됩니다.
+            장특공제는 실거주 vs 비거주·1주택 vs 다주택 <strong>논의</strong>가 쟁점입니다.
+            양도세는 1년 유예 <strong>거론</strong>, 다주택 중과 유예 연장 없을 <strong>관측</strong>이 이어집니다.
+            적용은 <strong>2027년부터 관측</strong>이나 확정 시행일은 발표를 봐야 합니다.
+          </p>
+          <p>
+            “반드시 오른다/내려간다”고 찍지 않습니다.
+            오늘 표가 정책 방향을 읽는 출발점이 되길 바랍니다.
+            준비 실무·체크리스트는 <a href="post-41.html">7월 세제개편 미리보기</a>로,
+            종부세 세부는 <a href="post-37.html">종부세 개편 방향 글</a>로 이어서 보세요.
+            대토론회 맥락은 <a href="post-39.html">post-39</a>,
+            공정시장가액비율 시나리오는 <a href="post-31.html">post-31</a>이 이어집니다.
+            발표 전후에는 헤드라인 한 줄보다, 기획재정부·국세청 보도자료와 세법 개정안 전문을 대조하는 습관이 더 안전합니다.
+            숫자는 기획재정부·국세청이 정본입니다.
           </p>
 
           <div class="cta-box">
-            <div class="cta-icon">📢</div>
+            <div class="cta-icon" aria-hidden="true">📢</div>
             <h3>관심 지역 분양 일정 챙기기</h3>
-            <p>전국 청약·분양 공고를 카드로 모아보고 지역·상태로 빠르게 골라보세요.</p>
+            <p>세제 뉴스만 보다가 청약·분양 일정을 놓치지 않도록 관심 지역 공고를 모아 둡니다.</p>
             <a href="/tools/bunyang-alarm/" class="cta-button">분양 알리미 열기 →</a>
           </div>
 
-          <div class="post-tip-box">
-            <h3>같이 보면 좋은 글·도구</h3>
-            <ul>
-              <li><a href="/blog/post-41.html">7월 부동산 세제개편 미리보기</a></li>
-              <li><a href="/blog/post-39.html">부동산 대토론회 총정리</a></li>
-              <li><a href="/tools/bunyang-alarm/">분양 알리미</a></li>
-            </ul>
+          <div class="cta-box" style="background:linear-gradient(135deg,#1e3a5f 0%,#0f766e 100%);margin-top:16px;">
+            <div class="cta-icon" aria-hidden="true">📑</div>
+            <h3>종부세 논의 더 깊게 보기</h3>
+            <p>12억 집계·공정시장가액비율·가액 기준 전환은 post-37에서 이어집니다.</p>
+            <a href="post-37.html" class="cta-button">종부세 개편 방향 →</a>
           </div>
 
           <div class="post-sources">
             <p class="post-sources-title">📎 출처·참고</p>
             <ul>
-              <li>2026년 7월 부동산 세제개편 관련 공개 논의·매체 보도 (발표 예정 단계, 2026.7.29 기준)</li>
-              <li><a href="/blog/post-41.html">세제개편 미리보기</a> · <a href="/blog/post-39.html">대토론회 정리</a></li>
-              <li><a href="/tools/bunyang-alarm/">분양 알리미</a></li>
+              <li>2026년 7월 부동산 세제개편 관련 공개 논의·매체 보도 (발표 예정 단계, 2026-07-29 기준)</li>
+              <li>1주택 종부세 대상 가구 집계: 약 31.8만→48.7만 (+53.5%) · 공시가 12억 초과 기준 (보도·집계)</li>
+              <li>국토교통부 부동산공시가격 알리미(realtyprice.kr)</li>
+              <li><a href="post-41.html">세제개편 미리보기</a> · <a href="post-39.html">대토론회 정리</a> · <a href="post-37.html">종부세 개편</a> · <a href="post-28.html">종부세 기본</a></li>
             </ul>
           </div>
 
@@ -414,8 +748,8 @@
             <p class="post-related-title">📌 관련 글</p>
             <ul>
               <li><a href="post-41.html">7월 부동산 세제개편 미리보기 — 무주택자·1주택자·다주택자</a></li>
+              <li><a href="post-37.html">종부세 어떻게 바뀔까? 2026년 7월 세제 개편 방향 총정리</a></li>
               <li><a href="post-39.html">부동산 대토론회 총정리 — 보유세·다주택·공급</a></li>
-              <li><a href="post-42.html">청약 전에 꼭 알아야 할 필수 용어 10가지</a></li>
             </ul>
           </div>
 
@@ -438,7 +772,7 @@
           <p class="post-updated-footer">
             <time datetime="2026-07-29">최초 게시: 2026년 7월 29일</time>
             <span class="post-meta-sep">·</span>
-            <time datetime="2026-07-29">최종 수정: 2026년 7월 29일</time>
+            <time datetime="2026-08-24">최종 수정: 2026년 8월 24일</time>
           </p>
 
           <nav class="post-nav" aria-label="글 네비게이션">
@@ -447,7 +781,7 @@
           </nav>
 
           <p class="post-disclaimer">
-            <em>본 글은 정보 제공 목적이며, 발표 전 논의 단계 내용을 정리한 것으로 확정된 정책이 아닙니다. 투자·법률·세무 자문이 아니며, 확정 내용은 공식 발표 자료와 전문가 상담을 통해 확인하시기 바랍니다.</em>
+            <em>본 글은 정보 제공 목적이며, 발표 전 논의·집계·관측 단계 내용을 정리한 것으로 확정된 정책이 아닙니다. 투자·법률·세무 자문이 아니며, 확정 내용은 기획재정부·국세청 공식 발표와 전문가 상담을 통해 확인하시기 바랍니다.</em>
           </p>
         </article>
       </div>
