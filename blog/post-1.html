@@ -1,4 +1,4 @@
-﻿<!--
+<!--
 ========================================
 새 블로그 글 추가 방법:
 1. 이 파일 복사 → post-N.html 저장
@@ -53,7 +53,9 @@
   <meta property="article:published_time" content="2026-06-09">
   <meta property="article:author" content="승박">
 
-  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
   <link rel="stylesheet" href="../styles.css">
   <link rel="stylesheet" href="../css/global-theme.css">
@@ -108,6 +110,18 @@
       "@id": "https://seungbak.com/blog/post-1.html"
     },
     "inLanguage": "ko-KR"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "홈", "item": "https://seungbak.com/" },
+      { "@type": "ListItem", "position": 2, "name": "블로그", "item": "https://seungbak.com/blog/" },
+      { "@type": "ListItem", "position": 3, "name": "비전공자 직장인이 코딩 0줄로 사이트 만든 후기 (도메인부터 배포까지 진짜 3일 도전기)", "item": "https://seungbak.com/blog/post-1.html" }
+    ]
   }
   </script>
 </head>

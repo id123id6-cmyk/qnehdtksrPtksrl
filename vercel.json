@@ -3,9 +3,36 @@
   "buildCommand": "npm run build",
   "outputDirectory": ".",
   "redirects": [
-    { "source": "/blog/post-16.html", "destination": "/blog/post-20.html", "permanent": true },
-    { "source": "/blog/post-5.html", "destination": "/blog/post-11.html", "permanent": true },
-    { "source": "/blog/post-6.html", "destination": "/blog/post-11.html", "permanent": true },
-    { "source": "/blog/post-9.html", "destination": "/blog/post-11.html", "permanent": true }
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.seungbak.com"
+        }
+      ],
+      "destination": "https://seungbak.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/blog/post-16.html",
+      "destination": "/blog/post-20.html",
+      "permanent": true
+    },
+    {
+      "source": "/blog/post-5.html",
+      "destination": "/blog/post-11.html",
+      "permanent": true
+    },
+    {
+      "source": "/blog/post-6.html",
+      "destination": "/blog/post-11.html",
+      "permanent": true
+    },
+    {
+      "source": "/blog/post-9.html",
+      "destination": "/blog/post-11.html",
+      "permanent": true
+    }
   ]
 }

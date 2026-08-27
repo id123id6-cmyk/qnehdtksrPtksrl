@@ -1,4 +1,11 @@
+# Google · Naver(Yeti) 등 검색로봇 수집 허용
+# https://developers.google.com/search/docs/crawling-indexing/robots/intro
+# https://searchadvisor.naver.com/guide/seo-basic-robots
+
 User-agent: *
-Disallow:
+Allow: /
+
+User-agent: Yeti
+Allow: /
 
 Sitemap: https://seungbak.com/sitemap.xml
