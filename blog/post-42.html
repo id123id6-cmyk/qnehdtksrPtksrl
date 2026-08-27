@@ -175,6 +175,28 @@
       color: #334155;
     }
     .term-card p:last-child { margin-bottom: 0; }
+    .visually-hidden {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+    .post-table-wrap { overflow-x: auto; margin: 16px 0 8px; }
+    .post-table {
+      width: 100%; border-collapse: collapse; font-size: 14px;
+      background: #fff; border: 1px solid #e2e8f0; border-radius: 12px;
+    }
+    .post-table th, .post-table td {
+      padding: 10px 12px; border-bottom: 1px solid #e2e8f0; text-align: left;
+    }
+    .post-table thead th {
+      background: #f0fdfa; color: #115e59; font-weight: 700; white-space: nowrap;
+    }
+    .post-table tbody tr:nth-child(even) { background: #f8fafc; }
+    .check-list { margin: 16px 0; padding: 0; list-style: none; }
+    .check-list li {
+      margin-bottom: 12px; padding: 14px 16px; border-radius: 12px;
+      background: #f8fafc; border: 1px solid #e2e8f0; line-height: 1.55;
+    }
+    .check-list strong { color: #0f766e; }
   </style>
 </head>
 <body class="theme-blog-post">
@@ -208,7 +230,7 @@
             <span class="post-meta-sep">|</span>
             작성자: 승박
             <span class="post-meta-sep">|</span>
-            6분 읽기
+            10분 읽기
           </p>
 
           <figure class="post-figure">
@@ -216,7 +238,7 @@
             <figcaption>청약 초보를 위한 필수 용어 안내 이미지 (정확한 기준은 청약홈 확인)</figcaption>
           </figure>
 
-          <h2>들어가며 — 청약 용어, 왜 이렇게 어렵지?</h2>
+          <h2>1. 도입 — 청약 용어, 왜 이렇게 어렵지?</h2>
           <p class="post-lead">
             청약 넣으려는데 공고문을 펼치면, 용어가 외계어처럼 느껴질 때가 있습니다.
             무주택 기간, 예치금, 특별공급, 재당첨 제한…
@@ -224,7 +246,9 @@
           </p>
           <p>
             이 글은 그런 분을 위한 정리입니다.
-            복잡한 조문보다 <strong>한 줄 정의 + 쉬운 예시 + 왜 중요한지</strong>만 남겼습니다.
+            <a href="../glossary.html">용어집</a>이 한 줄 정의라면,
+            이 글은 <strong>실전에서 어디서 만나는지</strong>까지 풀어 씁니다.
+            각 용어마다 정의 → 왜 중요한가 → 실제로 어디서 보이는가 순서로 읽으면 됩니다.
             구체 금액·점수·소득 기준은 제도가 바뀔 수 있으니,
             최종 확인은 항상 <strong>청약홈 공고 기준</strong>으로 하세요.
           </p>
@@ -232,8 +256,8 @@
             최근에는 정책·세제 이야기도 많이 나오지만,
             결국 무주택 실수요자가 당장 손에 잡을 수 있는 기회는 청약인 경우가 많습니다.
             흐름이 궁금하다면
-            <a href="/blog/post-40.html">30대 무주택 월급쟁이 관점 글</a>이나
-            <a href="/blog/post-41.html">7월 세제개편 미리보기</a>도 함께 보면 맥락이 잡힙니다.
+            <a href="post-40.html">30대 무주택 월급쟁이 관점 글</a>이나
+            <a href="post-41.html">7월 세제개편 미리보기</a>도 함께 보면 맥락이 잡힙니다.
           </p>
 
           <div class="post-warn-box">
@@ -245,7 +269,188 @@
             </p>
           </div>
 
-          <h2>청약 필수 용어 10가지</h2>
+          <h2>2. 청약 용어를 어디서 만나게 되나</h2>
+          <p>
+            청약 준비를 시작하면, 용어는 보통 아래 순서로 등장합니다.
+            미리 흐름을 알아 두면 공고문을 읽을 때 덜 막힙니다.
+          </p>
+          <ul class="check-list">
+            <li>
+              <strong>통장 개설 단계</strong><br>
+              은행 앱·창구에서 “주택청약종합저축” 가입 시 <strong>청약통장</strong>, <strong>예치금</strong> 개념이 나옵니다.
+              가입 기간이 쌓이면 나중에 <strong>청약 가점</strong>에 반영됩니다.
+            </li>
+            <li>
+              <strong>공고 확인 단계</strong><br>
+              청약홈·분양 알리미에서 단지 공고를 열면 <strong>국민주택/민영주택</strong>, <strong>특별공급</strong>,
+              <strong>1순위/2순위</strong>, <strong>전용면적</strong> 등이 한꺼번에 등장합니다.
+            </li>
+            <li>
+              <strong>청약 접수 단계</strong><br>
+              청약홈에서 유형·주택형을 고를 때 <strong>무주택 기간</strong>, <strong>예치금</strong> 충족 여부,
+              <strong>가점</strong>이 자격 판정에 쓰입니다.
+            </li>
+            <li>
+              <strong>당첨 이후</strong><br>
+              계약·입주 과정에서 <strong>분양가상한제</strong>, <strong>재당첨 제한</strong> 같은 용어가
+              “다음 청약에도 넣을 수 있나”와 연결됩니다.
+            </li>
+          </ul>
+
+          <h2>3. 용어 10가지 한눈에 정리</h2>
+          <p>
+            아래 표는 이 글에서 다루는 10개 용어를 요약한 것입니다.
+            한 줄 정의만 필요하면 <a href="../glossary.html">용어집</a>을 참고하세요.
+            이 글은 각 용어를 실전 맥락에서 풀어 씁니다.
+          </p>
+          <div class="post-table-wrap">
+            <table class="post-table">
+              <caption class="visually-hidden">청약 필수 용어 10가지 요약</caption>
+              <thead>
+                <tr>
+                  <th scope="col">용어</th>
+                  <th scope="col">한 줄 요약</th>
+                  <th scope="col">주로 보는 곳</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">무주택 기간</th>
+                  <td>집 없이 지낸 기간</td>
+                  <td>가점 산정, 특별공급 자격</td>
+                </tr>
+                <tr>
+                  <th scope="row">청약 가점</th>
+                  <td>민영 가점제 점수</td>
+                  <td>청약홈 접수, 가점 계산기</td>
+                </tr>
+                <tr>
+                  <th scope="row">청약통장</th>
+                  <td>청약 참여용 저축</td>
+                  <td>은행 가입, 예치금·가점</td>
+                </tr>
+                <tr>
+                  <th scope="row">예치금</th>
+                  <td>신청 자격용 최소 잔액</td>
+                  <td>청약홈 기준표, 공고문</td>
+                </tr>
+                <tr>
+                  <th scope="row">1순위/2순위</th>
+                  <td>접수 자격 단계</td>
+                  <td>공고문 자격 요건</td>
+                </tr>
+                <tr>
+                  <th scope="row">특별공급</th>
+                  <td>특정 자격자 우선 배정</td>
+                  <td>공고문 공급 유형</td>
+                </tr>
+                <tr>
+                  <th scope="row">국민/민영주택</th>
+                  <td>공급 주체·규칙 구분</td>
+                  <td>공고 첫머리, 청약 방식</td>
+                </tr>
+                <tr>
+                  <th scope="row">전용/공급면적</th>
+                  <td>실사용 vs 공용 포함 면적</td>
+                  <td>주택형 표, 평면도</td>
+                </tr>
+                <tr>
+                  <th scope="row">분양가상한제</th>
+                  <td>분양가 상한 규제</td>
+                  <td>분양 공고, 가격 안내</td>
+                </tr>
+                <tr>
+                  <th scope="row">재당첨 제한</th>
+                  <td>당첨 후 일정 기간 제한</td>
+                  <td>공고문 제한 조항</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2>4. 청약 가점 — 3가지 항목이 어떻게 구성되나</h2>
+          <p>
+            민영주택 가점제에서 점수는 보통 세 덩어리로 나뉩니다.
+            아래는 일반공급 가점제 기준으로, 사이트 <a href="/tools/subscription-calculator/">청약 가점 계산기</a>가 반영하는 구조입니다.
+            특별공급·지역별 세부는 공고마다 다를 수 있습니다.
+          </p>
+          <div class="post-table-wrap">
+            <table class="post-table">
+              <caption class="visually-hidden">청약 가점 항목별 구성</caption>
+              <thead>
+                <tr>
+                  <th scope="col">항목</th>
+                  <th scope="col">만점</th>
+                  <th scope="col">실전에서 확인하는 곳</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">무주택 기간</th>
+                  <td>32점</td>
+                  <td>청약홈 자격 조회, 가점 계산기</td>
+                </tr>
+                <tr>
+                  <th scope="row">부양가족 수</th>
+                  <td>35점</td>
+                  <td>가족관계증명·세대 구성, 계산기</td>
+                </tr>
+                <tr>
+                  <th scope="row">청약통장 가입기간</th>
+                  <td>17점</td>
+                  <td>통장 가입일, 은행·청약홈 조회</td>
+                </tr>
+                <tr>
+                  <th scope="row">합계</th>
+                  <td>84점</td>
+                  <td>민영 일반공급 가점제 기준</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="font-size:13px;color:#64748b;">※ 가점 산정 세부는 공고·시기별로 달라질 수 있습니다. 청약홈·해당 단지 공고를 확인하세요.</p>
+
+          <h2>5. 공급 유형별 — 용어가 다르게 쓰이는 이유</h2>
+          <p>
+            같은 “청약”이라도 국민주택·민영주택·특별공급마다 규칙이 다릅니다.
+            공고 첫머리에 “무슨 주택인지”를 확인하는 습관이 필요합니다.
+          </p>
+          <div class="post-table-wrap">
+            <table class="post-table">
+              <caption class="visually-hidden">공급 유형별 비교</caption>
+              <thead>
+                <tr>
+                  <th scope="col">유형</th>
+                  <th scope="col">핵심 용어</th>
+                  <th scope="col">초보가 먼저 볼 것</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">국민주택</th>
+                  <td>납입 횟수·인정 금액, 1순위</td>
+                  <td>청약통장 납입 이력, 순위 요건</td>
+                </tr>
+                <tr>
+                  <th scope="row">민영주택</th>
+                  <td>예치금, 청약 가점</td>
+                  <td>예치금 기준표, 가점 계산기</td>
+                </tr>
+                <tr>
+                  <th scope="row">특별공급</th>
+                  <td>신혼·생애최초·다자녀 등</td>
+                  <td>해당 유형 자격 요건, 소득 기준</td>
+                </tr>
+                <tr>
+                  <th scope="row">일반공급</th>
+                  <td>가점 또는 추첨</td>
+                  <td>공고문의 당첨 방식 확인</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2>6. 청약 필수 용어 10가지 — 실전 맥락으로 풀기</h2>
 
           <article class="term-card">
             <span class="term-num">1</span>
@@ -255,7 +460,8 @@
               쉬운 예로, 지금까지 본인 명의 주택이 없었다면 “무주택으로 산 시간”이 쌓입니다.
               혼인·세대 구성에 따라 계산 방식이 달라질 수 있어, 공고의 산정 기준을 봐야 합니다.
             </p>
-            <p><strong>왜 중요할까?</strong> 가점제에서 점수를 크게 좌우하는 요소 중 하나이기 때문입니다.</p>
+            <p><strong>왜 중요할까?</strong> 가점제에서 점수를 크게 좌우하는 요소 중 하나입니다. 무주택 기간이 길수록 가점이 올라가는 구조입니다.</p>
+            <p><strong>어디서 만나나?</strong> 청약홈 접수 화면의 자격 조회, <a href="/tools/subscription-calculator/">청약 가점 계산기</a>의 “무주택 기간” 항목, 특별공급 공고문의 무주택 요건에서 확인합니다.</p>
           </article>
 
           <article class="term-card">
@@ -267,11 +473,10 @@
               <strong>무주택 기간</strong>, <strong>부양가족 수</strong>, <strong>청약통장 가입 기간</strong>.
               “대충 몇 점일 것 같다”보다, 실제 숫자를 한 번 찍어보는 게 중요합니다.
             </p>
+            <p><strong>왜 중요할까?</strong> 같은 단지에 여러 명이 몰리면, 가점이 높을수록 유리한 경우가 많습니다.</p>
             <p>
-              <strong>왜 중요할까?</strong> 같은 단지에 여러 명이 몰리면, 가점이 높을수록 유리한 경우가 많습니다.
-              내 점수가 궁금하다면
-              <a href="/tools/subscription-calculator/">청약 가점 계산기</a>로 먼저 점검해 보세요.
-              (최종 점수는 공고·자격 요건에 따라 달라질 수 있습니다.)
+              <strong>어디서 만나나?</strong> 청약홈 민영주택 접수 시 가점 표시, 가점 계산기, 단지 공고문의 “가점제 안내” 항목에서 확인합니다.
+              내 점수가 궁금하다면 <a href="/tools/subscription-calculator/">청약 가점 계산기</a>로 먼저 점검해 보세요.
             </p>
           </article>
 
@@ -283,7 +488,8 @@
               은행에서 “청약통장”이라고 부르는 상품이 바로 이 계열입니다.
               가입만 했다고 끝이 아니라, 가입 기간·납입 횟수 등이 순위·가점에 영향을 줄 수 있습니다.
             </p>
-            <p><strong>왜 중요할까?</strong> 통장이 없으면 아예 시작할 수 없는 경우가 많기 때문입니다. 가장 먼저 챙길 기본 장비입니다.</p>
+            <p><strong>왜 중요할까?</strong> 통장이 없으면 아예 시작할 수 없는 경우가 많습니다. 가장 먼저 챙길 기본 장비입니다.</p>
+            <p><strong>어디서 만나나?</strong> 은행 창구·앱 가입 화면, 청약홈 자격 조회, <a href="post-44.html">청약통장 월 납입금액 가이드</a>에서 납입 전략까지 이어집니다.</p>
           </article>
 
           <article class="term-card">
@@ -296,6 +502,7 @@
               여기서는 숫자를 단정하지 않겠습니다. 공고·청약홈의 예치금 기준표를 보는 게 정답입니다.
             </p>
             <p><strong>왜 중요할까?</strong> 예치금이 부족하면 원하는 평형에 신청조차 못 할 수 있기 때문입니다.</p>
+            <p><strong>어디서 만나나?</strong> 청약홈 “예치금 기준” 메뉴, 단지 공고문의 주택형별 예치금 표, 은행 앱의 청약통장 잔액 화면에서 확인합니다.</p>
           </article>
 
           <article class="term-card">
@@ -307,6 +514,7 @@
               가입 기간·납입 횟수 등 세부 요건은 주택 유형·지역·공고마다 다를 수 있습니다.
             </p>
             <p><strong>왜 중요할까?</strong> 순위가 안 되면 원하는 단지에 아예 못 넣거나, 경쟁 구도가 달라질 수 있습니다.</p>
+            <p><strong>어디서 만나나?</strong> 단지 공고문 “청약 자격” 항목, 청약홈 접수 전 자격 조회 결과에서 “1순위 해당/미해당”으로 표시됩니다.</p>
           </article>
 
           <article class="term-card">
@@ -319,6 +527,7 @@
               소득·혼인·무주택 요건은 유형마다 다르고, 바뀌기도 하니 공고 확인이 필수입니다.
             </p>
             <p><strong>왜 중요할까?</strong> 해당되면 일반공급보다 경쟁 구도가 달라질 수 있는 별도 통로이기 때문입니다.</p>
+            <p><strong>어디서 만나나?</strong> 단지 공고문 “공급 유형” 표, 청약홈 접수 시 특별공급 탭, 청약홈 “특별공급 자격 안내”에서 확인합니다.</p>
           </article>
 
           <article class="term-card">
@@ -329,7 +538,8 @@
               아주 거칠게 말하면, 공공성이 강한 쪽(국민주택 계열)과 민간이 공급하는 쪽(민영주택)으로 나눠 볼 수 있습니다.
               청약 방식·순위·가점 적용이 달라질 수 있어, 공고 첫머리에 “무슨 주택인지”를 확인하는 버릇이 필요합니다.
             </p>
-            <p><strong>왜 중요할까?</strong> 같은 “청약”이라도 규칙이 다를 수 있기 때문입니다.</p>
+            <p><strong>왜 중요할까?</strong> 같은 “청약”이라도 규칙이 다를 수 있기 때문입니다. 국민은 납입 횟수, 민영은 가점·예치금이 핵심입니다.</p>
+            <p><strong>어디서 만나나?</strong> 공고문 제목·개요, 청약홈 단지 상세의 “주택 구분” 항목, <a href="post-44.html">청약통장 납입 가이드</a>에서 유형별 전략 차이를 볼 수 있습니다.</p>
           </article>
 
           <article class="term-card">
@@ -341,6 +551,7 @@
               복도·계단 같은 공용 공간이 포함되면 체감 평수와 숫자가 다르게 느껴질 수 있습니다.
             </p>
             <p><strong>왜 중요할까?</strong> 예치금·청약 가능한 주택형·실거주 체감이 면적 기준과 연결되기 때문입니다.</p>
+            <p><strong>어디서 만나나?</strong> 단지 공고문 주택형 표, 청약홈 “주택형별 정보”, 모델하우스·평면도에서 확인합니다.</p>
           </article>
 
           <article class="term-card">
@@ -352,6 +563,7 @@
               다만 적용 지역·단지·시점에 따라 체감이 달라지고, 로열층·옵션 등으로 실제 부담은 더 커질 수 있습니다.
             </p>
             <p><strong>왜 중요할까?</strong> 가격 매력과 경쟁률이 함께 움직이는 경우가 많아, 전략을 세울 때 꼭 보는 항목입니다.</p>
+            <p><strong>어디서 만나나?</strong> 분양 공고의 “분양가” 안내, 청약홈 단지 정보, 뉴스·정책 보도에서 “분양가상한제 적용” 문구로 등장합니다.</p>
           </article>
 
           <article class="term-card">
@@ -363,22 +575,72 @@
               제한 기간·적용 범위는 주택 유형과 규정에 따라 다르니, 당첨 전에는 공고의 제한 조항을 꼭 읽으세요.
             </p>
             <p><strong>왜 중요할까?</strong> 아무 단지에나 넣어보고 당첨되면, 정작 원하는 단지 기회를 놓칠 수 있기 때문입니다.</p>
+            <p><strong>어디서 만나나?</strong> 단지 공고문 “당첨자 제한” 항목, 청약홈 당첨 후 안내, 계약 전 유의사항에서 확인합니다.</p>
           </article>
 
-          <h2>실전 팁 — 무주택자가 오늘 당장 할 일</h2>
-          <div class="post-tip-box">
-            <h3>오늘 할 수 있는 3가지</h3>
-            <ul>
-              <li>청약통장이 없다면 가입부터 진행하기 (은행·청약홈 안내 확인)</li>
-              <li>내 <a href="/tools/subscription-calculator/">청약 가점</a>을 한 번 계산해 보기</li>
-              <li>관심 지역 공고가 떴는지 <a href="/tools/bunyang-alarm/">분양 알리미</a>로 훑어보기</li>
-            </ul>
-          </div>
+          <h2>7. 공고문 읽는 순서 — 용어를 실전에 연결하기</h2>
+          <p>
+            단지 공고가 떴을 때, 용어를 한꺼번에 외우려 하지 말고 아래 순서로 읽으면 덜 막힙니다.
+          </p>
+          <ul class="check-list">
+            <li><strong>1단계</strong> — 공고 첫머리에서 <strong>국민/민영</strong>, <strong>특별공급</strong> 유무 확인</li>
+            <li><strong>2단계</strong> — 관심 주택형의 <strong>전용면적</strong>, <strong>예치금</strong> 요건 확인</li>
+            <li><strong>3단계</strong> — 내 <strong>1순위/2순위</strong> 해당 여부, <strong>무주택</strong>·<strong>가점</strong> 점검</li>
+            <li><strong>4단계</strong> — <strong>재당첨 제한</strong>, <strong>분양가상한제</strong> 적용 여부 확인</li>
+            <li><strong>5단계</strong> — 청약 접수 일정·방법(청약홈) 확인</li>
+          </ul>
           <p>
             용어를 외우는 것보다, “내 통장·내 점수·내 관심 단지”를 연결해 두는 게 먼저입니다.
             정책·세제 이슈가 아무리 커도, 준비가 안 되어 있으면 기회는 흘러갑니다.
-            큰 그림이 궁금하면
-            <a href="/blog/post-39.html">대토론회 정리 글</a>도 참고해 보세요.
+          </p>
+          <p>
+            공고문을 처음 읽을 때는 모든 용어를 한 번에 이해하려 하지 마세요.
+            위 5단계 순서대로 체크하면, “내가 넣을 수 있는 유형인지”부터 가를 수 있습니다.
+            자격이 안 되는 유형은 과감히 건너뛰고, 해당되는 공급 유형에 집중하는 편이 효율적입니다.
+            막히는 용어가 나오면 <a href="../glossary.html">용어집</a>에서 빠르게 찾고,
+            맥락이 필요하면 이 글의 해당 항목으로 돌아오면 됩니다.
+          </p>
+
+          <h2>8. 자주 하는 실수</h2>
+          <div class="post-tip-box">
+            <h3>초보가 자주 헷갈리는 것</h3>
+            <ul>
+              <li><strong>용어만 외우고 내 자격은 안 봄</strong> — 청약홈 자격 조회를 먼저 하세요.</li>
+              <li><strong>예치금 숫자를 옛날 기준으로 믿음</strong> — 공고·청약홈 최신 표를 확인하세요.</li>
+              <li><strong>가점만 보고 예치금은 무시</strong> — 민영은 둘 다 필요합니다.</li>
+              <li><strong>특별공급 자격을 단정</strong> — 소득·혼인 요건은 공고마다 다릅니다.</li>
+              <li><strong>당첨 후 재당첨 제한을 몰랐다가 후회</strong> — 계약 전 공고 제한 조항을 읽으세요.</li>
+            </ul>
+          </div>
+
+          <h2>9. 자주 묻는 질문</h2>
+          <p>
+            <strong>Q. 용어집과 이 글의 차이가 뭔가요?</strong><br>
+            <a href="../glossary.html">용어집</a>은 한 줄 정의 위주이고, 이 글은 실전에서 어디서 만나는지·왜 중요한지까지 풀어 씁니다. 빠르게 찾을 땐 용어집, 처음 공부할 땐 이 글을 권합니다.
+          </p>
+          <p>
+            <strong>Q. 가점 84점이면 당첨되나요?</strong><br>
+            가점은 상대 비교입니다. 같은 단지에 넣는 사람들의 점수 분포에 따라 달라지므로, “만점이면 된다”고 단정할 수 없습니다. 경쟁 단지 기준 점수대를 참고하세요.
+          </p>
+          <p>
+            <strong>Q. 국민주택이랑 민영주택, 뭘 먼저 준비해야 하나요?</strong><br>
+            공통으로 <strong>청약통장</strong>이 필요합니다. 국민 위주면 납입 습관, 민영 위주면 예치금·가점을 함께 점검하세요. <a href="post-44.html">청약통장 납입 가이드</a>가 도움이 됩니다.
+          </p>
+          <p>
+            <strong>Q. 특별공급에 해당되는지 어떻게 알아요?</strong><br>
+            청약홈 “특별공급 자격 안내”와 해당 단지 공고문의 자격 요건을 대조하세요. 소득·혼인·무주택 기간 등 항목마다 조건이 다릅니다.
+          </p>
+          <p>
+            <strong>Q. 용어는 알겠는데, 관심 단지 일정은 어디서 보나요?</strong><br>
+            청약홈과 <a href="/tools/bunyang-alarm/">분양 알리미</a>로 전국 공고를 모아볼 수 있습니다. 공고가 뜨면 위 7단계 순서로 읽어 보세요.
+          </p>
+
+          <h2>10. 마무리 — 오늘 할 일</h2>
+          <p>
+            청약 용어는 처음엔 어렵지만, 열 가지만 잡아도 공고문이 훨씬 읽히기 시작합니다.
+            오늘은 개념을 익히고, 내일은 내 점수와 관심 단지 일정을 챙기면 됩니다.
+            한 줄 정의가 필요하면 <a href="../glossary.html">용어집</a>을, 납입 전략은
+            <a href="post-44.html">청약통장 월 납입 가이드</a>를 이어서 보세요.
           </p>
 
           <div class="cta-box">
@@ -388,27 +650,20 @@
             <a href="/tools/subscription-calculator/" class="cta-button">청약 가점 계산기 열기 →</a>
           </div>
 
-          <h2>마무리</h2>
           <p>
-            청약 용어는 처음엔 어렵지만, 열 가지만 잡아도 공고문이 훨씬 읽히기 시작합니다.
-            오늘은 개념을 익히고, 내일은 내 점수와 관심 단지 일정을 챙기면 됩니다.
             일정은
             <a href="/tools/bunyang-alarm/">분양 알리미</a>로 놓치지 않게 확인해 보세요.
+            큰 그림이 궁금하면
+            <a href="post-39.html">대토론회 정리 글</a>도 참고해 보세요.
           </p>
-
-          <div class="cta-box">
-            <div class="cta-icon">📢</div>
-            <h3>청약 일정, 놓치지 마세요</h3>
-            <p>전국 분양·청약 공고를 카드로 모아보고 지역·상태로 빠르게 골라보세요.</p>
-            <a href="/tools/bunyang-alarm/" class="cta-button">분양 알리미 열기 →</a>
-          </div>
 
           <div class="post-sources">
             <p class="post-sources-title">📎 출처·참고</p>
             <ul>
               <li>청약홈(applyhome) 청약 제도·공고 안내 (최신 기준은 공고문 확인)</li>
+              <li><a href="../glossary.html">부동산·청약 용어집</a></li>
               <li><a href="/tools/subscription-calculator/">청약 가점 계산기</a> · <a href="/tools/bunyang-alarm/">분양 알리미</a></li>
-              <li><a href="/blog/post-40.html">무주택 관점 글</a> · <a href="/blog/post-41.html">세제개편 미리보기</a></li>
+              <li><a href="post-44.html">청약통장 월 납입금액 가이드</a> · <a href="post-40.html">무주택 관점 글</a></li>
             </ul>
           </div>
 
