@@ -1,0 +1,10 @@
+import fs from 'fs';
+const h = fs.readFileSync('index.html', 'utf8');
+console.log('hero', h.includes('부동산 정보를 한 곳에서'));
+console.log('desc', h.includes('내 월급으로'));
+console.log('title', h.match(/<title>[^<]+/)[0]);
+console.log('webp', h.includes('map-preview.webp'));
+console.log('no styles.css', !/href=["']styles\.css["']/.test(h));
+console.log('deferred', h.includes('loadThirdParty'));
+const js = fs.readFileSync('js/home-latest-posts.js', 'utf8');
+console.log('js attrs', js.includes('width="400"') && js.includes('decoding="async"'));

@@ -1,32 +1,10 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y7SC73P9JW"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-Y7SC73P9JW', {
-    'page_title': document.title,
-    'page_path': window.location.pathname
-  });
-</script>
-
-<!-- Microsoft Clarity -->
-<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "xbdrgqw1pj");
-</script>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="naver-site-verification" content="2a8cd3a503e59b3fb6f24c2d761e945be988b654" />
   <meta name="google-adsense-account" content="ca-pub-8232968272801958">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8232968272801958" crossorigin="anonymous"></script>
 
   <title>서울 부동산 실거래가 + 직장인 도구 모음 | 승박이형</title>
   <meta name="description" content="내 월급으로 살 수 있는 집은 어디? 서울·경기 13,412개 단지 실거래가 47만건을 지도 한 장으로. 월급쟁이를 위한 무료 부동산 지도">
@@ -54,9 +32,12 @@
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="css/main-redesign.css">
+
+  <link rel="preload" href="/css/main-redesign.css" as="style">
+  <link rel="stylesheet" href="/css/main-redesign.css">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"></noscript>
 
   <script type="application/ld+json">
   {
@@ -189,7 +170,10 @@
               <a href="/tools/realestate-map/" class="hr-btn hr-btn-dark">지도 열기 →</a>
             </div>
             <div class="hr-map-image hr-main-tool-media">
-              <img src="/images/main/map-preview.png" alt="seungbak.com 실거래가 지도 미리보기" width="1200" height="800" loading="lazy">
+              <picture>
+                <source srcset="/images/main/map-preview.webp" type="image/webp">
+                <img src="/images/main/map-preview.jpg" alt="seungbak.com 실거래가 지도 미리보기" width="640" height="427" loading="lazy" decoding="async">
+              </picture>
             </div>
           </article>
 
@@ -206,7 +190,10 @@
               <a href="/tools/bunyang-alarm/" class="hr-btn hr-btn-dark">분양 알리미 열기 →</a>
             </div>
             <div class="hr-map-image hr-main-tool-media">
-              <img src="/tools/bunyang-alarm/images/apt-1.jpg" alt="분양 알리미 미리보기" width="960" height="640" loading="lazy">
+              <picture>
+                <source srcset="/images/main/bunyang-preview.webp" type="image/webp">
+                <img src="/images/main/bunyang-preview.jpg" alt="분양 알리미 미리보기" width="640" height="427" loading="lazy" decoding="async">
+              </picture>
             </div>
           </article>
         </div>
@@ -305,7 +292,7 @@
         <div class="hr-blog-grid" id="hr-blog-grid">
           <a href="/blog/post-48.html" class="hr-blog-card">
             <div class="hr-blog-thumb">
-              <img src="/blog/images/post-48/hero.jpg" alt="국민연금 언제부터 받는 게 이득일까 — 조기수령 vs 연기수령 완벽 비교 (2026)" loading="lazy">
+              <img src="/blog/images/post-48/hero.jpg" alt="국민연금 언제부터 받는 게 이득일까 — 조기수령 vs 연기수령 완벽 비교 (2026)" loading="lazy" decoding="async" width="400" height="225">
             </div>
             <div class="hr-blog-body">
               <span class="hr-blog-tag">노후/연금</span>
@@ -316,7 +303,7 @@
           </a>
           <a href="/blog/post-47.html" class="hr-blog-card">
             <div class="hr-blog-thumb">
-              <img src="/blog/images/post-47/hero.jpg" alt="부모님 집 물려받을 때 세금 얼마? 상속 vs 증여 뭐가 유리할까 (2026 최신)" loading="lazy">
+              <img src="/blog/images/post-47/hero.jpg" alt="부모님 집 물려받을 때 세금 얼마? 상속 vs 증여 뭐가 유리할까 (2026 최신)" loading="lazy" decoding="async" width="400" height="225">
             </div>
             <div class="hr-blog-body">
               <span class="hr-blog-tag">세금/절세</span>
@@ -327,7 +314,7 @@
           </a>
           <a href="/blog/post-46.html" class="hr-blog-card">
             <div class="hr-blog-thumb">
-              <img src="/blog/images/post-46/hero.jpg" alt="집 한 채로 매달 연금 받는 법 — 주택연금 조건·수령액 총정리 (2026 개편 반영)" loading="lazy">
+              <img src="/blog/images/post-46/hero.jpg" alt="집 한 채로 매달 연금 받는 법 — 주택연금 조건·수령액 총정리 (2026 개편 반영)" loading="lazy" decoding="async" width="400" height="225">
             </div>
             <div class="hr-blog-body">
               <span class="hr-blog-tag">노후/연금</span>
@@ -338,7 +325,7 @@
           </a>
           <a href="/blog/post-45.html" class="hr-blog-card">
             <div class="hr-blog-thumb">
-              <img src="/blog/images/post-45/hero.jpg" alt="2026 세제개편, ISA 계좌 확 바뀐다 — 한도 이월 폐지·만기 5년·생산적금융ISA 신설 총정리" loading="lazy">
+              <img src="/blog/images/post-45/hero.jpg" alt="2026 세제개편, ISA 계좌 확 바뀐다 — 한도 이월 폐지·만기 5년·생산적금융ISA 신설 총정리" loading="lazy" decoding="async" width="400" height="225">
             </div>
             <div class="hr-blog-body">
               <span class="hr-blog-tag">재테크/절세</span>
@@ -349,7 +336,7 @@
           </a>
           <a href="/blog/post-44.html" class="hr-blog-card">
             <div class="hr-blog-thumb">
-              <img src="/blog/images/post-44/hero.jpg" alt="청약통장, 매달 얼마씩 넣어야 유리할까 — 납입금액 완전정복 (2026)" loading="lazy">
+              <img src="/blog/images/post-44/hero.jpg" alt="청약통장, 매달 얼마씩 넣어야 유리할까 — 납입금액 완전정복 (2026)" loading="lazy" decoding="async" width="400" height="225">
             </div>
             <div class="hr-blog-body">
               <span class="hr-blog-tag">청약 기초</span>
@@ -360,7 +347,7 @@
           </a>
           <a href="/blog/post-43.html" class="hr-blog-card">
             <div class="hr-blog-thumb">
-              <img src="/blog/images/post-43/hero.jpg" alt="7월 부동산 세제개편, 지금까지 나온 방향 총정리 — 보유세·장특공제·양도세 (2026.7.29)" loading="lazy">
+              <img src="/blog/images/post-43/hero.jpg" alt="7월 부동산 세제개편, 지금까지 나온 방향 총정리 — 보유세·장특공제·양도세 (2026.7.29)" loading="lazy" decoding="async" width="400" height="225">
             </div>
             <div class="hr-blog-body">
               <span class="hr-blog-tag">부동산 정책</span>
@@ -447,6 +434,46 @@ var toggle = document.getElementById("hr-menu-toggle");
           });
         });
       }
+    })();
+  </script>
+
+  <script>
+    (function () {
+      function loadThirdParty() {
+        var g = document.createElement("script");
+        g.async = true;
+        g.src = "https://www.googletagmanager.com/gtag/js?id=G-Y7SC73P9JW";
+        document.head.appendChild(g);
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){ dataLayer.push(arguments); }
+        window.gtag = gtag;
+        gtag("js", new Date());
+        gtag("config", "G-Y7SC73P9JW", {
+          page_title: document.title,
+          page_path: window.location.pathname
+        });
+
+        (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "xbdrgqw1pj");
+
+        var a = document.createElement("script");
+        a.async = true;
+        a.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8232968272801958";
+        a.crossOrigin = "anonymous";
+        document.head.appendChild(a);
+      }
+      function schedule() {
+        if ("requestIdleCallback" in window) {
+          requestIdleCallback(loadThirdParty, { timeout: 3500 });
+        } else {
+          setTimeout(loadThirdParty, 2500);
+        }
+      }
+      if (document.readyState === "complete") schedule();
+      else window.addEventListener("load", schedule);
     })();
   </script>
 </body>

@@ -26,7 +26,7 @@
       escapeHtml(img) +
       '" alt="' +
       escapeHtml(alt) +
-      '" loading="lazy">' +
+      '" width="400" height="225" loading="lazy" decoding="async">' +
       "</div>" +
       '<div class="hr-blog-body">' +
       '<span class="hr-blog-tag">' +
