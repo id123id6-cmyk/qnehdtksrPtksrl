@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
@@ -35,9 +35,7 @@
 
   <link rel="preload" href="/css/main-redesign.css" as="style">
   <link rel="stylesheet" href="/css/main-redesign.css">
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-  <link rel="preload" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"></noscript>
+  <!-- 홈은 시스템 폰트만 사용 (CDN 폰트 = FCP/CLS 악화 방지). 블로그·도구는 Pretendard 유지 -->
 
   <script type="application/ld+json">
   {
@@ -292,7 +290,7 @@
         <div class="hr-blog-grid" id="hr-blog-grid">
           <a href="/blog/post-48.html" class="hr-blog-card">
             <div class="hr-blog-thumb">
-              <img src="/blog/images/post-48/hero.jpg" alt="국민연금 언제부터 받는 게 이득일까 — 조기수령 vs 연기수령 완벽 비교 (2026)" loading="lazy" decoding="async" width="400" height="225">
+              <img src="/images/main/thumbs/post-48.webp" alt="국민연금 언제부터 받는 게 이득일까 — 조기수령 vs 연기수령 완벽 비교 (2026)" loading="lazy" decoding="async" width="400" height="225">
             </div>
             <div class="hr-blog-body">
               <span class="hr-blog-tag">노후/연금</span>
@@ -303,7 +301,7 @@
           </a>
           <a href="/blog/post-47.html" class="hr-blog-card">
             <div class="hr-blog-thumb">
-              <img src="/blog/images/post-47/hero.jpg" alt="부모님 집 물려받을 때 세금 얼마? 상속 vs 증여 뭐가 유리할까 (2026 최신)" loading="lazy" decoding="async" width="400" height="225">
+              <img src="/images/main/thumbs/post-47.webp" alt="부모님 집 물려받을 때 세금 얼마? 상속 vs 증여 뭐가 유리할까 (2026 최신)" loading="lazy" decoding="async" width="400" height="225">
             </div>
             <div class="hr-blog-body">
               <span class="hr-blog-tag">세금/절세</span>
@@ -314,7 +312,7 @@
           </a>
           <a href="/blog/post-46.html" class="hr-blog-card">
             <div class="hr-blog-thumb">
-              <img src="/blog/images/post-46/hero.jpg" alt="집 한 채로 매달 연금 받는 법 — 주택연금 조건·수령액 총정리 (2026 개편 반영)" loading="lazy" decoding="async" width="400" height="225">
+              <img src="/images/main/thumbs/post-46.webp" alt="집 한 채로 매달 연금 받는 법 — 주택연금 조건·수령액 총정리 (2026 개편 반영)" loading="lazy" decoding="async" width="400" height="225">
             </div>
             <div class="hr-blog-body">
               <span class="hr-blog-tag">노후/연금</span>
@@ -325,7 +323,7 @@
           </a>
           <a href="/blog/post-45.html" class="hr-blog-card">
             <div class="hr-blog-thumb">
-              <img src="/blog/images/post-45/hero.jpg" alt="2026 세제개편, ISA 계좌 확 바뀐다 — 한도 이월 폐지·만기 5년·생산적금융ISA 신설 총정리" loading="lazy" decoding="async" width="400" height="225">
+              <img src="/images/main/thumbs/post-45.webp" alt="2026 세제개편, ISA 계좌 확 바뀐다 — 한도 이월 폐지·만기 5년·생산적금융ISA 신설 총정리" loading="lazy" decoding="async" width="400" height="225">
             </div>
             <div class="hr-blog-body">
               <span class="hr-blog-tag">재테크/절세</span>
@@ -336,7 +334,7 @@
           </a>
           <a href="/blog/post-44.html" class="hr-blog-card">
             <div class="hr-blog-thumb">
-              <img src="/blog/images/post-44/hero.jpg" alt="청약통장, 매달 얼마씩 넣어야 유리할까 — 납입금액 완전정복 (2026)" loading="lazy" decoding="async" width="400" height="225">
+              <img src="/images/main/thumbs/post-44.webp" alt="청약통장, 매달 얼마씩 넣어야 유리할까 — 납입금액 완전정복 (2026)" loading="lazy" decoding="async" width="400" height="225">
             </div>
             <div class="hr-blog-body">
               <span class="hr-blog-tag">청약 기초</span>
@@ -347,7 +345,7 @@
           </a>
           <a href="/blog/post-43.html" class="hr-blog-card">
             <div class="hr-blog-thumb">
-              <img src="/blog/images/post-43/hero.jpg" alt="7월 부동산 세제개편, 지금까지 나온 방향 총정리 — 보유세·장특공제·양도세 (2026.7.29)" loading="lazy" decoding="async" width="400" height="225">
+              <img src="/images/main/thumbs/post-43.webp" alt="7월 부동산 세제개편, 지금까지 나온 방향 총정리 — 보유세·장특공제·양도세 (2026.7.29)" loading="lazy" decoding="async" width="400" height="225">
             </div>
             <div class="hr-blog-body">
               <span class="hr-blog-tag">부동산 정책</span>
@@ -439,7 +437,12 @@ var toggle = document.getElementById("hr-menu-toggle");
 
   <script>
     (function () {
-      function loadThirdParty() {
+      // 홈: AdSense 미로드 (Best Practices unload 경고·메인스레드 부하 원인)
+      // GA/Clarity는 첫 상호작용 또는 8초 뒤에만 로드 → Lighthouse 측정 구간과 분리
+      var loaded = false;
+      function loadAnalytics() {
+        if (loaded) return;
+        loaded = true;
         var g = document.createElement("script");
         g.async = true;
         g.src = "https://www.googletagmanager.com/gtag/js?id=G-Y7SC73P9JW";
@@ -458,22 +461,12 @@ var toggle = document.getElementById("hr-menu-toggle");
           t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
           y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
         })(window, document, "clarity", "script", "xbdrgqw1pj");
+      }
 
-        var a = document.createElement("script");
-        a.async = true;
-        a.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8232968272801958";
-        a.crossOrigin = "anonymous";
-        document.head.appendChild(a);
-      }
-      function schedule() {
-        if ("requestIdleCallback" in window) {
-          requestIdleCallback(loadThirdParty, { timeout: 3500 });
-        } else {
-          setTimeout(loadThirdParty, 2500);
-        }
-      }
-      if (document.readyState === "complete") schedule();
-      else window.addEventListener("load", schedule);
+      ["scroll", "click", "touchstart", "keydown"].forEach(function (evt) {
+        window.addEventListener(evt, loadAnalytics, { once: true, passive: true });
+      });
+      setTimeout(loadAnalytics, 8000);
     })();
   </script>
 </body>

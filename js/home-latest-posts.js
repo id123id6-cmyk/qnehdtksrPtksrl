@@ -15,7 +15,10 @@
 
   function cardHtml(post) {
     var href = post.href || "/blog/" + (post.slug || "");
-    var img = post.image || "";
+    var id = post.id != null ? String(post.id) : "";
+    var img = id
+      ? "/images/main/thumbs/post-" + id + ".webp"
+      : post.image || "";
     var alt = post.alt || post.title || "";
     return (
       '<a href="' +
