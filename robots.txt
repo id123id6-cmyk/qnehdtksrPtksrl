@@ -1,11 +1,41 @@
-# Google · Naver(Yeti) 등 검색로봇 수집 허용
-# https://developers.google.com/search/docs/crawling-indexing/robots/intro
-# https://searchadvisor.naver.com/guide/seo-basic-robots
+# seungbak.com robots.txt
+# SEO: Google / Naver(Yeti)
+# GEO: Anthropic Claude + OpenAI ChatGPT search/crawlers
+# https://privacy.claude.com/en/articles/8896518
+# https://developers.openai.com/api/docs/bots
 
 User-agent: *
 Allow: /
 
+# --- Naver ---
 User-agent: Yeti
 Allow: /
 
+# --- Anthropic (Claude) ---
+# Claude-SearchBot: 검색 결과 품질·노출
+User-agent: Claude-SearchBot
+Allow: /
+
+# Claude-User: 사용자가 Claude에 물어볼 때 페이지 조회
+User-agent: Claude-User
+Allow: /
+
+# ClaudeBot: 모델 학습용 수집 (콘텐츠 미디어 노출 목적상 허용)
+User-agent: ClaudeBot
+Allow: /
+
+# --- OpenAI (ChatGPT) ---
+# OAI-SearchBot: ChatGPT 검색 결과에 사이트 노출 (opt-out 시 검색 답변에 미표시)
+User-agent: OAI-SearchBot
+Allow: /
+
+# GPTBot: 파운데이션 모델 학습용 (허용 시 학습 데이터 후보에 포함)
+User-agent: GPTBot
+Allow: /
+
+# ChatGPT-User: 사용자 질문 시 페이지 조회 (robots 미적용일 수 있음, 명시 허용)
+User-agent: ChatGPT-User
+Allow: /
+
 Sitemap: https://seungbak.com/sitemap.xml
+# AI 요약 가이드: https://seungbak.com/llms.txt
