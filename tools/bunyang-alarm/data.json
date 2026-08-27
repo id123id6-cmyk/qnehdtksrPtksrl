@@ -1,15 +1,38 @@
 {
-  "updatedAt": "2026-08-26T00:36:21.081Z",
+  "updatedAt": "2026-08-27T05:32:10.476Z",
   "source": "ApplyhomeInfoDetailSvc/v1/getAPTLttotPblancDetail",
   "range": {
     "gte": "2026-01-01",
-    "lte": "2026-08-26",
+    "lte": "2026-08-27",
     "dateFormat": "YYYY-MM-DD",
     "lookbackMonths": 6,
     "yearStart": "2026-01-01"
   },
-  "count": 217,
+  "count": 218,
   "items": [
+    {
+      "HOUSE_NM": "의정부우정 A2블록 공공분양주택(본청약)",
+      "HOUSE_DTL_SECD_NM": "국민",
+      "HOUSE_SECD_NM": "APT",
+      "SUBSCRPT_AREA_CODE_NM": "경기",
+      "HSSPLY_ADRES": "경기도 의정부시 녹양동 일원 의정부우정 공공주택지구 내 A-2블록",
+      "HSSPLY_ZIP": "11600",
+      "TOT_SUPLY_HSHLDCO": 463,
+      "RCRIT_PBLANC_DE": "2026-08-26",
+      "RCEPT_BGNDE": "2026-09-07",
+      "RCEPT_ENDDE": "2026-09-17",
+      "PRZWNER_PRESNATN_DE": "2026-10-08",
+      "MVN_PREARNGE_YM": "202905",
+      "PBLANC_URL": "https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000409&pblancNo=2026000409",
+      "BSNS_MBY_NM": "한국토지주택공사 경기북부지역본부",
+      "CNSTRCT_ENTRPS_NM": "남광토건 주식회사, 금광기업(주), 경안종합건설 주식회사, 중앙건설 주식회사",
+      "MDHS_TELNO": "0315749144",
+      "HMPG_ADRES": "https://apply.lh.or.kr",
+      "NSPRC_NM": "국민일보",
+      "CNTRCT_CNCLS_BGNDE": "2026-12-10",
+      "CNTRCT_CNCLS_ENDDE": "2026-12-15",
+      "RENT_SECD_NM": "분양주택"
+    },
     {
       "HOUSE_NM": "검암역 푸르지오 프라베뉴 (B-1BL) 공공분양주택",
       "HOUSE_DTL_SECD_NM": "국민",
