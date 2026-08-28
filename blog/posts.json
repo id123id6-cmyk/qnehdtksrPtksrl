@@ -1,8 +1,20 @@
 {
-  "updatedAt": "2026-08-27T00:00:00.000Z",
+  "updatedAt": "2026-08-28T00:28:38.837Z",
   "source": "blog/index.html",
-  "count": 41,
+  "count": 42,
   "posts": [
+    {
+      "id": 54,
+      "slug": "post-54.html",
+      "href": "/blog/post-54.html",
+      "category": "real-estate",
+      "image": "/blog/images/post-54/hero.png",
+      "alt": "9월 재산세 2기분, 얼마 나오고 언제까지 내나 (2026 납부기간·계산법 총정리)",
+      "tag": "부동산/세금",
+      "title": "9월 재산세 2기분, 얼마 나오고 언제까지 내나 (2026 납부기간·계산법 총정리)",
+      "excerpt": "9월 16~30일 재산세 2기분 납부기간, 주택·토지·건축물별 일정, 공시가격에서 세액까지 계산 구조, 1주택 특례세율, 세부담 상한, 분할납부·위택스 납부 방법을 초보 눈높이로 정리했습니다.",
+      "date": "2026-08-28"
+    },
     {
       "id": 53,
       "slug": "post-53.html",
