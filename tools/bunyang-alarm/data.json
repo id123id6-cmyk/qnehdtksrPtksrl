@@ -1,15 +1,38 @@
 {
-  "updatedAt": "2026-08-27T05:32:10.476Z",
+  "updatedAt": "2026-08-28T07:27:58.395Z",
   "source": "ApplyhomeInfoDetailSvc/v1/getAPTLttotPblancDetail",
   "range": {
     "gte": "2026-01-01",
-    "lte": "2026-08-27",
+    "lte": "2026-08-28",
     "dateFormat": "YYYY-MM-DD",
     "lookbackMonths": 6,
     "yearStart": "2026-01-01"
   },
-  "count": 218,
+  "count": 219,
   "items": [
+    {
+      "HOUSE_NM": "양주회천지구 A-26블록 공공분양주택",
+      "HOUSE_DTL_SECD_NM": "국민",
+      "HOUSE_SECD_NM": "APT",
+      "SUBSCRPT_AREA_CODE_NM": "경기",
+      "HSSPLY_ADRES": "경기도 양주시 덕정동 일원 양주신도시 택지개발지구 내 A-26블록",
+      "HSSPLY_ZIP": "11449",
+      "TOT_SUPLY_HSHLDCO": 792,
+      "RCRIT_PBLANC_DE": "2026-08-27",
+      "RCEPT_BGNDE": "2026-09-14",
+      "RCEPT_ENDDE": "2026-09-17",
+      "PRZWNER_PRESNATN_DE": "2026-10-07",
+      "MVN_PREARNGE_YM": "202910",
+      "PBLANC_URL": "https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000416&pblancNo=2026000416",
+      "BSNS_MBY_NM": "한국토지주택공사 경기북부지역본부",
+      "CNSTRCT_ENTRPS_NM": "양우종합건설 주식회사, (주)우호건설, 주식회사 대명건설",
+      "MDHS_TELNO": "16001004",
+      "HMPG_ADRES": "https://apply.lh.or.kr",
+      "NSPRC_NM": "",
+      "CNTRCT_CNCLS_BGNDE": "2026-12-10",
+      "CNTRCT_CNCLS_ENDDE": "2026-12-15",
+      "RENT_SECD_NM": "분양주택"
+    },
     {
       "HOUSE_NM": "의정부우정 A2블록 공공분양주택(본청약)",
       "HOUSE_DTL_SECD_NM": "국민",
