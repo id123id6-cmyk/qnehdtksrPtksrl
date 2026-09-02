@@ -1,8 +1,20 @@
 {
   "updatedAt": "2026-08-28T00:28:38.837Z",
   "source": "blog/index.html",
-  "count": 42,
+  "count": 43,
   "posts": [
+    {
+      "id": 55,
+      "slug": "post-55.html",
+      "href": "/blog/post-55.html",
+      "category": "real-estate",
+      "image": "/blog/images/post-55/hero.png",
+      "alt": "기초연금 수급자격 총정리 — 단독 247만원·부부 395만원 기준 (2026)",
+      "tag": "노후/연금",
+      "title": "기초연금 수급자격 총정리 — 단독 247만원·부부 395만원 기준 (2026)",
+      "excerpt": "2026년 기초연금 선정기준액과 소득인정액 계산법, 재산 공제 기준, 국민연금 연계감액, 부부감액, 신청 방법까지 65세 전후에 꼭 알아야 할 내용을 표로 정리했습니다.",
+      "date": "2026-09-02"
+    },
     {
       "id": 54,
       "slug": "post-54.html",
