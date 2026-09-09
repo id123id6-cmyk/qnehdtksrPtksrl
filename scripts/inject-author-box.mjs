@@ -2,7 +2,7 @@ import { readFileSync, writeFileSync, readdirSync } from "fs";
 import { join } from "path";
 
 const blogDir = "blog";
-const skip = new Set(["post-5.html", "post-6.html", "post-9.html", "post-16.html"]);
+const skip = new Set(["post-11.html", "post-11.html", "post-11.html", "post-20.html"]);
 const marker = "post-author-box";
 
 function parseDates(html) {

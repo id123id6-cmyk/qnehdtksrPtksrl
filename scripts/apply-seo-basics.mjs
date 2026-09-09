@@ -535,10 +535,10 @@ function patchVercel() {
         destination: 'https://seungbak.com/:path*',
         permanent: true,
       },
-      { source: '/blog/post-16.html', destination: '/blog/post-20.html', permanent: true },
+      { source: '/blog/post-20.html', destination: '/blog/post-20.html', permanent: true },
       { source: '/blog/post-5.html', destination: '/blog/post-11.html', permanent: true },
       { source: '/blog/post-6.html', destination: '/blog/post-11.html', permanent: true },
-      { source: '/blog/post-9.html', destination: '/blog/post-11.html', permanent: true },
+      { source: '/blog/post-11.html', destination: '/blog/post-11.html', permanent: true },
     ],
   };
   write('vercel.json', JSON.stringify(v, null, 2) + '\n');

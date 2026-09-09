@@ -1,7 +1,7 @@
 {
   "updatedAt": "2026-08-28T00:28:38.837Z",
   "source": "blog/index.html",
-  "count": 43,
+  "count": 38,
   "posts": [
     {
       "id": 55,
@@ -232,18 +232,6 @@
       "date": "2026-07-22"
     },
     {
-      "id": 36,
-      "slug": "post-36.html",
-      "href": "/blog/post-36.html",
-      "category": "side-income",
-      "image": "/blog/images/post-36/routine-hero.png",
-      "alt": "본업 하면서 부동산 공부까지, 저는 이렇게 시간 냈습니다",
-      "tag": "직장인 부업",
-      "title": "본업 하면서 부동산 공부까지, 저는 이렇게 시간 냈습니다",
-      "excerpt": "생산관리 월급쟁이가 퇴근 후 부동산 공부·사이드를 병행하며 시간을 쪼갠 솔직한 후기. 짧은 루틴과 쉬는 날의 허용.",
-      "date": "2026-07-21"
-    },
-    {
       "id": 35,
       "slug": "post-35.html",
       "href": "/blog/post-35.html",
@@ -254,30 +242,6 @@
       "title": "월급쟁이가 부동산 공부 시작할 때 삽질한 것들",
       "excerpt": "유튜브만 몰아보고, 책만 쌓아두고, 안 맞는 동네를 기웃거렸던 솔직한 시작 회고. 지금이라면 이렇게 시작할 것.",
       "date": "2026-07-21"
-    },
-    {
-      "id": 34,
-      "slug": "post-34.html",
-      "href": "/blog/post-34.html",
-      "category": "side-income",
-      "image": "/blog/images/post-34/calculator-hero.png",
-      "alt": "월급만으론 투자가 안 되겠더라고요 — 그래서 계산기를 만들었습니다",
-      "tag": "직장인 부업",
-      "title": "월급만으론 투자가 안 되겠더라고요 — 그래서 계산기를 만들었습니다",
-      "excerpt": "월급만으로는 투자가 어렵다고 느껴 구매대행·알바를 해보고, 결국 부동산 계산기를 만든 솔직한 후기. 내가 필요한 것부터 만드는 이야기.",
-      "date": "2026-07-13"
-    },
-    {
-      "id": 33,
-      "slug": "post-33.html",
-      "href": "/blog/post-33.html",
-      "category": "side-income",
-      "image": "/blog/images/post-33/essay-hero.png",
-      "alt": "부동산 공부하면서 느낀 것 — 조급하면 진짜 안 보이더라고요",
-      "tag": "직장인 부업",
-      "title": "부동산 투자하고 느낀 것 — 조급하면 안 보이더라고요",
-      "excerpt": "월급쟁이 승박의 솔직한 투자 회고. 조급함, 시야 좁아짐, 한 발 물러서기. 개인적인 경험과 생각.",
-      "date": "2026-07-09"
     },
     {
       "id": 32,
@@ -494,30 +458,6 @@
       "title": "청년미래적금 완벽정리: 6월 22일 출시! 놓치면 진짜 후회하는 이유",
       "excerpt": "2026년 6월 22일 출시 청년미래적금 가입조건, 일반형·우대형 차이, 5부제 일정, 청년도약계좌 갈아타기 방법, 은행별 금리 비교, 주의사항까지 한 번에 정리",
       "date": "2026-06-22"
-    },
-    {
-      "id": 13,
-      "slug": "post-13.html",
-      "href": "/blog/post-13.html",
-      "category": "side-project",
-      "image": "/blog/images/post-13-ga4-realtime.png",
-      "alt": "드디어 첫 방문자! GA4에 1이 찍힌 날",
-      "tag": "사이드 프로젝트",
-      "title": "드디어 첫 방문자! GA4에 1이 찍힌 날",
-      "excerpt": "seungbak.com 사이드 프로젝트에서 GA4에 첫 활성 사용자 1명이 찍힌 날. GA4 설치, 서울 25개구 부동산 지도 확장, 통합 검색, 초기 로딩 13.5배 최적화까지 8시간 작업 기록.",
-      "date": "2026-06-19"
-    },
-    {
-      "id": 12,
-      "slug": "post-12.html",
-      "href": "/blog/post-12.html",
-      "category": "side-project",
-      "image": "/blog/images/post-12-main-screen.png",
-      "alt": "비전공자 직장인이 강남구 부동산 지도 만든 후기",
-      "tag": "사이드 프로젝트",
-      "title": "비전공자 직장인이 강남구 부동산 지도 만든 후기",
-      "excerpt": "코딩 한 줄 모르는 생산관리 직장인이 AI와 함께 강남구 부동산 지도를 만든 진짜 과정. 5년치 데이터 14만건, 741개 단지, 호갱노노 스타일 UI까지 - 하루 만에 가능했던 이유와 시행착오를 솔직하게 공유합니다.",
-      "date": "2026-06-18"
     }
   ]
 }
