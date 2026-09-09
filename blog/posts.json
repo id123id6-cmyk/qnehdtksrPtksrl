@@ -1,8 +1,20 @@
 {
-  "updatedAt": "2026-08-28T00:28:38.837Z",
+  "updatedAt": "2026-09-09T00:00:00.000Z",
   "source": "blog/index.html",
-  "count": 38,
+  "count": 39,
   "posts": [
+    {
+      "id": 56,
+      "slug": "post-56.html",
+      "href": "/blog/post-56.html",
+      "category": "tax",
+      "image": "/blog/images/post-56/hero.png",
+      "alt": "월세 계약서와 계산기를 놓고 임대소득 세금을 계산하는 모습",
+      "tag": "세금/절세",
+      "title": "주택임대소득 과세 기준 2026 완벽정리",
+      "excerpt": "2026년 주택임대소득 과세 기준을 표로 정리했습니다. 1주택·2주택·간주임대료, 소형주택 특례, 분리과세·종합과세, 등록임대 필요경비율까지 초보 눈높이로 설명합니다.",
+      "date": "2026-09-09"
+    },
     {
       "id": 55,
       "slug": "post-55.html",
