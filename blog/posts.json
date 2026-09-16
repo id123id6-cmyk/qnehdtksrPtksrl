@@ -1,8 +1,20 @@
 {
-  "updatedAt": "2026-09-09T00:00:00.000Z",
+  "updatedAt": "2026-09-16T00:00:00.000Z",
   "source": "blog/index.html",
-  "count": 39,
+  "count": 40,
   "posts": [
+    {
+      "id": 57,
+      "slug": "post-57.html",
+      "href": "/blog/post-57.html",
+      "category": "tax",
+      "image": "/blog/images/post-57/hero.png",
+      "alt": "월세 계약서와 통장 이체내역을 보며 연말정산을 준비하는 모습",
+      "tag": "세금/절세",
+      "title": "월세 세액공제 2026 완벽정리 — 최대 170만원 환급받는 법",
+      "excerpt": "2026년 월세 세액공제 요건·공제율·한도를 표로 정리했습니다. 총급여 구간별 최대 170만원, 구비서류, 경정청구, 정부 세제개편안(국회 미통과)까지 초보 눈높이로 설명합니다.",
+      "date": "2026-09-16"
+    },
     {
       "id": 56,
       "slug": "post-56.html",
