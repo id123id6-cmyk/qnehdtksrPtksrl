@@ -1,15 +1,38 @@
 {
-  "updatedAt": "2026-09-17T02:12:05.548Z",
+  "updatedAt": "2026-09-18T01:58:39.159Z",
   "source": "ApplyhomeInfoDetailSvc/v1/getAPTLttotPblancDetail",
   "range": {
     "gte": "2026-01-01",
-    "lte": "2026-09-17",
+    "lte": "2026-09-18",
     "dateFormat": "YYYY-MM-DD",
     "lookbackMonths": 6,
     "yearStart": "2026-01-01"
   },
-  "count": 239,
+  "count": 240,
   "items": [
+    {
+      "HOUSE_NM": "천안 용곡 두산위브(조합원 취소분)",
+      "HOUSE_DTL_SECD_NM": "민영",
+      "HOUSE_SECD_NM": "APT",
+      "SUBSCRPT_AREA_CODE_NM": "충남",
+      "HSSPLY_ADRES": "충청남도 천안시 동남구 풍세로 801(용곡동 617번지)",
+      "HSSPLY_ZIP": "31202",
+      "TOT_SUPLY_HSHLDCO": 7,
+      "RCRIT_PBLANC_DE": "2026-09-17",
+      "RCEPT_BGNDE": "2026-09-28",
+      "RCEPT_ENDDE": "2026-09-29",
+      "PRZWNER_PRESNATN_DE": "2026-10-06",
+      "MVN_PREARNGE_YM": "202610",
+      "PBLANC_URL": "https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000454&pblancNo=2026000454",
+      "BSNS_MBY_NM": "용곡두산위브지역주택조합",
+      "CNSTRCT_ENTRPS_NM": "두산건설(주)",
+      "MDHS_TELNO": "0415717988",
+      "HMPG_ADRES": "https://blog.naver.com/andmailand",
+      "NSPRC_NM": "",
+      "CNTRCT_CNCLS_BGNDE": "2026-10-19",
+      "CNTRCT_CNCLS_ENDDE": "2026-10-21",
+      "RENT_SECD_NM": "분양주택"
+    },
     {
       "HOUSE_NM": "화서역 호수공원 아너스빌",
       "HOUSE_DTL_SECD_NM": "민영",
