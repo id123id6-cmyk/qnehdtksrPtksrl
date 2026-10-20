@@ -1,14 +1,14 @@
 {
-  "updatedAt": "2026-10-19T02:12:58.779Z",
+  "updatedAt": "2026-10-20T02:27:52.082Z",
   "source": "ApplyhomeInfoDetailSvc/v1/getAPTLttotPblancDetail",
   "range": {
     "gte": "2026-01-01",
-    "lte": "2026-10-19",
+    "lte": "2026-10-20",
     "dateFormat": "YYYY-MM-DD",
     "lookbackMonths": 6,
     "yearStart": "2026-01-01"
   },
-  "count": 271,
+  "count": 272,
   "items": [
     {
       "HOUSE_NM": "트리븐센텀 2단지",
@@ -146,6 +146,29 @@
       "NSPRC_NM": "국제신문",
       "CNTRCT_CNCLS_BGNDE": "2026-11-16",
       "CNTRCT_CNCLS_ENDDE": "2026-11-18",
+      "RENT_SECD_NM": "분양주택"
+    },
+    {
+      "HOUSE_NM": "고덕강일지구 3단지 토지임대부(본청약)",
+      "HOUSE_DTL_SECD_NM": "국민",
+      "HOUSE_SECD_NM": "APT",
+      "SUBSCRPT_AREA_CODE_NM": "서울",
+      "HSSPLY_ADRES": "서울특별시 강동구 강일동 174 일원(고덕강일공공주택지구 3단지)",
+      "HSSPLY_ZIP": "05208",
+      "TOT_SUPLY_HSHLDCO": 1305,
+      "RCRIT_PBLANC_DE": "2026-10-16",
+      "RCEPT_BGNDE": "2026-11-02",
+      "RCEPT_ENDDE": "2026-11-06",
+      "PRZWNER_PRESNATN_DE": "2026-11-26",
+      "MVN_PREARNGE_YM": "202705",
+      "PBLANC_URL": "https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000373&pblancNo=2026000373",
+      "BSNS_MBY_NM": "서울주택도시개발공사",
+      "CNSTRCT_ENTRPS_NM": "에이치에스화성(주), (주)서해종합건설, 홍문종합건설(주)",
+      "MDHS_TELNO": "16003456",
+      "HMPG_ADRES": "https://www.i-sh.co.kr/main/index.do",
+      "NSPRC_NM": "조선일보 , 서울신문",
+      "CNTRCT_CNCLS_BGNDE": "2027-03-22",
+      "CNTRCT_CNCLS_ENDDE": "2027-04-02",
       "RENT_SECD_NM": "분양주택"
     },
     {
