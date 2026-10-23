@@ -1,15 +1,38 @@
 {
-  "updatedAt": "2026-10-22T02:16:46.776Z",
+  "updatedAt": "2026-10-23T02:22:30.310Z",
   "source": "ApplyhomeInfoDetailSvc/v1/getAPTLttotPblancDetail",
   "range": {
     "gte": "2026-01-01",
-    "lte": "2026-10-22",
+    "lte": "2026-10-23",
     "dateFormat": "YYYY-MM-DD",
     "lookbackMonths": 6,
     "yearStart": "2026-01-01"
   },
-  "count": 273,
+  "count": 274,
   "items": [
+    {
+      "HOUSE_NM": "청라 아크원 푸르지오",
+      "HOUSE_DTL_SECD_NM": "민영",
+      "HOUSE_SECD_NM": "APT",
+      "SUBSCRPT_AREA_CODE_NM": "인천",
+      "HSSPLY_ADRES": "인천광역시 서해구 청라동 86-1번지 (청라국제업무단지 M5BL)",
+      "HSSPLY_ZIP": "22754",
+      "TOT_SUPLY_HSHLDCO": 868,
+      "RCRIT_PBLANC_DE": "2026-10-22",
+      "RCEPT_BGNDE": "2026-11-02",
+      "RCEPT_ENDDE": "2026-11-04",
+      "PRZWNER_PRESNATN_DE": "2026-11-10",
+      "MVN_PREARNGE_YM": "203108",
+      "PBLANC_URL": "https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000496&pblancNo=2026000496",
+      "BSNS_MBY_NM": "(주)청라스마트시티",
+      "CNSTRCT_ENTRPS_NM": "(주)대우건설",
+      "MDHS_TELNO": "15516881",
+      "HMPG_ADRES": "https://www.arkone-prugio.com",
+      "NSPRC_NM": "아시아경제",
+      "CNTRCT_CNCLS_BGNDE": "2026-11-22",
+      "CNTRCT_CNCLS_ENDDE": "2026-11-24",
+      "RENT_SECD_NM": "분양주택"
+    },
     {
       "HOUSE_NM": "화성 향남 롯데캐슬 시그니처",
       "HOUSE_DTL_SECD_NM": "민영",
