@@ -1,8 +1,20 @@
 {
   "updatedAt": "2026-11-16T00:00:00.000Z",
   "source": "blog/index.html",
-  "count": 43,
+  "count": 44,
   "posts": [
+    {
+      "id": 61,
+      "slug": "post-61.html",
+      "href": "/blog/post-61.html",
+      "category": "real-estate",
+      "image": "/blog/images/post-61/hero.jpg",
+      "alt": "2026년 11월 청약 시장 리포트 집계 안내 이미지",
+      "tag": "청약",
+      "title": "2026년 11월 청약 시장 리포트 — 이번 달 접수 35곳, 세대수 1만 4천",
+      "excerpt": "청약홈 분양정보를 접수시작일 기준으로 집계한 2026년 11월 자체 리포트. 단지 35곳·14,049세대, 경기 20곳 집중과 서울 3곳·상위 5단지를 표로 정리했습니다.",
+      "date": "2026-11-16"
+    },
     {
       "id": 60,
       "slug": "post-60.html",
