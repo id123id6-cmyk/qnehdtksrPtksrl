@@ -107,11 +107,18 @@ function rebuildSitemap() {
     urls.push({ loc: SITE + loc, lastmod, changefreq, priority });
   };
 
-  push('/', { lastmod: TODAY, changefreq: 'weekly', priority: '1.0' });
+  // 홈·블로그 허브 lastmod = 공개 글 중 최신 date (글 추가 시 실제로 갱신된 날)
+  const hubLastmod = posts
+    .map((p) => p.date)
+    .filter(Boolean)
+    .sort()
+    .at(-1) || TODAY;
+
+  push('/', { lastmod: hubLastmod, changefreq: 'weekly', priority: '1.0' });
   for (const [loc, priority] of toolUrls) {
     push(loc, { lastmod: TODAY, changefreq: 'weekly', priority });
   }
-  push('/blog/', { lastmod: TODAY, changefreq: 'daily', priority: '0.7' });
+  push('/blog/', { lastmod: hubLastmod, changefreq: 'daily', priority: '0.7' });
 
   for (const p of posts) {
     if (skipIds.has(p.id)) continue;
@@ -127,6 +134,7 @@ function rebuildSitemap() {
   push('/privacy.html', { lastmod: TODAY, changefreq: 'yearly', priority: '0.3' });
   push('/terms.html', { lastmod: TODAY, changefreq: 'yearly', priority: '0.3' });
   push('/disclaimer.html', { lastmod: TODAY, changefreq: 'yearly', priority: '0.3' });
+  // llms.txt 등 HTML이 아닌 파일은 sitemap에 넣지 않음
 
   const body = urls
     .map((u) => {

@@ -329,8 +329,11 @@ function patchIndexLinks() {
 
 function addGlossaryToSitemap() {
   let sm = read('sitemap.xml');
+  // HTML이 아닌 llms.txt는 sitemap에서 제외
+  sm = sm.replace(/\s*<url>\s*<loc>https:\/\/seungbak\.com\/llms(?:-full)?\.txt<\/loc>[\s\S]*?<\/url>/g, '');
   if (sm.includes('/glossary.html')) {
-    console.log('· sitemap already has glossary');
+    write('sitemap.xml', sm);
+    console.log('· sitemap already has glossary (llms.txt stripped if present)');
     return;
   }
   const entry = `
@@ -340,17 +343,10 @@ function addGlossaryToSitemap() {
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
-
-  <url>
-    <loc>${SITE}/llms.txt</loc>
-    <lastmod>${TODAY}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.4</priority>
-  </url>
 `;
   sm = sm.replace('</urlset>', `${entry}</urlset>\n`);
   write('sitemap.xml', sm);
-  console.log('✓ sitemap glossary + llms.txt');
+  console.log('✓ sitemap glossary (no llms.txt)');
 }
 
 function enhanceRecentFaqSchema() {
