@@ -1,6 +1,6 @@
 # seungbak.com
 
-> 월급쟁이 눈높이의 부동산·세금·청약·노후 정보 사이트. 실거래가 지도와 무료 계산 도구, 초보용 블로그를 제공합니다.
+> 월급쟁이 눈높이의 부동산·세금·청약·노후 정보 사이트. 분양 알리미·무료 계산 도구, 초보용 블로그를 제공합니다. (실거래가 지도는 준비 중)
 > 운영자: 승박 (생산관리 직장인). 전문가 자문이 아닌 정보 참고용입니다. 정확한 신고·신청은 국세청·청약홈·공식 기관을 확인하세요.
 
 사이트: https://seungbak.com/
@@ -20,8 +20,8 @@ RSS: https://seungbak.com/blog/rss.xml
 
 ## 주요 도구
 
-- [실거래가 지도](https://seungbak.com/tools/realestate-map/): 전국 아파트 실거래가 시세를 지도에서 조회
 - [분양 알리미](https://seungbak.com/tools/bunyang-alarm/): 청약·분양 일정과 D-Day
+- [실거래가 지도 (준비 중)](https://seungbak.com/tools/realestate-map/): 데이터 연동 준비 중. 그동안 국토교통부 실거래가 공개시스템(https://rt.molit.go.kr) 안내
 - [청약 가점 계산기](https://seungbak.com/tools/subscription-calculator/): 민영주택 청약 가점 84점 만점 계산
 - [월급 실수령액 계산기](https://seungbak.com/tools/salary-calculator/): 세후 월급 추정
 - [아파트 계산기](https://seungbak.com/tools/apt-calculator/): 대출·상환 감 잡기

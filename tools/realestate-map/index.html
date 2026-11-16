@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" class="map-page-root">
+<html lang="ko">
 <head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y7SC73P9JW"></script>
@@ -27,18 +27,16 @@
   <meta name="google-adsense-account" content="ca-pub-8232968272801958">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8232968272801958" crossorigin="anonymous"></script>
 
-  <title>전국 아파트 실거래가 지도 | 매매·전세 시세 확인 | 승박</title>
-  <meta name="description" content="전국 아파트 단지 실거래가(매매·전세)를 지도에서 확인하세요. 면적별 시세 그래프와 급매·호가 비교 관점까지 초보 눈높이로 안내합니다.">
+  <title>실거래가 지도 — 준비 중 | 승박</title>
+  <meta name="description" content="실거래가 지도 데이터 연동을 새로 준비하고 있습니다. 그동안 국토교통부 실거래가 공개시스템에서 확인하실 수 있습니다.">
   <meta name="robots" content="noindex, follow">
   <link rel="canonical" href="https://seungbak.com/tools/realestate-map/">
 
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://seungbak.com/tools/realestate-map/">
-  <meta property="og:title" content="전국 아파트 실거래가 지도 | 승박">
-  <meta property="og:description" content="매매·전세 실거래가를 지도에서 보고, 면적별 시세를 해석하는 방법을 안내합니다.">
+  <meta property="og:title" content="실거래가 지도 — 준비 중 | 승박">
+  <meta property="og:description" content="데이터 연동을 새로 준비하고 있습니다. 국토교통부 실거래가 공개시스템에서 확인하실 수 있습니다.">
   <meta property="og:image" content="https://seungbak.com/images/og-image.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
   <meta property="og:locale" content="ko_KR">
   <meta property="og:site_name" content="승박">
 
@@ -46,394 +44,110 @@
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
-  <link rel="stylesheet" href="../../styles.css">
-  <link rel="stylesheet" href="map.css">
-  <link rel="stylesheet" href="nav.css">
-  <link rel="stylesheet" href="../../css/tool-content.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+  <link rel="stylesheet" href="../../css/global-theme.css">
+  <style>
+    .map-pending {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 64px 20px 80px;
+      text-align: center;
+    }
+    .map-pending h1 {
+      margin: 0 0 20px;
+      font-size: clamp(1.6rem, 3vw, 2rem);
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.02em;
+    }
+    .map-pending p {
+      margin: 0 0 28px;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: #334155;
+    }
+    .map-pending a.molit-link {
+      display: inline-block;
+      padding: 12px 22px;
+      border-radius: 10px;
+      background: #0d9488;
+      color: #fff;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .map-pending a.molit-link:hover { background: #0f766e; }
+    .map-pending .back-tools {
+      display: block;
+      margin-top: 28px;
+      color: #475569;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+    .map-pending .back-tools:hover { text-decoration: underline; }
+  </style>
 </head>
-<body class="map-page">
-  <header class="hr-header">
-    <div class="hr-container hr-header-inner">
-      <a href="/" class="hr-logo" aria-label="seungbak.com 홈">seungbak.com</a>
-      <nav class="hr-nav" aria-label="주요 메뉴">
-        <a href="/tools/realestate-map/" class="is-active" aria-current="page">지도</a>
-        <a href="/tools/">도구</a>
-        <a href="/blog/">블로그</a>
-        <a href="/about.html">소개</a>
-      </nav>
-      <button type="button" class="hr-menu-toggle" id="hr-menu-toggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="hr-nav-mobile">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </div>
-    <nav class="hr-nav-mobile" id="hr-nav-mobile" aria-label="모바일 메뉴" hidden>
-      <a href="/tools/realestate-map/" class="is-active" aria-current="page">지도</a>
-      <a href="/tools/">도구</a>
-      <a href="/blog/">블로그</a>
-      <a href="/about.html">소개</a>
-    </nav>
-  </header>
-
-  
-    <!-- tool-top-intro:start -->
-    <section class="section tool-top-intro-section" aria-label="도구 한줄 소개">
-      <div class="container">
-        <p class="tool-top-intro">전국 아파트 단지 실거래가(매매·전세)를 지도에서 바로 확인할 수 있습니다. 호가만 보지 말고, 실제로 체결된 가격으로 시세를 가늠해 보세요. 면적별 해석 방법은 페이지 아래 가이드에 모아 두었습니다.</p>
-      </div>
-    </section>
-<!-- tool-top-intro:end -->
-
-    <div class="map-page-shell">
-  <p class="map-error-banner" id="map-error" hidden></p>
-
-  <div class="bottom-sheet-backdrop" id="bottomSheetBackdrop" hidden aria-hidden="true"></div>
-
-  <div class="map-layout" id="map-layout">
-    <section class="map-panel" aria-label="부동산 실거래가 지도">
-      <h1 class="sr-only">서울·경기 부동산 실거래가 지도</h1>
-
-      <div class="map-toolbar map-controls-hidden" id="map-toolbar">
-        <div class="map-toolbar-scroll">
-          <div class="toolbar-group toolbar-group--region">
-            <button type="button" class="map-pill map-pill--icon" id="toolbar-menu-btn" aria-label="메뉴">≡</button>
-            <button type="button" class="map-pill map-pill--icon" id="toolbar-search-btn" aria-label="검색">
-              <span aria-hidden="true">🔍</span><span class="map-pill-text">검색</span>
-            </button>
-            <div class="region-selector" id="region-selector" aria-label="지역 선택"></div>
-          </div>
-          <span class="toolbar-vdivider" aria-hidden="true"></span>
-          <div class="toolbar-group toolbar-group--filter map-filter-bar" id="map-filter-bar" aria-label="단지 필터"></div>
-          <span class="toolbar-vdivider" aria-hidden="true"></span>
-          <div class="toolbar-group toolbar-group--layers" id="map-layer-toggles" aria-label="지도 레이어"></div>
-        </div>
-      </div>
-
-      <div class="map-canvas-wrap">
-      <div id="map-loading" class="map-loading">지도 데이터를 불러오는 중...</div>
-      <div id="map" role="application" aria-label="카카오맵"></div>
-
-      <div id="map-empty-state" class="map-empty-state" hidden aria-live="polite">
-        <div class="map-empty-state-backdrop" id="map-empty-backdrop" aria-hidden="true"></div>
-        <div class="map-empty-state-card" role="dialog" aria-modal="true" aria-labelledby="map-empty-title">
-          <h2 class="map-empty-state-title" id="map-empty-title">👋 승박이 지도 사용법</h2>
-          <ol class="map-help-steps">
-            <li>1️⃣ 상단에서 시도 → 시군구 → 동 선택</li>
-            <li>2️⃣ 지도에서 마커 클릭하면 상세정보 확인</li>
-            <li>3️⃣ 지하철·초등·중등 토글로 인프라 확인</li>
-          </ol>
-          <div class="map-empty-state-stats" aria-label="서비스 통계">
-            <div class="map-empty-stat"><strong>13,400+</strong><span>단지</span></div>
-            <div class="map-empty-stat"><strong>47만+</strong><span>거래</span></div>
-            <div class="map-empty-stat"><strong>전국</strong><span>지역</span></div>
-          </div>
-          <p class="map-empty-state-section-label">🔥 인기 지역 바로가기</p>
-          <div class="map-empty-popular-grid" id="popular-regions-grid"></div>
-          <div class="map-help-footer">
-            <label class="map-help-dismiss-label">
-              <input type="checkbox" id="map-help-dismiss" />
-              다시 보지 않기
-            </label>
-            <button type="button" class="map-help-close-btn" id="map-empty-close">닫기</button>
-          </div>
-        </div>
-      </div>
-
-      <button type="button" class="map-help-btn" id="map-help-btn" aria-label="도움말 보기">ⓘ 도움말</button>
-
-      <p class="map-status-chip" id="marker-count" aria-live="polite">단지 로딩 중...</p>
-      <div class="map-legend" id="map-legend">
-        <button type="button" class="map-legend-toggle" aria-expanded="true" aria-controls="map-legend">
-          범례
-        </button>
-        <h4>1년 거래 기준</h4>
-        <div class="legend-item"><span class="dot dot-low"></span> 매매 10억 미만</div>
-        <div class="legend-item"><span class="dot dot-mid"></span> 매매 10~20억</div>
-        <div class="legend-item"><span class="dot dot-high"></span> 매매 20억 이상</div>
-        <div class="legend-item"><span class="dot dot-jeonse"></span> 전세만</div>
-        <div class="legend-item"><span class="dot dot-none"></span> 거래 없음</div>
-      </div>
-
-      <div class="mobile-search-float" id="mobileSearchFloat" hidden>
-        <label class="mobile-search-label" for="mobile-search-input">단지명 검색</label>
-        <input
-          type="search"
-          id="mobile-search-input"
-          placeholder="예: 래미안, 아크로, 현대..."
-          autocomplete="off"
-        >
-        <div id="mobile-search-results" class="search-results"></div>
-      </div>
-
-      <button type="button" class="mobile-search-fab" id="mobileSearchFab" aria-label="단지 검색">
-        <span aria-hidden="true">🔍</span>
-      </button>
-      </div>
-    </section>
-
-    <aside class="sidebar-panel" id="sidebar-panel" aria-label="단지 정보">
-      <div class="bottom-sheet-handle" id="bottomSheetHandle" aria-hidden="true"></div>
-      <button
-        type="button"
-        class="bottom-sheet-close"
-        id="bottomSheetClose"
-        aria-label="단지 정보 닫기"
-      >
-        ×
-      </button>
-      <button
-        type="button"
-        class="sidebar-mobile-toggle"
-        id="sidebarToggle"
-        aria-expanded="true"
-        aria-controls="sidebar-panel"
-      >
-        <span class="sidebar-mobile-toggle-label">단지 정보 · 검색</span>
-        <span class="sidebar-mobile-toggle-icon" aria-hidden="true">▼</span>
-      </button>
-      <div class="sidebar-search">
-        <label for="search-input">단지명 검색</label>
-        <input
-          type="search"
-          id="search-input"
-          placeholder="예: 래미안, 아크로, 현대..."
-          autocomplete="off"
-        >
-        <div id="search-results" class="search-results"></div>
-        <p class="search-index-hint" id="search-index-hint" hidden>🔍 전체 검색 준비 중...</p>
-      </div>
-
-      <div class="sidebar-content" id="sidebar-content">
-        <div class="sidebar-empty">
-          <p>상단에서 구를 선택하면<br>단지 정보를 확인할 수 있어요.</p>
-        </div>
-      </div>
-
-      <div class="sidebar-actions">
-        <button type="button" class="btn-primary" id="dday-btn" disabled>
-          D-day 계산하기
-        </button>
-      </div>
-    </aside>
-  </div>
-  </div>
-
-  <!-- tool-content:start -->
-    <section class="section tool-content-section" aria-label="실거래가 지도 상세 안내">
-      <div class="container">
-        <article class="card form-card tool-content-card">
-          <p class="tool-content-kicker">실거래가 지도 가이드</p>
-          <h2>이 도구는 무엇인가요?</h2>
-          <p>허위 매물·과장 호가에 흔들리지 않으려면, 실제로 체결된 가격부터 보는 습관이 필요합니다. 이 지도는 단지별 실거래(매매·전세)를 지도 위에서 바로 찾아보고, 면적별 가격 흐름을 그래프로 확인할 수 있게 만든 도구입니다. “이 동네 시세가 어느 정도인지”를 빠르게 감 잡고 싶을 때, 중개사 말만 듣기 전에 스스로 교차검증할 때 쓰기 좋습니다.</p>
-          <p>단, 표시 가격은 참고용이며 최신성·누락 여부는 국토교통부 실거래가 공개시스템 등 공식 자료와 대조하는 것이 안전합니다.</p>
-
-          <h2>이렇게 사용하세요</h2>
-          <ol>
-            <li><strong>지역 선택</strong> — 상단에서 시도·시군구(필요하면 동)를 고릅니다. 구를 바꾸면 해당 지역 단지 마커가 지도에 표시됩니다.</li>
-            <li><strong>필터·검색</strong> — 매매/전세 구분, 단지 검색, 인프라(지하철·학교 등) 토글을 상황에 맞게 켭니다. 관심 단지명을 검색하면 위치를 빨리 찾을 수 있습니다.</li>
-            <li><strong>마커 클릭 → 상세</strong> — 단지 마커를 누르면 사이드바에 면적별 실거래와 추이 그래프가 열립니다. 같은 단지라도 전용면적대별로 가격대가 크게 다를 수 있으니 면적을 먼저 맞춰 보세요.</li>
-            <li><strong>(선택) D-day 연결</strong> — 관심 단지의 목표가를 잡았다면 D-day 계산기로 넘어가 저축·대출 시나리오를 이어서 볼 수 있습니다.</li>
-          </ol>
-
-          <h2>결과를 이렇게 해석하세요</h2>
-          <p>실거래가는 “최근에 실제로 계약된 가격”이고, 호가는 “지금 내놓은 희망 가격”입니다. 호가가 실거래보다 크게 높으면 협상 여지가 있을 수도 있고, 반대로 매물이 귀해 호가가 실거래를 끌어올리는 구간일 수도 있습니다. 한 건의 최고가·최저가만 보지 말고, <strong>비슷한 면적대의 최근 여러 건</strong>을 나란히 보는 편이 안전합니다.</p>
-          <p>급매처럼 보이는 낮은 가격은 저층·향·수리 상태·권리관계 이슈가 반영된 경우도 있습니다. “싸니까 좋다”보다 “왜 싼가”를 먼저 질문하세요. 전세 실거래는 보증금 수준을 가늠하는 참고치이지, 매매 판단의 유일한 근거는 아닙니다. 전세가율(전세/매매)이 높은 구간은 갭 리스크도 함께 점검하는 습관이 필요합니다.</p>
-          <p>면적 비교 시에는 공급면적·전용면적 표기가 섞이지 않았는지 확인하세요. 같은 “30평대”라도 전용㎡가 다르면 단가(3.3㎡당) 비교가 어긋납니다. 그래프가 단기 급등·급락을 보이면 거래 건수가 적은 구간인지, 특정 대형 평형의 이상치인지부터 걸러 보세요.</p>
-
-          <h2>자주 하는 실수 / 주의할 점</h2>
-          <ul>
-            <li>한 건의 최고가만 보고 “이 단지 시세”라고 단정하기</li>
-            <li>호가 앱 캡처만 모아 두고 실거래 교차검증을 생략하기</li>
-            <li>전용면적 단위를 맞추지 않은 채 평당가를 비교하기</li>
-          </ul>
-
-          <h2>자주 묻는 질문 (FAQ)</h2>
-          <div class="tool-content-faq">
-            <details>
-              <summary>Q. 지도에 없는 단지/거래는 없나요?</summary>
-              <p>수집·표시 범위와 시점 때문에 일부 단지·최근 계약이 비어 보일 수 있습니다. 중요 결정 전에는 국토부 실거래가 공개시스템에서 동일 단지를 한 번 더 확인하세요.</p>
-            </details>
-            <details>
-              <summary>Q. 매매와 전세를 같이 보면 뭐가 좋나요?</summary>
-              <p>매매만 보면 “살 가격”, 전세만 보면 “보증금 수준”만 보입니다. 둘을 같이 보면 전세가율·월세 전환 압력 같은 흐름을 감으로라도 잡을 수 있습니다.</p>
-            </details>
-            <details>
-              <summary>Q. 이 가격으로 바로 사도 되나요?</summary>
-              <p>아니요. 실거래는 참고 시세입니다. 대출·세금·수리비·학군·교통·단지 관리 상태까지 본인 조건에 맞게 재확인해야 합니다.</p>
-            </details>
-          </div>
-
-          <h2>함께 보면 좋은 글</h2>
-                              <ul class="tool-content-links">
-            <li><a href="/blog/post-29.html">실거래가 지도 200% 활용법 (전국 아파트 시세 한눈에·seungbak.com 오리지널 가이드)</a></li>
-            <li><a href="/blog/post-30.html">2026 전세사기 예방 완벽 체크리스트 (계약 전·중·후 단계별 필수 확인사항)</a></li>
-            <li><a href="/blog/post-38.html">전셋값이 집값보다 더 오른다? 2026 하반기 전세 전망 정리</a></li>
-          </ul>
-          <p class="tool-content-note">본 안내는 정보 제공 목적이며 투자·법률 자문이 아닙니다. 정확한 실거래 내역은 국토교통부 등 공식 공개 자료를 확인하세요.</p>
-        </article>
-      </div>
-    </section>
-<!-- tool-content:end -->
-
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div class="footer-col footer-brand">
-        <p class="footer-logo">seungbak.com</p>
-        <p class="footer-tagline">생산관리 월급쟁이가 만드는 부동산·생활 도구</p>
-        <p class="footer-owner">운영자: <strong>승박</strong></p>
-      </div>
-      <div class="footer-col">
-        <p class="footer-col-title">바로가기</p>
-        <ul class="footer-nav">
-          <li><a href="/">홈</a></li>
-          <li><a href="/tools/">도구</a></li>
-          <li><a href="/blog/">블로그</a></li>
-          <li><a href="/about.html">소개</a></li>
-          <li><a href="/contact.html">문의</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <p class="footer-col-title">정책</p>
-        <ul class="footer-nav">
-          <li><a href="/privacy.html">개인정보처리방침</a></li>
-          <li><a href="/terms.html">이용약관</a></li>
-          <li><a href="/disclaimer.html">면책조항</a></li>
-            <li><a href="/editorial.html">콘텐츠 제작 원칙</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <p class="footer-col-title">함께해요</p>
-        <ul class="footer-nav">
-          <li><a href="/contact.html">문의하기</a></li>
-          <li><a href="mailto:id123id6@gmail.com">id123id6@gmail.com</a></li>
-        </ul>
+<body class="theme-tools-index">
+  <nav class="theme-nav">
+    <div class="theme-nav-inner">
+      <a href="/" class="theme-nav-logo">seungbak.com</a>
+      <div class="theme-nav-menu">
+        <a href="/tools/realestate-map/" class="theme-nav-item is-active" aria-current="page">지도</a>
+        <a href="/tools/" class="theme-nav-item">도구</a>
+        <a href="/blog/" class="theme-nav-item">블로그</a>
+        <a href="/about.html" class="theme-nav-item">소개</a>
       </div>
     </div>
-    <div class="container footer-bottom">
-      <p class="footer-copy">© 2026 seungbak.com</p>
+  </nav>
+
+  <main>
+    <section class="map-pending" aria-labelledby="map-pending-title">
+      <h1 id="map-pending-title">실거래가 지도 — 준비 중</h1>
+      <p>
+        데이터 연동을 새로 준비하고 있습니다. 그동안
+        국토교통부 실거래가 공개시스템에서 확인하실 수 있습니다.
+      </p>
+      <a class="molit-link" href="https://rt.molit.go.kr" target="_blank" rel="noopener noreferrer">
+        국토교통부 실거래가 공개시스템 →
+      </a>
+      <a class="back-tools" href="/tools/">← 다른 도구 보기</a>
+    </section>
+  </main>
+
+  <footer class="theme-footer">
+    <div class="theme-footer-inner">
+      <div class="theme-footer-brand">
+        <div class="theme-footer-logo">seungbak.com</div>
+        <div class="theme-footer-desc">부동산 정보를 한 곳에서, 무료 도구</div>
+      </div>
+      <div class="theme-footer-links">
+        <div class="theme-footer-col">
+          <div class="theme-footer-title">도구</div>
+          <a href="/tools/bunyang-alarm/" class="theme-link">분양 알리미</a>
+          <a href="/tools/subscription-calculator/" class="theme-link">청약 가점 계산기</a>
+          <a href="/tools/realestate-map/" class="theme-link">실거래가 지도 (준비 중)</a>
+        </div>
+        <div class="theme-footer-col">
+          <div class="theme-footer-title">정보</div>
+          <a href="/blog/" class="theme-link">블로그</a>
+          <a href="/about.html" class="theme-link">소개</a>
+          <a href="/contact.html" class="theme-link">문의</a>
+        </div>
+        <div class="theme-footer-col">
+          <div class="theme-footer-title">정책</div>
+          <a href="/privacy.html" class="theme-link">개인정보처리방침</a>
+          <a href="/terms.html" class="theme-link">이용약관</a>
+          <a href="/disclaimer.html" class="theme-link">면책조항</a>
+          <a href="/editorial.html" class="theme-link">콘텐츠 제작 원칙</a>
+        </div>
+      </div>
+      <div class="theme-footer-bottom">
+        <div>© 2026 seungbak.com. All rights reserved.</div>
+        <div>
+          <a href="https://www.instagram.com/seungbak.tools/" target="_blank" rel="noopener" class="theme-link">@seungbak.tools</a>
+          ·
+          <a href="mailto:id123id6@gmail.com" class="theme-link">id123id6@gmail.com</a>
+        </div>
+      </div>
     </div>
   </footer>
-
-  <script src="config.js"></script>
-  <script>
-    (function () {
-      var key = window.REALESTATE_MAP_CONFIG && window.REALESTATE_MAP_CONFIG.kakaoJsKey;
-      if (!key) return;
-      var s = document.createElement("script");
-      s.src =
-        "https://dapi.kakao.com/v2/maps/sdk.js?appkey=" +
-        encodeURIComponent(key) +
-        "&libraries=clusterer&autoload=false";
-      document.head.appendChild(s);
-    })();
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-  <script src="js/pyeong.js"></script>
-  <script src="js/area-types.js"></script>
-  <script src="js/districts.js"></script>
-  <script src="js/boundary.js"></script>
-  <script src="js/region.js"></script>
-  <script src="js/marker.js"></script>
-  <script src="js/chart.js"></script>
-  <script src="js/data.js"></script>
-  <script src="js/filter.js"></script>
-  <script src="js/apt-meta.js"></script>
-  <script src="js/infra-icons.js"></script>
-  <script src="js/subway-lines.js"></script>
-  <script src="js/sidebar.js"></script>
-  <script src="js/nearby-schools.js"></script>
-  <script src="js/map-toolbar.js"></script>
-  <script src="js/map-welcome.js"></script>
-  <script src="map.js"></script>
-  <!-- 사용법 모달 트리거 버튼 -->
-  <button id="guide-modal-trigger" type="button" aria-label="실거래가 지도 사용법 열기" style="position:fixed;bottom:20px;right:20px;z-index:9998;background:#1A1A1A;color:#F5EFE0;border:none;border-radius:24px;padding:12px 20px;font-size:14px;font-weight:700;box-shadow:0 4px 16px rgba(0,0,0,0.2);cursor:pointer;font-family:inherit;">
-    ❓ 사용법
-  </button>
-
-  <!-- 사용법 모달 -->
-  <div id="guide-modal" role="dialog" aria-modal="true" aria-labelledby="guide-modal-title" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.5);align-items:center;justify-content:center;padding:20px;overflow-y:auto;">
-    <div style="background:#FFFFFF;max-width:720px;width:100%;max-height:90vh;overflow-y:auto;border-radius:16px;padding:32px 28px;box-shadow:0 20px 60px rgba(0,0,0,0.3);position:relative;line-height:1.7;color:#1A1A1A;font-family:inherit;">
-
-      <button id="guide-modal-close" type="button" aria-label="닫기" style="position:absolute;top:16px;right:16px;background:transparent;border:none;font-size:24px;cursor:pointer;color:#1A1A1A;padding:4px 10px;line-height:1;">✕</button>
-
-      <h2 id="guide-modal-title" style="font-size:24px;font-weight:800;margin:0 0 12px;">📖 seungbak.com 실거래가 지도</h2>
-      <p style="margin:0 0 20px;font-size:14px;color:rgba(26,26,26,0.7);">국토교통부 실거래가 데이터를 지도에 시각화한 무료 도구입니다. 전국 255개 시·군·구를 회원가입 없이 바로 조회할 수 있습니다.</p>
-
-      <h3 style="font-size:17px;font-weight:700;margin:20px 0 8px;">🗺️ 사용법 3단계</h3>
-      <ol style="padding-left:20px;margin:0 0 20px;">
-        <li><strong>시·도 선택</strong> — 상단 필터에서 서울·경기·부산 등 원하는 시·도 선택</li>
-        <li><strong>시·군·구 선택</strong> — 두 번째 필터에서 세부 지역 선택 시 아파트 마커 표시</li>
-        <li><strong>줌인·마커 클릭</strong> — 지도 확대 후 마커 클릭 시 최근 실거래 팝업 확인</li>
-      </ol>
-
-      <h3 style="font-size:17px;font-weight:700;margin:20px 0 8px;">🧮 데이터 출처</h3>
-      <ul style="padding-left:20px;margin:0 0 20px;">
-        <li>출처: <a href="https://rt.molit.go.kr" target="_blank" rel="noopener noreferrer" style="color:#1A1A1A;">국토교통부 실거래가 공개시스템</a></li>
-        <li>포함: 전국 아파트 매매·전세·월세 실거래 신고 데이터</li>
-        <li>갱신: 국토부는 계약 후 최대 30일 이내 신고분 공개 (본 사이트는 정기 반영)</li>
-        <li>주의: 계약 취소·해제 반영에 시차 있을 수 있으니 최신 원본은 국토부 확인 권장</li>
-      </ul>
-
-      <h3 style="font-size:17px;font-weight:700;margin:20px 0 8px;">❓ 자주 묻는 질문</h3>
-
-      <p style="margin:12px 0 4px;font-weight:700;">Q1. 회원가입이 필요한가요?</p>
-      <p style="margin:0 0 12px;">아니요. 로그인·회원가입 없이 바로 사용 가능하며 개인정보 수집도 없습니다.</p>
-
-      <p style="margin:12px 0 4px;font-weight:700;">Q2. 데이터는 얼마나 최신인가요?</p>
-      <p style="margin:0 0 12px;">국토부 신고 기준 오늘로부터 약 1~2개월 이내 계약분까지 확인 가능합니다.</p>
-
-      <p style="margin:12px 0 4px;font-weight:700;">Q3. 실거래가와 호가·시세 차이는?</p>
-      <p style="margin:0 0 12px;">실거래가는 실제 계약 체결 후 신고된 가격입니다. 호가·KB시세와 달리 시장 실거래를 가장 정확히 반영합니다.</p>
-
-      <p style="margin:12px 0 4px;font-weight:700;">Q4. 모바일에서도 가능한가요?</p>
-      <p style="margin:0 0 12px;">네, 모바일에 최적화되어 스마트폰·태블릿에서 정상 작동합니다.</p>
-
-      <p style="margin:12px 0 4px;font-weight:700;">Q5. 전세사기 예방에 어떻게 활용하나요?</p>
-      <p style="margin:0 0 12px;">전세 계약 전 해당 단지 최근 매매 실거래가로 전세가율을 계산하세요. 70% 이하가 안전, 80% 이상은 HUG 보증 필수 확인. 자세히는 <a href="/blog/post-30.html" style="color:#1A1A1A;">전세사기 예방 체크리스트</a> 참고.</p>
-
-      <h3 style="font-size:17px;font-weight:700;margin:20px 0 8px;">🔗 관련 도구·블로그</h3>
-      <ul style="padding-left:20px;margin:0 0 20px;">
-        <li><a href="/tools/apt-calculator/" style="color:#1A1A1A;">아파트 매매·전세 계산기</a></li>
-        <li><a href="/tools/salary-calculator/" style="color:#1A1A1A;">필요 연봉 계산기</a></li>
-        <li><a href="/blog/post-29.html" style="color:#1A1A1A;">실거래가 지도 200% 활용법</a></li>
-        <li><a href="/blog/post-30.html" style="color:#1A1A1A;">전세사기 예방 완벽 체크리스트</a></li>
-        <li><a href="/blog/post-28.html" style="color:#1A1A1A;">종부세 12억 공제 받는 법</a></li>
-      </ul>
-
-      <p style="margin-top:24px;padding-top:16px;border-top:1px solid rgba(26,26,26,0.1);font-size:12px;color:rgba(26,26,26,0.6);font-style:italic;">
-        본 도구는 정보 제공 목적입니다. 실제 부동산 거래 판단은 <a href="/disclaimer.html" style="color:#1A1A1A;">면책조항</a> 참고 후 전문가와 상담하세요.
-      </p>
-    </div>
-  </div>
-
-  <!-- 모달 제어 스크립트 -->
-  <script>
-  (function(){
-    var trigger = document.getElementById('guide-modal-trigger');
-    var modal = document.getElementById('guide-modal');
-    var closeBtn = document.getElementById('guide-modal-close');
-    if(!trigger || !modal || !closeBtn) return;
-
-    function openModal(){
-      modal.style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-    }
-    function closeModal(){
-      modal.style.display = 'none';
-      document.body.style.overflow = '';
-    }
-
-    trigger.addEventListener('click', openModal);
-    closeBtn.addEventListener('click', closeModal);
-    modal.addEventListener('click', function(e){
-      if(e.target === modal) closeModal();
-    });
-    document.addEventListener('keydown', function(e){
-      if(e.key === 'Escape' && modal.style.display === 'flex') closeModal();
-    });
-  })();
-  </script>
 </body>
 </html>
