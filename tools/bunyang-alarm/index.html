@@ -193,14 +193,17 @@
             관심 지역을 골라 두면, 새 공고가 있을 때 이메일로 안내할 예정입니다. 원치 않으면 언제든 수신을 거부할 수 있습니다.
           </p>
 
-          <!-- TODO: Formspree 엔드포인트 발급 후 action URL의 PLACEHOLDER를 실제 form id로 교체 -->
           <form
             id="bunyang-alert-form"
             class="bunyang-alert-form"
-            action="https://formspree.io/f/PLACEHOLDER"
+            action="https://formsubmit.co/id123id6@gmail.com"
             method="POST"
             novalidate
           >
+            <input type="hidden" name="_subject" value="[seungbak] 분양 알림 신청">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next" value="https://seungbak.com/tools/bunyang-alarm/?sent=1">
+
             <label class="bunyang-filter">
               <span class="bunyang-filter-label">관심 지역</span>
               <select id="alert-region" name="region" required aria-required="true">
@@ -240,7 +243,6 @@
 
             <div class="bunyang-alert-actions">
               <button type="submit" class="btn-primary bunyang-alert-submit" id="alert-submit">알림 신청</button>
-              <p id="bunyang-alert-pending" class="bunyang-alert-pending" hidden>알림 신청은 준비 중입니다. 곧 열립니다.</p>
             </div>
             <p id="bunyang-alert-status" class="bunyang-alert-status" role="status" aria-live="polite" hidden></p>
           </form>
@@ -376,14 +378,7 @@
       var form = document.getElementById("bunyang-alert-form");
       if (!form) return;
       var statusEl = document.getElementById("bunyang-alert-status");
-      var submitBtn = document.getElementById("alert-submit");
-      var pendingEl = document.getElementById("bunyang-alert-pending");
       var consent = document.getElementById("alert-consent");
-
-      function isPlaceholderEndpoint() {
-        var action = form.getAttribute("action") || "";
-        return action.indexOf("PLACEHOLDER") !== -1;
-      }
 
       function setStatus(msg, isError) {
         if (!statusEl) return;
@@ -392,50 +387,26 @@
         statusEl.classList.toggle("is-error", !!isError);
       }
 
-      // PLACEHOLDER면 버튼을 잠그고 POST가 나가지 않게 차단
-      if (isPlaceholderEndpoint()) {
-        if (submitBtn) {
-          submitBtn.disabled = true;
-          submitBtn.setAttribute("aria-disabled", "true");
+      // FormSubmit _next 리다이렉트 성공 표시
+      try {
+        var params = new URLSearchParams(window.location.search);
+        if (params.get("sent") === "1") {
+          setStatus("신청되었습니다", false);
         }
-        if (pendingEl) pendingEl.hidden = false;
-      }
+      } catch (err) {}
 
       form.addEventListener("submit", function (e) {
-        e.preventDefault();
-        if (isPlaceholderEndpoint()) {
-          setStatus("알림 신청은 준비 중입니다. 곧 열립니다.", true);
-          return;
-        }
         if (!consent || !consent.checked) {
+          e.preventDefault();
           setStatus("개인정보처리방침 동의 후 신청할 수 있습니다.", true);
           return;
         }
         if (!form.checkValidity()) {
+          e.preventDefault();
           form.reportValidity();
           return;
         }
-
-        var action = form.getAttribute("action") || "";
-        if (submitBtn) submitBtn.disabled = true;
-        setStatus("신청 중…", false);
-
-        fetch(action, {
-          method: "POST",
-          body: new FormData(form),
-          headers: { Accept: "application/json" },
-        })
-          .then(function (res) {
-            if (!res.ok) throw new Error("submit failed");
-            form.reset();
-            setStatus("신청되었습니다", false);
-          })
-          .catch(function () {
-            setStatus("신청에 실패했습니다. 잠시 후 다시 시도해 주세요.", true);
-          })
-          .finally(function () {
-            if (submitBtn && !isPlaceholderEndpoint()) submitBtn.disabled = false;
-          });
+        // 유효하면 기본 POST → FormSubmit → _next(?sent=1)
       });
     })();
   </script>
