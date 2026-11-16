@@ -1,8 +1,20 @@
 {
   "updatedAt": "2026-11-16T00:00:00.000Z",
   "source": "blog/index.html",
-  "count": 41,
+  "count": 42,
   "posts": [
+    {
+      "id": 59,
+      "slug": "post-59.html",
+      "href": "/blog/post-59.html",
+      "category": "real-estate",
+      "image": "/blog/images/post-59/hero.jpg",
+      "alt": "특별공급 자격 서류를 점검하는 모습",
+      "tag": "청약",
+      "title": "특별공급 5종 자격 정리 — 신혼·생애최초·다자녀·노부모·기관추천, 내가 해당되는 건",
+      "excerpt": "청약홈 기준으로 특별공급 5종(신혼부부·생애최초·다자녀·노부모부양·기관추천)의 대상·소득·자산·서류·주의점을 표로 정리했습니다. 확인되지 않은 수치는 공고문 확인으로 표기합니다.",
+      "date": "2026-11-16"
+    },
     {
       "id": 58,
       "slug": "post-58.html",
