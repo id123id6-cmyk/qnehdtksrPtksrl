@@ -104,12 +104,13 @@
       <div class="hr-container">
         <div class="hr-hero-inner">
           <h1 class="hr-hero-title" id="hero-title">부동산 정보를 한 곳에서</h1>
-          <p class="hr-hero-sub">청약·분양 일정과 집 마련 계산까지 점검해 보세요. 분양 알리미부터 청약·연봉 계산기까지, 7개 무료 도구(+ 지도 준비 중)</p>
+          <p class="hr-hero-sub">청약·분양 일정과 집 마련 계산까지 점검해 보세요. 청약 일정부터 가점·연봉 계산기까지, 무료 도구</p>
           <p class="hr-hero-desc">
             회원가입 없이 바로 사용할 수 있습니다.<br>
             공식 안내와 공개 자료를 바탕으로 월급쟁이 눈높이로 정리합니다.
           </p>
           <div class="hr-hero-cta">
+            <a href="/tools/cheongyak-calendar/" class="hr-btn hr-btn-primary">청약 일정 보기</a>
             <a href="/tools/bunyang-alarm/" class="hr-btn hr-btn-primary">분양 알리미 보기</a>
             <a href="/tools/" class="hr-btn hr-btn-outline">전체 도구 보기</a>
           </div>
@@ -204,15 +205,6 @@
               <p class="hr-tool-desc">전국 청약·분양 일정 조회</p>
             </div>
           </a>
-          <a href="/tools/realestate-map/" class="hr-tool-card">
-            <span class="hr-tool-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s7-4.5 7-11a7 7 0 1 0-14 0c0 6.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
-            </span>
-            <div class="hr-tool-text">
-              <h3 class="hr-tool-title">실거래가 지도 <span style="font-size:0.75em;font-weight:600;color:#64748b;">(준비 중)</span></h3>
-              <p class="hr-tool-desc">데이터 연동 준비 중 · 국토부 공개시스템 안내</p>
-            </div>
-          </a>
           <a href="/tools/subscription-calculator/" class="hr-tool-card">
             <span class="hr-tool-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 10.5L12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-9.5z"/></svg>
@@ -220,24 +212,6 @@
             <div class="hr-tool-text">
               <h3 class="hr-tool-title">청약 가점 계산기</h3>
               <p class="hr-tool-desc">84점 만점 자동 계산</p>
-            </div>
-          </a>
-          <a href="/tools/income-calculator/" class="hr-tool-card">
-            <span class="hr-tool-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M7 15h2M11 15h2"/></svg>
-            </span>
-            <div class="hr-tool-text">
-              <h3 class="hr-tool-title">월급 실수령액 계산기</h3>
-              <p class="hr-tool-desc">세후 급여 계산</p>
-            </div>
-          </a>
-          <a href="/tools/apt-calculator/" class="hr-tool-card">
-            <span class="hr-tool-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20V8l8-5 8 5v12"/><path d="M9 20v-6h6v6M9 10h6"/></svg>
-            </span>
-            <div class="hr-tool-text">
-              <h3 class="hr-tool-title">아파트 계산기</h3>
-              <p class="hr-tool-desc">매매·전세 비용 계산</p>
             </div>
           </a>
           <a href="/tools/salary-calculator/" class="hr-tool-card">
@@ -249,13 +223,22 @@
               <p class="hr-tool-desc">아파트 가격별 필요 연봉</p>
             </div>
           </a>
-          <a href="/tools/dday-calculator/" class="hr-tool-card">
+          <a href="/tools/apt-calculator/" class="hr-tool-card">
             <span class="hr-tool-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20V8l8-5 8 5v12"/><path d="M9 20v-6h6v6M9 10h6"/></svg>
             </span>
             <div class="hr-tool-text">
-              <h3 class="hr-tool-title">D-day 계산기</h3>
-              <p class="hr-tool-desc">청약·계약일 카운트</p>
+              <h3 class="hr-tool-title">아파트 계산기</h3>
+              <p class="hr-tool-desc">매매·전세 비용 계산</p>
+            </div>
+          </a>
+          <a href="/tools/income-calculator/" class="hr-tool-card">
+            <span class="hr-tool-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M7 15h2M11 15h2"/></svg>
+            </span>
+            <div class="hr-tool-text">
+              <h3 class="hr-tool-title">월급 실수령액 계산기</h3>
+              <p class="hr-tool-desc">세후 급여 계산</p>
             </div>
           </a>
           <a href="/tools/severance-calculator/" class="hr-tool-card">
@@ -265,6 +248,15 @@
             <div class="hr-tool-text">
               <h3 class="hr-tool-title">퇴직금 계산기</h3>
               <p class="hr-tool-desc">퇴직금·실수령액 계산</p>
+            </div>
+          </a>
+          <a href="/tools/dday-calculator/" class="hr-tool-card">
+            <span class="hr-tool-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            </span>
+            <div class="hr-tool-text">
+              <h3 class="hr-tool-title">D-day 계산기</h3>
+              <p class="hr-tool-desc">청약·계약일 카운트</p>
             </div>
           </a>
         </div>
