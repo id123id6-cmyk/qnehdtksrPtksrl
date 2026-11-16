@@ -558,3 +558,87 @@ body.bunyang-modal-open {
   }
 }
 
+/* 이메일 알림 신청 */
+.bunyang-alert-card {
+  padding: 1.35rem 1.4rem 1.5rem;
+  border-radius: 16px;
+  border: 1px solid var(--color-border-subtle);
+  background: var(--color-card);
+  box-shadow: var(--shadow-card);
+}
+
+.bunyang-alert-lead {
+  margin: 0.35rem 0 1.15rem;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.bunyang-alert-form {
+  display: grid;
+  gap: 0.9rem;
+  max-width: 420px;
+}
+
+.bunyang-alert-form input[type="email"] {
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  border-radius: 10px;
+  border: 1px solid var(--color-border-subtle);
+  background: #fff;
+  font-size: 0.95rem;
+  color: var(--color-dark);
+}
+
+.bunyang-alert-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: var(--color-dark);
+}
+
+.bunyang-alert-consent input {
+  margin-top: 0.2rem;
+  flex-shrink: 0;
+}
+
+.bunyang-alert-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem 1rem;
+}
+
+.bunyang-alert-submit {
+  justify-self: start;
+  border: none;
+  cursor: pointer;
+  padding: 0.75rem 1.25rem;
+  border-radius: 12px;
+}
+
+.bunyang-alert-submit:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.bunyang-alert-pending {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  line-height: 1.45;
+}
+
+.bunyang-alert-status {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #0f766e;
+}
+
+.bunyang-alert-status.is-error {
+  color: #b91c1c;
+}
+
