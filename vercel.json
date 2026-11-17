@@ -50,17 +50,17 @@
     },
     {
       "source": "/blog/post-5.html",
-      "destination": "/blog/post-11.html",
+      "destination": "/blog/",
       "permanent": true
     },
     {
       "source": "/blog/post-6.html",
-      "destination": "/blog/post-11.html",
+      "destination": "/blog/",
       "permanent": true
     },
     {
       "source": "/blog/post-9.html",
-      "destination": "/blog/post-11.html",
+      "destination": "/blog/",
       "permanent": true
     }
   ]
